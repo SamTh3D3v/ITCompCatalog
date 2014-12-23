@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 
 namespace ITCompCatalogue.Model
@@ -8,7 +9,7 @@ namespace ITCompCatalogue.Model
     {
         public Category()
         {
-            this.Cours = new List<Cour>();
+            this.Cours = new ObservableCollection<Cour>();
         }
 
         public long C_id { get; set; }
@@ -17,6 +18,6 @@ namespace ITCompCatalogue.Model
         public long TechnologieID { get; set; }
 
         public  Technology Technology { get; set; }
-        public  List<Cour> Cours { get; set; }
+        public  ObservableCollection<Cour> Cours { get; set; }
     }
 }

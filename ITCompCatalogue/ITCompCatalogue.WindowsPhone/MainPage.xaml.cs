@@ -52,6 +52,8 @@ namespace ITCompCatalogue
             throw new NotImplementedException();
         }
 
+      
+
         public void Deactivate(object parameter)
         {
             throw new NotImplementedException();

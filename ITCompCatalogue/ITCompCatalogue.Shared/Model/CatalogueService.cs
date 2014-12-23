@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
@@ -42,7 +43,7 @@ namespace ITCompCatalogue.Model
                         Code = (string) statement[1],
                         Intitule = (string) statement[2],
                         //Technology = GetTechnology(technologyId) 
-                        Cours =await GetCoursesByCategoryId((long)statement[0])
+                        Cours =new ObservableCollection<Cour>(await GetCoursesByCategoryId((long)statement[0]))
                     });
                 }
             }
@@ -65,10 +66,10 @@ namespace ITCompCatalogue.Model
             return technology;
         }
 
-        private async Task<List<Cour>> GetCoursesByCategoryId(long categoryId)
+        private async Task<ObservableCollection<Cour>> GetCoursesByCategoryId(long categoryId)
         {
             var courses = new List<Cour>();
-            using (var statement = _connection.Prepare("SELECT * FROM Cour WHERE CategorieID= ?"))
+            using (var statement = _connection.Prepare("SELECT * FROM Cours WHERE CategorieID= ?"))
             {
                 statement.Bind(1,categoryId);
                 while (statement.Step()==SQLiteResult.ROW)
@@ -86,7 +87,7 @@ namespace ITCompCatalogue.Model
                     });
                 }
             }
-            return courses;
+            return new ObservableCollection<Cour>(courses);
         }
         private Category GetCategory(long categoryId)
         {

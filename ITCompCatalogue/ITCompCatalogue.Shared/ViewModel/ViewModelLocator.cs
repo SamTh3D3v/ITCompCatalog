@@ -26,9 +26,10 @@ namespace ITCompCatalogue.ViewModel
 
         static ViewModelLocator()
         {
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);           
             var navigationService = CreateNavigationService();
             SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+            SimpleIoc.Default.Register<CoursesCategoriesListViewModel>();
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
@@ -42,6 +43,17 @@ namespace ITCompCatalogue.ViewModel
             }
             
             SimpleIoc.Default.Register<MainViewModel>();
+        }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public CoursesCategoriesListViewModel CoursesCategoriesListViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CoursesCategoriesListViewModel>();
+            }
         }
         private static INavigationService CreateNavigationService()
         {

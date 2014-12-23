@@ -8,34 +8,47 @@
     xmlns:expaControl="using:ITCompCatalogue.ExpaControl"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <local:BindablePage.DataContext>
+        <Binding Path="CoursesCategoriesListViewModel" Source="{StaticResource Locator}"></Binding>
+    </local:BindablePage.DataContext>
+    <local:BindablePage.Resources>
+        <SolidColorBrush x:Key="PivotHeaderForgroundSelectedBrush" Color="Red"/>
+        <SolidColorBrush x:Key="PivotHeaderForgroundNoneSelectedBrush" Color="LightBlue"/>
+        <x:Double x:Key="PivotHeaderItemFontSize">40</x:Double>
+    </local:BindablePage.Resources>
 
     <Pivot ItemsSource="{Binding ListCategories}">
+        <Pivot.HeaderTemplate>
+            <DataTemplate>
+                <TextBlock Text="{Binding Intitule}" Style="{ThemeResource TitleTextBlockStyle}"></TextBlock>
+            </DataTemplate>
+        </Pivot.HeaderTemplate>
         <Pivot.ItemTemplate>
             <DataTemplate>
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <TextBlock Grid.Row="0" Text="" Style="{ThemeResource TitleTextBlockStyle}"></TextBlock>
-                    <ListView Grid.Row="1">
+                    </Grid.RowDefinitions>                   
+                    <ListView Grid.Row="1" ItemsSource="{Binding Cours}">
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <expaControl:ExpanderControl  HorizontalAlignment="Stretch"                                      
+                                <TextBlock Text="{Binding Intitule}"></TextBlock>
+                                <!--<expaControl:ExpanderControl  HorizontalAlignment="Stretch"                                      
                                      Width="300"
                                      IsExpanded="True"
-                                     Header="This is the expander header!!!"
+                                     Header="{Binding Intitule}"
                                      NonExpandableHeader="This is the non-expandable header"
                                      Expander="This is the expander body">
-                                    <!--<ListViewItem Content="First Item"/>
+                                    --><!--<ListViewItem Content="First Item"/>
                                         <ListViewItem Content="Second Item"/>
-                                        <ListViewItem Content="Third Item"/>-->
+                                        <ListViewItem Content="Third Item"/>--><!--
                                     <expaControl:ExpanderControl.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="Cour"></TextBlock>
+                                            <TextBlock Text="{Binding CategorieID}"></TextBlock>
                                         </DataTemplate>
                                     </expaControl:ExpanderControl.ItemTemplate>
-                                </expaControl:ExpanderControl>
+                                </expaControl:ExpanderControl>-->
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

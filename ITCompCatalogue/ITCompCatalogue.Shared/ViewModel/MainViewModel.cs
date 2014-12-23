@@ -163,9 +163,10 @@ namespace ITCompCatalogue.ViewModel
             }
         }
 
-        public void Activate(object parameter)
+        public void Activate(Object parameter)
         {
             //throw new NotImplementedException();
+           
         }
 
         public void Deactivate(object parameter)

@@ -4,11 +4,12 @@ using System.Collections.ObjectModel;
 using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Views;
+using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class CoursesCategoriesListViewModel:ViewModelBase
+    class CoursesCategoriesListViewModel:ViewModelBase,INavigable
     {
         #region Fields
         private readonly ICatalogueService _catalogueService;
@@ -48,5 +49,15 @@ namespace ITCompCatalogue.ViewModel
         }
 
         #endregion
+
+        public async void Activate(object parameter)
+        {
+           ListCategories=new ObservableCollection<Category>(await _catalogueService.GetCategoriesByTechnology((long)parameter));
+        }
+
+        public void Deactivate(object parameter)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
