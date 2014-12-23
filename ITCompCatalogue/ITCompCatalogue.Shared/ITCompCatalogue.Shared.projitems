@@ -28,7 +28,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\CursusCour.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\ICatalogueService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Technology.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CoursesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CoursesCategoriesListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>

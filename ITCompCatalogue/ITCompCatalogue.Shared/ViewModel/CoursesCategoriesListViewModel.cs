@@ -8,7 +8,7 @@ using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class CoursesListViewModel:ViewModelBase
+    class CoursesCategoriesListViewModel:ViewModelBase
     {
         #region Fields
         private readonly ICatalogueService _catalogueService;
@@ -41,7 +41,7 @@ namespace ITCompCatalogue.ViewModel
         #endregion
         #region Ctors and Methods
 
-        public CoursesListViewModel(ICatalogueService catalogueService, INavigationService navigationService)
+        public CoursesCategoriesListViewModel(ICatalogueService catalogueService, INavigationService navigationService)
         {
             _catalogueService = catalogueService;
             _navigationService = navigationService;
