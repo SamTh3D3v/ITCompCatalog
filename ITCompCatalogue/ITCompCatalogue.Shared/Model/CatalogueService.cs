@@ -83,7 +83,7 @@ namespace ITCompCatalogue.Model
                         Niveau = (string)statement[4],
                         Annee = (string)statement[5],
                         Description = (string)statement[6],
-                        //No need for category 
+                        Category = GetCategory((long)statement[7])
                     });
                 }
             }
@@ -92,7 +92,7 @@ namespace ITCompCatalogue.Model
         private Category GetCategory(long categoryId)
         {
             var category = new Category();
-            using (var statement = _connection.Prepare("SELECT * FROM Category WHERE CategorieID = ?"))
+            using (var statement = _connection.Prepare("SELECT * FROM Categories WHERE _id = ?"))
             {
                 statement.Bind(1, categoryId);
                 if (statement.Step() == SQLiteResult.ROW)

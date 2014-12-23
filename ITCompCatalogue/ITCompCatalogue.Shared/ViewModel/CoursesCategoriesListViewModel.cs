@@ -72,5 +72,10 @@ namespace ITCompCatalogue.ViewModel
         {
             
         }
+
+        public void GoBack()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

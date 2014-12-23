@@ -7,10 +7,34 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-<local:BindablePage.DataContext>
-    <Binding Path="CourseDetailsViewModel" Source="{StaticResource Locator}"></Binding>
-</local:BindablePage.DataContext>
-    <Grid>
-
+    <local:BindablePage.DataContext>
+        <Binding Path="CourseDetailsViewModel" Source="{StaticResource Locator}"></Binding>
+    </local:BindablePage.DataContext>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" BorderThickness="2" BorderBrush="LightBlue" Margin="2">
+                <Image  Width="96" Height="96"/>
+            </Border>
+            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CourseDetails.Code}"/>
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding CourseDetails.Intitule}"/>
+            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding CourseDetails.Duree}"/>
+        </Grid>
+        <Border Background="LightBlue" Grid.Row="1">
+            <TextBlock TextWrapping="Wrap" Text="{Binding CourseDetails.Description}"></TextBlock>
+        </Border>
     </Grid>
 </local:BindablePage>
+    

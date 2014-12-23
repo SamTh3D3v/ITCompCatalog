@@ -58,5 +58,10 @@ namespace ITCompCatalogue
         {
             throw new NotImplementedException();
         }
+
+        public void GoBack()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -47,7 +47,6 @@ namespace ITCompCatalogue.ViewModel
             _catalogueService = catalogueService;
 
         }
-
         #endregion
 
         public void Activate(object parameter)
@@ -56,6 +55,11 @@ namespace ITCompCatalogue.ViewModel
         }
 
         public void Deactivate(object parameter)
+        {
+            
+        }
+
+        public void GoBack()
         {
             throw new NotImplementedException();
         }

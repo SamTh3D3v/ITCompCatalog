@@ -11,7 +11,7 @@
     xmlns:helper="using:ITCompCatalogue.Helper"
     xmlns:view="using:ITCompCatalogue.View"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
     <Page.DataContext>
         <Binding Path="Main" Source="{StaticResource Locator}"/>
     </Page.DataContext>
