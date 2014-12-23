@@ -1,0 +1,65 @@
+﻿<helper:BindablePage
+    x:Class="ITCompCatalogue.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ITCompCatalogue"
+    xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:helper="using:ITCompCatalogue.Helper"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Page.DataContext>
+        <Binding Path="Main" Source="{StaticResource Locator}"/>
+    </Page.DataContext>
+    <Page.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Search" Command="{Binding SearchCommand}"></AppBarButton>
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Présentation" Command="{Binding PresenationCommand}"/>
+                <AppBarButton Label="Partenaire" Command="{Binding PartnerCommand}"/>
+                <AppBarButton Label="References clients" Command="{Binding RefClientsCommand}"/>
+                <AppBarButton Label="Contact" Command="{Binding ContactCommand}"/>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Application Name" Style="{ThemeResource TitleTextBlockStyle}"/>
+            <TextBlock Text="Technologies" Style="{ThemeResource HeaderTextBlockStyle}"/>
+        </StackPanel>
+        <ListView  Grid.Row="1" ItemsSource="{Binding ListTechnologies}" SelectedItem="{Binding SelectedTechnology,Mode=TwoWay}">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="SelectionChanged">
+                    <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}" /> <!--CommandParameter="{Binding ElementName=Sl_VolumeSilder, Path=Value}"-->
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Margin="0,9.5,0,0" Width="79" Height="79">
+                            <Image Source="Images/Microsoft.png" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
+                        </Border>
+                        <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="14.5,2,0,0">
+                            <TextBlock Text="{Binding Code }" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Intitule}" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Foreground="{ThemeResource PhoneMidBrush}"/>                           
+                        </StackPanel>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</helper:BindablePage>

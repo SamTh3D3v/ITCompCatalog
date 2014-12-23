@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects>$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>3dd90ffa-6b92-4140-8bdd-779a8dccf7ad</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>ITCompCatalogue</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="$(MSBuildThisFileDirectory)App.xaml">
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\ExpanderControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\HeaderedItemsControl.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\HierarchicalDataTemplate.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\ItemsControlHelper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\VisualTreeExtensions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\BindablePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\INavigable.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\CatalogueService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Cour.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Cursu.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\CursusCour.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\ICatalogueService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Technology.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CoursesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)ITCompTrainingDB.db">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)ExpaResource\ExpanderControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Images\Android.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Microsoft.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Oracle.png" />
+  </ItemGroup>
+</Project>

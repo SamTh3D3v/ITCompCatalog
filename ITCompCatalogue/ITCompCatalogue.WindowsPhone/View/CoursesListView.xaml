@@ -1,0 +1,47 @@
+﻿<helper:BindablePage
+    x:Class="ITCompCatalogue.View.CoursesListView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ITCompCatalogue.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:expaControl="using:ITCompCatalogue.ExpaControl"
+    xmlns:helper="using:ITCompCatalogue.Helper"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Pivot ItemsSource="{Binding ListCategories}">
+        <Pivot.ItemTemplate>
+            <DataTemplate>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0" Text="" Style="{ThemeResource TitleTextBlockStyle}"></TextBlock>
+                    <ListView Grid.Row="1">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <expaControl:ExpanderControl  HorizontalAlignment="Stretch"                                      
+                                     Width="300"
+                                     IsExpanded="True"
+                                     Header="This is the expander header!!!"
+                                     NonExpandableHeader="This is the non-expandable header"
+                                     Expander="This is the expander body">
+                                    <!--<ListViewItem Content="First Item"/>
+                                        <ListViewItem Content="Second Item"/>
+                                        <ListViewItem Content="Third Item"/>-->
+                                    <expaControl:ExpanderControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="Cour"></TextBlock>
+                                        </DataTemplate>
+                                    </expaControl:ExpanderControl.ItemTemplate>
+                                </expaControl:ExpanderControl>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </DataTemplate>
+        </Pivot.ItemTemplate>
+    </Pivot>
+</helper:BindablePage>
