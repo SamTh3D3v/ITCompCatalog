@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Windows.UI.Xaml.Controls;
+﻿using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using ITCompCatalogue.Helper;
 
-namespace ITCompCatalogue.Helper
+
+namespace ITCompCatalogue.View
 {
     public class BindablePage : Page
-    {
+    {        
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);

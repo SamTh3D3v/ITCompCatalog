@@ -20,7 +20,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\HierarchicalDataTemplate.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\ItemsControlHelper.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\VisualTreeExtensions.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helper\BindablePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\INavigable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CatalogueService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Category.cs" />

@@ -15,13 +15,14 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 using ITCompCatalogue.Helper;
+using ITCompCatalogue.View;
 
 namespace ITCompCatalogue
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainPage : BindablePage
+    public sealed partial class MainPage : BindablePage,INavigable
     {
         public MainPage()
         {
@@ -44,6 +45,16 @@ namespace ITCompCatalogue
             // Windows.Phone.UI.Input.HardwareButtons.BackPressed event.
             // If you are using the NavigationHelper provided by some templates,
             // this event is handled for you.
+        }
+
+        public void Activate(object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Deactivate(object parameter)
+        {
+            throw new NotImplementedException();
         }
     }
 }

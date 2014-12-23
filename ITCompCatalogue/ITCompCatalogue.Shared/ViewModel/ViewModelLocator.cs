@@ -6,8 +6,8 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Ioc;
 using GalaSoft.MvvmLight.Views;
 using ITCompCatalogue.Model;
-using ITCompCatalogue.Helper;
-using ITCompCatalogue.View;
+
+
 using Microsoft.Practices.ServiceLocation;
 using INavigationService = GalaSoft.MvvmLight.Views.INavigationService;
 using NavigationService = GalaSoft.MvvmLight.Views.NavigationService;
@@ -47,7 +47,7 @@ namespace ITCompCatalogue.ViewModel
         private static INavigationService CreateNavigationService()
         {
             var navigationService = new NavigationService();
-            navigationService.Configure("Courses", typeof(CoursesListView));            
+            //navigationService.Configure("Courses", typeof());            
             return navigationService;
         }
     }

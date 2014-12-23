@@ -7,7 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using ITCompCatalogue.Model;
-using ITCompCatalogue.View;
+
 using ITCompCatalogue.Helper;
 using INavigationService = GalaSoft.MvvmLight.Views.INavigationService;
 
