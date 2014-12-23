@@ -93,8 +93,8 @@
     <Compile Include="View\ContactView.xaml.cs">
       <DependentUpon>ContactView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\CourseView.xaml.cs">
-      <DependentUpon>CoursesListView.xaml</DependentUpon>
+    <Compile Include="View\CoursesCategoiesListView.xaml.cs">
+      <DependentUpon>CoursesCategoiesListView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PartenairesView.xaml.cs">
       <DependentUpon>PartenairesView.xaml</DependentUpon>
@@ -138,7 +138,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\CoursesListView.xaml">
+    <Page Include="View\CoursesCategoiesListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

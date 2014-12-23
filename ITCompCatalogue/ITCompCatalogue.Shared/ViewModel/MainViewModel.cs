@@ -165,12 +165,12 @@ namespace ITCompCatalogue.ViewModel
 
         public void Activate(object parameter)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
 
         public void Deactivate(object parameter)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

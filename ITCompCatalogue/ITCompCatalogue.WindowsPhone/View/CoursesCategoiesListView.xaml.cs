@@ -14,17 +14,15 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkID=390556
-using ITCompCatalogue.Helper;
-
 
 namespace ITCompCatalogue.View
 {
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class CoursesListView : BindablePage,INavigable
+    public sealed partial class CoursesCategoiesListView : BindablePage,INavigate
     {
-        public CoursesListView()
+        public CoursesCategoiesListView()
         {
             this.InitializeComponent();
         }
@@ -38,12 +36,7 @@ namespace ITCompCatalogue.View
         {
         }
 
-        public void Activate(object parameter)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Deactivate(object parameter)
+        public bool Navigate(Type sourcePageType)
         {
             throw new NotImplementedException();
         }
