@@ -93,6 +93,9 @@
     <Compile Include="View\ContactView.xaml.cs">
       <DependentUpon>ContactView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\CourseDetailsView.xaml.cs">
+      <DependentUpon>CourseDetailsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\CoursesCategoiesListView.xaml.cs">
       <DependentUpon>CoursesCategoiesListView.xaml</DependentUpon>
     </Compile>
@@ -135,6 +138,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ContactView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\CourseDetailsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -28,8 +28,10 @@ namespace ITCompCatalogue.ViewModel
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);           
             var navigationService = CreateNavigationService();
+            
             SimpleIoc.Default.Register<INavigationService>(() => navigationService);
             SimpleIoc.Default.Register<CoursesCategoriesListViewModel>();
+            SimpleIoc.Default.Register<CourseDetailsViewModel>();
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
@@ -55,10 +57,22 @@ namespace ITCompCatalogue.ViewModel
                 return ServiceLocator.Current.GetInstance<CoursesCategoriesListViewModel>();
             }
         }
+     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public CourseDetailsViewModel CourseDetailsViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<CourseDetailsViewModel>();
+            }
+        }
         private static INavigationService CreateNavigationService()
         {
             var navigationService = new NavigationService();
-            navigationService.Configure("Courses", typeof(CoursesCategoiesListView));            
+            navigationService.Configure("Courses", typeof(CoursesCategoiesListView));   
+            navigationService.Configure("CourDetails",typeof(CourseDetailsView));
             return navigationService;
         }
     }

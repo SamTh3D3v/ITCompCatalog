@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
@@ -38,7 +39,19 @@ namespace ITCompCatalogue.ViewModel
 
         #endregion
         #region Commands
-
+        private RelayCommand<Cour> _courseSelectedCommand;    
+        public RelayCommand<Cour> CourseSelectedCommand
+        {
+            get
+            {
+                return _courseSelectedCommand
+                    ?? (_courseSelectedCommand = new RelayCommand<Cour>(
+                        (cour) =>
+                        {
+                            _navigationService.NavigateTo("CourDetails", cour);
+                        }));
+            }
+        }
         #endregion
         #region Ctors and Methods
 
@@ -57,7 +70,7 @@ namespace ITCompCatalogue.ViewModel
 
         public void Deactivate(object parameter)
         {
-            throw new NotImplementedException();
+            
         }
     }
 }

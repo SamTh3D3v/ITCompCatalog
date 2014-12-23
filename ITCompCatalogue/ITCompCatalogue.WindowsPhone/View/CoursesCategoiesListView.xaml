@@ -6,18 +6,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:expaControl="using:ITCompCatalogue.ExpaControl"
+    xmlns:converters="using:ITCompCatalogue.Converters"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <local:BindablePage.DataContext>
         <Binding Path="CoursesCategoriesListViewModel" Source="{StaticResource Locator}"></Binding>
     </local:BindablePage.DataContext>
     <local:BindablePage.Resources>
-        <SolidColorBrush x:Key="PivotHeaderForgroundSelectedBrush" Color="Red"/>
-        <SolidColorBrush x:Key="PivotHeaderForgroundNoneSelectedBrush" Color="LightBlue"/>
-        <x:Double x:Key="PivotHeaderItemFontSize">40</x:Double>
+        <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"  ></converters:ListViewItemClickedConverter>
     </local:BindablePage.Resources>
 
-    <Pivot ItemsSource="{Binding ListCategories}">
+    <Pivot ItemsSource="{Binding ListCategories}" x:Name="RootPivot">
         <Pivot.HeaderTemplate>
             <DataTemplate>
                 <TextBlock Text="{Binding Intitule}" Style="{ThemeResource TitleTextBlockStyle}"></TextBlock>
@@ -30,7 +31,13 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>                   
-                    <ListView Grid.Row="1" ItemsSource="{Binding Cours}">
+                    <ListView  Grid.Row="1" ItemsSource="{Binding Cours}" IsItemClickEnabled="True">
+                        <interactivity:Interaction.Behaviors>
+                            <core:EventTriggerBehavior EventName="ItemClick">
+                                <core:InvokeCommandAction Command="{Binding DataContext.CourseSelectedCommand, ElementName=RootPivot}"
+                                                          InputConverter="{StaticResource ItemClickedConverter}"/>
+                            </core:EventTriggerBehavior>
+                        </interactivity:Interaction.Behaviors>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Intitule}"></TextBlock>

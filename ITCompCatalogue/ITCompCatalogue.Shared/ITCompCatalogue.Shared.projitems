@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewItemClickedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\ExpanderControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\HeaderedItemsControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\HierarchicalDataTemplate.cs" />
@@ -28,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\CursusCour.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\ICatalogueService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Technology.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CourseDetailsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CoursesCategoriesListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
