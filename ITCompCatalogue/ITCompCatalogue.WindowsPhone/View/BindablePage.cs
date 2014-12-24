@@ -4,7 +4,6 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using ITCompCatalogue.Helper;
 
-
 namespace ITCompCatalogue.View
 {
     public class BindablePage : Page
@@ -42,6 +41,7 @@ namespace ITCompCatalogue.View
             }
 
         }
+        
 
     }
 }

@@ -18,7 +18,11 @@
     <Page.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Label="Search" Command="{Binding SearchCommand}"></AppBarButton>
+                <AppBarButton Label="Search"  Command="{Binding SearchCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE11A;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="Présentation" Command="{Binding PresenationCommand}"/>
