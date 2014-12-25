@@ -22,12 +22,14 @@ namespace ITCompCatalogue.Model
                     {
                         C_id = (long)statement[0],
                         Code = (string)statement[1],
-                        Intitule = (string)statement[2]
+                        Intitule = (string)statement[2],
+                        CourseCount=
                     });
                 }
             }
             return technologies;
         }
+      
 
         public async Task<List<Category>> GetCategoriesByTechnology(long technologyId)
         {

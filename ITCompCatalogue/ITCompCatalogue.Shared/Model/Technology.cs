@@ -4,7 +4,7 @@ using System.Text;
 
 namespace ITCompCatalogue.Model
 {
-    public partial class Technology
+    public class Technology
     {
         public Technology()
         {
@@ -14,6 +14,8 @@ namespace ITCompCatalogue.Model
         public long C_id { get; set; }
         public string Code { get; set; }
         public string Intitule { get; set; }
+        public string CourseCount { get; set; }
+
 
         public List<Category> Categories { get; set; }
     }

@@ -10,11 +10,15 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:helper="using:ITCompCatalogue.Helper"
     xmlns:view="using:ITCompCatalogue.View"
+    xmlns:converters="using:ITCompCatalogue.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
     <view:BindablePage.DataContext>
         <Binding Path="Main" Source="{StaticResource Locator}"/>
     </view:BindablePage.DataContext>
+    <view:BindablePage.Resources>
+        <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
+    </view:BindablePage.Resources>
     <view:BindablePage.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
@@ -37,32 +41,41 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
-            <TextBlock Text="Application Name" Style="{ThemeResource TitleTextBlockStyle}"/>
-            <TextBlock Text="Technologies" Style="{ThemeResource HeaderTextBlockStyle}"/>
+        <StackPanel Grid.Row="0" >
+            <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
+                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="Images/IT.png" />
+            </Border>
+            <TextBlock Margin="4" Text="Technologies" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
         </StackPanel>
-        <ListView  Grid.Row="1" ItemsSource="{Binding ListTechnologies}" SelectedItem="{Binding SelectedTechnology,Mode=TwoWay}">
+        <ListView HorizontalAlignment="Stretch"  Grid.Row="1" ItemsSource="{Binding ListTechnologies}" SelectedItem="{Binding SelectedTechnology,Mode=TwoWay}">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}" /> <!--CommandParameter="{Binding ElementName=Sl_VolumeSilder, Path=Value}"-->
+                    <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}" />
+                    <!--CommandParameter="{Binding ElementName=Sl_VolumeSilder, Path=Value}"-->
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                    <Border BorderThickness="0"  Margin="2" BorderBrush="White" HorizontalAlignment="Stretch">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
-                        <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Margin="0,9.5,0,0" Width="79" Height="79">
-                            <Image Source="Images/Microsoft.png" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                        </Border>
-                        <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="14.5,2,0,0">
-                            <TextBlock Text="{Binding Code }" Style="{ThemeResource ListViewItemTextBlockStyle}"/>
-                            <TextBlock Text="{Binding Intitule}" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Foreground="{ThemeResource PhoneMidBrush}"/>                           
-                        </StackPanel>
-                    </Grid>
+                            <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Margin="10" Width="79" Height="79">
+                                <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding C_id,Converter={StaticResource TechIdToImageConverter}}" Stretch="UniformToFill"/>
+                            </Border>
+                            <StackPanel Grid.Column="1"  VerticalAlignment="Center" Margin="14.5,2,0,0">
+                                <TextBlock Text="{Binding Intitule}" Style="{ThemeResource ListViewItemTextBlockStyle}" Foreground="{ThemeResource PhoneMidBrush}"/>
+                                <TextBlock Text="{Binding Code }" Style="{ThemeResource ListViewItemContentTextBlockStyle}"/>
+                            </StackPanel>
+                            <Border Background="LightBlue" Grid.Column="2" Width="30" Height="30" CornerRadius="10" Margin="2">
+                                <TextBlock Foreground="Black" Text="5" Style="{ThemeResource ControlHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                            </Border>
+                        </Grid>
+                    </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
