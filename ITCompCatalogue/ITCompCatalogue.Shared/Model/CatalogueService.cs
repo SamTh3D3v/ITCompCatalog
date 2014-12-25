@@ -23,13 +23,29 @@ namespace ITCompCatalogue.Model
                         C_id = (long)statement[0],
                         Code = (string)statement[1],
                         Intitule = (string)statement[2],
-                        CourseCount=
+                        CourseCount = GetCoursesCount((long)statement[0])
                     });
                 }
             }
             return technologies;
         }
-      
+        public long GetCoursesCount(long technologyId)
+        {
+            long count = 0;
+            using (var statement = _connection.Prepare("Select Count(*) from Cours join" +
+                                                       " Categories where Cours.CategorieID=Categories._id and Categories.TechnologieID = ?"))
+            {
+
+                statement.Bind(1, technologyId);
+                if (statement.Step()==SQLiteResult.ROW)
+                {
+                    count=(long)statement[0];
+                }
+            }
+            return count;
+
+        }
+ 
 
         public async Task<List<Category>> GetCategoriesByTechnology(long technologyId)
         {
