@@ -100,6 +100,7 @@ namespace ITCompCatalogue.Model
                     category.C_id = (long)statement[0];
                     category.Code = (string)statement[1];
                     category.Intitule = (string)statement[2];
+                    category.TechnologieID = (long)statement[3];
                 }
             }
             return category;

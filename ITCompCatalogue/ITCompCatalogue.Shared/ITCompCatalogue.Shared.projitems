@@ -16,6 +16,7 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewItemClickedConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TechIdToImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\ExpanderControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\HeaderedItemsControl.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\HierarchicalDataTemplate.cs" />
@@ -35,6 +36,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Images\General.png" />
     <Content Include="$(MSBuildThisFileDirectory)ITCompTrainingDB.db">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>

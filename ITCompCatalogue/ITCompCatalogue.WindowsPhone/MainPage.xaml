@@ -12,13 +12,13 @@
     xmlns:view="using:ITCompCatalogue.View"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
-    <Page.DataContext>
+    <view:BindablePage.DataContext>
         <Binding Path="Main" Source="{StaticResource Locator}"/>
-    </Page.DataContext>
-    <Page.BottomAppBar>
+    </view:BindablePage.DataContext>
+    <view:BindablePage.BottomAppBar>
         <CommandBar>
             <CommandBar.PrimaryCommands>
-                <AppBarButton Label="Search"  Command="{Binding SearchCommand}">
+                <AppBarButton Label="Rechercher"  Command="{Binding SearchCommand}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE11A;" />
                     </AppBarButton.Icon>
@@ -31,7 +31,7 @@
                 <AppBarButton Label="Contact" Command="{Binding ContactCommand}"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
+    </view:BindablePage.BottomAppBar>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

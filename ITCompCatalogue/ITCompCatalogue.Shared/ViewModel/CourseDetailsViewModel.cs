@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
@@ -37,7 +38,19 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands    
-
+        private RelayCommand _searchCommand;    
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                return _searchCommand
+                    ?? (_searchCommand = new RelayCommand(
+                    () =>
+                    {
+                        
+                    }));
+            }
+        }
         #endregion
         #region Ctors and methods
 
