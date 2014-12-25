@@ -20,11 +20,11 @@
         <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
     </view:BindablePage.Resources>
     <view:BindablePage.BottomAppBar>
-        <CommandBar>
+        <CommandBar Background="DeepSkyBlue">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Label="Rechercher"  Command="{Binding SearchCommand}">
+                <AppBarButton Label="Rechercher"   Command="{Binding SearchCommand}">
                     <AppBarButton.Icon>
-                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE11A;" />
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
             </CommandBar.PrimaryCommands>
