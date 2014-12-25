@@ -15,14 +15,14 @@
         <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
     </local:BindablePage.Resources>
     <Page.BottomAppBar>
-        <CommandBar>
+        <CommandBar Background="DeepSkyBlue">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Label="Rechercher"  Command="{Binding SearchCommand}">
+                <AppBarButton Label="Favoriser"  Command="{Binding SearchCommand}">
                     <AppBarButton.Icon>
-                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE113;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-            </CommandBar.PrimaryCommands>           
+            </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
     <Grid >
@@ -30,26 +30,41 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0" >
+            <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80" x:Name="HeaderImage">
+                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+            </Border>
+            <TextBlock Margin="4" Text="Cour" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
-            <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" BorderThickness="2" BorderBrush="LightBlue" Margin="2">
-                <Image  Width="96" Height="96" Source="{Binding CourseDetails.Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}"/>
-            </Border>
-            <TextBlock Grid.Column="1" Grid.Row="0" Text="{Binding CourseDetails.Code}"/>
-            <TextBlock Grid.Column="1" Grid.Row="1" Text="{Binding CourseDetails.Intitule}"/>
-            <TextBlock Grid.Column="1" Grid.Row="2" Text="{Binding CourseDetails.Duree}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="80"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" BorderThickness="2" BorderBrush="LightBlue" Margin="2">
+                    <Image  Width="96" Height="96" Source="{Binding CourseDetails.Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}"/>
+                </Border>
+                <TextBlock Grid.Column="1" Grid.ColumnSpan="2" FontSize="15" Margin="10,0,0,0" Style="{ThemeResource TitleTextBlockStyle}" Grid.Row="0" Text="{Binding CourseDetails.Intitule}" TextWrapping="Wrap"/>
+                <TextBlock Text="Code " Grid.Row="1" Grid.Column="1"  Margin="10,0,0,0"  Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="2" Grid.Row="1" Margin="10,0,0,0" Foreground="LightBlue" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding CourseDetails.Code}"/>
+                <TextBlock Text="Durée " Grid.Row="2" Grid.Column="1"  Margin="10,0,0,0"  Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="2" Margin="10,0,0,0" Foreground="LightBlue" Grid.Row="2" Text="{Binding CourseDetails.Duree}" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            </Grid>
+            <ScrollViewer Margin="10" VerticalScrollBarVisibility="Visible"  Grid.Row="1">
+                <TextBlock TextWrapping="Wrap" FontSize="18" Style="{ThemeResource SubheaderTextBlockStyle}" Text="{Binding CourseDetails.Description}"></TextBlock>
+            </ScrollViewer>
         </Grid>
-        <Border Background="LightBlue" Grid.Row="1">
-            <TextBlock TextWrapping="Wrap" Text="{Binding CourseDetails.Description}"></TextBlock>
-        </Border>
     </Grid>
 </local:BindablePage>
     
