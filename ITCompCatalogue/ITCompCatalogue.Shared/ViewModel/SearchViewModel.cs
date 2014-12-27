@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using ITCompCatalogue.Model;
 
@@ -12,6 +13,10 @@ namespace ITCompCatalogue.ViewModel
         #region Fields
         private ObservableCollection<Cour> _serachResult;
         private String _searchText = String.Empty;
+        private readonly ICatalogueService _catalogueService;
+        private bool _parCodeIsChecked = true;
+        private bool _parIntituleIsChecked = true;
+        private bool _parDescIsChecked = true;
         #endregion
         #region Properties
         public ObservableCollection<Cour> SearchResult
@@ -48,6 +53,62 @@ namespace ITCompCatalogue.ViewModel
 
                 _searchText = value;
                 RaisePropertyChanged();
+                SearchCourses();
+            }
+        }
+
+        public bool ParCodeIsChecked
+        {
+            get
+            {
+                return _parCodeIsChecked;
+            }
+
+            set
+            {
+                if (_parCodeIsChecked == value)
+                {
+                    return;
+                }
+
+                _parCodeIsChecked = value;
+                RaisePropertyChanged();
+            }
+        }
+        public bool ParIntituleIsChecked
+        {
+            get
+            {
+                return _parIntituleIsChecked;
+            }
+
+            set
+            {
+                if (_parIntituleIsChecked == value)
+                {
+                    return;
+                }
+
+                _parIntituleIsChecked = value;
+                RaisePropertyChanged();
+            }
+        }
+        public bool ParDescIsChecked
+        {
+            get
+            {
+                return _parDescIsChecked;
+            }
+
+            set
+            {
+                if (_parDescIsChecked == value)
+                {
+                    return;
+                }
+
+                _parDescIsChecked = value;
+                RaisePropertyChanged();
             }
         }
 
@@ -56,7 +117,15 @@ namespace ITCompCatalogue.ViewModel
 
         #endregion
         #region Ctor and Methods
+        private async void SearchCourses()
+        {
+           SearchResult=new ObservableCollection<Cour>(await _catalogueService.SearchCourses(SearchText)); 
+        }
 
+        public SearchViewModel(ICatalogueService catalogueService)
+        {
+            _catalogueService = catalogueService;
+        }
         #endregion
     }
 }

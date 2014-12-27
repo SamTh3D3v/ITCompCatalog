@@ -85,6 +85,7 @@ namespace ITCompCatalogue.ViewModel
             var navigationService = new NavigationService();
             navigationService.Configure("Courses", typeof(CoursesCategoiesListView));   
             navigationService.Configure("CourDetails",typeof(CourseDetailsView));
+            navigationService.Configure("SearchView",typeof(SearchView));
             return navigationService;
         }
     }

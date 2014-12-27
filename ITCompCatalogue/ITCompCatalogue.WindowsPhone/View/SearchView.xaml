@@ -36,8 +36,8 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Row="0" Grid.Column="0" Background="White" Grid.ColumnSpan="4" Margin="5"></TextBox>
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text="Par" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20" TextWrapping="Wrap"></TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="0" Background="White" Grid.ColumnSpan="4" Margin="5" Text="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" VerticalAlignment="Center" HorizontalAlignment="Center" Text=" Rechercher Par" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20" TextWrapping="Wrap"></TextBlock>
             <AppBarToggleButton  Grid.Row="1" Grid.Column="1" Label="Code"/>
             <AppBarToggleButton  Grid.Row="1" Grid.Column="2" Label="Intitulé"/>
             <AppBarToggleButton  Grid.Row="1" Grid.Column="3" Label="Desc"/>
@@ -45,15 +45,15 @@
         <ListView Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
             <ListView.ItemTemplate>
                 <DataTemplate >
-                   <Grid Margin="1" Background="LightCyan">
+                   <Grid  >
                        <Grid.ColumnDefinitions>
-                           <ColumnDefinition Width="*"/>
-                           <ColumnDefinition Width="*"/>
-                           <ColumnDefinition Width="*"/>
+                           <ColumnDefinition Width="100"/>
+                           <ColumnDefinition Width="200"/>
+                           <ColumnDefinition Width="100"/>
                        </Grid.ColumnDefinitions>
-                        <TextBlock Text="{Binding Code}" Grid.Column="0" />
-                        <TextBlock Text="{Binding Intitule}" Grid.Column="1" />
-                        <TextBlock Text="{Binding Category.Intitule}" Grid.Column="2" />
+                        <TextBlock Text="{Binding Code}" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Grid.Column="0" />
+                        <TextBlock Text="{Binding Intitule}" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Grid.Column="1" />
+                        <TextBlock Text="{Binding Category.Intitule}" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Grid.Column="2" />
                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

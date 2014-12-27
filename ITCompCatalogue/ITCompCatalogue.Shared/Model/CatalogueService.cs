@@ -146,7 +146,7 @@ namespace ITCompCatalogue.Model
 
             var cours = new List<Cour>();
 
-            using (var statement = _connection.Prepare("SELECT * FROM Cour"))
+            using (var statement = _connection.Prepare("SELECT * FROM Cours"))
             {
                 while (statement.Step() == SQLiteResult.ROW)
                 {
@@ -166,6 +166,30 @@ namespace ITCompCatalogue.Model
             return cours;
 
         }
-       
+
+        public async Task<List<Cour>> SearchCourses(string searchText)
+        {
+            var courses = new List<Cour>();
+            var query = "SELECT * from Cours WHERE (lower(Code) LIKE '%" + searchText + "%')";
+            using (var statement = _connection.Prepare(query))
+            {
+    //            statement.Bind(1, searchText);
+                while (statement.Step()==SQLiteResult.ROW)
+                {
+                    courses.Add(new Cour()
+                    {
+                        C_id = (long)statement[0],
+                        Code = (string)statement[1],
+                        Intitule = (string)statement[2],
+                        Duree = (string)statement[3],
+                        Niveau = (string)statement[4],
+                        Annee = (string)statement[5],
+                        Description = (string)statement[6],
+                        CategorieID = (long)statement[7]
+                    });
+                }
+            }
+            return courses;
+        }
     }
 }

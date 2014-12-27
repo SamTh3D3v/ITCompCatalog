@@ -71,10 +71,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _searchCommand
                     ?? (_searchCommand = new RelayCommand(
-                    () =>
-                    {
-                        
-                    }));
+                    () => _navigationService.NavigateTo("SearchView")));
             }
         }
         private RelayCommand _presentationCommand;   
