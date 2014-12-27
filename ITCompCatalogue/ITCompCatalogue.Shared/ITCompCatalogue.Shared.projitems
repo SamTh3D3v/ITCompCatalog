@@ -33,6 +33,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CourseDetailsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CoursesCategoriesListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
