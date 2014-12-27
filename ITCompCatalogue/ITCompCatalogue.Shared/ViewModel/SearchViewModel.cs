@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
@@ -14,9 +17,14 @@ namespace ITCompCatalogue.ViewModel
         private ObservableCollection<Cour> _serachResult;
         private String _searchText = String.Empty;
         private readonly ICatalogueService _catalogueService;
-        private bool _parCodeIsChecked = true;
-        private bool _parIntituleIsChecked = true;
-        private bool _parDescIsChecked = true;
+        private String _searchBySelectedItem;
+        private INavigationService _navigationService;
+
+        private ObservableCollection<String> _searchByItems = new ObservableCollection<string>()
+        {
+            "Code",
+            "Intitule"
+        };    
         #endregion
         #region Properties
         public ObservableCollection<Cour> SearchResult
@@ -56,75 +64,67 @@ namespace ITCompCatalogue.ViewModel
                 SearchCourses();
             }
         }
-
-        public bool ParCodeIsChecked
+        public String SearchBySelectedItem
         {
             get
             {
-                return _parCodeIsChecked;
+                return _searchBySelectedItem;
             }
 
             set
             {
-                if (_parCodeIsChecked == value)
+                if (_searchBySelectedItem == value)
                 {
                     return;
                 }
-
-                _parCodeIsChecked = value;
+                _searchBySelectedItem = value;
                 RaisePropertyChanged();
+                SearchCourses();
             }
         }
-        public bool ParIntituleIsChecked
+        public ObservableCollection<String> SearchByItems
         {
             get
             {
-                return _parIntituleIsChecked;
+                return _searchByItems;
             }
 
             set
             {
-                if (_parIntituleIsChecked == value)
+                if (_searchByItems == value)
                 {
                     return;
                 }
 
-                _parIntituleIsChecked = value;
-                RaisePropertyChanged();
-            }
-        }
-        public bool ParDescIsChecked
-        {
-            get
-            {
-                return _parDescIsChecked;
-            }
-
-            set
-            {
-                if (_parDescIsChecked == value)
-                {
-                    return;
-                }
-
-                _parDescIsChecked = value;
+                _searchByItems = value;
                 RaisePropertyChanged();
             }
         }
 
         #endregion
         #region Commands
-
+        private RelayCommand<Cour> _selectCourseCommand;
+        public RelayCommand<Cour> SelectCourseCommand
+        {
+            get
+            {
+                return _selectCourseCommand
+                    ?? (_selectCourseCommand = new RelayCommand<Cour>(
+                    (cour) => _navigationService.NavigateTo("CourDetails", cour)));
+            }
+        }
         #endregion
         #region Ctor and Methods
         private async void SearchCourses()
         {
-           SearchResult=new ObservableCollection<Cour>(await _catalogueService.SearchCourses(SearchText)); 
+            SearchResult = new ObservableCollection<Cour>(await _catalogueService.SearchCourses(SearchText, SearchBySelectedItem));
         }
 
-        public SearchViewModel(ICatalogueService catalogueService)
+        public SearchViewModel(ICatalogueService catalogueService,INavigationService navigationService)
         {
             _catalogueService = catalogueService;
+            _navigationService = navigationService;
+            SearchBySelectedItem = SearchByItems.First();
         }
         #endregion
     }

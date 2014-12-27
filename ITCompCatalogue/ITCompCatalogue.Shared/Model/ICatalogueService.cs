@@ -10,7 +10,7 @@ namespace ITCompCatalogue.Model
         Task<List<Technology>> GetAllTechnologies();
         Task<List<Category>> GetCategoriesByTechnology(long technologyId);
         Task<List<Cour>> GetAllCourses();
-        Task<List<Cour>> SearchCourses(string searchText);
+        Task<List<Cour>> SearchCourses(string searchText,String searchBy);
 
     }
 }

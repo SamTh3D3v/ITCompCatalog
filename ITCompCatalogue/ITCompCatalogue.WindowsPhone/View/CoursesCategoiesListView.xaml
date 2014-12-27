@@ -15,7 +15,7 @@
         <Binding Path="CoursesCategoriesListViewModel" Source="{StaticResource Locator}"></Binding>
     </local:BindablePage.DataContext>
     <local:BindablePage.Resources>
-        <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"  ></converters:ListViewItemClickedConverter>
+        <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"  />
     </local:BindablePage.Resources>
 
     <Pivot ItemsSource="{Binding ListCategories}" x:Name="RootPivot">
