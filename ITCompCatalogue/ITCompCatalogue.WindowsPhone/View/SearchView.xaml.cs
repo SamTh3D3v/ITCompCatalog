@@ -24,5 +24,6 @@ namespace ITCompCatalogue.View
             this.InitializeComponent();
         }
 
+       
     }
 }

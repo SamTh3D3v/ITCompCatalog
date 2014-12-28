@@ -52,6 +52,16 @@ namespace ITCompCatalogue.ViewModel
                         }));
             }
         }
+        private RelayCommand _searchCommand;
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                return _searchCommand
+                    ?? (_searchCommand = new RelayCommand(
+                    () => _navigationService.NavigateTo("SearchView")));
+            }
+        }
         #endregion
         #region Ctors and Methods
 

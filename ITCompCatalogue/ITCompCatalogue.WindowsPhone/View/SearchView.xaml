@@ -46,10 +46,10 @@
             <AppBarToggleButton  IsChecked="{Binding ParDescIsChecked,Mode=TwoWay}" Grid.Row="1" Grid.Column="3" Label="Desc"/>-->
             <ComboBox Grid.Row="1" BorderBrush="DeepSkyBlue" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedItem="{Binding SearchBySelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchByItems}"/>
         </Grid>
-        <ListView IsItemClickEnabled="True" Background="WhiteSmoke"  Margin="3,10,3,3" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
+        <ListView  Background="WhiteSmoke"  Margin="3,10,3,3" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction Command="{Binding SelectCourseCommand}" InputConverter="{StaticResource ItemClickedConverter}"></core:InvokeCommandAction>
+                    <core:InvokeCommandAction Command="{Binding SelectCourseCommand}" InputConverter="{StaticResource ItemClickedConverter}"/>
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
             <ListView.ItemTemplate>

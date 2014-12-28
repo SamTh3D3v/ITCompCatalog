@@ -16,12 +16,24 @@
     </local:BindablePage.DataContext>
     <local:BindablePage.Resources>
         <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"  />
+       
     </local:BindablePage.Resources>
+    <local:BindablePage.BottomAppBar>
+        <CommandBar Background="DeepSkyBlue">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Rechercher"   Command="{Binding SearchCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>           
+        </CommandBar>
+    </local:BindablePage.BottomAppBar>
 
-    <Pivot ItemsSource="{Binding ListCategories}" x:Name="RootPivot">
-        <Pivot.HeaderTemplate>
+    <Pivot ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
+        <Pivot.HeaderTemplate >
             <DataTemplate>
-                <TextBlock Text="{Binding Intitule}" Style="{ThemeResource TitleTextBlockStyle}"></TextBlock>
+                <TextBlock Style="{ThemeResource ControlHeaderTextBlockStyle}" Text="{Binding Intitule}" FontSize="20" FontFamily="Segoe UI Symbol"></TextBlock>
             </DataTemplate>
         </Pivot.HeaderTemplate>
         <Pivot.ItemTemplate>
