@@ -127,15 +127,19 @@ namespace ITCompCatalogue.ViewModel
             }
         }
 
-        private RelayCommand _selectTechnologyCommand;  
+        private RelayCommand<Technology> _selectTechnologyCommand;  
          
-        public RelayCommand SelectTechnologyCommand
+        public RelayCommand<Technology> SelectTechnologyCommand
         {
             get
             {
                 return _selectTechnologyCommand
-                    ?? (_selectTechnologyCommand = new RelayCommand(
-                        () => _navigationService.NavigateTo("Courses",SelectedTechnology.C_id)));
+                    ?? (_selectTechnologyCommand = new RelayCommand<Technology>(
+                        (tech) =>
+                        {
+                            _navigationService.NavigateTo("Courses", tech.C_id);
+                            
+                        }));
             }
         }
         #endregion

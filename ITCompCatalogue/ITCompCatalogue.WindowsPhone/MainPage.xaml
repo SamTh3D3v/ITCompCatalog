@@ -18,6 +18,7 @@
     </view:BindablePage.DataContext>
     <view:BindablePage.Resources>
         <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
+        <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
     </view:BindablePage.Resources>
     <view:BindablePage.BottomAppBar>
         <CommandBar Background="DeepSkyBlue">
@@ -47,10 +48,10 @@
             </Border>
             <TextBlock Margin="4" Text="Technologies" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
         </StackPanel>
-        <ListView HorizontalAlignment="Stretch"  Grid.Row="1" ItemsSource="{Binding ListTechnologies}" SelectedItem="{Binding SelectedTechnology,Mode=TwoWay}">
+        <ListView HorizontalAlignment="Stretch" IsItemClickEnabled="True"  Grid.Row="1" ItemsSource="{Binding ListTechnologies}" >
             <interactivity:Interaction.Behaviors>
-                <core:EventTriggerBehavior EventName="SelectionChanged">
-                    <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}" />
+                <core:EventTriggerBehavior EventName="ItemClick">
+                    <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}"  InputConverter="{StaticResource TechClickedConverter}"/>
                     <!--CommandParameter="{Binding ElementName=Sl_VolumeSilder, Path=Value}"-->
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>

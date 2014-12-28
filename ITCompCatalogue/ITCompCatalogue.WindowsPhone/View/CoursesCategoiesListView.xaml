@@ -16,7 +16,6 @@
     </local:BindablePage.DataContext>
     <local:BindablePage.Resources>
         <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"  />
-
     </local:BindablePage.Resources>
     <local:BindablePage.BottomAppBar>
         <CommandBar Background="DeepSkyBlue">
