@@ -18,11 +18,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewItemClickedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewTechClickedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TechIdToImageConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\ExpanderControl.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\HeaderedItemsControl.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\HierarchicalDataTemplate.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\ItemsControlHelper.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)ExpaControl\VisualTreeExtensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\INavigable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CatalogueService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Category.cs" />
@@ -43,11 +38,6 @@
     <Content Include="$(MSBuildThisFileDirectory)ITCompTrainingDB.db">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="$(MSBuildThisFileDirectory)ExpaResource\ExpanderControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Images\Android.png" />
