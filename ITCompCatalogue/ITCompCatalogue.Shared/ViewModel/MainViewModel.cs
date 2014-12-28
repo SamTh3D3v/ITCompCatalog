@@ -120,10 +120,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _contactCommand
                     ?? (_contactCommand = new RelayCommand(
-                    () =>
-                    {
-                        
-                    }));
+                    () => _navigationService.NavigateTo("ContactView")));
             }
         }
 

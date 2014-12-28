@@ -5,7 +5,7 @@ using GalaSoft.MvvmLight;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class ContactViewModel:ViewModelBase
+    public class ContactViewModel:ViewModelBase
     {
         #region Fields
         private String _phoneNumber = "+213 (0) 21 56 32 33";
@@ -13,7 +13,7 @@ namespace ITCompCatalogue.ViewModel
                 private String _email = "Lazhar.Guendouz@ITComp-dz.com";
                     private String _altEmail = "Radia.Lamari@ITComp-dz.com";
                     private String _siteWeb = "www.itcomp-dz.com";
-                        private String _adress = "10, rue Khoudjat Eldjeld, Bir Mourad Rais <TextBreak/> Alger. Algérie.";
+                        private String _adress = "10, rue Khoudjat Eldjeld, Bir Mourad Rais Alger. Algérie.";
                             
         #endregion 
         #region Properties

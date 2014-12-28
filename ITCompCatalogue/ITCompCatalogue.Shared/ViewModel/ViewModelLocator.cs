@@ -34,11 +34,9 @@ namespace ITCompCatalogue.ViewModel
             SimpleIoc.Default.Register<SearchViewModel>();
             SimpleIoc.Default.Register<CourseDetailsViewModel>();
             SimpleIoc.Default.Register<ClientReferenceViewModel>();
+            SimpleIoc.Default.Register<ContactViewModel>();
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-
-            if (ViewModelBase.IsInDesignModeStatic)
+          if (ViewModelBase.IsInDesignModeStatic)
             {
                 // SimpleIoc.Default.Register<INavigationService, Design.DesignNavigationService>();
                 SimpleIoc.Default.Register<ICatalogueService, CatalogueService>();
@@ -133,6 +131,7 @@ namespace ITCompCatalogue.ViewModel
             navigationService.Configure("Courses", typeof(CoursesCategoiesListView));   
             navigationService.Configure("CourDetails",typeof(CourseDetailsView));
             navigationService.Configure("SearchView",typeof(SearchView));
+            navigationService.Configure("ContactView", typeof(ContactView));
             return navigationService;
         }
     }
