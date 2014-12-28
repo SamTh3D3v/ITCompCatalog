@@ -9,10 +9,76 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <local:BindablePage.DataContext>
-        <Binding Path="ContactViewModel" Source="{StaticResource Locator}"></Binding>
+        <Binding Path="ContactViewModel" Source="{StaticResource Locator}"/>
     </local:BindablePage.DataContext>
 
-    <Grid>
+    <Grid Background="White">
 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" >
+            <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
+                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+            </Border>
+            <TextBlock Margin="4" Text="Contact" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="Black"/>
+        </StackPanel>
+        <ScrollViewer HorizontalScrollBarVisibility="Visible" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                    <RowDefinition Height="100"/>
+                </Grid.RowDefinitions>
+               <Grid Grid.Row="0" Margin="10" Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                   <Grid.ColumnDefinitions>
+                       <ColumnDefinition Width=".25*"/>
+                       <ColumnDefinition Width=".75*"/>
+                   </Grid.ColumnDefinitions>
+                   <Image Grid.Column="0" Source="../Images/phone.png"/>
+                   <HyperlinkButton Content="{Binding PhoneNumber}" FontSize="20" Grid.Column="1" Foreground="DeepSkyBlue" VerticalAlignment="Center" HorizontalAlignment="Center" ></HyperlinkButton>
+               </Grid>
+                <Grid Grid.Row="1" Margin="10" Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".25*"/>
+                        <ColumnDefinition Width=".75*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="../Images/fax.png"/>
+                    <HyperlinkButton Content="{Binding FaxNumber}" FontSize="20" Grid.Column="1" Foreground="DeepSkyBlue" VerticalAlignment="Center" HorizontalAlignment="Center" ></HyperlinkButton>
+                </Grid>
+                <Grid Grid.Row="2" Margin="10" Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".25*"/>
+                        <ColumnDefinition Width=".75*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="../Images/web.png"/>
+                    <HyperlinkButton Content="{Binding SiteWeb}" FontSize="20" Grid.Column="1" Foreground="DeepSkyBlue" VerticalAlignment="Center" HorizontalAlignment="Center" ></HyperlinkButton>
+                </Grid>
+                <Grid Grid.Row="3" Margin="10" Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".25*"/>
+                        <ColumnDefinition Width=".75*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.RowSpan="2" Grid.Column="0" Source="../Images/mail.png"/>
+                    <HyperlinkButton Grid.Row="0" Content="{Binding Email}" FontSize="20" Grid.Column="1" Foreground="DeepSkyBlue" VerticalAlignment="Center" HorizontalAlignment="Center" ></HyperlinkButton>
+                    <HyperlinkButton Grid.Row="1" Content="{Binding AltEmail}" FontSize="20" Grid.Column="1" Foreground="DeepSkyBlue" VerticalAlignment="Center" HorizontalAlignment="Center" ></HyperlinkButton>
+                </Grid>
+                <Grid Grid.Row="4" Margin="10" Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".25*"/>
+                        <ColumnDefinition Width=".75*"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="../Images/adress.png"/>
+                    <HyperlinkButton Content="{Binding Adress}" FontSize="20" Grid.Column="1" Foreground="DeepSkyBlue" VerticalAlignment="Center" HorizontalAlignment="Center" ></HyperlinkButton>
+                </Grid>
+            </Grid>
+        </ScrollViewer>
     </Grid>
 </local:BindablePage>

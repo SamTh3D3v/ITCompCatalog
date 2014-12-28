@@ -37,8 +37,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Images\adress.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\fax.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\General.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\IT.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\mail.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\phone.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\web.png" />
     <Content Include="$(MSBuildThisFileDirectory)ITCompTrainingDB.db">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
