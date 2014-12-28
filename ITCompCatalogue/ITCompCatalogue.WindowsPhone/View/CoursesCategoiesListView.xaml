@@ -43,7 +43,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}">                        
+                    <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">                        
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel HorizontalAlignment="Stretch">

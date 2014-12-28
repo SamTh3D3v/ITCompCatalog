@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
+using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.Converters
 {
@@ -12,7 +13,7 @@ namespace ITCompCatalogue.Converters
         {
             var args = value as ItemClickEventArgs;
             if (args != null)
-                return args.ClickedItem;
+                return(args.ClickedItem as CursusCour).Cour;
             return null;
         }
 
