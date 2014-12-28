@@ -33,8 +33,10 @@
     <Pivot ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
         <Pivot.HeaderTemplate >
             <DataTemplate>
-                <TextBlock Style="{ThemeResource ControlHeaderTextBlockStyle}" Text="{Binding Intitule}" FontSize="20" FontFamily="Segoe UI Symbol"></TextBlock>
+                <TextBlock  Text="{Binding Intitule}" FontSize="20" FontFamily="Segoe UI Symbol"></TextBlock>
+                
             </DataTemplate>
+            
         </Pivot.HeaderTemplate>
         <Pivot.ItemTemplate>
             <DataTemplate>
