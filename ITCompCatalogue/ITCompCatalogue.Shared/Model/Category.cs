@@ -19,5 +19,6 @@ namespace ITCompCatalogue.Model
 
         public  Technology Technology { get; set; }
         public  ObservableCollection<Cour> Cours { get; set; }
+        public ObservableCollection<Cursu> Cursus { get; set; } 
     }
 }

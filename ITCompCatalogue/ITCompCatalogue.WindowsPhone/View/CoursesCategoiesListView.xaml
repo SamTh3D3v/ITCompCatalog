@@ -16,7 +16,7 @@
     </local:BindablePage.DataContext>
     <local:BindablePage.Resources>
         <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"  />
-       
+
     </local:BindablePage.Resources>
     <local:BindablePage.BottomAppBar>
         <CommandBar Background="DeepSkyBlue">
@@ -26,17 +26,15 @@
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-            </CommandBar.PrimaryCommands>           
+            </CommandBar.PrimaryCommands>
         </CommandBar>
     </local:BindablePage.BottomAppBar>
 
     <Pivot ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
         <Pivot.HeaderTemplate >
             <DataTemplate>
-                <TextBlock  Text="{Binding Intitule}" FontSize="20" FontFamily="Segoe UI Symbol"></TextBlock>
-                
+                <TextBlock  Text="{Binding Intitule}" FontSize="20" ></TextBlock>
             </DataTemplate>
-            
         </Pivot.HeaderTemplate>
         <Pivot.ItemTemplate>
             <DataTemplate>
@@ -44,32 +42,28 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>                   
-                    <ListView  Grid.Row="1" ItemsSource="{Binding Cours}" IsItemClickEnabled="True">
-                        <interactivity:Interaction.Behaviors>
-                            <core:EventTriggerBehavior EventName="ItemClick">
-                                <core:InvokeCommandAction Command="{Binding DataContext.CourseSelectedCommand, ElementName=RootPivot}"
-                                                          InputConverter="{StaticResource ItemClickedConverter}"/>
-                            </core:EventTriggerBehavior>
-                        </interactivity:Interaction.Behaviors>
+                    </Grid.RowDefinitions>
+                    <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}">                        
                         <ListView.ItemTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Intitule}"></TextBlock>
-                                <!--<expaControl:ExpanderControl  HorizontalAlignment="Stretch"                                      
-                                     Width="300"
-                                     IsExpanded="True"
-                                     Header="{Binding Intitule}"
-                                     NonExpandableHeader="This is the non-expandable header"
-                                     Expander="This is the expander body">
-                                    --><!--<ListViewItem Content="First Item"/>
-                                        <ListViewItem Content="Second Item"/>
-                                        <ListViewItem Content="Third Item"/>--><!--
-                                    <expaControl:ExpanderControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding CategorieID}"></TextBlock>
-                                        </DataTemplate>
-                                    </expaControl:ExpanderControl.ItemTemplate>
-                                </expaControl:ExpanderControl>-->
+                                <StackPanel HorizontalAlignment="Stretch">
+                                    <TextBlock Text="{Binding Intitule}" Foreground="Blue"></TextBlock>
+                                    <ListView  ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
+                                        <interactivity:Interaction.Behaviors>
+                                            <core:EventTriggerBehavior EventName="ItemClick">
+                                                <core:InvokeCommandAction Command="{Binding DataContext.CourseSelectedCommand, ElementName=RootPivot}"
+                                                          InputConverter="{StaticResource ItemClickedConverter}"/>
+                                            </core:EventTriggerBehavior>
+                                        </interactivity:Interaction.Behaviors>
+                                        <ListView.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Foreground="White" Text="{Binding Cour.Intitule}"></TextBlock>
+                                            </DataTemplate>
+                                        </ListView.ItemTemplate>
+                                    </ListView>
+                                </StackPanel>
+
+
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>

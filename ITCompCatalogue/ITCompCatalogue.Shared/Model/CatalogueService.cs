@@ -8,15 +8,15 @@ using SQLitePCL;
 
 namespace ITCompCatalogue.Model
 {
-    class CatalogueService:ICatalogueService
+    class CatalogueService : ICatalogueService
     {
-        private readonly SQLiteConnection _connection = new SQLiteConnection("ITCompTrainingDB.db");        
+        private readonly SQLiteConnection _connection = new SQLiteConnection("ITCompTrainingDB.db");
         public async Task<List<Technology>> GetAllTechnologies()
         {
             var technologies = new List<Technology>();
-            using (var statement=_connection.Prepare("SELECT * FROM Technologies"))
+            using (var statement = _connection.Prepare("SELECT * FROM Technologies"))
             {
-                while (statement.Step()==SQLiteResult.ROW)
+                while (statement.Step() == SQLiteResult.ROW)
                 {
                     technologies.Add(new Technology()
                     {
@@ -37,35 +37,116 @@ namespace ITCompCatalogue.Model
             {
 
                 statement.Bind(1, technologyId);
-                if (statement.Step()==SQLiteResult.ROW)
+                if (statement.Step() == SQLiteResult.ROW)
                 {
-                    count=(long)statement[0];
+                    count = (long)statement[0];
                 }
             }
             return count;
 
         }
- 
 
         public async Task<List<Category>> GetCategoriesByTechnology(long technologyId)
         {
             var categories = new List<Category>();
             using (var statement = _connection.Prepare("SELECT * FROM Categories WHERE TechnologieID= ?"))
             {
-                statement.Bind(1,technologyId);
-                while (statement.Step()==SQLiteResult.ROW)
+                statement.Bind(1, technologyId);
+                while (statement.Step() == SQLiteResult.ROW)
                 {
                     categories.Add(new Category()
                     {
                         C_id = (long)statement[0],
-                        Code = (string) statement[1],
-                        Intitule = (string) statement[2],
+                        Code = (string)statement[1],
+                        Intitule = (string)statement[2],
                         //Technology = GetTechnology(technologyId) 
-                        Cours =new ObservableCollection<Cour>(await GetCoursesByCategoryId((long)statement[0]))
+                        //Cours = new ObservableCollection<Cour>(await GetCoursesByCategoryId((long)statement[0])),
+                        Cursus = new ObservableCollection<Cursu>(await GetCursusByCategoryId((long)statement[0]))
+
                     });
                 }
             }
             return categories;
+        }
+
+        private async Task<List<Cursu>> GetCursusByCategoryId(long categoryId)
+        {
+            var cursus = new List<Cursu>();
+            using (var statement = _connection.Prepare("Select Distinct CursusID from Cours Inner Join CursusCours" +
+                                                       " ON Cours._id==CursusCours.CourID where Cours.CategorieID= ?"))
+            {
+                statement.Bind(1, categoryId);
+                while (statement.Step() == SQLiteResult.ROW)
+                {
+                    cursus.Add( await GetCursusByCursusId((long)statement[0]));
+                }
+            }
+            return cursus;
+        }
+
+        private async Task<Cursu> GetCursusByCursusId(long cursusId)
+        {
+            var cursus = new Cursu();
+            using (var statement=_connection.Prepare("SELECT * FROM Cursus WHERE _id = ?"))
+            {
+                statement.Bind(1,cursusId);
+                if (statement.Step()==SQLiteResult.ROW)
+                {
+                    cursus.C_id = (long) statement[0];
+                    cursus.Code = (string) statement[1];
+                    cursus.Intitule = (string) statement[2];
+                    cursus.CursusCours =
+                        new ObservableCollection<CursusCour>(await GetCursusCourByCursusId((long) statement[0]));
+
+                }
+
+            }
+            return cursus;
+        }
+        private async Task<List<CursusCour>> GetCursusCourByCursusId(long cursusId)
+        {
+            var cursusCours = new List<CursusCour>();
+
+            using (var statement = _connection.Prepare("SELECT * FROM CursusCours WHERE CursusID = ?"))
+            {
+                statement.Bind(1, cursusId);
+                while (statement.Step() == SQLiteResult.ROW)
+                {
+                    cursusCours.Add(new CursusCour()
+                    {
+                        C_id = (long)statement[0],
+                        CursusID = (long)statement[1],
+                        CourID = (long)statement[2],
+                        Ordre = (long)statement[3],
+                        Recommandation = (string)statement[4],
+                        Cour = GetCourseByCourseId((long)statement[2])
+                       
+                    });
+                }
+            }
+            return cursusCours;
+
+        }
+
+        private Cour GetCourseByCourseId(long courseId)
+        {
+            var course = new Cour();
+            using (var statement = _connection.Prepare("SELECT * FROM Cours WHERE _id = ?"))
+            {
+                statement.Bind(1, courseId);
+                if (statement.Step() == SQLiteResult.ROW)
+                {
+                    course.C_id = (long) statement[0];
+                    course.Code = (string) statement[1];
+                    course.Intitule = (string) statement[2];
+                    course.Duree = (string) statement[3];
+                    course.Niveau = (string) statement[4];
+                    course.Annee = (string) statement[5];
+                    course.Description = (string) statement[6];
+                    course.Category = GetCategory((long) statement[7]);
+                }
+            }
+            return course;
         }
 
         private Technology GetTechnology(long technologyId)
@@ -76,7 +157,7 @@ namespace ITCompCatalogue.Model
                 statement.Bind(1, technologyId);
                 if (statement.Step() == SQLiteResult.ROW)
                 {
-                    technology.C_id = (long) statement[0];
+                    technology.C_id = (long)statement[0];
                     technology.Code = (string)statement[1];
                     technology.Intitule = (string)statement[2];
                 }
@@ -89,14 +170,14 @@ namespace ITCompCatalogue.Model
             var courses = new List<Cour>();
             using (var statement = _connection.Prepare("SELECT * FROM Cours WHERE CategorieID= ?"))
             {
-                statement.Bind(1,categoryId);
-                while (statement.Step()==SQLiteResult.ROW)
+                statement.Bind(1, categoryId);
+                while (statement.Step() == SQLiteResult.ROW)
                 {
                     courses.Add(new Cour()
                     {
                         C_id = (long)statement[0],
-                        Code =(string) statement[1] ,
-                        Intitule =(string) statement[2] ,
+                        Code = (string)statement[1],
+                        Intitule = (string)statement[2],
                         Duree = (string)statement[3],
                         Niveau = (string)statement[4],
                         Annee = (string)statement[5],
@@ -124,22 +205,7 @@ namespace ITCompCatalogue.Model
             return category;
         }
 
-        private Cursu GetCursus(long cursusId)
-        {
-            var cursus = new Cursu();
-            using (var statement=_connection.Prepare("SELECT * FROM Cursus WHERE C_id = ?"))
-            {
-                statement.Bind(1,cursusId);
-                if (statement.Step()==SQLiteResult.ROW)
-                {
-                    cursus.C_id = (long) statement[0];
-                    cursus.Code = (string) statement[1];
-                    cursus.Intitule = (string) statement[2];
-                }
-
-            }
-            return cursus;
-        }
+      
 
         public async Task<List<Cour>> GetAllCourses()
         {
@@ -173,8 +239,8 @@ namespace ITCompCatalogue.Model
             var query = "SELECT * from Cours WHERE (lower(" + searchBy + ") LIKE '%" + searchText + "%')";
             using (var statement = _connection.Prepare(query))
             {
-    //            statement.Bind(1, searchText);
-                while (statement.Step()==SQLiteResult.ROW)
+                //            statement.Bind(1, searchText);
+                while (statement.Step() == SQLiteResult.ROW)
                 {
                     courses.Add(new Cour()
                     {

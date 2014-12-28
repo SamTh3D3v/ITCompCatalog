@@ -16,8 +16,7 @@ namespace ITCompCatalogue.ViewModel
         private readonly ICatalogueService _catalogueService;
         private readonly INavigationService _navigationService;
         #endregion
-        #region Properties
-     
+        #region Properties  
         private ObservableCollection<Category> _listCategories; 
         public ObservableCollection<Category> ListCategories
         {
