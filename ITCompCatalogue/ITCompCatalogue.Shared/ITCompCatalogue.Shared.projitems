@@ -26,9 +26,13 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\CursusCour.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\ICatalogueService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Technology.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ClientReferenceViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ContactViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CourseDetailsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CoursesCategoriesListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PartenaireViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PresenationViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>

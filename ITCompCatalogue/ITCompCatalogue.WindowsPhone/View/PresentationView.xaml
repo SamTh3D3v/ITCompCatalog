@@ -8,6 +8,9 @@
     xmlns:helper="using:ITCompCatalogue.Helper"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <local:BindablePage.DataContext>
+        <Binding Path="PresenationViewModel" Source="{StaticResource Locator}"></Binding>
+    </local:BindablePage.DataContext>
 
     <Grid>
 

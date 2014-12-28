@@ -33,6 +33,10 @@ namespace ITCompCatalogue.ViewModel
             SimpleIoc.Default.Register<CoursesCategoriesListViewModel>();
             SimpleIoc.Default.Register<SearchViewModel>();
             SimpleIoc.Default.Register<CourseDetailsViewModel>();
+            SimpleIoc.Default.Register<ClientReferenceViewModel>();
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
 
             if (ViewModelBase.IsInDesignModeStatic)
             {
@@ -69,7 +73,50 @@ namespace ITCompCatalogue.ViewModel
                 return ServiceLocator.Current.GetInstance<CourseDetailsViewModel>();
             }
         }
+      
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ClientReferenceViewModel ClientReferenceViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ClientReferenceViewModel>();
+            }
+        }
+      
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public PresenationViewModel PresenationViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<PresenationViewModel>();
+            }
+        }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public PartenaireViewModel PartenaireViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<PartenaireViewModel>();
+            }
+        }
+  
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public ContactViewModel ContactViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<ContactViewModel>();
+            }
+        }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
             "CA1822:MarkMembersAsStatic",
             Justification = "This non-static member is needed for data binding purposes.")]

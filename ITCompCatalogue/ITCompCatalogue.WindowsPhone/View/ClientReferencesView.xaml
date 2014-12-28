@@ -8,6 +8,9 @@
     
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <local:BindablePage.DataContext>
+        <Binding Path="ClientReferenceViewModel" Source="{StaticResource Locator}"></Binding>
+    </local:BindablePage.DataContext>
 
     <Grid>
 
