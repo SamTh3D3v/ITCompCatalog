@@ -29,11 +29,12 @@
         </CommandBar>
     </local:BindablePage.BottomAppBar>
 
-    <Pivot Background="White" ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
+    <Pivot Background="White"  ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
         <Pivot.HeaderTemplate >
-            <DataTemplate>
-                
-                <TextBlock  Text="{Binding Intitule}" Foreground="DeepSkyBlue"  Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="22" ></TextBlock>
+            <DataTemplate>               
+                <TextBlock Text="{Binding Intitule}"  >
+        
+                </TextBlock>
             </DataTemplate>
         </Pivot.HeaderTemplate>
         <Pivot.ItemTemplate>

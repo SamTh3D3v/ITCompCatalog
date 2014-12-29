@@ -10,9 +10,9 @@
     <Application.Resources>
         <viewModel:ViewModelLocator x:Key="Locator"
                              d:IsDataSource="True" />
-        <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="Red" />
-        <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush" Color="Cyan" />
-        <x:Double x:Key="PivotHeaderItemFontSize">40</x:Double>
+        <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="DeepSkyBlue" />
+        <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush" Color="DarkGray" />
+        <x:Double x:Key="PivotHeaderItemFontSize">25</x:Double>
     </Application.Resources>
 
 </Application>
