@@ -12,7 +12,45 @@
         <Binding Path="ClientReferenceViewModel" Source="{StaticResource Locator}"></Binding>
     </local:BindablePage.DataContext>
 
-    <Grid>
-
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" >
+            <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
+                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+            </Border>
+            <TextBlock Margin="4" Text="References Clients" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="Black"/>
+        </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <ListView ItemsSource="{Binding ListCategoryClient}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="10,10,10,0"  Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="5"/>
+                                <RowDefinition Height="Auto"/>                                
+                            </Grid.RowDefinitions>
+                            <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Top">
+                                <Image  Margin="2" Source="{Binding LogoCategoryImage}" />
+                                <TextBlock Margin="2"  Text="{Binding NomCategory}" FontSize="20" Foreground="Black" />
+                            </StackPanel>
+                            <Line Grid.Row="1" Fill="DarkGray" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="2"/>
+                            <ScrollViewer MaxHeight="250" Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                                <ListView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ListClien}">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Margin="5"  Text="{Binding}" FontSize="15" Foreground="DarkGray" HorizontalAlignment="Left"/>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>                                    
+                                </ListView>
+                            </ScrollViewer>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollViewer>
     </Grid>
 </local:BindablePage>

@@ -21,6 +21,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helper\INavigable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CatalogueService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Category.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\CategoryClient.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Cour.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Cursu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CursusCour.cs" />
@@ -39,6 +40,15 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Images\adress.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\ecoles.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\energy.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\etranger.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\finance.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\General.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\governement.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\industrie.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\telecommunication.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\transport.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\fax.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\General.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\IT.png" />

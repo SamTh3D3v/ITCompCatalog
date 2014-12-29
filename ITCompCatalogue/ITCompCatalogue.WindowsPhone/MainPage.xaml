@@ -46,7 +46,7 @@
             <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="Images/IT.png" />
             </Border>
-            <TextBlock Margin="4" Text="Technologies" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
+            <TextBlock Margin="4" Text="Technologies" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="Black"/>
         </StackPanel>
         <ListView  HorizontalAlignment="Stretch" IsItemClickEnabled="True"  Grid.Row="1" ItemsSource="{Binding ListTechnologies}" >
             <interactivity:Interaction.Behaviors>
