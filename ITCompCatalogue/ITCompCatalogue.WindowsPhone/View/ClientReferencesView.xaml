@@ -42,9 +42,9 @@
                                 <Image  Margin="2" Source="{Binding LogoCategoryImage}" />
                                 <TextBlock Margin="2"  Text="{Binding NomCategory}" VerticalAlignment="Center" FontSize="22" Foreground="Black" />
                             </StackPanel>
-                            <Line Grid.Row="1" Fill="Black" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="2"/>
-                            <ScrollViewer MaxHeight="250" Grid.Row="2" VerticalScrollBarVisibility="Visible" >
-                                <ListView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ListClien}">
+                            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0" Height="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,2,5,2"/>
+                            <ScrollViewer Margin="3" MaxHeight="250" Grid.Row="2" VerticalScrollBarVisibility="Visible" >
+                                <ListView Margin="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ListClien}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock  Text="{Binding}" FontSize="15" Foreground="DarkGray" HorizontalAlignment="Left"/>

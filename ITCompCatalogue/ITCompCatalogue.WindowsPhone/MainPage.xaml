@@ -55,13 +55,18 @@
                     <!--CommandParameter="{Binding ElementName=Sl_VolumeSilder, Path=Value}"-->
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="0"  Margin="3" HorizontalAlignment="Stretch">
                         <Grid Background="WhiteSmoke">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="220"/>
+                                <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
