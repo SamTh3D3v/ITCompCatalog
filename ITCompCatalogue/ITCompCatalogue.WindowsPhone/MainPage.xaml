@@ -37,7 +37,7 @@
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </view:BindablePage.BottomAppBar>
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -48,7 +48,7 @@
             </Border>
             <TextBlock Margin="4" Text="Technologies" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
         </StackPanel>
-        <ListView HorizontalAlignment="Stretch" IsItemClickEnabled="True"  Grid.Row="1" ItemsSource="{Binding ListTechnologies}" >
+        <ListView  HorizontalAlignment="Stretch" IsItemClickEnabled="True"  Grid.Row="1" ItemsSource="{Binding ListTechnologies}" >
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="ItemClick">
                     <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}"  InputConverter="{StaticResource TechClickedConverter}"/>
@@ -57,23 +57,23 @@
             </interactivity:Interaction.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="0"  Margin="2" BorderBrush="White" HorizontalAlignment="Stretch">
-                        <Grid>
+                    <Border BorderThickness="0"  Margin="3" HorizontalAlignment="Stretch">
+                        <Grid Background="WhiteSmoke">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="220"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Margin="10" Width="79" Height="79">
+                            <Border Margin="10" Width="79" Height="79">
                                 <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding C_id,Converter={StaticResource TechIdToImageConverter}}" Stretch="UniformToFill"/>
                             </Border>
                             <StackPanel Grid.Column="1"  VerticalAlignment="Center" Margin="14.5,2,0,0">
-                                <TextBlock Text="{Binding Intitule}" Style="{ThemeResource ListViewItemTextBlockStyle}" Foreground="{ThemeResource PhoneMidBrush}"/>
-                                <TextBlock Text="{Binding Code }" Style="{ThemeResource ListViewItemContentTextBlockStyle}"/>
+                                <TextBlock Text="{Binding Intitule}" Style="{ThemeResource ListViewItemTextBlockStyle}" Foreground="Black"/>
+                                <TextBlock Text="{Binding Code }" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Foreground="DarkGray"/>
                             </StackPanel>
-                            <Border Background="LightBlue" Grid.Column="2" Width="30" Height="30" CornerRadius="10" Margin="2">
-                                <TextBlock Foreground="Black" Text="{Binding CourseCount}" Style="{ThemeResource ControlHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                            <Border Background="DeepSkyBlue" BorderThickness="0" Grid.Column="2" Width="50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                                <TextBlock Foreground="Black" FontSize="18" Text="{Binding CourseCount}" Style="{ThemeResource ControlHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                             </Border>
                         </Grid>
                     </Border>
