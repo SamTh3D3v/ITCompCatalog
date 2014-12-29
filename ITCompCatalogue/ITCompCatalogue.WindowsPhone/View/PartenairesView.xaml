@@ -33,7 +33,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <Image Grid.Column="0" Source="{Binding LogoImageSource}" />
+                            <Image Grid.Column="0" Margin="2" Source="{Binding LogoImageSource}" />
                             <TextBox Grid.Row="1"  Text="{Binding Nom}" FontSize="20" Foreground="Black" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             <TextBlock Grid.Row="2" Text="{Binding Description}" TextWrapping="Wrap" />
                         </Grid>
