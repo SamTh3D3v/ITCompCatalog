@@ -17,7 +17,7 @@
         <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"  />
     </local:BindablePage.Resources>
 
-    <Grid>
+    <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -27,8 +27,7 @@
             <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80" >
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
             </Border>
-            <TextBlock Margin="4" Text="Rechercher" Style="{ThemeResource ControlHeaderTextBlockStyle}">
-            </TextBlock>
+            <TextBlock Margin="4" Text="Rechercher" Foreground="Black" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
         </StackPanel>
         <Grid Grid.Row="1" HorizontalAlignment="Stretch" Background="White">
             <Grid.RowDefinitions>
@@ -46,24 +45,29 @@
             <AppBarToggleButton  IsChecked="{Binding ParDescIsChecked,Mode=TwoWay}" Grid.Row="1" Grid.Column="3" Label="Desc"/>-->
             <ComboBox Grid.Row="1" BorderBrush="DeepSkyBlue" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedItem="{Binding SearchBySelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchByItems}"/>
         </Grid>
-        <ListView  Background="WhiteSmoke"  Margin="3,10,3,3" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
+        <ListView  Margin="3,10,3,3" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="SelectionChanged">
                     <core:InvokeCommandAction Command="{Binding SelectCourseCommand}" InputConverter="{StaticResource ItemClickedConverter}"/>
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
-                <DataTemplate >
-                   <Grid  Background="White" Margin="1">
+                <DataTemplate>
+                   <Grid  Background="WhiteSmoke" Margin="1">
                        <Grid.ColumnDefinitions>
-                           <ColumnDefinition Width="100"/>
-                           <ColumnDefinition Width="200"/>
-                           <ColumnDefinition Width="100"/>
+                           <ColumnDefinition Width="*"/>
+                           <ColumnDefinition Width="2*"/>
+                           <ColumnDefinition Width="Auto"/>
                        </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="{Binding Code}" Foreground="Black"  Style="{ThemeResource ListViewItemContentTextBlockStyle}" FontSize="20" TextWrapping="Wrap" Grid.Column="0" />
-                        <TextBlock Text="{Binding Intitule}" Foreground="DarkGray" Style="{ThemeResource ControlHeaderTextBlockStyle}" FontSize="18" TextWrapping="WrapWholeWords" Grid.Column="1" />
-                        <TextBlock Text="{Binding Category.Intitule}" Foreground="DarkGray" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Grid.Column="2" />
+                        <TextBlock Text="{Binding Code}" Foreground="DeepSkyBlue"  Style="{ThemeResource ListViewItemContentTextBlockStyle}" FontSize="20" TextWrapping="Wrap" Grid.Column="0" />
+                        <TextBlock Text="{Binding Intitule}" Foreground="Black" Style="{ThemeResource ControlHeaderTextBlockStyle}" FontSize="18" TextWrapping="WrapWholeWords" Grid.Column="1" />
+                        <TextBlock Text="{Binding Category.Intitule}" Foreground="Black" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Grid.Column="2" />
                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
