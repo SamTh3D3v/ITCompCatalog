@@ -25,6 +25,11 @@
         </StackPanel>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <ListView ItemsSource="{Binding ListCategoryClient}">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    </Style>
+                </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <Grid Margin="10,10,10,0"  Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
@@ -35,14 +40,14 @@
                             </Grid.RowDefinitions>
                             <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Top">
                                 <Image  Margin="2" Source="{Binding LogoCategoryImage}" />
-                                <TextBlock Margin="2"  Text="{Binding NomCategory}" FontSize="20" Foreground="Black" />
+                                <TextBlock Margin="2"  Text="{Binding NomCategory}" VerticalAlignment="Center" FontSize="22" Foreground="Black" />
                             </StackPanel>
-                            <Line Grid.Row="1" Fill="DarkGray" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="2"/>
-                            <ScrollViewer MaxHeight="250" Grid.Row="2" VerticalScrollBarVisibility="Auto">
+                            <Line Grid.Row="1" Fill="Black" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="2"/>
+                            <ScrollViewer MaxHeight="250" Grid.Row="2" VerticalScrollBarVisibility="Visible" >
                                 <ListView VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ListClien}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Margin="5"  Text="{Binding}" FontSize="15" Foreground="DarkGray" HorizontalAlignment="Left"/>
+                                            <TextBlock  Text="{Binding}" FontSize="15" Foreground="DarkGray" HorizontalAlignment="Left"/>
                                         </DataTemplate>
                                     </ListView.ItemTemplate>                                    
                                 </ListView>

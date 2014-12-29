@@ -134,6 +134,7 @@ namespace ITCompCatalogue.ViewModel
             navigationService.Configure("SearchView",typeof(SearchView));
             navigationService.Configure("ContactView", typeof(ContactView));
             navigationService.Configure("PartnerView", typeof(PartenairesView));
+            navigationService.Configure("RefClient", typeof(ClientReferencesView));
             
             return navigationService;
         }

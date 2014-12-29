@@ -94,10 +94,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _refClientCommand
                     ?? (_refClientCommand = new RelayCommand(
-                    () =>
-                    {
-                        
-                    }));
+                    () => _navigationService.NavigateTo("RefClient")));
             }
         }
         private RelayCommand _partnerCommand;  
