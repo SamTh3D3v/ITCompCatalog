@@ -13,7 +13,14 @@ namespace ITCompCatalogue.Converters
         {
             var args = value as ItemClickEventArgs;
             if (args != null)
-                return(args.ClickedItem as CursusCour).Cour;
+            {
+                var cursusCour = args.ClickedItem as CursusCour;
+                if (cursusCour != null)
+                    return cursusCour.Cour;
+                else
+                    return args.ClickedItem as Cour;
+            }
+
             return null;
         }
 
