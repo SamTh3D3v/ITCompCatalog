@@ -25,6 +25,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Model\Cursu.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CursusCour.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\ICatalogueService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Model\Partenaire.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Technology.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ClientReferenceViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ContactViewModel.cs" />
@@ -42,6 +43,12 @@
     <Content Include="$(MSBuildThisFileDirectory)Images\General.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\IT.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\mail.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Partners\android_partner.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Partners\certiport_partner.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Partners\microsoft_partner.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Partners\oracle_partner.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Partners\pearsonvue_partner.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Partners\prometric_partner.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\phone.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\web.png" />
     <Content Include="$(MSBuildThisFileDirectory)ITCompTrainingDB.db">
