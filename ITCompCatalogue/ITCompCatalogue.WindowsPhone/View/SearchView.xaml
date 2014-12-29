@@ -67,7 +67,7 @@
 
                         <TextBlock Text="{Binding Code}" Foreground="DeepSkyBlue"  Style="{ThemeResource ListViewItemContentTextBlockStyle}" FontSize="20" TextWrapping="Wrap" Grid.Column="0" />
                         <TextBlock Text="{Binding Intitule}" Foreground="Black" Style="{ThemeResource ControlHeaderTextBlockStyle}" FontSize="18" TextWrapping="WrapWholeWords" Grid.Column="1" />
-                        <TextBlock Text="{Binding Category.Intitule}" Foreground="Black" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Grid.Column="2" />
+                        <!--<TextBlock Text="{Binding Category.Intitule}" Foreground="Black" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Grid.Column="2" />-->
                    </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

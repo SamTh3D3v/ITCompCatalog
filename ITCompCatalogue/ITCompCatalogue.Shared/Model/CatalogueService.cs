@@ -143,7 +143,7 @@ namespace ITCompCatalogue.Model
                     course.Niveau = (string) statement[4];
                     course.Annee = (string) statement[5];
                     course.Description = (string) statement[6];
-                    course.Category = GetCategory((long) statement[7]);
+                    course.Category = GetCategoryByCategoryId((long) statement[7]);
                 }
             }
             return course;
@@ -182,13 +182,13 @@ namespace ITCompCatalogue.Model
                         Niveau = (string)statement[4],
                         Annee = (string)statement[5],
                         Description = (string)statement[6],
-                        Category = GetCategory((long)statement[7])
+                        Category = GetCategoryByCategoryId((long)statement[7])
                     });
                 }
             }
             return new ObservableCollection<Cour>(courses);
         }
-        private Category GetCategory(long categoryId)
+        private Category GetCategoryByCategoryId(long categoryId)
         {
             var category = new Category();
             using (var statement = _connection.Prepare("SELECT * FROM Categories WHERE _id = ?"))
@@ -251,7 +251,8 @@ namespace ITCompCatalogue.Model
                         Niveau = (string)statement[4],
                         Annee = (string)statement[5],
                         Description = (string)statement[6],
-                        CategorieID = (long)statement[7]
+                        CategorieID = (long)statement[7],
+                        Category = GetCategoryByCategoryId((long)statement[7])
                     });
                 }
             }
