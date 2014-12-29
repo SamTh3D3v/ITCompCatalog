@@ -29,10 +29,11 @@
         </CommandBar>
     </local:BindablePage.BottomAppBar>
 
-    <Pivot ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
+    <Pivot Background="White" ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
         <Pivot.HeaderTemplate >
             <DataTemplate>
-                <TextBlock  Text="{Binding Intitule}" FontSize="20" ></TextBlock>
+                
+                <TextBlock  Text="{Binding Intitule}" Foreground="DeepSkyBlue"  Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="22" ></TextBlock>
             </DataTemplate>
         </Pivot.HeaderTemplate>
         <Pivot.ItemTemplate>
@@ -42,21 +43,36 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">                        
+                    <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">     
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel HorizontalAlignment="Stretch">
-                                    <TextBlock Text="{Binding Intitule}" Foreground="Blue"></TextBlock>
-                                    <ListView  ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
+                                    <Border Background="WhiteSmoke" HorizontalAlignment="Stretch" Margin="0,2,2,2" Height="40" >
+                                        <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Text="{Binding Intitule}" Foreground="Black"  Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20"/>
+                                    </Border>
+                                    <ListView Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
                                         <interactivity:Interaction.Behaviors>
                                             <core:EventTriggerBehavior EventName="ItemClick">
                                                 <core:InvokeCommandAction Command="{Binding DataContext.CourseSelectedCommand, ElementName=RootPivot}"
                                                           InputConverter="{StaticResource ItemClickedConverter}"/>
                                             </core:EventTriggerBehavior>
                                         </interactivity:Interaction.Behaviors>
+                                        <ListView.ItemContainerStyle>
+                                            <Style TargetType="ListViewItem">
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                            </Style>
+                                        </ListView.ItemContainerStyle>
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <TextBlock Foreground="White" Text="{Binding Cour.Intitule}"></TextBlock>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <Rectangle Width="4" Height="3" Fill="Black"></Rectangle>
+                                                    <TextBlock Margin="7,0,0,0" Foreground="DarkGray" Text="{Binding Cour.Intitule}" TextWrapping="Wrap" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="16" ></TextBlock>
+                                                </StackPanel>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
