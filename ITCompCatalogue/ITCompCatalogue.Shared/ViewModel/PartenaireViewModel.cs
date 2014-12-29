@@ -44,9 +44,9 @@ namespace ITCompCatalogue.ViewModel
                 new Partenaire()
                 {
                     Nom = "Oracle",
-                    LogoImageSource = "../Images/oracle_partner.png",
+                    LogoImageSource = "../Images/Partners/oracle_partner.png",
                     WebSite = "www.Oracle.com",
-                    Description = "ITComp a acquis le domain d'expertises de niveau GOLD" +
+                    Description = "ITComp a acquis le domain d'expertises de niveau GOLD " +
                                   "pour l'integration des technologies Oracle"
                 },
                 new Partenaire()

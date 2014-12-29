@@ -107,10 +107,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _partnerCommand
                     ?? (_partnerCommand = new RelayCommand(
-                    () =>
-                    {
-                        
-                    }));
+                    () => _navigationService.NavigateTo("PartnerView")));
             }
         }
         private RelayCommand _contactCommand;
