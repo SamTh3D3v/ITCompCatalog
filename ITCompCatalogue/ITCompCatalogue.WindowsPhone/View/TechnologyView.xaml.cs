@@ -14,11 +14,8 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 
-
-
 namespace ITCompCatalogue.View
 {
-
     public sealed partial class TechnologyView : BindablePage
     {
         public TechnologyView()

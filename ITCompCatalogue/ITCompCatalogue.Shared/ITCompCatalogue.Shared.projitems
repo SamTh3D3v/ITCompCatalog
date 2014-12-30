@@ -60,6 +60,13 @@
     <Content Include="$(MSBuildThisFileDirectory)Images\Partners\pearsonvue_partner.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Partners\prometric_partner.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\phone.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\androidAn.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\databaseAn.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\networkAn.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\pre1.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\pre2.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\pre3.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\pre4.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Images\web.png" />
     <Content Include="$(MSBuildThisFileDirectory)ITCompTrainingDB.db">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>

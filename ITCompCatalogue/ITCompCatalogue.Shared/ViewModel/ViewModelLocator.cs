@@ -36,6 +36,7 @@ namespace ITCompCatalogue.ViewModel
             SimpleIoc.Default.Register<ClientReferenceViewModel>();
             SimpleIoc.Default.Register<ContactViewModel>();
             SimpleIoc.Default.Register<PartenaireViewModel>();
+            SimpleIoc.Default.Register<PresenationViewModel>();
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
           if (ViewModelBase.IsInDesignModeStatic)
             {
@@ -135,6 +136,7 @@ namespace ITCompCatalogue.ViewModel
             navigationService.Configure("ContactView", typeof(ContactView));
             navigationService.Configure("PartnerView", typeof(PartenairesView));
             navigationService.Configure("RefClient", typeof(ClientReferencesView));
+            navigationService.Configure("PresentationView", typeof(PresentationView));
             
             return navigationService;
         }

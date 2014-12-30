@@ -83,7 +83,7 @@ namespace ITCompCatalogue.ViewModel
                     ?? ( _presentationCommand = new RelayCommand(
                     () =>
                     {
-                        
+                        _navigationService.NavigateTo("PresentationView");
                     }));
             }
         }
