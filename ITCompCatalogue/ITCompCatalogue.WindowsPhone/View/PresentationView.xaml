@@ -32,9 +32,9 @@
                     <Image Opacity=".5" Margin="20" Height="70" Width="70" Source="../Images/Presentation/androidAn.png"/>
                     <Image Opacity=".5" Margin="20" Height="70" Width="70"  Source="../Images/Presentation/networkAn.png"/>
                     <Image Opacity=".5" Margin="20" Height="70" Width="70"  Source="../Images/Presentation/databaseAn.png"/>
-                    <Image Margin="20" Height="70" Width="70" Source="../Images/Presentation/androidAn.png"/>
-                    <Image Opacity=".5" Margin="20" Height="70" Width="70"  Source="../Images/Presentation/networkAn.png"/>
-                    <Image Opacity=".5" Margin="20" Height="70" Width="70"  Source="../Images/Presentation/databaseAn.png"/>
+                    <Image Margin="20" Height="70" Width="70" Source="../Images/Presentation/techAn.png"/>
+                    <Image Opacity=".5" Margin="20" Height="70" Width="70"  Source="../Images/Presentation/meetingAn.png"/>
+                    <Image Opacity=".5" Margin="20" Height="70" Width="70"  Source="../Images/Presentation/certAn.png"/>
                 </controls:UniformGrid>
             </controls:AnimatingContainer>
             <Border Height="40" HorizontalAlignment="Stretch" Canvas.Left="0" Background="Black" Opacity=".5" Canvas.Top="{Binding Height,ElementName=uniformGrid}">
