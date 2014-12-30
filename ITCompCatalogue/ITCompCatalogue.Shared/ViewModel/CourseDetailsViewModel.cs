@@ -38,16 +38,16 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands    
-        private RelayCommand _searchCommand;    
-        public RelayCommand SearchCommand
+        private RelayCommand _favoriteCommand;    
+        public RelayCommand FavoriteCommand
         {
             get
             {
-                return _searchCommand
-                    ?? (_searchCommand = new RelayCommand(
+                return _favoriteCommand
+                    ?? (_favoriteCommand = new RelayCommand(
                     () =>
                     {
-                        
+                        //add this courses to the list of courses in the fav localStorage File
                     }));
             }
         }

@@ -17,11 +17,11 @@
     <Page.BottomAppBar>
         <CommandBar Background="DeepSkyBlue">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Label="Favoriser"  Command="{Binding SearchCommand}">
-                    <AppBarButton.Icon>
+                <AppBarToggleButton Label="Favoriser"  Command="{Binding FavoriteCommand}">
+                    <AppBarToggleButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE113;" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
+                    </AppBarToggleButton.Icon>
+                </AppBarToggleButton>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

@@ -5,10 +5,56 @@
     xmlns:local="using:ITCompCatalogue.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:converters="using:ITCompCatalogue.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <local:BindablePage.DataContext>
+        <Binding Path="FavoriteCoursesViewModel" Source="{StaticResource Locator}"></Binding>
+    </local:BindablePage.DataContext>
+    <local:BindablePage.Resources>
+        <converters:TechIdToImageConverter x:Name="TechIdToImageConverter"/>
+    </local:BindablePage.Resources>
 
-    <Grid>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" >
+            <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
+                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+            </Border>
+            <TextBlock Margin="4" Text="Favorite" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="Black"/>
+        </StackPanel>
+        <ListView  ItemsSource="{Binding ListFavoriteCourses}" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>                    
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Background="WhiteSmoke" Margin="5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>                           
+                                                      
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <Image Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}" Grid.Row="0" Grid.Column="0"/>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding Category.Intitule}" Margin="1" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="10" Grid.Row="1" Grid.Column="0"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Intitule}" Margin="10,0,0,0" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Code}" Margin="10,0,0,0" Foreground="DeepSkyBlue" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2"/>
+                        <AppBarToggleButton Grid.Column="3" Grid.Row="0" Grid.RowSpan="2"/>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
     </Grid>
 </local:BindablePage>
