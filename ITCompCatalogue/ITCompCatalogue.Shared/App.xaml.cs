@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
+using SQLitePCL;
 
 namespace ITCompCatalogue
 {
@@ -143,6 +144,7 @@ namespace ITCompCatalogue
             {
                 StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync("ITCompTrainingDB.db");
                 isDatabaseExisting = true;
+               // CreateFavoriteTable();
             }
             catch
             {
@@ -153,8 +155,18 @@ namespace ITCompCatalogue
             {
                 StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync("ITCompTrainingDB.db");
                 await databaseFile.CopyAsync(ApplicationData.Current.LocalFolder);
+                CreateFavoriteTable();
             }
 
+        }
+        private void CreateFavoriteTable()
+        {
+            var connection = new SQLiteConnection("ITCompTrainingDB.db");
+            using (var statement = connection.Prepare(@"CREATE TABLE IF NOT EXISTS Favorite (
+                                                       _id long NOT NULL PRIMARY KEY)"))
+            {
+                statement.Step();
+            }
         }
     }
 }

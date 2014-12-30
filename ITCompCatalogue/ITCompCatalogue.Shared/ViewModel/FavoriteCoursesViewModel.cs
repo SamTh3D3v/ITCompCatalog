@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
 using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
@@ -33,7 +34,20 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands
-        
+        private RelayCommand _removeAllCommand; 
+        public RelayCommand RemoveAllCommand
+        {
+            get
+            {
+                return _removeAllCommand
+                    ?? (_removeAllCommand = new RelayCommand(
+                    () =>
+                    {
+                            ListFavoriteCourses.Clear();
+                       //Clear the LIst From The Isolated Storage As Well
+                    }));
+            }
+        }
         #endregion
         #region Ctors and Methods
         

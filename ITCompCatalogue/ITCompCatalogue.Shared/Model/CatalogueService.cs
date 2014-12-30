@@ -29,6 +29,9 @@ namespace ITCompCatalogue.Model
             }
             return technologies;
         }
+
+       
+
         public long GetCoursesCount(long technologyId)
         {
             long count = 0;
@@ -204,9 +207,6 @@ namespace ITCompCatalogue.Model
             }
             return category;
         }
-
-      
-
         public async Task<List<Cour>> GetAllCourses()
         {
 
@@ -257,6 +257,29 @@ namespace ITCompCatalogue.Model
                 }
             }
             return courses;
+        }
+
+        public void FavoriteCourse(long courseId)
+        {
+            if (!IsCourseFavorite(courseId))
+            {
+                 
+            }           
+        }
+
+        public void UnFavoriteCourse(long courseId)
+        {
+            
+        }
+
+        public bool IsCourseFavorite(long courseId)
+        {
+            return true;
+        }
+
+        public void UnfavoriteAllCourses()
+        {
+            
         }
     }
 }

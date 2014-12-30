@@ -14,6 +14,17 @@
     <local:BindablePage.Resources>
         <converters:TechIdToImageConverter x:Name="TechIdToImageConverter"/>
     </local:BindablePage.Resources>
+    <local:BindablePage.BottomAppBar>
+        <CommandBar>
+            <CommandBar.PrimaryCommands>                
+                <AppBarButton Label="Supprimer tous" Command="{Binding RemoveAllCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE21C;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>                                
+            </CommandBar.PrimaryCommands>            
+        </CommandBar>
+    </local:BindablePage.BottomAppBar>
 
     <Grid Background="White">
         <Grid.RowDefinitions>
