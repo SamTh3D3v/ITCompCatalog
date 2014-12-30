@@ -4,14 +4,18 @@ using System.Collections.ObjectModel;
 using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
+using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class FavoriteCoursesViewModel:ViewModelBase
+    class FavoriteCoursesViewModel:ViewModelBase,INavigable
     {
         #region Fields
         private ObservableCollection<Cour> _listFavoriteCourses;
+        private INavigationService _navigationService;
+        private ICatalogueService _catalogueService;
         #endregion
         #region Properties
         public ObservableCollection<Cour> ListFavoriteCourses
@@ -48,9 +52,34 @@ namespace ITCompCatalogue.ViewModel
                     }));
             }
         }
+        private RelayCommand<Cour> _navigateToCourseCommand;  
+        public RelayCommand<Cour> NavigateToCourseCommand
+        {
+            get
+            {
+                return _navigateToCourseCommand
+                    ?? (_navigateToCourseCommand = new RelayCommand<Cour>(
+                    (cour) => _navigationService.NavigateTo("CourDetails",cour)));
+            }
+        }
         #endregion
         #region Ctors and Methods
         
         #endregion
+
+        public async void Activate(object parameter)
+        {
+            ListFavoriteCourses=new ObservableCollection<Cour>(await  _catalogueService.GetFavoriteCourses());
+        }
+
+        public void Deactivate(object parameter)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GoBack()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

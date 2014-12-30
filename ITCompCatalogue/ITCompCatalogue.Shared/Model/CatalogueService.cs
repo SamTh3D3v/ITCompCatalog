@@ -301,5 +301,18 @@ namespace ITCompCatalogue.Model
                 statement.Step();
             }
         }
+
+        public async Task<List<Cour>> GetFavoriteCourses()
+        {
+            var courses = new List<Cour>();
+            using (var statement = _connection.Prepare("SELECT * FROM Favorite"))
+            {
+                while (statement.Step() == SQLiteResult.ROW)
+                {                                       
+                    courses.Add(GetCourseByCourseId((long)statement[0]));
+                }
+            }
+            return courses;
+        }
     }
 }

@@ -6,6 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:ITCompCatalogue.Converters"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <local:BindablePage.DataContext>
@@ -13,6 +15,7 @@
     </local:BindablePage.DataContext>
     <local:BindablePage.Resources>
         <converters:TechIdToImageConverter x:Name="TechIdToImageConverter"/>
+        <converters:ListViewItemClickedConverter x:Name="ItemClickedConverter"/>
     </local:BindablePage.Resources>
     <local:BindablePage.BottomAppBar>
         <CommandBar>
@@ -37,12 +40,17 @@
             </Border>
             <TextBlock Margin="4" Text="Favorite" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="Black"/>
         </StackPanel>
-        <ListView  ItemsSource="{Binding ListFavoriteCourses}" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <ListView IsItemClickEnabled="True" ItemsSource="{Binding ListFavoriteCourses}" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>                    
                 </Style>
             </ListView.ItemContainerStyle>
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="ItemClick">
+                    <core:InvokeCommandAction Command="{Binding NavigateToCourseCommand}" InputConverter="{StaticResource ItemClickedConverter}"/>
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid Background="WhiteSmoke" Margin="5">

@@ -36,6 +36,29 @@ namespace ITCompCatalogue.ViewModel
                 RaisePropertyChanged();
             }
         }
+     
+        
+
+        private bool _isCourseFavorite ;
+
+        public bool IsCourseFavorite
+        {
+            get
+            {
+                return _isCourseFavorite;
+            }
+
+            set
+            {
+                if (_isCourseFavorite == value)
+                {
+                    return;
+                }
+
+                _isCourseFavorite = value;
+                RaisePropertyChanged();
+            }
+        }
         #endregion
         #region Commands    
         private RelayCommand _favoriteCommand;    
@@ -65,6 +88,9 @@ namespace ITCompCatalogue.ViewModel
         public void Activate(object parameter)
         {
             CourseDetails = (parameter as Cour);
+            var cour = parameter as Cour;
+            if (cour != null)
+                IsCourseFavorite = _catalogueService.IsCourseFavorite(cour.C_id);
         }
 
         public void Deactivate(object parameter)

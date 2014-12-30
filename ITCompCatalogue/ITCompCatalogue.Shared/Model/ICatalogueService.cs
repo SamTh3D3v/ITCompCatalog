@@ -15,6 +15,7 @@ namespace ITCompCatalogue.Model
         void UnFavoriteCourse(long courseId);
         bool IsCourseFavorite(long courseId);
         void UnfavoriteAllCourses();
+        Task<List<Cour>> GetFavoriteCourses();
 
     }
 }
