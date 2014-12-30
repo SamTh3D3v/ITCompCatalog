@@ -32,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ContactViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CourseDetailsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CoursesCategoriesListViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FavoriteCoursesViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PartenaireViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PresenationViewModel.cs" />

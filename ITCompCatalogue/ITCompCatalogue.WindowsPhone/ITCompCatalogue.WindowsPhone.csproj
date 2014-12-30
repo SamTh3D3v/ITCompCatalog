@@ -99,6 +99,9 @@
     <Compile Include="View\CoursesCategoiesListView.xaml.cs">
       <DependentUpon>CoursesCategoiesListView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\FavoriteCoursesView.xaml.cs">
+      <DependentUpon>FavoriteCoursesView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PartenairesView.xaml.cs">
       <DependentUpon>PartenairesView.xaml</DependentUpon>
     </Compile>
@@ -151,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\CoursesCategoiesListView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\FavoriteCoursesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
