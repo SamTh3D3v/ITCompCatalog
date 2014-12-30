@@ -30,7 +30,7 @@ namespace ITCompCatalogue.Model
             return technologies;
         }
 
-       
+
 
         public long GetCoursesCount(long technologyId)
         {
@@ -81,7 +81,7 @@ namespace ITCompCatalogue.Model
                 statement.Bind(1, categoryId);
                 while (statement.Step() == SQLiteResult.ROW)
                 {
-                    cursus.Add( await GetCursusByCursusId((long)statement[0]));
+                    cursus.Add(await GetCursusByCursusId((long)statement[0]));
                 }
             }
             return cursus;
@@ -90,16 +90,16 @@ namespace ITCompCatalogue.Model
         private async Task<Cursu> GetCursusByCursusId(long cursusId)
         {
             var cursus = new Cursu();
-            using (var statement=_connection.Prepare("SELECT * FROM Cursus WHERE _id = ?"))
+            using (var statement = _connection.Prepare("SELECT * FROM Cursus WHERE _id = ?"))
             {
-                statement.Bind(1,cursusId);
-                if (statement.Step()==SQLiteResult.ROW)
+                statement.Bind(1, cursusId);
+                if (statement.Step() == SQLiteResult.ROW)
                 {
-                    cursus.C_id = (long) statement[0];
-                    cursus.Code = (string) statement[1];
-                    cursus.Intitule = (string) statement[2];
+                    cursus.C_id = (long)statement[0];
+                    cursus.Code = (string)statement[1];
+                    cursus.Intitule = (string)statement[2];
                     cursus.CursusCours =
-                        new ObservableCollection<CursusCour>(await GetCursusCourByCursusId((long) statement[0]));
+                        new ObservableCollection<CursusCour>(await GetCursusCourByCursusId((long)statement[0]));
 
                 }
 
@@ -123,7 +123,7 @@ namespace ITCompCatalogue.Model
                         Ordre = (long)statement[3],
                         Recommandation = (string)statement[4],
                         Cour = GetCourseByCourseId((long)statement[2])
-                       
+
                     });
                 }
             }
@@ -139,14 +139,14 @@ namespace ITCompCatalogue.Model
                 statement.Bind(1, courseId);
                 if (statement.Step() == SQLiteResult.ROW)
                 {
-                    course.C_id = (long) statement[0];
-                    course.Code = (string) statement[1];
-                    course.Intitule = (string) statement[2];
-                    course.Duree = (string) statement[3];
-                    course.Niveau = (string) statement[4];
-                    course.Annee = (string) statement[5];
-                    course.Description = (string) statement[6];
-                    course.Category = GetCategoryByCategoryId((long) statement[7]);
+                    course.C_id = (long)statement[0];
+                    course.Code = (string)statement[1];
+                    course.Intitule = (string)statement[2];
+                    course.Duree = (string)statement[3];
+                    course.Niveau = (string)statement[4];
+                    course.Annee = (string)statement[5];
+                    course.Description = (string)statement[6];
+                    course.Category = GetCategoryByCategoryId((long)statement[7]);
                 }
             }
             return course;
@@ -263,23 +263,43 @@ namespace ITCompCatalogue.Model
         {
             if (!IsCourseFavorite(courseId))
             {
-                 
-            }           
+                using (var statement = _connection.Prepare("INSERT INTO Favorite (_id) VALUES (@IdCourse);"))
+                {
+                    statement.Bind("@IdCourse", courseId);
+                    statement.Step();
+                }
+
+            }
         }
 
         public void UnFavoriteCourse(long courseId)
         {
-            
+            using (var statement = _connection.Prepare("Delete from Favorite Where _id = ?"))
+            {
+                statement.Bind(1, courseId);
+                statement.Step();
+            }
+           
         }
 
         public bool IsCourseFavorite(long courseId)
         {
-            return true;
+            using (var statement = _connection.Prepare("SELECT * from Favorite"))
+            {
+                if (statement.Step()==SQLiteResult.ROW)
+                {
+                    return true;
+                }             
+            }
+            return false;
         }
 
         public void UnfavoriteAllCourses()
         {
-            
+            using (var statement =_connection.Prepare("Delete From Favorite"))
+            {
+                statement.Step();
+            }
         }
     }
 }
