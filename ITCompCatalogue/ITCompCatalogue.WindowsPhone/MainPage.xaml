@@ -34,6 +34,7 @@
                 <AppBarButton Label="Partenaire" Command="{Binding PartnerCommand}"/>
                 <AppBarButton Label="References clients" Command="{Binding RefClientsCommand}"/>
                 <AppBarButton Label="Contact" Command="{Binding ContactCommand}"/>
+                <AppBarButton Label="Favorie" Command="{Binding FavorieCommand}"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </view:BindablePage.BottomAppBar>

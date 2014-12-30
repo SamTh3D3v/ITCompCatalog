@@ -117,6 +117,16 @@ namespace ITCompCatalogue.ViewModel
                     () => _navigationService.NavigateTo("ContactView")));
             }
         }
+        private RelayCommand _favorieCommand;
+        public RelayCommand FavorieCommand
+        {
+            get
+            {
+                return _favorieCommand
+                    ?? (_favorieCommand = new RelayCommand(
+                    () => _navigationService.NavigateTo("FavoriteCoursesView")));
+            }
+        }
 
         private RelayCommand<Technology> _selectTechnologyCommand;  
          
