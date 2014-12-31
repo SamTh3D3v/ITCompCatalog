@@ -10,7 +10,7 @@ using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class FavoriteCoursesViewModel:ViewModelBase,INavigable
+    class FavoriteCoursesViewModel : ViewModelBase, INavigable
     {
         #region Fields
         private ObservableCollection<Cour> _listFavoriteCourses;
@@ -38,7 +38,7 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands
-        private RelayCommand _removeAllCommand; 
+        private RelayCommand _removeAllCommand;
         public RelayCommand RemoveAllCommand
         {
             get
@@ -47,19 +47,19 @@ namespace ITCompCatalogue.ViewModel
                     ?? (_removeAllCommand = new RelayCommand(
                     () =>
                     {
-                            ListFavoriteCourses.Clear();
-                       //Clear the LIst From The Isolated Storage As Well
+                        ListFavoriteCourses.Clear();
+                        _catalogueService.UnfavoriteAllCourses();
                     }));
             }
         }
-        private RelayCommand<Cour> _navigateToCourseCommand;  
+        private RelayCommand<Cour> _navigateToCourseCommand;
         public RelayCommand<Cour> NavigateToCourseCommand
         {
             get
             {
                 return _navigateToCourseCommand
                     ?? (_navigateToCourseCommand = new RelayCommand<Cour>(
-                    (cour) => _navigationService.NavigateTo("CourDetails",cour)));
+                    (cour) => _navigationService.NavigateTo("CourDetails", cour)));
             }
         }
         private RelayCommand<EventArgs> _unfavCourseCommand;
@@ -71,7 +71,7 @@ namespace ITCompCatalogue.ViewModel
                     ?? (_unfavCourseCommand = new RelayCommand<EventArgs>(
                     (e) =>
                     {
-                   //     _catalogueService.UnFavoriteCourse(null);
+                        //     _catalogueService.UnFavoriteCourse(null);
                     }));
             }
         }
@@ -83,17 +83,17 @@ namespace ITCompCatalogue.ViewModel
             _navigationService = navigationService;
             _catalogueService = catalogueService;
         }
-        
+
         #endregion
 
         public async void Activate(object parameter)
         {
-            ListFavoriteCourses=new ObservableCollection<Cour>(await  _catalogueService.GetFavoriteCourses());
+            ListFavoriteCourses = new ObservableCollection<Cour>(await _catalogueService.GetFavoriteCourses());
         }
 
         public void Deactivate(object parameter)
         {
-            
+
         }
 
         public void GoBack()
