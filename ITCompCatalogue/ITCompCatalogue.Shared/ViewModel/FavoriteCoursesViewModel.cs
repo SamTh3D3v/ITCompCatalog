@@ -71,6 +71,7 @@ namespace ITCompCatalogue.ViewModel
                     ?? (_unfavCourseCommand = new RelayCommand<EventArgs>(
                     (e) =>
                     {
+                        var red = e;
                         //     _catalogueService.UnFavoriteCourse(null);
                     }));
             }

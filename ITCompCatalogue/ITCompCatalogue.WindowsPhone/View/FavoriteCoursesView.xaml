@@ -19,8 +19,8 @@
     </local:BindablePage.Resources>
     <local:BindablePage.BottomAppBar>
         <CommandBar Background="DeepSkyBlue">
-            <CommandBar.PrimaryCommands>                
-                <AppBarButton Label="Unfav all" Command="{Binding RemoveAllCommand}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Supprimer tous" Command="{Binding RemoveAllCommand}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE10A;" />
                     </AppBarButton.Icon>
@@ -40,7 +40,7 @@
             </Border>
             <TextBlock Margin="4" Text="Favorite" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="Black"/>
         </StackPanel>
-        <ListView IsItemClickEnabled="True" ItemsSource="{Binding ListFavoriteCourses}" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <ListView IsItemClickEnabled="True" x:Name="RootList" ItemsSource="{Binding ListFavoriteCourses}" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>                    
@@ -67,11 +67,11 @@
                         <TextBlock HorizontalAlignment="Center" Text="{Binding Category.Intitule}" Margin="1" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="10" Grid.Row="1" Grid.Column="0" Foreground="Black"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Intitule}" Foreground="Black" TextWrapping="Wrap" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18"  Grid.Row="0" Grid.Column="1"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Code}" Margin="2,0,0,0" Foreground="DeepSkyBlue" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" Grid.Row="1" Grid.Column="1"/>
-                        <AppBarToggleButton IsChecked="True" Command="{Binding DataContext.UnfavCourseCommand,ElementName=RooGrid}" CommandParameter="{Binding C_id}"  Grid.Column="2" Grid.Row="0">
-                            <AppBarToggleButton.Icon>
-                                <FontIcon FontFamily="Segoe UI Symbol"   Glyph="&#xE113;" />
-                            </AppBarToggleButton.Icon>                            
-                        </AppBarToggleButton>
+                        <AppBarButton  Label="Supprimer" Foreground="Black" Command="{Binding DataContext.UnfavCourseCommand,ElementName=RooGrid}"  Grid.Column="2" Grid.Row="0">
+                            <AppBarButton.Icon>
+                                <FontIcon FontFamily="Segoe UI Symbol"   Glyph="&#xE10A;"  />
+                            </AppBarButton.Icon>                               
+                        </AppBarButton>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
