@@ -108,7 +108,7 @@ namespace ITCompCatalogue.ViewModel
 
         public void GoBack()
         {
-            throw new NotImplementedException();
+            _navigationService.GoBack();
         }
     }
 }

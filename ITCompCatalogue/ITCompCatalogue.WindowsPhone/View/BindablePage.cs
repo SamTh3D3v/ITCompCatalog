@@ -34,7 +34,7 @@ namespace ITCompCatalogue.View
         protected void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             var rootFrame = Window.Current.Content as Frame;
-            if (rootFrame != null && rootFrame.CanGoBack)
+            if (rootFrame != null && rootFrame.CanGoBack && e.Handled==false)
             {
                 rootFrame.GoBack();
                 e.Handled = true;
