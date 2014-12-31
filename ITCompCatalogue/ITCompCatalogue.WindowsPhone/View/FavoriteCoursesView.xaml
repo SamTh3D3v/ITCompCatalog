@@ -56,9 +56,7 @@
                     <Grid Background="WhiteSmoke" Margin="5">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>                           
-                                                      
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>                                                                                                          
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
@@ -66,10 +64,14 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Image Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}" Grid.Row="0" Grid.Column="0"/>
-                        <TextBlock HorizontalAlignment="Center" Text="{Binding Category.Intitule}" Margin="1" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="10" Grid.Row="1" Grid.Column="0"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Intitule}" Margin="10,0,0,0" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18"  Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Code}" Margin="10,0,0,0" Foreground="DeepSkyBlue" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" Grid.Row="0" Grid.RowSpan="2" Grid.Column="2"/>
-                        <AppBarToggleButton Grid.Column="3" Grid.Row="0" Grid.RowSpan="2"/>
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding Category.Intitule}" Margin="1" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="10" Grid.Row="1" Grid.Column="0" Foreground="Black"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Intitule}" Foreground="Black" TextWrapping="Wrap" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18"  Grid.Row="0" Grid.Column="1"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Code}" Margin="2,0,0,0" Foreground="DeepSkyBlue" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" Grid.Row="1" Grid.Column="1"/>
+                        <AppBarToggleButton IsChecked="True"  Grid.Column="2" Grid.Row="0" Foreground="Yellow">
+                            <AppBarToggleButton.Icon>
+                                <FontIcon FontFamily="Segoe UI Symbol"   Glyph="&#xE113;" />
+                            </AppBarToggleButton.Icon>                            
+                        </AppBarToggleButton>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
