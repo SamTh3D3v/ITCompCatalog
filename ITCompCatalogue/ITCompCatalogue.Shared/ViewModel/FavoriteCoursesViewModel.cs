@@ -62,6 +62,19 @@ namespace ITCompCatalogue.ViewModel
                     (cour) => _navigationService.NavigateTo("CourDetails",cour)));
             }
         }
+        private RelayCommand<EventArgs> _unfavCourseCommand;
+        public RelayCommand<EventArgs> UnfavCourseCommand
+        {
+            get
+            {
+                return _unfavCourseCommand
+                    ?? (_unfavCourseCommand = new RelayCommand<EventArgs>(
+                    (e) =>
+                    {
+                   //     _catalogueService.UnFavoriteCourse(null);
+                    }));
+            }
+        }
         #endregion
         #region Ctors and Methods
 
