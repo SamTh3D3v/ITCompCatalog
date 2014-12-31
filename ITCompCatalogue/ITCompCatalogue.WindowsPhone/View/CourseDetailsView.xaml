@@ -17,7 +17,7 @@
     <Page.BottomAppBar>
         <CommandBar Background="DeepSkyBlue">
             <CommandBar.PrimaryCommands>
-                <AppBarToggleButton Label="Favoriser"  Command="{Binding FavoriteCommand}">
+                <AppBarToggleButton Label="Favoriser" IsChecked="{Binding IsCourseFavorite,Mode=TwoWay}">
                     <AppBarToggleButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE113;" />
                     </AppBarToggleButton.Icon>

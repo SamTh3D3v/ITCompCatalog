@@ -64,6 +64,12 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Ctors and Methods
+
+        public FavoriteCoursesViewModel(INavigationService navigationService, ICatalogueService catalogueService)
+        {
+            _navigationService = navigationService;
+            _catalogueService = catalogueService;
+        }
         
         #endregion
 
@@ -74,7 +80,7 @@ namespace ITCompCatalogue.ViewModel
 
         public void Deactivate(object parameter)
         {
-            throw new NotImplementedException();
+            
         }
 
         public void GoBack()

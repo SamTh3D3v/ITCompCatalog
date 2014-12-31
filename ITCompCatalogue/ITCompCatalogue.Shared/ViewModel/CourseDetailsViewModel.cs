@@ -16,6 +16,7 @@ namespace ITCompCatalogue.ViewModel
         private readonly INavigationService _navigationService;
         private readonly ICatalogueService _catalogueService;
         private Cour _courseDetails;
+        private bool _isCourseFavorite;
         #endregion
         #region Properties
         public Cour CourseDetails
@@ -36,11 +37,6 @@ namespace ITCompCatalogue.ViewModel
                 RaisePropertyChanged();
             }
         }
-     
-        
-
-        private bool _isCourseFavorite ;
-
         public bool IsCourseFavorite
         {
             get
@@ -57,6 +53,14 @@ namespace ITCompCatalogue.ViewModel
 
                 _isCourseFavorite = value;
                 RaisePropertyChanged();
+                if (!_isCourseFavorite)
+                {
+                    _catalogueService.UnFavoriteCourse(CourseDetails.C_id);
+                }
+                else
+                {
+                    _catalogueService.FavoriteCourse(_courseDetails.C_id);
+                }
             }
         }
         #endregion
@@ -71,6 +75,9 @@ namespace ITCompCatalogue.ViewModel
                     () =>
                     {
                         //add this courses to the list of courses in the fav localStorage File
+                        
+                        IsCourseFavorite = true;
+
                     }));
             }
         }
@@ -81,6 +88,7 @@ namespace ITCompCatalogue.ViewModel
         {
             _navigationService = navigationService;
             _catalogueService = catalogueService;
+            
 
         }
         #endregion

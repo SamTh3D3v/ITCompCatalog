@@ -284,8 +284,9 @@ namespace ITCompCatalogue.Model
 
         public bool IsCourseFavorite(long courseId)
         {
-            using (var statement = _connection.Prepare("SELECT * from Favorite"))
+            using (var statement = _connection.Prepare("SELECT * from Favorite Where _id = ?"))
             {
+                statement.Bind(1,courseId);   
                 if (statement.Step()==SQLiteResult.ROW)
                 {
                     return true;
