@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ITCompCatalogue.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:expaControl="using:ITCompCatalogue.ExpaControl"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"    
     xmlns:converters="using:ITCompCatalogue.Converters"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
@@ -32,9 +31,7 @@
     <Pivot Background="White"  ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
         <Pivot.HeaderTemplate >
             <DataTemplate>               
-                <TextBlock Text="{Binding Intitule}"  >
-        
-                </TextBlock>
+                <TextBlock Text="{Binding Intitule}" />
             </DataTemplate>
         </Pivot.HeaderTemplate>
         <Pivot.ItemTemplate>
@@ -47,14 +44,14 @@
                     <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">     
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel HorizontalAlignment="Stretch">
-                                    <Border Background="WhiteSmoke" HorizontalAlignment="Stretch" Margin="0,2,2,2" Height="40" >
-                                        <TextBlock VerticalAlignment="Center" Margin="4,0,0,0" Text="{Binding Intitule}" Foreground="Black"  Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20"/>
+                                    <Border  HorizontalAlignment="Stretch" Margin="0" Height="50" >
+                                        <TextBlock VerticalAlignment="Center" Margin="2,0,0,0" Text="{Binding Intitule}" Foreground="Black" FontWeight="Bold"  Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20"/>
                                     </Border>
                                     <ListView Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
                                         <interactivity:Interaction.Behaviors>
@@ -65,21 +62,33 @@
                                         </interactivity:Interaction.Behaviors>
                                         <ListView.ItemContainerStyle>
                                             <Style TargetType="ListViewItem">
-                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                                             </Style>
                                         </ListView.ItemContainerStyle>
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
-                                                <StackPanel Orientation="Horizontal">
-                                                    <Rectangle Width="4" Height="3" Fill="Black"></Rectangle>
-                                                    <TextBlock Margin="7,0,0,0" Foreground="DarkGray" Text="{Binding Cour.Intitule}" TextWrapping="Wrap" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="16" ></TextBlock>
-                                                </StackPanel>
+                                                <Border BorderThickness="2" Background="WhiteSmoke"  >
+                                                    
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="100"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions> 
+                                                        <Grid.RowDefinitions>
+                                                            <RowDefinition Height="25"/>
+                                                            <RowDefinition Height="75"/>
+                                                            
+                                                        </Grid.RowDefinitions>
+                                                        <Border Background="DeepSkyBlue" Grid.Row="0" Grid.RowSpan="2" Margin="0" Grid.Column="0">
+                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding Cour.Code}" TextWrapping="Wrap" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="16" />
+                                                        </Border>
+                                                        <TextBlock Margin="5,0,0,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"  Foreground="Black" Text="{Binding Cour.Intitule}" TextWrapping="Wrap" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="16" />
+                                                    </Grid>
+                                                </Border>
                                             </DataTemplate>
                                         </ListView.ItemTemplate>
                                     </ListView>
                                 </StackPanel>
-
-
                             </DataTemplate>
                         </ListView.ItemTemplate>
                     </ListView>
