@@ -62,18 +62,17 @@ namespace ITCompCatalogue.ViewModel
                     (cour) => _navigationService.NavigateTo("CourDetails", cour)));
             }
         }
-        private RelayCommand<EventArgs> _unfavCourseCommand;
-        public RelayCommand<EventArgs> UnfavCourseCommand
+        private RelayCommand<long> _unfavCourseCommand;
+        public RelayCommand<long> UnfavCourseCommand
         {
             get
             {
                 return _unfavCourseCommand
-                    ?? (_unfavCourseCommand = new RelayCommand<EventArgs>(
-                    (e) =>
-                    {
-                        var red = e;
-                        //     _catalogueService.UnFavoriteCourse(null);
-                    }));
+                    ?? (_unfavCourseCommand = new RelayCommand<long>(async (idCourse) =>
+                        {
+                            _catalogueService.UnFavoriteCourse(idCourse);
+                            ListFavoriteCourses = new ObservableCollection<Cour>(await _catalogueService.GetFavoriteCourses());
+                        }));
             }
         }
         #endregion
@@ -84,9 +83,6 @@ namespace ITCompCatalogue.ViewModel
             _navigationService = navigationService;
             _catalogueService = catalogueService;
         }
-
-        #endregion
-
         public async void Activate(object parameter)
         {
             ListFavoriteCourses = new ObservableCollection<Cour>(await _catalogueService.GetFavoriteCourses());
@@ -101,5 +97,9 @@ namespace ITCompCatalogue.ViewModel
         {
             throw new NotImplementedException();
         }
+
+        #endregion
+
+       
     }
 }
