@@ -110,10 +110,17 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _selectCourseCommand
                     ?? (_selectCourseCommand = new RelayCommand<Cour>(
-                        (cour) =>
-                        {
-                            _navigationService.NavigateTo("CourDetails", cour);
-                        }));
+                        (cour) => _navigationService.NavigateTo("CourDetails", cour)));
+            }
+        }
+        private RelayCommand _navigateToIndexCommand;
+        public RelayCommand NavigateToIndexCommand
+        {
+            get
+            {
+                return _navigateToIndexCommand
+                    ?? (_navigateToIndexCommand = new RelayCommand(
+                    () => _navigationService.NavigateTo("MainPage")));
             }
         }
         #endregion

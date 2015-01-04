@@ -150,6 +150,7 @@ namespace ITCompCatalogue.ViewModel
             navigationService.Configure("RefClient", typeof(ClientReferencesView));
             navigationService.Configure("PresentationView", typeof(PresentationView));
             navigationService.Configure("FavoriteCoursesView", typeof(FavoriteCoursesView));
+            navigationService.Configure("MainPage", typeof(MainPage));
             
             return navigationService;
         }

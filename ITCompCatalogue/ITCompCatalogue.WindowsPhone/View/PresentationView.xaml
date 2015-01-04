@@ -7,6 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:helper="using:ITCompCatalogue.Helper"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <local:BindablePage.DataContext>
@@ -21,7 +23,13 @@
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0"  >
             <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
-                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" >
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="Tapped">
+                            <core:InvokeCommandAction Command="{Binding NavigateToIndexCommand}"/>
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>
+                </Image>
             </Border>
             <TextBlock Margin="4" Text="Présentation" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="Black"/>
         </StackPanel>

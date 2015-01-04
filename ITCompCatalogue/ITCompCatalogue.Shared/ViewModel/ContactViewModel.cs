@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 
 namespace ITCompCatalogue.ViewModel
 {
     public class ContactViewModel:ViewModelBase
     {
         #region Fields
+
+        private INavigationService _navigationService;
         private String _phoneNumber = "+213 (0) 21 56 32 33";
             private String _faxNumber = "+213 (0) 21 56 18 26";
                 private String _email = "Lazhar.Guendouz@ITComp-dz.com";
@@ -127,10 +131,23 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands
-        
+        private RelayCommand _navigateToIndexCommand;
+        public RelayCommand NavigateToIndexCommand
+        {
+            get
+            {
+                return _navigateToIndexCommand
+                    ?? (_navigateToIndexCommand = new RelayCommand(
+                    () => _navigationService.NavigateTo("MainPage")));
+            }
+        }
         #endregion 
         #region Ctors and Methods
-        
+
+        public ContactViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
         #endregion
     }
 }

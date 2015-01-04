@@ -81,6 +81,16 @@ namespace ITCompCatalogue.ViewModel
                     }));
             }
         }
+        private RelayCommand _navigateToIndexCommand;
+        public RelayCommand NavigateToIndexCommand
+        {
+            get
+            {
+                return _navigateToIndexCommand
+                    ?? (_navigateToIndexCommand = new RelayCommand(
+                    () => _navigationService.NavigateTo("MainPage")));
+            }
+        }
         #endregion
         #region Ctors and methods
 

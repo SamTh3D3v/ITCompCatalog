@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Text;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 
 namespace ITCompCatalogue.ViewModel
 {
@@ -9,6 +11,7 @@ namespace ITCompCatalogue.ViewModel
     {
         #region Fields
 
+        private INavigationService _navigationService;
         #endregion
         #region Properties
      
@@ -35,11 +38,21 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands
-
+        private RelayCommand _navigateToIndexCommand;
+        public RelayCommand NavigateToIndexCommand
+        {
+            get
+            {
+                return _navigateToIndexCommand
+                    ?? (_navigateToIndexCommand = new RelayCommand(
+                    () => _navigationService.NavigateTo("MainPage")));
+            }
+        }
         #endregion
         #region Ctors and Methods
-        public PresenationViewModel()
+        public PresenationViewModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             //this needs to be places in a ressource xml file 
             PresentationText="ITComp est une société de service en ingénieurie informatique (SSII) à forte valeur ajoutée, en plein croissance avec un réseau"+
                 " de compétences national et international important. Grace à une démarche de qualité innovante, ITComp represente une force de conseil, et d'intégration "+

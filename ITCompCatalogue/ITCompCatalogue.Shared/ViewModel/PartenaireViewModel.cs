@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Views;
 using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
@@ -11,6 +13,7 @@ namespace ITCompCatalogue.ViewModel
     {
         #region Fields
         private ObservableCollection<Partenaire> _listPartenaires;
+        private INavigationService _navigationService;
         #endregion
         #region Properties
         public ObservableCollection<Partenaire> ListPartenaires
@@ -33,12 +36,22 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands
-
+        private RelayCommand _navigateToIndexCommand;
+        public RelayCommand NavigateToIndexCommand
+        {
+            get
+            {
+                return _navigateToIndexCommand
+                    ?? (_navigateToIndexCommand = new RelayCommand(
+                    () => _navigationService.NavigateTo("MainPage")));
+            }
+        }
         #endregion
         #region Ctors and Methods
 
-        public PartenaireViewModel()
+        public PartenaireViewModel(INavigationService navigationService)
         {
+            _navigationService = navigationService;
             ListPartenaires = new ObservableCollection<Partenaire>()
             {  
                 new Partenaire()
