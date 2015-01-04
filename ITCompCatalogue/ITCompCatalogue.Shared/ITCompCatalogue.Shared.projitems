@@ -15,10 +15,6 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewItemClickedConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewTechClickedConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Converters\TechIdToImageConverter.cs" />
-    <Compile Include="$(MSBuildThisFileDirectory)Helper\INavigable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CatalogueService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CategoryClient.cs" />
@@ -40,6 +36,14 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logo.scale-100.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logo.scale-140.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Logo.scale-240.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SmallLogo.scale-240.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\SplashScreen.scale-240.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\Square71x71Logo.scale-240.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.scale-240.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Assets\WideLogo.scale-240.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\adress.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\ecoles.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\energy.png" />
