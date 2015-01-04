@@ -1,0 +1,78 @@
+﻿<local:BindablePage
+    x:Class="ITCompCatalogue.View.SearchView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ITCompCatalogue.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:converters="using:ITCompCatalogue.Converters"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <local:BindablePage.DataContext>
+        <Binding Path="SearchViewModel" Source="{StaticResource Locator}"/>
+    </local:BindablePage.DataContext>
+    <local:BindablePage.Resources>
+        <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"  />
+    </local:BindablePage.Resources>
+
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" >
+            <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80" >
+                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+            </Border>
+            <TextBlock Margin="4" Text="Rechercher" Foreground="Black" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
+        </StackPanel>
+        <Grid Grid.Row="1" HorizontalAlignment="Stretch" Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBox Grid.Row="0" Grid.Column="0" BorderBrush="DeepSkyBlue" Background="White" Foreground="Black" Grid.ColumnSpan="2" Margin="5" Text="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch"/>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" VerticalAlignment="Center" Foreground="Black" HorizontalAlignment="Left" Text="Par" Style="{ThemeResource ControlHeaderTextBlockStyle}" TextWrapping="Wrap"></TextBlock>
+            <!--<AppBarToggleButton IsChecked="{Binding ParCodeIsChecked,Mode=TwoWay}"  Grid.Row="1" Grid.Column="1" Label="Code"/>
+            <AppBarToggleButton  IsChecked="{Binding ParIntituleIsChecked,Mode=TwoWay}" Grid.Row="1" Grid.Column="2" Label="Intitulé"/>
+            <AppBarToggleButton  IsChecked="{Binding ParDescIsChecked,Mode=TwoWay}" Grid.Row="1" Grid.Column="3" Label="Desc"/>-->
+            <ComboBox Grid.Row="1" Margin="0,0,5,0" BorderBrush="DeepSkyBlue" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedItem="{Binding SearchBySelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchByItems}"/>
+        </Grid>
+        <ListView IsItemClickEnabled="True" Margin="3,10,3,3" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="ItemClick">
+                    <core:InvokeCommandAction Command="{Binding SelectCourseCommand}" InputConverter="{StaticResource ItemClickedConverter}"/>
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                   <Grid  Background="WhiteSmoke" Margin="1">
+                       <Grid.ColumnDefinitions>
+                           <ColumnDefinition Width="*"/>
+                           <ColumnDefinition Width="2*"/>
+                           <ColumnDefinition Width="Auto"/>
+                       </Grid.ColumnDefinitions>
+
+                        <TextBlock Text="{Binding Code}" Foreground="DeepSkyBlue"  Style="{ThemeResource ListViewItemContentTextBlockStyle}" FontSize="20" TextWrapping="Wrap" Grid.Column="0" />
+                        <TextBlock Text="{Binding Intitule}" Foreground="Black" Style="{ThemeResource ControlHeaderTextBlockStyle}" FontSize="15" TextWrapping="WrapWholeWords" Grid.Column="1" />
+                        <!--<TextBlock Text="{Binding Category.Intitule}" Foreground="Black" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Grid.Column="2" />-->
+                   </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+
+        </ListView>
+    </Grid>
+
+</local:BindablePage>
