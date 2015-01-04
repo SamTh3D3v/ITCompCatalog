@@ -14,10 +14,14 @@
         <Binding Path="CourseDetailsViewModel" Source="{StaticResource Locator}"></Binding>
     </local:BindablePage.DataContext>
     <local:BindablePage.Resources>
-        <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resource/ResourceDict.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </local:BindablePage.Resources>
     <Page.BottomAppBar>
-        <CommandBar Background="DeepSkyBlue">
+        <CommandBar Background="{StaticResource ThemeBrush}">
             <CommandBar.PrimaryCommands>
                 <AppBarToggleButton Label="Favoriser" IsChecked="{Binding IsCourseFavorite,Mode=TwoWay}">
                     <AppBarToggleButton.Icon>
@@ -33,7 +37,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" >
-            <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
+            <Border HorizontalAlignment="Stretch" Background="{StaticResource ThemeBrush}" Height="80">
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" >
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Tapped">
@@ -65,9 +69,9 @@
                 </Border>
                 <TextBlock  Foreground="Black" Grid.Column="1" Grid.ColumnSpan="2" FontSize="15" Margin="10,0,0,0" Style="{ThemeResource TitleTextBlockStyle}" Grid.Row="0" Text="{Binding CourseDetails.Intitule}" TextWrapping="Wrap"/>
                 <TextBlock Text="Code "  Foreground="DarkGray" Grid.Row="1" Grid.Column="1"  Margin="10,0,0,0"  Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Grid.Column="2"  Grid.Row="1" Margin="10,0,0,0" Foreground="DeepSkyBlue" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding CourseDetails.Code}"/>
+                <TextBlock Grid.Column="2"  Grid.Row="1" Margin="10,0,0,0" Foreground="{StaticResource ThemeBrush}" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding CourseDetails.Code}"/>
                 <TextBlock Text="Durée " Foreground="DarkGray" Grid.Row="2" Grid.Column="1"  Margin="10,0,0,0"  Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Grid.Column="2" Margin="10,0,0,0" Foreground="DeepSkyBlue" Grid.Row="2" Text="{Binding CourseDetails.Duree}" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="2" Margin="10,0,0,0" Foreground="{StaticResource ThemeBrush}" Grid.Row="2" Text="{Binding CourseDetails.Duree}" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
             <ScrollViewer  Margin="10" VerticalScrollBarVisibility="Visible" Background="WhiteSmoke" Grid.Row="1">
                 <TextBlock Margin="5" Foreground="Black" TextWrapping="Wrap" FontSize="18" Style="{ThemeResource SubheaderTextBlockStyle}" Text="{Binding CourseDetails.Description}"></TextBlock>

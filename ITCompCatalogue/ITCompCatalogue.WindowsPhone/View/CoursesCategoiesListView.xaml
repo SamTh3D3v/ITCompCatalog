@@ -21,7 +21,7 @@
         </ResourceDictionary>        
     </local:BindablePage.Resources>
     <local:BindablePage.BottomAppBar>
-        <CommandBar Background="DeepSkyBlue">
+        <CommandBar Background="{StaticResource ThemeBrush}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Label="Rechercher"   Command="{Binding SearchCommand}">
                     <AppBarButton.Icon>
@@ -83,7 +83,7 @@
                                                             <RowDefinition Height="75"/>
                                                             
                                                         </Grid.RowDefinitions>
-                                                        <Border Background="DeepSkyBlue" Grid.Row="0" Margin="0"  VerticalAlignment="Center" Grid.Column="0">
+                                                        <Border Background="{StaticResource ThemeBrush}" Grid.Row="0" Margin="0"  VerticalAlignment="Center" Grid.Column="0">
                                                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding Cour.Code}" TextWrapping="Wrap" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="16" />
                                                         </Border>
                                                         <TextBlock Margin="5,0,0,0" Grid.Row="1"  Grid.Column="0"  Foreground="DarkGray" Text="{Binding Recommandation}" TextWrapping="Wrap" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="13" />

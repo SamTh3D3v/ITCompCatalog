@@ -17,11 +17,14 @@
         <Binding Path="Main" Source="{StaticResource Locator}"/>
     </view:BindablePage.DataContext>
     <view:BindablePage.Resources>
-        <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
-        <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="../Resource/ResourceDict.xaml"/>
+        </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
     </view:BindablePage.Resources>
     <view:BindablePage.BottomAppBar>
-        <CommandBar Background="DeepSkyBlue">
+        <CommandBar Background="{StaticResource ThemeBrush}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Label="Rechercher"   Command="{Binding SearchCommand}">
                     <AppBarButton.Icon>
@@ -44,7 +47,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" >
-            <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
+            <Border HorizontalAlignment="Stretch" Background="{StaticResource ThemeBrush}" Height="80">
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="Images/IT.png" />
             </Border>
             <TextBlock Margin="4" Text="Technologies" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="Black"/>
@@ -78,7 +81,7 @@
                                 <TextBlock Text="{Binding Intitule}" Style="{ThemeResource ListViewItemTextBlockStyle}" Foreground="Black"/>
                                 <TextBlock Text="{Binding Code }" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Foreground="DarkGray"/>
                             </StackPanel>
-                            <Border Background="DeepSkyBlue" BorderThickness="0" Grid.Column="2" Width="50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                            <Border Background="{StaticResource ThemeBrush}" BorderThickness="0" Grid.Column="2" Width="50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right">
                                 <TextBlock Foreground="Black" FontSize="18" Text="{Binding CourseCount}" Style="{ThemeResource ControlHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                             </Border>
                         </Grid>

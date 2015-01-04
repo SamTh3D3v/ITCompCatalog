@@ -4,5 +4,9 @@
     xmlns:local="using:ITCompCatalogue.Resources"
     xmlns:converters="using:ITCompCatalogue.Converters">
     <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"/>
+    <SolidColorBrush x:Key="ThemeBrush" Color="DeepSkyBlue"/>
+    <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>    
+    <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
+
 
 </ResourceDictionary>

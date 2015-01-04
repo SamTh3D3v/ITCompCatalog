@@ -13,6 +13,13 @@
     <local:BindablePage.DataContext>
         <Binding Path="ClientReferenceViewModel" Source="{StaticResource Locator}"></Binding>
     </local:BindablePage.DataContext>
+    <local:BindablePage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resource/ResourceDict.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </local:BindablePage.Resources>
 
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -20,7 +27,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" >
-            <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
+            <Border HorizontalAlignment="Stretch" Background="{StaticResource ThemeBrush}" Height="80">
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" >
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Tapped">

@@ -14,6 +14,13 @@
     <local:BindablePage.DataContext>
         <Binding Path="PresenationViewModel" Source="{StaticResource Locator}"></Binding>
     </local:BindablePage.DataContext>
+    <local:BindablePage.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resource/ResourceDict.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </local:BindablePage.Resources>
 
     <Grid Background="White">
         <Grid.RowDefinitions>
@@ -22,7 +29,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0"  >
-            <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
+            <Border HorizontalAlignment="Stretch" Background="{StaticResource ThemeBrush}" Height="80">
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" >
                     <interactivity:Interaction.Behaviors>
                         <core:EventTriggerBehavior EventName="Tapped">
@@ -56,42 +63,5 @@
                 </TextBlock>
             </Border>
         </ScrollViewer>
-        <!--<Canvas Grid.Row="1"  >
-            <controls:AnimatingContainer  
-                Canvas.Left="-200" 
-                RadiusX="5"
-                RadiusY="0"
-                Duration="0:0:010">
-                                             
-            </controls:AnimatingContainer>
-        </Canvas>-->
-        <!--<controls:CascadingTextBlock           
-            Grid.Row="1"            
-            VerticalAlignment="Center"
-            HorizontalAlignment="Center"
-            Foreground="Black"
-            StartDelay="1"
-            CascadeIn="True"
-            CascadeInDurationString="00:00:01.000"
-            HoldDurationString="00:00:01.000"
-            CascadeOut="True"
-            CascadeOutDurationString="00:00:01.000"
-            CascadeIntervalString="00:00:00.012"
-            FromVerticalOffset="100"
-            ToVerticalOffset="100"
-            FromRotation="-120"
-            ToRotation="90"
-            UseFade="True"
-            UseRotation="False"
-            Text="Formation"
-            AnimateOnLoaded="False">
-            <controls:CascadingTextBlock.TextBlockTemplate>
-                <DataTemplate>
-                    <TextBlock Text="Test"
-                        Foreground="Black"
-                         />
-                </DataTemplate>
-            </controls:CascadingTextBlock.TextBlockTemplate>
-        </controls:CascadingTextBlock>-->
     </Grid>
 </local:BindablePage>
