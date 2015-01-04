@@ -28,7 +28,7 @@
         <Canvas Grid.Row="1">
             <Image Source="../Images/Presentation/pre1.jpg" Height="299"/>
             <controls:AnimatingContainer Margin="10" RadiusX="5" RadiusY="5" Duration="0:0:010">
-                <controls:UniformGrid x:Name="uniformGrid" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10" >
+                <controls:UniformGrid  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10" >
                     <Image Opacity=".5" Margin="20" Height="70" Width="70" Source="../Images/Presentation/androidAn.png"/>
                     <Image Opacity=".5" Margin="20" Height="70" Width="70"  Source="../Images/Presentation/networkAn.png"/>
                     <Image Opacity=".5" Margin="20" Height="70" Width="70"  Source="../Images/Presentation/databaseAn.png"/>

@@ -1,4 +1,4 @@
-﻿using Windows.Phone.UI.Input;
+﻿
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
@@ -10,7 +10,7 @@ namespace ITCompCatalogue.View
     {
         public BindablePage():base()
         {
-            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+          //  HardwareButtons.BackPressed += HardwareButtons_BackPressed;
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -31,16 +31,16 @@ namespace ITCompCatalogue.View
         }
 
 
-        protected void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
-        {
-            var rootFrame = Window.Current.Content as Frame;
-            if (rootFrame != null && rootFrame.CanGoBack && e.Handled==false)
-            {
-                rootFrame.GoBack();
-                e.Handled = true;
-            }
+        //protected void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
+        //{
+        //    var rootFrame = Window.Current.Content as Frame;
+        //    if (rootFrame != null && rootFrame.CanGoBack && e.Handled==false)
+        //    {
+        //        rootFrame.GoBack();
+        //        e.Handled = true;
+        //    }
 
-        }
+        //}
         
 
     }

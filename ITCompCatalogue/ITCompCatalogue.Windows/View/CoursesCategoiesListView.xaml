@@ -28,13 +28,13 @@
         </CommandBar>
     </local:BindablePage.BottomAppBar>
 
-    <Pivot Background="White"  ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
-        <Pivot.HeaderTemplate >
+    <FlipView Background="White"  ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
+        <!--<FlipView.HeaderTemplate >
             <DataTemplate>               
                 <TextBlock Text="{Binding Intitule}" />
             </DataTemplate>
-        </Pivot.HeaderTemplate>
-        <Pivot.ItemTemplate>
+        </FlipView.HeaderTemplate>-->
+        <FlipView.ItemTemplate>
             <DataTemplate>
                 <Grid>
                     <Grid.RowDefinitions>
@@ -96,6 +96,6 @@
                     </ListView>
                 </Grid>
             </DataTemplate>
-        </Pivot.ItemTemplate>
-    </Pivot>
+        </FlipView.ItemTemplate>
+    </FlipView>
 </local:BindablePage>
