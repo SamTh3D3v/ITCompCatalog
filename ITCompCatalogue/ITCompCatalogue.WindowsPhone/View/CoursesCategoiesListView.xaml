@@ -14,7 +14,11 @@
         <Binding Path="CoursesCategoriesListViewModel" Source="{StaticResource Locator}"></Binding>
     </local:BindablePage.DataContext>
     <local:BindablePage.Resources>
-        <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"  />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resource/ResourceDict.xaml"/>
+            </ResourceDictionary.MergedDictionaries>       
+        </ResourceDictionary>        
     </local:BindablePage.Resources>
     <local:BindablePage.BottomAppBar>
         <CommandBar Background="DeepSkyBlue">
