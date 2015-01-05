@@ -73,9 +73,7 @@ namespace ITCompCatalogue.ViewModel
                 return _favoriteCommand
                     ?? (_favoriteCommand = new RelayCommand(
                     () =>
-                    {
-                        //add this courses to the list of courses in the fav localStorage File
-                        
+                    {                                                
                         IsCourseFavorite = true;
 
                     }));
