@@ -11,12 +11,12 @@ namespace ITCompCatalogue.ViewModel
     {
         #region Fields
 
-        private INavigationService _navigationService;
+        private readonly INavigationService _navigationService;
         private String _phoneNumber = "+213 (0) 21 56 32 33";
             private String _faxNumber = "+213 (0) 21 56 18 26";
                 private String _email = "Lazhar.Guendouz@ITComp-dz.com";
                     private String _altEmail = "Radia.Lamari@ITComp-dz.com";
-                    private String _siteWeb = "www.itcomp-dz.com";
+                    private String _siteWeb = "http://www.itcomp-dz.com";
                         private String _adress = "10, rue Khoudjat Eldjeld, Bir Mourad Rais Alger. Algérie.";
                             
         #endregion 
@@ -151,12 +151,41 @@ namespace ITCompCatalogue.ViewModel
                     (phoneNumber) => Windows.ApplicationModel.Calls.PhoneCallManager.ShowPhoneCallUI(phoneNumber, "ITComp")));
             }
         }
+        private RelayCommand<String> _navigateToWebSiteCommand;
+
+    
+        public RelayCommand<String> NavigateToWebSiteCommand
+        {
+            get
+            {
+                return   _navigateToWebSiteCommand
+                    ?? ( _navigateToWebSiteCommand = new RelayCommand<String>(async (site) =>await Windows.System.Launcher.LaunchUriAsync(new Uri(site))));
+            }
+        }
+        private RelayCommand _sendEmailCommand;
+
+        /// <summary>
+        /// Gets the SendEmailCommand.
+        /// </summary>
+        public RelayCommand SendEmailCommand
+        {
+            get
+            {
+                return _sendEmailCommand
+                    ?? (_sendEmailCommand = new RelayCommand(
+                    () =>
+                    {
+                            
+                    }));
+            }
+        }
         #endregion 
         #region Ctors and Methods
 
         public ContactViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
+            
         }
         #endregion
     }
