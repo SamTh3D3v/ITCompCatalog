@@ -141,6 +141,16 @@ namespace ITCompCatalogue.ViewModel
                     () => _navigationService.NavigateTo("MainPage")));
             }
         }
+        private RelayCommand<String> _callCommand;
+        public RelayCommand<String> CallCommand
+        {
+            get
+            {   
+                return  _callCommand
+                    ?? ( _callCommand = new RelayCommand<String>(
+                    (phoneNumber) => Windows.ApplicationModel.Calls.PhoneCallManager.ShowPhoneCallUI(phoneNumber, "ITComp")));
+            }
+        }
         #endregion 
         #region Ctors and Methods
 

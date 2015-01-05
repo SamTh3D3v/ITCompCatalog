@@ -59,10 +59,13 @@
                             </StackPanel>
                             <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0" Height="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,2,5,2"/>
                             <ScrollViewer Margin="3" MaxHeight="250" Grid.Row="2" VerticalScrollBarVisibility="Visible" >
-                                <ListView Margin="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ListClien}">
+                                <ListView Margin="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ListClien}">
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock  Text="{Binding}" FontSize="15" Foreground="DarkGray" HorizontalAlignment="Left"/>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Rectangle Width="4" Height="4" Fill="Black" Margin="1,0,3,0"></Rectangle>
+                                                <TextBlock  Text="{Binding}" FontSize="15" Foreground="Black" HorizontalAlignment="Left"/>
+                                            </StackPanel>                                            
                                         </DataTemplate>
                                     </ListView.ItemTemplate>                                    
                                 </ListView>
