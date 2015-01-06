@@ -46,7 +46,7 @@
                     </interactivity:Interaction.Behaviors>
                 </Image>
             </Border>
-            <TextBlock Margin="4" Foreground="Black" Text="Cour" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
+            <TextBlock Margin="4" Foreground="Black" Text="Cours" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>

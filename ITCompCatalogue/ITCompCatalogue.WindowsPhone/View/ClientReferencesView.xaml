@@ -36,7 +36,7 @@
                     </interactivity:Interaction.Behaviors>
                 </Image>
             </Border>
-            <TextBlock Margin="4" Text="References Clients" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="Black"/>
+            <TextBlock Margin="4" Text="Références clients" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="Black"/>
         </StackPanel>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <ListView ItemsSource="{Binding ListCategoryClient}">

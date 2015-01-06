@@ -34,10 +34,10 @@
             </CommandBar.PrimaryCommands>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="Présentation" Command="{Binding PresenationCommand}"/>
-                <AppBarButton Label="Partenaire" Command="{Binding PartnerCommand}"/>
-                <AppBarButton Label="References clients" Command="{Binding RefClientsCommand}"/>
+                <AppBarButton Label="Partenaires" Command="{Binding PartnerCommand}"/>
+                <AppBarButton Label="Références clients" Command="{Binding RefClientsCommand}"/>
                 <AppBarButton Label="Contact" Command="{Binding ContactCommand}"/>
-                <AppBarButton Label="Favorie" Command="{Binding FavorieCommand}"/>
+                <AppBarButton Label="Favoris" Command="{Binding FavorieCommand}"/>
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </view:BindablePage.BottomAppBar>

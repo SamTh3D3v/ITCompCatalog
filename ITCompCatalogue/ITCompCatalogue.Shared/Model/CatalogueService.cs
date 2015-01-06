@@ -30,8 +30,6 @@ namespace ITCompCatalogue.Model
             return technologies;
         }
 
-
-
         public long GetCoursesCount(long technologyId)
         {
             long count = 0;
