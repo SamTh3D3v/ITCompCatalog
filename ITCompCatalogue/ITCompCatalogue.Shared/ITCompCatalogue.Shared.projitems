@@ -32,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PartenaireViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PresenationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ScheduleViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
   </ItemGroup>
@@ -45,6 +46,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Assets\StoreLogo.scale-240.png" />
     <Content Include="$(MSBuildThisFileDirectory)Assets\WideLogo.scale-240.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\adress.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\calendar.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\ecoles.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\energy.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\etranger.png" />
