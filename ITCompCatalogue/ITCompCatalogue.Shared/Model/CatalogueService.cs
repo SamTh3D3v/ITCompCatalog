@@ -309,9 +309,9 @@ namespace ITCompCatalogue.Model
         {
             return new List<CoursSchedule>()
             {
-                new CoursSchedule(3, new DateTime(2013,11,5),new DateTime(2013,12,5)),
-                new CoursSchedule(4, new DateTime(2013,07,15),new DateTime(2013,07,25)),
-                new CoursSchedule(5, new DateTime(2012,10,5),new DateTime(2012,11,10)),
+                new CoursSchedule(3, new DateTime(2015,01,5),new DateTime(2013,12,5)),
+                new CoursSchedule(4, new DateTime(2015,01,6),new DateTime(2013,07,25)),
+                new CoursSchedule(5, new DateTime(2015,01,6),new DateTime(2012,11,10)),
             };
         }
 
@@ -319,8 +319,9 @@ namespace ITCompCatalogue.Model
         {
             return new List<CoursSchedule>()
             {
-                new CoursSchedule(4, new DateTime(2013,07,15),new DateTime(2013,07,25)),
-                new CoursSchedule(4, new DateTime(2012,10,5),new DateTime(2012,11,10)),
+                 new CoursSchedule(3, new DateTime(2015,01,5),new DateTime(2015,01,12)),
+                new CoursSchedule(4, new DateTime(2015,01,15),new DateTime(2015,01,23)),
+                new CoursSchedule(5, new DateTime(2012,10,6),new DateTime(2012,11,10)),
             };
         }
     }

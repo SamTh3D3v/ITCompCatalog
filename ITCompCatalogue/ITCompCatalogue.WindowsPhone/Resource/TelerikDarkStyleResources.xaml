@@ -1,0 +1,17 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ITCompCatalogue.Resource">
+    <SolidColorBrush x:Key="TelerikCalendarDayNamesForegroundBrush" Color="Black"/>
+    <SolidColorBrush x:Key="TelerikCalendarGridLinesBrush" Color="Gray"/>    
+    <SolidColorBrush x:Key="TelerikCalendarSelectedCellForegroundBrush" Color="DeepSkyBlue"/>
+    <SolidColorBrush x:Key="TelerikCalendarSelectedCellBackgroundBrush" Color="LightBlue"/>
+    <SolidColorBrush x:Key="TelerikCalendarNavigationControlBackgroundBrush" Color="WhiteSmoke"/>
+    <SolidColorBrush x:Key="TelerikCalendarPreviousNextButtonForegroundBrush" Color="Black"/>
+    <SolidColorBrush x:Key="TelerikCalendarPreviousNextButtonDisabledForegroundBrush" Color="DeepSkyBlue"/>
+    <SolidColorBrush x:Key="TelerikCalendarHeaderButtonForegroundBrush" Color="Black"/>
+    <SolidColorBrush x:Key="TelerikCalendarNormalCellForegroundBrush" Color="Black"/>
+    <SolidColorBrush x:Key="TelerikCalendarAnotherViewCellForegroundBrush" Color="LightGray"/>
+    
+    
+</ResourceDictionary>

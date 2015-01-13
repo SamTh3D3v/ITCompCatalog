@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:ITCompCatalogue.ViewModel"
+    xmlns:controls="using:Telerik.UI.Xaml.Controls"
     mc:Ignorable="d">
     <Application.Resources>
         <viewModel:ViewModelLocator x:Key="Locator"
@@ -13,6 +14,7 @@
         <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="DeepSkyBlue" />
         <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush" Color="DarkGray" />
         <x:Double x:Key="PivotHeaderItemFontSize">25</x:Double>
+        <controls:UserThemeResources x:Key="TelerikResources" DarkResourcesPath="ms-appx:///Resource/TelerikDarkStyleResources.xaml"/>
     </Application.Resources>
 
 </Application>

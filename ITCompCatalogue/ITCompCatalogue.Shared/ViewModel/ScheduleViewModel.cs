@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
+using Telerik.UI.Xaml.Controls.Input;
 
 namespace ITCompCatalogue.ViewModel
 {
@@ -17,6 +18,7 @@ namespace ITCompCatalogue.ViewModel
         private ICatalogueService _catalogueService;
         private readonly INavigationService _navigationService;
         private ObservableCollection<CoursSchedule> _coursesScheduleList;
+        private CalendarDisplayMode _displayMode;
         #endregion
         #region Properties          
         public ObservableCollection<CoursSchedule> CoursesScheduleList
@@ -37,6 +39,25 @@ namespace ITCompCatalogue.ViewModel
                 RaisePropertyChanged();
             }
         }
+             
+        public CalendarDisplayMode DisplayMode
+        {
+            get
+            {
+                return _displayMode;
+            }
+
+            set
+            {
+                if (_displayMode == value)
+                {
+                    return;
+                }
+
+                _displayMode = value;
+                RaisePropertyChanged();
+            }
+        }
         #endregion
         #region Commands
         private RelayCommand _navigateToIndexCommand;
@@ -47,6 +68,16 @@ namespace ITCompCatalogue.ViewModel
                 return _navigateToIndexCommand
                     ?? (_navigateToIndexCommand = new RelayCommand(
                     () => _navigationService.NavigateTo("MainPage")));
+            }
+        }
+        private RelayCommand _searchCommand;
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                return _searchCommand
+                    ?? (_searchCommand = new RelayCommand(
+                    () => _navigationService.NavigateTo("SearchView")));
             }
         }
         #endregion

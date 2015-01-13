@@ -8,6 +8,8 @@
     xmlns:input="using:Telerik.UI.Xaml.Controls.Input"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:helper="using:ITCompCatalogue.Helper"
+    xmlns:converters="using:ITCompCatalogue.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -21,6 +23,17 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </local:BindablePage.Resources>
+    <Page.BottomAppBar>
+        <CommandBar Background="{StaticResource ThemeBrush}">
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Rechercher"   Command="{Binding SearchCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </Page.BottomAppBar>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -39,14 +52,26 @@
             <TextBlock Margin="4" Foreground="Black" Text="Cours" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
         </StackPanel>
         <Grid Grid.Row="1">
-            <input:RadCalendar   VerticalAlignment="Stretch" HorizontalAlignment="Stretch" GridLinesVisibility="Vertical" 
-                     GridLinesBrush="{StaticResource ThemeBrush}"
-                     GridLinesThickness="2" 
-                     Background="WhiteSmoke"
-                            
-                     BorderBrush="{StaticResource ThemeBrush}"
-                              
-                     BorderThickness="4" />
+            <Grid.Resources>
+                <converters:CellModelToEventConverter x:Key="CourseSecConverter" />
+
+                <DataTemplate x:Key="SelectorTemplate">
+                    <Grid>
+                        <!--<TextBlock Text="⏰" Foreground="#FF3399FF" FontSize="15" HorizontalAlignment="Right" FontFamily="Segoe UI Symbol" Margin="0,1,2,0" />-->
+                        <Rectangle Fill="{StaticResource ThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        <TextBlock Text="{Binding Converter={StaticResource CourseSecConverter}}" Foreground="White" FontSize="13.333" VerticalAlignment="Bottom" Margin="6,0,0,4" />
+                    </Grid>
+                </DataTemplate>
+                <helper:CustomStyleSelector x:Key="Selector"  EventTemplate="{StaticResource SelectorTemplate}" />                
+            </Grid.Resources>
+            <input:RadCalendar  DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Dark" CellStyleSelector="{StaticResource Selector}"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
+                     GridLinesBrush="DeepSkyBlue"
+                     GridLinesThickness="2"                       
+                     Foreground="Black"
+                     BorderBrush="DeepSkyBlue"  
+                               Background="WhiteSmoke"
+                     BorderThickness="2" >                
+            </input:RadCalendar>
         </Grid>
     </Grid>
 </local:BindablePage>
