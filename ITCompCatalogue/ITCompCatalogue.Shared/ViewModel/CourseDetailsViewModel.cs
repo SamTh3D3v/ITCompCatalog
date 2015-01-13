@@ -64,7 +64,7 @@ namespace ITCompCatalogue.ViewModel
             }
         }
         #endregion
-        #region Commands    
+        #region Commands  
         private RelayCommand _favoriteCommand;    
         public RelayCommand FavoriteCommand
         {
@@ -87,6 +87,16 @@ namespace ITCompCatalogue.ViewModel
                 return _navigateToIndexCommand
                     ?? (_navigateToIndexCommand = new RelayCommand(
                     () => _navigationService.NavigateTo("MainPage")));
+            }
+        }
+        private RelayCommand<long> _goToScheduleCommand;  
+        public RelayCommand<long> GoToScheduleCommand
+        {
+            get
+            {
+                return _goToScheduleCommand
+                    ?? (_goToScheduleCommand = new RelayCommand<long>(
+                    (id) => _navigationService.NavigateTo("ScheduleView",id)));
             }
         }
         #endregion

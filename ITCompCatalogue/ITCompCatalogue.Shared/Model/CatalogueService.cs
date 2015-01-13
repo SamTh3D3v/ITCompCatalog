@@ -128,7 +128,6 @@ namespace ITCompCatalogue.Model
             return cursusCours;
 
         }
-
         private Cour GetCourseByCourseId(long courseId)
         {
             var course = new Cour();
@@ -149,7 +148,6 @@ namespace ITCompCatalogue.Model
             }
             return course;
         }
-
         private Technology GetTechnology(long technologyId)
         {
             var technology = new Technology();
@@ -230,7 +228,6 @@ namespace ITCompCatalogue.Model
             return cours;
 
         }
-
         public async Task<List<Cour>> SearchCourses(string searchText, String searchBy)
         {
             var courses = new List<Cour>();
@@ -256,7 +253,6 @@ namespace ITCompCatalogue.Model
             }
             return courses;
         }
-
         public void FavoriteCourse(long courseId)
         {
             if (!IsCourseFavorite(courseId))
@@ -269,7 +265,6 @@ namespace ITCompCatalogue.Model
 
             }
         }
-
         public void UnFavoriteCourse(long courseId)
         {
             using (var statement = _connection.Prepare("Delete from Favorite Where _id = ?"))
@@ -279,7 +274,6 @@ namespace ITCompCatalogue.Model
             }
            
         }
-
         public bool IsCourseFavorite(long courseId)
         {
             using (var statement = _connection.Prepare("SELECT * from Favorite Where _id = ?"))
@@ -292,7 +286,6 @@ namespace ITCompCatalogue.Model
             }
             return false;
         }
-
         public void UnfavoriteAllCourses()
         {
             using (var statement =_connection.Prepare("Delete From Favorite"))
@@ -300,7 +293,6 @@ namespace ITCompCatalogue.Model
                 statement.Step();
             }
         }
-
         public async Task<List<Cour>> GetFavoriteCourses()
         {
             var courses = new List<Cour>();
@@ -312,6 +304,24 @@ namespace ITCompCatalogue.Model
                 }
             }
             return courses;
+        }
+        public async Task<List<CoursSchedule>> GetCoursScheduleByCursusId(long cursusId)
+        {
+            return new List<CoursSchedule>()
+            {
+                new CoursSchedule(3, new DateTime(2013,11,5),new DateTime(2013,12,5)),
+                new CoursSchedule(4, new DateTime(2013,07,15),new DateTime(2013,07,25)),
+                new CoursSchedule(5, new DateTime(2012,10,5),new DateTime(2012,11,10)),
+            };
+        }
+
+        public async Task<List<CoursSchedule>> GetCoursScheduleByCoursId(long coursId)
+        {
+            return new List<CoursSchedule>()
+            {
+                new CoursSchedule(4, new DateTime(2013,07,15),new DateTime(2013,07,25)),
+                new CoursSchedule(4, new DateTime(2012,10,5),new DateTime(2012,11,10)),
+            };
         }
     }
 }

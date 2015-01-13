@@ -28,11 +28,11 @@
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE113;" />
                     </AppBarToggleButton.Icon>
                 </AppBarToggleButton>
-                <AppBarToggleButton Label="Date" IsChecked="{Binding IsCourseFavorite,Mode=TwoWay}">
-                    <AppBarToggleButton.Icon>
+                <AppBarButton Label="Date" Command="{Binding GoToScheduleCommand}" CommandParameter="{Binding CourseDetails.C_id}"> 
+                    <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE163;" />
-                    </AppBarToggleButton.Icon>
-                </AppBarToggleButton>
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

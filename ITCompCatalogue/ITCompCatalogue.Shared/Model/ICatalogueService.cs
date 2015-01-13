@@ -16,6 +16,20 @@ namespace ITCompCatalogue.Model
         bool IsCourseFavorite(long courseId);
         void UnfavoriteAllCourses();
         Task<List<Cour>> GetFavoriteCourses();
+        Task<List<CoursSchedule>> GetCoursScheduleByCursusId(long cursusId);
+        Task<List<CoursSchedule>> GetCoursScheduleByCoursId(long coursId);
+    }
+    public class CoursSchedule
+    {
+        public long CoursId { get; set; }
+        public DateTime DateDebut { get; set; }
+        public DateTime DateFin { get; set; }
 
+        public CoursSchedule(long coursId, DateTime dateDebut, DateTime dateFin)
+        {
+            CoursId = coursId;
+            DateDebut = dateDebut;
+            DateFin = dateFin;
+        }
     }
 }

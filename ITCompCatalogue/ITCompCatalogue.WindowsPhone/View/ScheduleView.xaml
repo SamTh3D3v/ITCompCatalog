@@ -39,7 +39,14 @@
             <TextBlock Margin="4" Foreground="Black" Text="Cours" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
         </StackPanel>
         <Grid Grid.Row="1">
-            <input:RadCalendar VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+            <input:RadCalendar   VerticalAlignment="Stretch" HorizontalAlignment="Stretch" GridLinesVisibility="Vertical" 
+                     GridLinesBrush="{StaticResource ThemeBrush}"
+                     GridLinesThickness="2" 
+                     Background="WhiteSmoke"
+                            
+                     BorderBrush="{StaticResource ThemeBrush}"
+                              
+                     BorderThickness="4" />
         </Grid>
     </Grid>
 </local:BindablePage>

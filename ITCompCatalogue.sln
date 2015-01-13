@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.31101.0
+VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ITCompCatalogue", "ITCompCatalogue", "{3C907FFC-CC0D-43C5-9742-61BE2513E36E}"
 EndProject
@@ -10,8 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITCompCatalogue.Windows", "ITCompCatalogue\ITCompCatalogue.Windows\ITCompCatalogue.Windows.csproj", "{859FFC24-F367-4082-9940-5DAB48D1E5FF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITCompCatalogue.WindowsPhone", "ITCompCatalogue\ITCompCatalogue.WindowsPhone\ITCompCatalogue.WindowsPhone.csproj", "{4A3F75BC-B528-4FDB-A602-206E0583D645}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FakeItcompService", "FakeItcompService\FakeItcompService.csproj", "{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
@@ -88,20 +86,6 @@ Global
 		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|x86.ActiveCfg = Release|x86
 		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|x86.Build.0 = Release|x86
 		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|x86.Deploy.0 = Release|x86
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Release|ARM.ActiveCfg = Release|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Release|x64.ActiveCfg = Release|Any CPU
-		{41CB8D23-B28A-4129-BA4A-08DF8F3340D3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
