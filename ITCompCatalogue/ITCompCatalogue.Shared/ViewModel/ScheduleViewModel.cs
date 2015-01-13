@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -15,9 +16,27 @@ namespace ITCompCatalogue.ViewModel
 
         private ICatalogueService _catalogueService;
         private readonly INavigationService _navigationService;
+        private ObservableCollection<CoursSchedule> _coursesScheduleList;
         #endregion
-        #region Properties
-        
+        #region Properties          
+        public ObservableCollection<CoursSchedule> CoursesScheduleList
+        {
+            get
+            {
+                return _coursesScheduleList;
+            }
+
+            set
+            {
+                if (_coursesScheduleList == value)
+                {
+                    return;
+                }
+
+                _coursesScheduleList = value;
+                RaisePropertyChanged();
+            }
+        }
         #endregion
         #region Commands
         private RelayCommand _navigateToIndexCommand;
@@ -41,9 +60,10 @@ namespace ITCompCatalogue.ViewModel
         
         #endregion
 
-        public void Activate(object parameter)
+        public async void Activate(object parameter)
         {
-            
+            var courseId = (long)parameter;
+            CoursesScheduleList=new ObservableCollection<CoursSchedule>(await _catalogueService.GetCoursScheduleByCoursId(courseId));
         }
 
         public void Deactivate(object parameter)
