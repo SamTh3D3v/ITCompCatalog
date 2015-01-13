@@ -23,28 +23,24 @@ namespace ITCompCatalogue.Helper
                 {
                     case CalendarDisplayMode.MonthView:
 
-                        if (events.Where(e => e.DateDebut <= context.Date && e.DateFin >= context.Date).Count() > 0)
+                        if (events.Any(e => e.DateDebut <= context.Date && e.DateFin >= context.Date))
                         {
                             context.CellTemplate = this.EventTemplate;
                         }
                         break;
                     case CalendarDisplayMode.YearView:
-                        if (events.Where(e => (e.DateDebut.Month == context.Date.Month && e.DateDebut.Year == context.Date.Year) || (e.DateFin.Month == context.Date.Month && e.DateFin.Year == context.Date.Year)).Count() > 0)
+                        if (events.Any(e => (e.DateDebut.Month == context.Date.Month && e.DateDebut.Year == context.Date.Year) || (e.DateFin.Month == context.Date.Month && e.DateFin.Year == context.Date.Year)))
                         {
                             context.CellTemplate = this.EventTemplate;
                         }
                         break;
                     default:
-                        if (events.Where(e => e.DateDebut.Year == context.Date.Year || e.DateFin.Year == context.Date.Year).Count() > 0)
+                        if (events.Any(e => e.DateDebut.Year == context.Date.Year || e.DateFin.Year == context.Date.Year))
                         {
                             context.CellTemplate = this.EventTemplate;
                         }
                         break;
-
-                }
-               
-                
-                
+                }                                              
             }
         }
     }

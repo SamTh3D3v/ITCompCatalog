@@ -49,7 +49,7 @@
                     </interactivity:Interaction.Behaviors>
                 </Image>
             </Border>
-            <TextBlock Margin="4" Foreground="Black" Text="Cours" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
+            <TextBlock Margin="4" Foreground="Black" Text="Schedules" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.Resources>
@@ -64,11 +64,11 @@
                 </DataTemplate>
                 <helper:CustomStyleSelector x:Key="Selector"  EventTemplate="{StaticResource SelectorTemplate}" />                
             </Grid.Resources>
-            <input:RadCalendar  DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Dark" CellStyleSelector="{StaticResource Selector}"   VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
-                     GridLinesBrush="DeepSkyBlue"
+            <input:RadCalendar  DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Dark" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
+                     GridLinesBrush="{StaticResource ThemeBrush}"
                      GridLinesThickness="2"                       
                      Foreground="Black"
-                     BorderBrush="DeepSkyBlue"  
+                     BorderBrush="{StaticResource ThemeBrush}"  
                                Background="WhiteSmoke"
                      BorderThickness="2" >                
             </input:RadCalendar>
