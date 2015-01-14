@@ -22,7 +22,10 @@ namespace ITCompCatalogue.View
         {
             this.InitializeComponent();
         }
-
-       
+        private void Calendar_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            FlyoutBase.ShowAttachedFlyout((FrameworkElement)sender);
+            e.Handled = false;
+        }
     }
 }

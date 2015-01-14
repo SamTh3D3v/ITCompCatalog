@@ -84,7 +84,7 @@
                 </DataTemplate>
                 <helper:CustomStyleSelector x:Key="Selector"  EventTemplate="{StaticResource SelectorTemplate}" />
             </Grid.Resources>
-            <input:RadCalendar x:Name="calendar" DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Dark" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
+            <input:RadCalendar x:Name="calendar" Tapped="Calendar_OnTapped" DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Dark" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
                      GridLinesBrush="{StaticResource ThemeBrush}"
                      GridLinesThickness="2"                       
                      Foreground="Black"
@@ -93,7 +93,7 @@
                      BorderThickness="2" FlyoutBase.AttachedFlyout="{StaticResource CourseListFlyout}">                
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="Tapped">
-                        <core:InvokeCommandAction Command="{Binding CellTappedCommand}" CommandParameter="{Binding ElementName=calendar,Path=DisplayDate}"/>
+                        <core:InvokeCommandAction  Command="{Binding CellTappedCommand}" CommandParameter="{Binding ElementName=calendar,Path=DisplayDate}"/>
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
             </input:RadCalendar>
