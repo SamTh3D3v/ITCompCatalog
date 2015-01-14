@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -107,8 +108,8 @@ namespace ITCompCatalogue.ViewModel
                 return _cellTappedCommand
                     ?? (_cellTappedCommand = new RelayCommand<DateTime>(
                     (date) =>
-                    {                        
-                        ListCoursesInDate=new ObservableCollection<CoursSchedule>(CoursesScheduleList.Where(c=>c.DateDebut<=date && c.DateFin>=date).ToList());
+                    {
+                        ListCoursesInDate = new ObservableCollection<CoursSchedule>(CoursesScheduleList.Where(c => c.DateDebut <= date && c.DateFin >= date).GroupBy(x => x.CoursId).Select(y => y.FirstOrDefault()));
                     }));
             }
         }
