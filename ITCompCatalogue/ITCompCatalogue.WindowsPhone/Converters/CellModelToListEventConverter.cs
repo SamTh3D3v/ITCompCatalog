@@ -31,7 +31,6 @@ namespace ITCompCatalogue.Converters
             }
             return null;
         }
-
         public object ConvertBack(object value, Type targetType, object parameter, string language)
         {
             throw new NotImplementedException();

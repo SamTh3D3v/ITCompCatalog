@@ -80,6 +80,19 @@ namespace ITCompCatalogue.ViewModel
                     () => _navigationService.NavigateTo("SearchView")));
             }
         }
+        private RelayCommand<DateTime> _cellTappedCommand;
+        public RelayCommand<DateTime> CellTappedCommand
+        {
+            get
+            {
+                return _cellTappedCommand
+                    ?? (_cellTappedCommand = new RelayCommand<DateTime>(
+                    (date) =>
+                    {
+                        var d = date;
+                    }));
+            }
+        }
         #endregion
         #region Ctor & Mothods
 

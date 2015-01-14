@@ -52,10 +52,10 @@
             <TextBlock Margin="4" Foreground="Black" Text="Schedules" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
         </StackPanel>
         <Grid Grid.Row="1">
+            
             <Grid.Resources>
                 <converters:CellModelToEventConverter x:Key="CourseSecConverter" />
                 <converters:CellModelToListEventConverter x:Key="CourseListSecConverter" />
-
                 <DataTemplate x:Key="SelectorTemplate">
                     <Grid>
                         <Grid.RowDefinitions>
@@ -84,13 +84,18 @@
                 </DataTemplate>
                 <helper:CustomStyleSelector x:Key="Selector"  EventTemplate="{StaticResource SelectorTemplate}" />
             </Grid.Resources>
-            <input:RadCalendar  DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Dark" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
+            <input:RadCalendar x:Name="calendar" DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Dark" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
                      GridLinesBrush="{StaticResource ThemeBrush}"
                      GridLinesThickness="2"                       
                      Foreground="Black"
                      BorderBrush="{StaticResource ThemeBrush}"  
-                               Background="WhiteSmoke"
-                     BorderThickness="2" >
+                     Background="WhiteSmoke"
+                     BorderThickness="2" >                
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="Tapped">
+                        <core:InvokeCommandAction Command="{Binding CellTappedCommand}" CommandParameter="{Binding ElementName=calendar,Path=DisplayDate}"/>
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
             </input:RadCalendar>
         </Grid>
     </Grid>
