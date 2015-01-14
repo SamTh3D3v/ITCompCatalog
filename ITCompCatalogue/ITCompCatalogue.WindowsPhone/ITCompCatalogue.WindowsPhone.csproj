@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="Converters\CellModelToEventConverter.cs" />
     <Compile Include="Converters\CellModelToListEventConverter.cs" />
+    <Compile Include="Converters\IdToColorConverter.cs" />
     <Compile Include="Converters\ListViewItemClickedConverter.cs" />
     <Compile Include="Converters\ListViewTechClickedConverter.cs" />
     <Compile Include="Converters\TechIdToImageConverter.cs" />

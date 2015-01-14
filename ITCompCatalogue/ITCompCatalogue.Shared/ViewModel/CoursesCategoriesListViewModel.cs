@@ -64,14 +64,14 @@ namespace ITCompCatalogue.ViewModel
                         }));
             }
         }
-        private RelayCommand<long> _goToScheduleCommand;
-        public RelayCommand<long> GoToScheduleCommand
+        private RelayCommand<Cursu> _goToScheduleCommand;
+        public RelayCommand<Cursu> GoToScheduleCommand
         {
             get
             {
                 return _goToScheduleCommand
-                    ?? (_goToScheduleCommand = new RelayCommand<long>(
-                    (id) => _navigationService.NavigateTo("ScheduleViewWithFilter", id)));
+                    ?? (_goToScheduleCommand = new RelayCommand<Cursu>(
+                    (cursus) => _navigationService.NavigateTo("ScheduleViewWithFilter", cursus)));
             }
         }
         #endregion

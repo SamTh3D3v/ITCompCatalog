@@ -7,7 +7,5 @@
     <SolidColorBrush x:Key="ThemeBrush" Color="DeepSkyBlue"/>
     <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>    
     <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
-    
-
-
+    <converters:IdToColorConverter x:Key="IdToColorConverter" />
 </ResourceDictionary>

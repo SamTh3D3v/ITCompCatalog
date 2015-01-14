@@ -62,17 +62,24 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <!--<TextBlock Text="⏰" Foreground="#FF3399FF" FontSize="15" HorizontalAlignment="Right" FontFamily="Segoe UI Symbol" Margin="0,1,2,0" />-->
-                        <ScrollViewer Grid.Row="0">
-                            <ListView ItemsSource="{Binding Converter={StaticResource CourseListSecConverter}}">
+                        <ScrollViewer Grid.Column="0">
+                            <ListView Margin="2"  ItemsSource="{Binding Converter={StaticResource CourseListSecConverter}}">
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                        <Setter Property="Height" Value="10"/>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
-                                        <Rectangle Height="10" HorizontalAlignment="Stretch" Margin="3" Fill="Black"/>
-                                    </DataTemplate>                                    
+                                        <Grid>
+                                            <Rectangle Height="7" HorizontalAlignment="Stretch" Margin="2"  Fill="{Binding CoursId,Converter={StaticResource IdToColorConverter}}"/>
+                                        </Grid>
+                                    </DataTemplate>
                                 </ListView.ItemTemplate>
                             </ListView>
-                        </ScrollViewer>                        
-                        <TextBlock Grid.Row="1" Text="{Binding Converter={StaticResource CourseSecConverter}}" Foreground="White" FontSize="13.333" VerticalAlignment="Bottom" Margin="6,0,0,4" />
+                        </ScrollViewer>
+                        <TextBlock Grid.Row="1" Text="{Binding Converter={StaticResource CourseSecConverter}}" Foreground="{StaticResource ThemeBrush}" FontSize="13.333" VerticalAlignment="Bottom" Margin="6,0,0,4" />
                     </Grid>
                 </DataTemplate>
                 <helper:CustomStyleSelector x:Key="Selector"  EventTemplate="{StaticResource SelectorTemplate}" />
