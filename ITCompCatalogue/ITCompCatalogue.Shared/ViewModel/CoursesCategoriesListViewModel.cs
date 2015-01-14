@@ -64,6 +64,16 @@ namespace ITCompCatalogue.ViewModel
                         }));
             }
         }
+        private RelayCommand<long> _goToScheduleCommand;
+        public RelayCommand<long> GoToScheduleCommand
+        {
+            get
+            {
+                return _goToScheduleCommand
+                    ?? (_goToScheduleCommand = new RelayCommand<long>(
+                    (id) => _navigationService.NavigateTo("ScheduleView", id)));
+            }
+        }
         #endregion
         #region Ctors and Methods
 

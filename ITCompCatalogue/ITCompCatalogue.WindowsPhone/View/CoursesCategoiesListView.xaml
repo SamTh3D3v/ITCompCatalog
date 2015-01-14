@@ -54,9 +54,21 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel HorizontalAlignment="Stretch">
-                                    <Border  HorizontalAlignment="Stretch" Margin="0" Height="50" >
-                                        <TextBlock VerticalAlignment="Center" Margin="2,0,0,0" Text="{Binding Intitule}" Foreground="Black" FontWeight="Bold"  Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20"/>
-                                    </Border>
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="Auto"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Border Grid.Column="0"  HorizontalAlignment="Stretch" Margin="0" Height="50" >
+                                            <TextBlock VerticalAlignment="Center" Margin="2,0,0,0" Text="{Binding Intitule}" Foreground="Black" FontWeight="Bold"  Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20"/>
+                                        </Border>
+                                        <AppBarButton Grid.Column="2" Label="Date" Command="{Binding DataContext.GoToScheduleCommand,ElementName=RootPivot}" CommandParameter="{Binding C_id}">
+                                            <AppBarButton.Icon>
+                                                <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE163;" />
+                                            </AppBarButton.Icon>
+                                        </AppBarButton>
+                                    </Grid>
                                     <ListView x:Name="CursusCourListView" Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
                                         <interactivity:Interaction.Behaviors>
                                             <core:EventTriggerBehavior EventName="ItemClick">
