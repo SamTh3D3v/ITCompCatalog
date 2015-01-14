@@ -45,7 +45,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">     
+                    <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False" x:Name="CursusListView">     
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -63,7 +63,7 @@
                                         <Border Grid.Column="0"  HorizontalAlignment="Stretch" Margin="0" Height="50" >
                                             <TextBlock VerticalAlignment="Center" Margin="2,0,0,0" Text="{Binding Intitule}" Foreground="Black" FontWeight="Bold"  Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20"/>
                                         </Border>
-                                        <AppBarButton Grid.Column="2" Label="Date" Command="{Binding DataContext.GoToScheduleCommand,ElementName=RootPivot}" CommandParameter="{Binding C_id}">
+                                        <AppBarButton Grid.Column="2" Label="Date" Command="{Binding DataContext.GoToScheduleCommand,ElementName=RootPivot}" CommandParameter="{Binding DataContext,ElementName=CursusCourListView}">
                                             <AppBarButton.Icon>
                                                 <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE163;" />
                                             </AppBarButton.Icon>

@@ -93,8 +93,17 @@ namespace ITCompCatalogue.ViewModel
 
         public async void Activate(object parameter)
         {
-            var courseId = (long)parameter;
-            CoursesScheduleList=new ObservableCollection<CoursSchedule>(await _catalogueService.GetCoursScheduleByCoursId(courseId));
+            var course = parameter as Cour;
+            if (course !=null)
+            {
+                CoursesScheduleList = new ObservableCollection<CoursSchedule>(await _catalogueService.GetCoursScheduleByCoursId(course.C_id)); 
+            }
+            else
+            {
+                var cursus = parameter as Cursu;
+                if (cursus != null)
+                    CoursesScheduleList = new ObservableCollection<CoursSchedule>(await _catalogueService.GetCoursScheduleByCursusId(cursus.C_id));
+            }
         }
 
         public void Deactivate(object parameter)

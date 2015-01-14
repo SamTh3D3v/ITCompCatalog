@@ -163,6 +163,7 @@ namespace ITCompCatalogue.ViewModel
             navigationService.Configure("PresentationView", typeof(PresentationView));
             navigationService.Configure("FavoriteCoursesView", typeof(FavoriteCoursesView));
             navigationService.Configure("ScheduleView", typeof(ScheduleView));
+            navigationService.Configure("ScheduleViewWithFilter", typeof(ScheduleViewWithFilter));
             navigationService.Configure("MainPage", typeof(MainPage));
             
             return navigationService;

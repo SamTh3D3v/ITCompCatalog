@@ -89,14 +89,14 @@ namespace ITCompCatalogue.ViewModel
                     () => _navigationService.NavigateTo("MainPage")));
             }
         }
-        private RelayCommand<long> _goToScheduleCommand;  
-        public RelayCommand<long> GoToScheduleCommand
+        private RelayCommand<Cour> _goToScheduleCommand;  
+        public RelayCommand<Cour> GoToScheduleCommand
         {
             get
             {
                 return _goToScheduleCommand
-                    ?? (_goToScheduleCommand = new RelayCommand<long>(
-                    (id) => _navigationService.NavigateTo("ScheduleView",id)));
+                    ?? (_goToScheduleCommand = new RelayCommand<Cour>(
+                    (cour) => _navigationService.NavigateTo("ScheduleView",cour)));
             }
         }
         #endregion

@@ -71,7 +71,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _goToScheduleCommand
                     ?? (_goToScheduleCommand = new RelayCommand<long>(
-                    (id) => _navigationService.NavigateTo("ScheduleView", id)));
+                    (id) => _navigationService.NavigateTo("ScheduleViewWithFilter", id)));
             }
         }
         #endregion
