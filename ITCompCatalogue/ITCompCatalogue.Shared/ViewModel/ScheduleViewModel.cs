@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -19,6 +20,7 @@ namespace ITCompCatalogue.ViewModel
         private readonly INavigationService _navigationService;
         private ObservableCollection<CoursSchedule> _coursesScheduleList;
         private CalendarDisplayMode _displayMode;
+        private ObservableCollection<CoursSchedule> _listCoursesInDate;
         #endregion
         #region Properties          
         public ObservableCollection<CoursSchedule> CoursesScheduleList
@@ -38,8 +40,7 @@ namespace ITCompCatalogue.ViewModel
                 _coursesScheduleList = value;
                 RaisePropertyChanged();
             }
-        }
-             
+        }            
         public CalendarDisplayMode DisplayMode
         {
             get
@@ -55,6 +56,24 @@ namespace ITCompCatalogue.ViewModel
                 }
 
                 _displayMode = value;
+                RaisePropertyChanged();
+            }
+        }
+        public ObservableCollection<CoursSchedule> ListCoursesInDate
+        {
+            get
+            {
+                return _listCoursesInDate;
+            }
+
+            set
+            {
+                if (_listCoursesInDate == value)
+                {
+                    return;
+                }
+
+                _listCoursesInDate = value;
                 RaisePropertyChanged();
             }
         }
@@ -88,8 +107,8 @@ namespace ITCompCatalogue.ViewModel
                 return _cellTappedCommand
                     ?? (_cellTappedCommand = new RelayCommand<DateTime>(
                     (date) =>
-                    {
-                        var d = date;
+                    {                        
+                        ListCoursesInDate=new ObservableCollection<CoursSchedule>(CoursesScheduleList.Where(c=>c.DateDebut<=date && c.DateFin>=date).ToList());
                     }));
             }
         }

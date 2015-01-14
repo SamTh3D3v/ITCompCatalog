@@ -8,4 +8,49 @@
     <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>    
     <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
     <converters:IdToColorConverter x:Key="IdToColorConverter" />
+    <Flyout x:Key="CourseListFlyout" Placement="Full"  >
+        <ListView Background="White" ItemsSource="{Binding Path=ListCoursesInDate}" MaxHeight="400" MaxWidth="400" >
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource ThemeBrush}" Margin="2">
+                            <TextBlock Text="{Binding CoursId}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="0" Background="WhiteSmoke"  Margin="2">
+                            <TextBlock Text="{Binding DateDebut}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="1" Background="WhiteSmoke" Margin="2">
+                            <TextBlock Text="{Binding DateFin}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
+                        </Border>
+                        
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <Flyout.FlyoutPresenterStyle>
+            <Style TargetType="FlyoutPresenter">
+                
+                <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
+                <Setter Property="Margin" Value="20"/>
+                <Setter Property="Background" Value="Black"/>
+                <Setter Property="BorderBrush" Value="Gray"/>
+                <Setter Property="BorderThickness" Value="5"/>
+                <Setter Property="MinHeight" Value="300"/>
+                <Setter Property="MinWidth" Value="300"/>
+            </Style>
+        </Flyout.FlyoutPresenterStyle>
+    </Flyout>
 </ResourceDictionary>
