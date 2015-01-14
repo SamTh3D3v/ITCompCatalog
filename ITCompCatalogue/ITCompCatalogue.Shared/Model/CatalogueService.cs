@@ -312,7 +312,13 @@ namespace ITCompCatalogue.Model
                  new CoursSchedule(3, new DateTime(2015,01,5),new DateTime(2015,01,12)),
                  new CoursSchedule(7, new DateTime(2015,01,6),new DateTime(2015,01,18)),
                  new CoursSchedule(12, new DateTime(2015,01,6),new DateTime(2015,01,18)),
-                new CoursSchedule(4, new DateTime(2015,01,15),new DateTime(2015,01,23)),
+                 new CoursSchedule(3, new DateTime(2015,01,5),new DateTime(2015,01,12)),
+                 new CoursSchedule(72, new DateTime(2015,01,6),new DateTime(2015,01,18)),
+                 new CoursSchedule(32, new DateTime(2015,01,6),new DateTime(2015,01,18)), 
+                 new CoursSchedule(33, new DateTime(2015,01,5),new DateTime(2015,01,12)),
+                 new CoursSchedule(71, new DateTime(2015,01,6),new DateTime(2015,01,18)),
+                 new CoursSchedule(12, new DateTime(2015,01,6),new DateTime(2015,01,18)),
+                new CoursSchedule(41, new DateTime(2015,01,15),new DateTime(2015,01,23)),
                 new CoursSchedule(5, new DateTime(2012,10,6),new DateTime(2012,11,10)),
             };
         }

@@ -8,8 +8,8 @@
     <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>    
     <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
     <converters:IdToColorConverter x:Key="IdToColorConverter" />
-    <Flyout x:Key="CourseListFlyout" Placement="Full"  >
-        <ListView Background="White" ItemsSource="{Binding Path=ListCoursesInDate}" MaxHeight="400" MaxWidth="400" >
+    <Flyout  x:Key="CourseListFlyout" Placement="Top"   >
+        <ListView  ItemsSource="{Binding Path=ListCoursesInDate}" HorizontalAlignment="Stretch" >
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -26,7 +26,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource ThemeBrush}" Margin="2">
+                        <Border Grid.Row="0" BorderThickness="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource ThemeBrush}" Margin="2">
                             <TextBlock Text="{Binding CoursId}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                         </Border>
                         <Border Grid.Row="1" Grid.Column="0" Background="WhiteSmoke"  Margin="2">
@@ -43,13 +43,12 @@
         <Flyout.FlyoutPresenterStyle>
             <Style TargetType="FlyoutPresenter">
                 
-                <Setter Property="ScrollViewer.ZoomMode" Value="Enabled"/>
-                <Setter Property="Margin" Value="20"/>
-                <Setter Property="Background" Value="Black"/>
-                <Setter Property="BorderBrush" Value="Gray"/>
-                <Setter Property="BorderThickness" Value="5"/>
-                <Setter Property="MinHeight" Value="300"/>
-                <Setter Property="MinWidth" Value="300"/>
+                                
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>                
+                <Setter Property="BorderBrush" Value="WhiteSmoke"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                                
             </Style>
         </Flyout.FlyoutPresenterStyle>
     </Flyout>
