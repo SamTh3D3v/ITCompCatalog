@@ -128,7 +128,7 @@ namespace ITCompCatalogue.Model
             return cursusCours;
 
         }
-        private Cour GetCourseByCourseId(long courseId)
+        public Cour GetCourseByCourseId(long courseId)
         {
             var course = new Cour();
             using (var statement = _connection.Prepare("SELECT * FROM Cours WHERE _id = ?"))

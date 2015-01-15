@@ -2,19 +2,27 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:ITCompCatalogue.Resources"
-    xmlns:converters="using:ITCompCatalogue.Converters">
+    xmlns:converters="using:ITCompCatalogue.Converters"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:viewModel="using:ITCompCatalogue.ViewModel">
     <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"/>
     <SolidColorBrush x:Key="ThemeBrush" Color="DeepSkyBlue"/>
-    <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>    
+    <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
     <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
     <converters:IdToColorConverter x:Key="IdToColorConverter" />
-    <Flyout  x:Key="CourseListFlyout" Placement="Top"   >
-        <ListView  ItemsSource="{Binding Path=ListCoursesInDate}" HorizontalAlignment="Stretch" >
+    <Flyout  x:Key="CourseListFlyout" Placement="Top"  >
+        <ListView  x:Name="FlayoutListView" ItemsSource="{Binding Path=ListCoursesInDate}" HorizontalAlignment="Stretch" IsItemClickEnabled="True">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                 </Style>
             </ListView.ItemContainerStyle>
+            <!--<interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="ItemClick">
+                    <core:InvokeCommandAction Command="{Binding NavigateToCourseCommand,ElementName=GridRoot}" CommandParameter="{Binding ElementName=FlayoutListView, Path=SelectedItem}"                                                       />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>-->
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -26,7 +34,7 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Row="0" BorderThickness="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{StaticResource ThemeBrush}" Margin="2">
+                        <Border Grid.Row="0" BorderThickness="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{Binding CoursId,Converter={StaticResource IdToColorConverter}}" Margin="2">
                             <TextBlock Text="{Binding CoursId}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                         </Border>
                         <Border Grid.Row="1" Grid.Column="0" Background="WhiteSmoke"  Margin="2">
@@ -35,20 +43,16 @@
                         <Border Grid.Row="1" Grid.Column="1" Background="WhiteSmoke" Margin="2">
                             <TextBlock Text="{Binding DateFin}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
                         </Border>
-                        
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <Flyout.FlyoutPresenterStyle>
             <Style TargetType="FlyoutPresenter">
-                
-                                
                 <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                <Setter Property="VerticalAlignment" Value="Center"/>                
+                <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="BorderBrush" Value="WhiteSmoke"/>
                 <Setter Property="BorderThickness" Value="0"/>
-                                
             </Style>
         </Flyout.FlyoutPresenterStyle>
     </Flyout>

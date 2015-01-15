@@ -113,6 +113,21 @@ namespace ITCompCatalogue.ViewModel
                     }));
             }
         }
+        private RelayCommand<CoursSchedule> _navigateToCourseCommand;  
+ 
+        public RelayCommand<CoursSchedule> NavigateToCourseCommand
+        {
+            get
+            {
+                return _navigateToCourseCommand
+                    ?? (_navigateToCourseCommand = new RelayCommand<CoursSchedule>(
+                    (courSce) =>
+                    {
+                        var cour=_catalogueService.GetCourseByCourseId(courSce.CoursId);
+                        _navigationService.NavigateTo("CourDetails", cour);
+                    }));
+            }
+        }
         #endregion
         #region Ctor & Mothods
 

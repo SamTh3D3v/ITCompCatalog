@@ -34,7 +34,7 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
-    <Grid Background="White">
+    <Grid Background="White" x:Name="GridRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -51,8 +51,7 @@
             </Border>
             <TextBlock Margin="4" Foreground="Black" Text="Schedules" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
         </StackPanel>
-        <Grid Grid.Row="1">
-            
+        <Grid Grid.Row="1">            
             <Grid.Resources>
                 <converters:CellModelToEventConverter x:Key="CourseSecConverter" />
                 <converters:CellModelToListEventConverter x:Key="CourseListSecConverter" />
