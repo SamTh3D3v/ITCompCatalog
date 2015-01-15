@@ -25,12 +25,14 @@ namespace ITCompCatalogue.Model
         public long CoursId { get; set; }
         public DateTime DateDebut { get; set; }
         public DateTime DateFin { get; set; }
+        public Cour Cour { get; set; }
 
-        public CoursSchedule(long coursId, DateTime dateDebut, DateTime dateFin)
+        public CoursSchedule(long coursId, DateTime dateDebut, DateTime dateFin,CatalogueService catalogueService)
         {
             CoursId = coursId;
             DateDebut = dateDebut;
             DateFin = dateFin;
+            Cour = catalogueService.GetCourseByCourseId(coursId);
         }
     }
 }
