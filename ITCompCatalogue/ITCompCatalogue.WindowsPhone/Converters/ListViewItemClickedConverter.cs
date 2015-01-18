@@ -18,7 +18,14 @@ namespace ITCompCatalogue.Converters
                 if (cursusCour != null)
                     return cursusCour.Cour;
                 else
-                    return args.ClickedItem as Cour;
+                {
+                    var cour = args.ClickedItem as Cour;
+                    if (cour != null)
+                        return cour;
+                    else
+                        return args.ClickedItem as CoursSchedule;
+                }
+                    
             }
 
             return null;

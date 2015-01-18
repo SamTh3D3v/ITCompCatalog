@@ -11,6 +11,8 @@
     <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
     <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
     <converters:IdToColorConverter x:Key="IdToColorConverter" />
+    <converters:FromBoolToVisibilityConverter x:Key="FromBoolToVisibilityConverter" />
+    <converters:FilterCheckedConverter x:Key="FilterCheckedConverter" />
     <Flyout  x:Key="CourseListFlyout" Placement="Top"  >
         <ListView  x:Name="FlayoutListView" ItemsSource="{Binding Path=ListCoursesInDate}" HorizontalAlignment="Stretch" IsItemClickEnabled="True">
             <ListView.ItemContainerStyle>

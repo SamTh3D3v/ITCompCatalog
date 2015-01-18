@@ -128,6 +128,26 @@ namespace ITCompCatalogue.Model
             return cursusCours;
 
         }
+
+        public async Task<List<Cour>> GetCoursesByCursusId(long cursusId)
+        {
+            var courses = new List<Cour>();
+            using (var statement = _connection.Prepare("SELECT * FROM CursusCours inner join Cours on Cours._id=CursusCours.CourID WHERE CursusID= ?"))
+            {
+                statement.Bind(1, cursusId);
+                while (statement.Step()==SQLiteResult.ROW)
+                {
+                    courses.Add(new Cour()
+                    {
+                        C_id = (long)statement[2],
+                        Intitule = (string)statement[7],                       
+                        CategorieID = (long)statement[12],
+                        Category = GetCategoryByCategoryId((long)statement[12])                   
+                    });
+                }                
+            }
+            return courses;
+        }
         public Cour GetCourseByCourseId(long courseId)
         {
             var course = new Cour();

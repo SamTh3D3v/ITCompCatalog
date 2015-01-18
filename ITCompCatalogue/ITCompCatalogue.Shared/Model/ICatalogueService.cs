@@ -13,6 +13,7 @@ namespace ITCompCatalogue.Model
         Task<List<Cour>> SearchCourses(string searchText,String searchBy);
         void FavoriteCourse(long courseId);
         Cour GetCourseByCourseId(long courseId);
+        Task<List<Cour>> GetCoursesByCursusId(long cursusId);
         void UnFavoriteCourse(long courseId);
         bool IsCourseFavorite(long courseId);
         void UnfavoriteAllCourses();

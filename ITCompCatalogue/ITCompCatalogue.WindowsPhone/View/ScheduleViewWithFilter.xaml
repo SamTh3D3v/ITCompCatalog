@@ -10,6 +10,7 @@
     xmlns:converters="using:ITCompCatalogue.Converters"
     xmlns:helper="using:ITCompCatalogue.Helper"
     xmlns:input="using:Telerik.UI.Xaml.Controls.Input"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
@@ -26,18 +27,20 @@
     <Page.BottomAppBar>
         <CommandBar Background="{StaticResource ThemeBrush}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Label="Filter"   Command="{Binding SearchCommand}">
-                    <AppBarButton.Icon>
+                <AppBarToggleButton Label="Filter"  x:Name="FilterToggleButton">
+                    <AppBarToggleButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE16E;" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
+                    </AppBarToggleButton.Icon>
+                </AppBarToggleButton>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
     <Grid Background="White" x:Name="GridRoot">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Row="0" >
             <Border HorizontalAlignment="Stretch" Background="{StaticResource ThemeBrush}" Height="80">
@@ -51,7 +54,7 @@
             </Border>
             <TextBlock Margin="4" Foreground="Black" Text="Schedules" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
         </StackPanel>
-        <Grid Grid.Row="1">            
+        <Grid Grid.Row="1">
             <Grid.Resources>
                 <converters:CellModelToEventConverter x:Key="CourseSecConverter" />
                 <converters:CellModelToListEventConverter x:Key="CourseListSecConverter" />
@@ -67,12 +70,18 @@
                                     <Style TargetType="ListViewItem">
                                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
                                         <Setter Property="Height" Value="10"/>
+                                        <Setter Property="Width" Value="10"/>
                                     </Style>
                                 </ListView.ItemContainerStyle>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <controls:WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <Grid>
-                                            <Rectangle Height="7" HorizontalAlignment="Stretch" Margin="2"  Fill="{Binding CoursId,Converter={StaticResource IdToColorConverter}}"/>
+                                            <Rectangle Height="7" Width="7" HorizontalAlignment="Stretch" Margin="2"  Fill="{Binding CoursId,Converter={StaticResource IdToColorConverter}}"/>
                                         </Grid>
                                     </DataTemplate>
                                 </ListView.ItemTemplate>
@@ -83,13 +92,14 @@
                 </DataTemplate>
                 <helper:CustomStyleSelector x:Key="Selector"  EventTemplate="{StaticResource SelectorTemplate}" />
             </Grid.Resources>
-            <input:RadCalendar x:Name="calendar" Tapped="Calendar_OnTapped" DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Dark" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
+            <input:RadCalendar x:Name="calendar"  DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Dark" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
                      GridLinesBrush="{StaticResource ThemeBrush}"
                      GridLinesThickness="2"                       
                      Foreground="Black"
                      BorderBrush="{StaticResource ThemeBrush}"  
                      Background="WhiteSmoke"
-                     BorderThickness="2" FlyoutBase.AttachedFlyout="{StaticResource CourseListFlyout}">                
+                     BorderThickness="2" >
+                <!--FlyoutBase.AttachedFlyout="{StaticResource CourseListFlyout}"-->
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="Tapped">
                         <core:InvokeCommandAction  Command="{Binding CellTappedCommand}" CommandParameter="{Binding ElementName=calendar,Path=DisplayDate}"/>
@@ -97,5 +107,99 @@
                 </interactivity:Interaction.Behaviors>
             </input:RadCalendar>
         </Grid>
+        <ListView Grid.Row="2" ItemsSource="{Binding Path=ListCoursesInDate}"  IsItemClickEnabled="True" x:Name="BottomListView"
+                 VerticalAlignment="Stretch"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 ScrollViewer.HorizontalScrollMode="Enabled"  
+                 ScrollViewer.VerticalScrollMode="Disabled"
+                 ScrollViewer.ZoomMode="Disabled"
+                 SelectionMode="None">
+            <interactivity:Interaction.Behaviors>
+                <core:EventTriggerBehavior EventName="ItemClick">
+                    <core:InvokeCommandAction Command="{Binding DataContext.NavigateToCourseCommand,ElementName=GridRoot}" InputConverter="{StaticResource ItemClickedConverter}"  />
+                </core:EventTriggerBehavior>
+            </interactivity:Interaction.Behaviors>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40"/>
+                            <RowDefinition Height="40"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Row="0" BorderThickness="0" Grid.Column="0" Grid.ColumnSpan="2" Background="{Binding CoursId,Converter={StaticResource IdToColorConverter}}" Margin="2">
+                            <StackPanel Orientation="Horizontal">
+                                <Image HorizontalAlignment="Center" Source="{Binding Cour.Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}"></Image>
+                                <TextBlock Text="{Binding Cour.Intitule}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
+                            </StackPanel>
+
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="0" Background="WhiteSmoke"  Margin="2">
+                            <TextBlock Text="{Binding DateDebut}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
+                        </Border>
+                        <Border Grid.Row="1" Grid.Column="1" Background="WhiteSmoke" Margin="2">
+                            <TextBlock Text="{Binding DateFin}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
+                        </Border>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <ListView Background="WhiteSmoke" Visibility="{Binding Path=IsChecked,ElementName=FilterToggleButton,Converter={StaticResource FromBoolToVisibilityConverter}}" Grid.Row="3" ItemsSource="{Binding Path=ListCoursesInCursus}"  IsItemClickEnabled="True" x:Name="BottomListViewFilter"
+                 VerticalAlignment="Stretch"
+                 ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                 ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 ScrollViewer.HorizontalScrollMode="Enabled"  
+                 ScrollViewer.VerticalScrollMode="Disabled"
+                 ScrollViewer.ZoomMode="Disabled"
+                 SelectionMode="None">
+            
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>                            
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>                            
+                        </Grid.ColumnDefinitions>
+                        <Border  Grid.Row="0" BorderThickness="0" Grid.Column="0" Background="LightBlue" Margin="7">                            
+                            <ToggleButton IsChecked="{Binding Visible,Mode=TwoWay}"  x:Name="TbVisible">
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="Checked">
+                                        <core:InvokeCommandAction Command="{Binding DataContext.FilterCheckedCommand,ElementName=GridRoot}" />
+                                    </core:EventTriggerBehavior>
+                                    <core:EventTriggerBehavior EventName="Unchecked">
+                                        <core:InvokeCommandAction Command="{Binding DataContext.FilterUnCheckedCommand,ElementName=GridRoot}" />
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                                <ToggleButton.ContentTemplate>
+                                    <DataTemplate>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Image HorizontalAlignment="Center" Source="{Binding Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}"></Image>
+                                            <TextBlock Text="{Binding Intitule}" HorizontalAlignment="Center"  VerticalAlignment="Center" Foreground="White"/>                                           
+                                        </StackPanel>
+                                    </DataTemplate>
+                                </ToggleButton.ContentTemplate>
+                            </ToggleButton>                          
+                        </Border>
+                       
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </local:BindablePage>
