@@ -13,7 +13,6 @@
     xmlns:controls="using:WinRTXamlToolkit.Controls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
     <local:BindablePage.DataContext>
         <Binding Path="ScheduleViewModel"  Source="{StaticResource Locator}"></Binding>
     </local:BindablePage.DataContext>
@@ -141,7 +140,6 @@
                                 <Image HorizontalAlignment="Center" Source="{Binding Cour.Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}"></Image>
                                 <TextBlock Text="{Binding Cour.Intitule}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White"/>
                             </StackPanel>
-
                         </Border>
                         <Border Grid.Row="1" Grid.Column="0" Background="WhiteSmoke"  Margin="2">
                             <TextBlock Text="{Binding DateDebut}" HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="Black"/>
@@ -160,8 +158,7 @@
                  ScrollViewer.HorizontalScrollMode="Enabled"  
                  ScrollViewer.VerticalScrollMode="Disabled"
                  ScrollViewer.ZoomMode="Disabled"
-                 SelectionMode="None">
-            
+                 SelectionMode="None">         
             <ListView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <StackPanel Orientation="Horizontal" />
@@ -195,8 +192,7 @@
                                     </DataTemplate>
                                 </ToggleButton.ContentTemplate>
                             </ToggleButton>                          
-                        </Border>
-                       
+                        </Border>                      
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>
