@@ -11,5 +11,7 @@ namespace ITCompCatalogue.Model
         public String LogoImageSource { get; set; }
         public String WebSite { get; set; }
 
+        //Updated2
+
     }
 }
