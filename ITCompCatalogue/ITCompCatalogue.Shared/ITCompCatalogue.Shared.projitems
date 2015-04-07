@@ -78,13 +78,15 @@
     <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\pre4.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\techAn.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\web.png" />
-    <Content Include="$(MSBuildThisFileDirectory)ITCompTrainingDB.db">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Images\Android.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Microsoft.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Oracle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="$(MSBuildThisFileDirectory)ITCompTrainingDB.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

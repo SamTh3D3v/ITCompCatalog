@@ -17,7 +17,7 @@ namespace ITCompCatalogue.Converters
                 case 2:
                     return "../Images/Microsoft.png";
                     break;
-                case 3:
+                case 7:
                     return "../Images/Oracle.png";
                     break;
                 default:

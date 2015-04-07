@@ -19,6 +19,8 @@ namespace ITCompCatalogue.ViewModel
         private readonly ICatalogueService _catalogueService;
         private String _searchBySelectedItem;
         private INavigationService _navigationService;
+        private bool _searchIntituleIsEnabled = true;
+        private bool _searchCodeIsSelected = false;
 
         private ObservableCollection<String> _searchByItems = new ObservableCollection<string>()
         {
@@ -97,6 +99,51 @@ namespace ITCompCatalogue.ViewModel
                 }
 
                 _searchByItems = value;
+                RaisePropertyChanged();
+            }
+        }
+        public bool SearchCodeIsSelected
+        {
+            get
+            {
+                return _searchCodeIsSelected;
+            }
+
+            set
+            {
+                if (_searchCodeIsSelected == value)
+                {
+                    return;
+                }
+
+                _searchCodeIsSelected = value;
+                if (_searchCodeIsSelected)
+                {                    
+                    SearchBySelectedItem = "Code";
+                }               
+                RaisePropertyChanged();
+            }
+        }
+    
+        public bool SearchIntituleIsEnabled
+        {
+            get
+            {
+                return _searchIntituleIsEnabled;
+            }
+
+            set
+            {
+                if (_searchIntituleIsEnabled == value)
+                {
+                    return;
+                }
+
+                _searchIntituleIsEnabled = value;
+                if (_searchIntituleIsEnabled)
+                {                    
+                    SearchBySelectedItem = "Intitule";
+                }               
                 RaisePropertyChanged();
             }
         }

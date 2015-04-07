@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Windows.System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -17,7 +18,7 @@ namespace ITCompCatalogue.ViewModel
                 private String _email = "Lazhar.Guendouz@ITComp-dz.com";
                     private String _altEmail = "Radia.Lamari@ITComp-dz.com";
                     private String _siteWeb = "http://www.itcomp-dz.com";
-                        private String _adress = "10, rue Khoudjat Eldjeld, Bir Mourad Rais Alger. Algérie.";
+                        private String _adress = "10, Rue Khoudjat Eldjeld, Bir Mourad Rais Alger. Algérie.";
                             
         #endregion 
         #region Properties
@@ -162,20 +163,17 @@ namespace ITCompCatalogue.ViewModel
                     ?? ( _navigateToWebSiteCommand = new RelayCommand<String>(async (site) =>await Windows.System.Launcher.LaunchUriAsync(new Uri(site))));
             }
         }
-        private RelayCommand _sendEmailCommand;
+        private RelayCommand<String> _sendEmailCommand;
 
-        /// <summary>
-        /// Gets the SendEmailCommand.
-        /// </summary>
-        public RelayCommand SendEmailCommand
+        public RelayCommand<String> SendEmailCommand
         {
             get
             {
                 return _sendEmailCommand
-                    ?? (_sendEmailCommand = new RelayCommand(
-                    () =>
+                    ?? (_sendEmailCommand = new RelayCommand<String>(async (mail) =>
                     {
-                            
+                        await Launcher.LaunchUriAsync(new Uri("mailto:" + mail));
+
                     }));
             }
         }

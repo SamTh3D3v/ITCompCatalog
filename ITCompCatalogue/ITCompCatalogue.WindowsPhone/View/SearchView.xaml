@@ -45,12 +45,15 @@
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBox Grid.Row="0" Grid.Column="0" BorderBrush="{StaticResource ThemeBrush}" Background="White" Foreground="Black" Grid.ColumnSpan="2" Margin="5" Text="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" VerticalAlignment="Center" Foreground="Black" HorizontalAlignment="Left" Text="Par" Style="{ThemeResource ControlHeaderTextBlockStyle}" TextWrapping="Wrap"></TextBlock>        
-            <ComboBox Grid.Row="1" Margin="0,0,5,0" BorderBrush="{StaticResource ThemeBrush}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedItem="{Binding SearchBySelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchByItems}"/>
+            <!--<TextBlock Grid.Row="1" Grid.Column="0" Margin="3" VerticalAlignment="Center" Foreground="Black" HorizontalAlignment="Left" Text="Par" Style="{ThemeResource ControlHeaderTextBlockStyle}" TextWrapping="Wrap"></TextBlock>-->        
+            <!--<ComboBox Grid.Row="1" Margin="0,0,5,0" BorderBrush="{StaticResource ThemeBrush}" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedItem="{Binding SearchBySelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchByItems}"/>-->
+            <RadioButton GroupName="searchGp"  VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Margin="2" HorizontalAlignment="Right" IsChecked="{Binding SearchCodeIsSelected,Mode=TwoWay}"  Foreground="Black" Background="{StaticResource ThemeBrush}" Content="Code"/>
+            <RadioButton GroupName="searchGp" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Margin="2" HorizontalAlignment="Left" IsChecked="{Binding SearchIntituleIsEnabled,Mode=TwoWay}"  Foreground="Black" Background="{StaticResource ThemeBrush}" Content="Intitulé"/>
+            
         </Grid>
         <ListView IsItemClickEnabled="True" Margin="3,10,3,3" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
             <interactivity:Interaction.Behaviors>

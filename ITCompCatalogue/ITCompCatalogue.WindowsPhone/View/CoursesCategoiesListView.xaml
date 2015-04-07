@@ -17,8 +17,8 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Resource/ResourceDict.xaml"/>
-            </ResourceDictionary.MergedDictionaries>       
-        </ResourceDictionary>        
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </local:BindablePage.Resources>
     <local:BindablePage.BottomAppBar>
         <CommandBar Background="{StaticResource ThemeBrush}">
@@ -34,7 +34,7 @@
 
     <Pivot Background="White"  ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
         <Pivot.HeaderTemplate >
-            <DataTemplate>               
+            <DataTemplate>
                 <TextBlock Text="{Binding Intitule}" />
             </DataTemplate>
         </Pivot.HeaderTemplate>
@@ -45,7 +45,7 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
-                    <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False" x:Name="CursusListView">     
+                    <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False" x:Name="CursusListView">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="ListViewItem">
                                 <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -54,21 +54,20 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel HorizontalAlignment="Stretch">
-                                    <Grid>
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Border Grid.Column="0"  HorizontalAlignment="Stretch" Margin="0" Height="50" >
-                                            <TextBlock VerticalAlignment="Center" Margin="2,0,0,0" Text="{Binding Intitule}" Foreground="Black" FontWeight="Bold"  Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20"/>
-                                        </Border>
-                                        <AppBarButton Grid.Column="2" Label="Date" Command="{Binding DataContext.GoToScheduleCommand,ElementName=RootPivot}" CommandParameter="{Binding DataContext,ElementName=CursusCourListView}">
-                                            <AppBarButton.Icon>
-                                                <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE163;" />
-                                            </AppBarButton.Icon>
-                                        </AppBarButton>
-                                    </Grid>
+                                    <Border BorderBrush="Black" BorderThickness="0,2,0,2"  HorizontalAlignment="Stretch" Margin="0"  >
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock TextWrapping="Wrap" Grid.Column="0" VerticalAlignment="Center" Margin="2,0,0,0" Text="{Binding Intitule}" Foreground="Black" FontWeight="Bold"  Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20"/>
+                                            <AppBarButton VerticalAlignment="Center" Grid.Column="1" IsEnabled="False" Label="Date" Command="{Binding DataContext.GoToScheduleCommand,ElementName=RootPivot}" CommandParameter="{Binding DataContext,ElementName=CursusCourListView}">
+                                                <AppBarButton.Icon>
+                                                    <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE163;" />
+                                                </AppBarButton.Icon>
+                                            </AppBarButton>
+                                        </Grid>
+                                    </Border>
                                     <ListView x:Name="CursusCourListView" Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
                                         <interactivity:Interaction.Behaviors>
                                             <core:EventTriggerBehavior EventName="ItemClick">
@@ -84,23 +83,23 @@
                                         <ListView.ItemTemplate>
                                             <DataTemplate>
                                                 <Border BorderThickness="2" Background="WhiteSmoke"  >
-                                                    
+
                                                     <Grid>
                                                         <Grid.ColumnDefinitions>
                                                             <ColumnDefinition Width="100"/>
                                                             <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions> 
+                                                        </Grid.ColumnDefinitions>
                                                         <Grid.RowDefinitions>
                                                             <RowDefinition Height="25"/>
                                                             <RowDefinition Height="75"/>
-                                                            
+
                                                         </Grid.RowDefinitions>
                                                         <Border Background="{StaticResource ThemeBrush}" Grid.Row="0" Margin="0"  VerticalAlignment="Center" Grid.Column="0">
                                                             <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding Cour.Code}" TextWrapping="Wrap" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="16" />
                                                         </Border>
                                                         <TextBlock Margin="5,0,0,0" Grid.Row="1"  Grid.Column="0"  Foreground="DarkGray" Text="{Binding Recommandation}" TextWrapping="Wrap" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="13" />
                                                         <TextBlock Margin="5,0,0,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"  Foreground="Black" Text="{Binding Cour.Intitule}" TextWrapping="Wrap" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="16" />
-                                                       
+
                                                     </Grid>
                                                 </Border>
                                             </DataTemplate>
