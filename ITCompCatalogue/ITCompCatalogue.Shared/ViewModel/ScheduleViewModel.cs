@@ -13,7 +13,7 @@ using ITCompCatalogue.Annotations;
 using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
 using Telerik.UI.Xaml.Controls.Input;
-using WinRTXamlToolkit.Tools;
+
 
 namespace ITCompCatalogue.ViewModel
 {
@@ -257,6 +257,8 @@ namespace ITCompCatalogue.ViewModel
                 OnPropertyChanged();
             }
         }
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -265,6 +267,5 @@ namespace ITCompCatalogue.ViewModel
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

@@ -15,6 +15,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\BindablePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\INavigable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CatalogueService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CategoryClient.cs" />

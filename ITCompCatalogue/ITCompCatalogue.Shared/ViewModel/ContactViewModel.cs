@@ -149,7 +149,12 @@ namespace ITCompCatalogue.ViewModel
             {   
                 return  _callCommand
                     ?? ( _callCommand = new RelayCommand<String>(
-                    (phoneNumber) => Windows.ApplicationModel.Calls.PhoneCallManager.ShowPhoneCallUI(phoneNumber, "ITComp")));
+                        (phoneNumber) =>
+                        {
+#if WINDOWS_PHONE_APP
+                            Windows.ApplicationModel.Calls.PhoneCallManager.ShowPhoneCallUI(phoneNumber, "ITComp");
+#endif
+                        }));
             }
         }
         private RelayCommand<String> _navigateToWebSiteCommand;

@@ -1,4 +1,4 @@
-﻿<view:BindablePage
+﻿<helper:BindablePage
     x:Class="ITCompCatalogue.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -13,32 +13,54 @@
     xmlns:converters="using:ITCompCatalogue.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
-    <view:BindablePage.DataContext>
+    <!--<view:BindablePage.DataContext>
         <Binding Path="Main" Source="{StaticResource Locator}"/>
-    </view:BindablePage.DataContext>
-    <view:BindablePage.Resources>
+    </view:BindablePage.DataContext>-->
+    <helper:BindablePage.Resources>
         <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
         <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
-    </view:BindablePage.Resources>
-    <view:BindablePage.BottomAppBar>
-        <CommandBar Background="DeepSkyBlue">
-            <CommandBar.PrimaryCommands>
+    </helper:BindablePage.Resources>
+    <helper:BindablePage.TopAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Presentation" Command="{Binding PresenationCommand}"/>
+                <AppBarButton Label="Technologies" Command="{Binding PresenationCommand}"/>
+                <AppBarButton Label="Partenaire" Command="{Binding PartnerCommand}"/>
+                <AppBarButton Label="References clients" Command="{Binding RefClientsCommand}"/>
+                <AppBarButton Label="Contact" Command="{Binding ContactCommand}"/>
+                <AppBarButton Label="Favorie" Command="{Binding FavorieCommand}"/>
+            </CommandBar.SecondaryCommands>            
+        </CommandBar>
+    </helper:BindablePage.TopAppBar>
+    <helper:BindablePage.BottomAppBar>
+        <CommandBar >
+            <CommandBar.PrimaryCommands>               
+            </CommandBar.PrimaryCommands>
+            <CommandBar.SecondaryCommands>
                 <AppBarButton Label="Rechercher"   Command="{Binding SearchCommand}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-            </CommandBar.PrimaryCommands>
-            <CommandBar.SecondaryCommands>
-                <AppBarButton Label="Présentation" Command="{Binding PresenationCommand}"/>
-                <AppBarButton Label="Partenaire" Command="{Binding PartnerCommand}"/>
-                <AppBarButton Label="References clients" Command="{Binding RefClientsCommand}"/>
-                <AppBarButton Label="Contact" Command="{Binding ContactCommand}"/>
-                <AppBarButton Label="Favorie" Command="{Binding FavorieCommand}"/>
+
             </CommandBar.SecondaryCommands>
         </CommandBar>
-    </view:BindablePage.BottomAppBar>
-    <Grid Background="White">
+    </helper:BindablePage.BottomAppBar>
+    
+    <Hub Header="Presenatation" Background="Gray">
+        <HubSection Header="Formation">
+            
+        </HubSection>
+        <HubSection Header="Developpement" Background="Gainsboro">
+            
+        </HubSection><HubSection Header="Suivit" Background="LightSlateGray">
+            
+        </HubSection>
+        
+    </Hub>
+    
+    <!--<Grid Background="White">
+       
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -47,13 +69,13 @@
             <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="Images/IT.png" />
             </Border>
-            <TextBlock Margin="4" Text="Technologies" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="Black"/>
+            <TextBlock Margin="4" Text="Technologies" Foreground="Black"/>
         </StackPanel>
         <ListView  HorizontalAlignment="Stretch" IsItemClickEnabled="True"  Grid.Row="1" ItemsSource="{Binding ListTechnologies}" >
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="ItemClick">
                     <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}"  InputConverter="{StaticResource TechClickedConverter}"/>
-                    <!--CommandParameter="{Binding ElementName=Sl_VolumeSilder, Path=Value}"-->
+                    --><!--CommandParameter="{Binding ElementName=Sl_VolumeSilder, Path=Value}"--><!--
                 </core:EventTriggerBehavior>
             </interactivity:Interaction.Behaviors>
             <ListView.ItemContainerStyle>
@@ -79,12 +101,12 @@
                                 <TextBlock Text="{Binding Code }" Style="{ThemeResource ListViewItemContentTextBlockStyle}" Foreground="DarkGray"/>
                             </StackPanel>
                             <Border Background="DeepSkyBlue" BorderThickness="0" Grid.Column="2" Width="50" Height="50" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                                <TextBlock Foreground="Black" FontSize="18" Text="{Binding CourseCount}" Style="{ThemeResource ControlHeaderTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Foreground="Black" FontSize="18" Text="{Binding CourseCount}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                             </Border>
                         </Grid>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-    </Grid>
-</view:BindablePage>
+    </Grid>-->
+</helper:BindablePage>

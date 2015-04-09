@@ -1,4 +1,4 @@
-﻿<local:BindablePage
+﻿<helper:BindablePage
     x:Class="ITCompCatalogue.View.FavoriteCoursesView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -8,16 +8,17 @@
     xmlns:converters="using:ITCompCatalogue.Converters"
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:helper="using:ITCompCatalogue.Helper"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-    <local:BindablePage.DataContext>
+    <helper:BindablePage.DataContext>
         <Binding Path="FavoriteCoursesViewModel" Source="{StaticResource Locator}"></Binding>
-    </local:BindablePage.DataContext>
-    <local:BindablePage.Resources>
+    </helper:BindablePage.DataContext>
+    <helper:BindablePage.Resources>
         <converters:TechIdToImageConverter x:Name="TechIdToImageConverter"/>
         <converters:ListViewItemClickedConverter x:Name="ItemClickedConverter"/>
-    </local:BindablePage.Resources>
-    <local:BindablePage.BottomAppBar>
+    </helper:BindablePage.Resources>
+    <helper:BindablePage.BottomAppBar>
         <CommandBar Background="DeepSkyBlue">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Label="Supprimer tous" Command="{Binding RemoveAllCommand}">
@@ -27,7 +28,7 @@
                 </AppBarButton>                                
             </CommandBar.PrimaryCommands>            
         </CommandBar>
-    </local:BindablePage.BottomAppBar>
+    </helper:BindablePage.BottomAppBar>
 
     <Grid Background="White" x:Name="RooGrid">
         <Grid.RowDefinitions>
@@ -78,4 +79,4 @@
         </ListView>
 
     </Grid>
-</local:BindablePage>
+</helper:BindablePage>

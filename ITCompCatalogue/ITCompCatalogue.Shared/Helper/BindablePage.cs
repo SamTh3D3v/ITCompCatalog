@@ -1,16 +1,20 @@
-﻿using Windows.Phone.UI.Input;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
-using ITCompCatalogue.Helper;
 
-namespace ITCompCatalogue.View
+#if WINDOWS_PHONE_APP
+using Windows.Phone.UI.Input;
+#endif
+
+namespace ITCompCatalogue.Helper
 {
     public class BindablePage : Page
     {
         public BindablePage():base()
         {
+#if WINDOWS_PHONE_APP
             HardwareButtons.BackPressed += HardwareButtons_BackPressed;
+#endif
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
