@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Text;
 using GalaSoft.MvvmLight;
@@ -84,6 +85,22 @@ namespace ITCompCatalogue.ViewModel
                     () =>
                     {
                         _navigationService.NavigateTo("PresentationView");
+                    }));
+            }
+        }
+        private RelayCommand _listTechnologiesCommand;
+        public RelayCommand ListTechnologiesCommand
+        {
+            get
+            {
+                return _listTechnologiesCommand
+                    ?? (_listTechnologiesCommand = new RelayCommand(
+                    () =>
+                    {
+                       
+                            _navigationService.NavigateTo("ListTechnologiesView");
+                      
+                        
                     }));
             }
         }

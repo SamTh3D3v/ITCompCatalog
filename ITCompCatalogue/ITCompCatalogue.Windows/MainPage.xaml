@@ -13,9 +13,9 @@
     xmlns:converters="using:ITCompCatalogue.Converters"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
-    <!--<view:BindablePage.DataContext>
+    <helper:BindablePage.DataContext>
         <Binding Path="Main" Source="{StaticResource Locator}"/>
-    </view:BindablePage.DataContext>-->
+    </helper:BindablePage.DataContext>
     <helper:BindablePage.Resources>
         <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
         <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
@@ -24,7 +24,7 @@
         <CommandBar>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="Presentation" Command="{Binding PresenationCommand}"/>
-                <AppBarButton Label="Technologies" Command="{Binding PresenationCommand}"/>
+                <AppBarButton Label="Technologies" Command="{Binding ListTechnologiesCommand}"/>   <!--The Same ViewModel-->
                 <AppBarButton Label="Partenaire" Command="{Binding PartnerCommand}"/>
                 <AppBarButton Label="References clients" Command="{Binding RefClientsCommand}"/>
                 <AppBarButton Label="Contact" Command="{Binding ContactCommand}"/>

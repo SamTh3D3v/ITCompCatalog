@@ -21,7 +21,7 @@
             <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
             </Border>
-            <TextBlock Margin="4" Text="Partenaires" Style="{ThemeResource ControlHeaderTextBlockStyle}" Foreground="Black"/>           
+            <TextBlock Margin="4" Text="Partenaires"  Foreground="Black"/>           
         </StackPanel>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <ListView ItemsSource="{Binding ListPartenaires}">

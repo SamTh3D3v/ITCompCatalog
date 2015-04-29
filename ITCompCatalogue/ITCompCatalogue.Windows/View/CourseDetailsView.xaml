@@ -35,7 +35,7 @@
             <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80">
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
             </Border>
-            <TextBlock Margin="4" Foreground="Black" Text="Cour" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
+            <TextBlock Margin="4" Foreground="Black" Text="Cour" />
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -56,14 +56,14 @@
                 <Border Background="WhiteSmoke" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" BorderThickness="0" Margin="2">
                     <Image  Width="96" Height="96" Source="{Binding CourseDetails.Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}"/>
                 </Border>
-                <TextBlock  Foreground="Black" Grid.Column="1" Grid.ColumnSpan="2" FontSize="15" Margin="10,0,0,0" Style="{ThemeResource TitleTextBlockStyle}" Grid.Row="0" Text="{Binding CourseDetails.Intitule}" TextWrapping="Wrap"/>
-                <TextBlock Text="Code "  Foreground="DarkGray" Grid.Row="1" Grid.Column="1"  Margin="10,0,0,0"  Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Grid.Column="2"  Grid.Row="1" Margin="10,0,0,0" Foreground="DeepSkyBlue" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding CourseDetails.Code}"/>
-                <TextBlock Text="Durée " Foreground="DarkGray" Grid.Row="2" Grid.Column="1"  Margin="10,0,0,0"  Style="{ThemeResource SubheaderTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Grid.Column="2" Margin="10,0,0,0" Foreground="DeepSkyBlue" Grid.Row="2" Text="{Binding CourseDetails.Duree}" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock  Foreground="Black" Grid.Column="1" Grid.ColumnSpan="2" FontSize="15" Margin="10,0,0,0"  Grid.Row="0" Text="{Binding CourseDetails.Intitule}" TextWrapping="Wrap"/>
+                <TextBlock Text="Code "  Foreground="DarkGray" Grid.Row="1" Grid.Column="1"  Margin="10,0,0,0"   FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="2"  Grid.Row="1" Margin="10,0,0,0" Foreground="DeepSkyBlue"  FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding CourseDetails.Code}"/>
+                <TextBlock Text="Durée " Foreground="DarkGray" Grid.Row="2" Grid.Column="1"  Margin="10,0,0,0"   FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="2" Margin="10,0,0,0" Foreground="DeepSkyBlue" Grid.Row="2" Text="{Binding CourseDetails.Duree}"  FontSize="20" VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
             <ScrollViewer  Margin="10" VerticalScrollBarVisibility="Visible" Background="WhiteSmoke" Grid.Row="1">
-                <TextBlock Margin="5" Foreground="Black" TextWrapping="Wrap" FontSize="18" Style="{ThemeResource SubheaderTextBlockStyle}" Text="{Binding CourseDetails.Description}"></TextBlock>
+                <TextBlock Margin="5" Foreground="Black" TextWrapping="Wrap" FontSize="18"  Text="{Binding CourseDetails.Description}"></TextBlock>
             </ScrollViewer>
         </Grid>
     </Grid>

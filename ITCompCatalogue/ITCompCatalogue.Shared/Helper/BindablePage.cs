@@ -34,7 +34,7 @@ namespace ITCompCatalogue.Helper
                 navigableViewModel.Deactivate(e.Parameter);
         }
 
-
+#if WINDOWS_PHONE_APP
         protected void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
         {
             var rootFrame = Window.Current.Content as Frame;
@@ -45,6 +45,7 @@ namespace ITCompCatalogue.Helper
             }
 
         }
+#endif
         
 
     }

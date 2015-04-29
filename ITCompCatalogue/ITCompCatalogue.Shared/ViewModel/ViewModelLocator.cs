@@ -27,9 +27,8 @@ namespace ITCompCatalogue.ViewModel
         static ViewModelLocator()
         {
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);           
-            var navigationService = CreateNavigationService();
-            
-            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
+           
+
             SimpleIoc.Default.Register<CoursesCategoriesListViewModel>();
             SimpleIoc.Default.Register<SearchViewModel>();
             SimpleIoc.Default.Register<CourseDetailsViewModel>();
@@ -39,19 +38,15 @@ namespace ITCompCatalogue.ViewModel
             SimpleIoc.Default.Register<PresenationViewModel>();
             SimpleIoc.Default.Register<FavoriteCoursesViewModel>();
             SimpleIoc.Default.Register<ScheduleViewModel>();
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
-          if (ViewModelBase.IsInDesignModeStatic)
-            {
-                // SimpleIoc.Default.Register<INavigationService, Design.DesignNavigationService>();
-                SimpleIoc.Default.Register<ICatalogueService, CatalogueService>();
-            }
-            else
-            {
-                SimpleIoc.Default.Register<ICatalogueService, CatalogueService>();
-              //  SimpleIoc.Default.Register<INavigationService>(()=>new NavigationService());             
-            }
-            
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);                       
             SimpleIoc.Default.Register<MainViewModel>();
+            var navigationService = CreateNavigationService();
+            if (!ViewModelBase.IsInDesignModeStatic)
+            {
+                SimpleIoc.Default.Register<ICatalogueService, CatalogueService>();
+            }
+
+            SimpleIoc.Default.Register<INavigationService>(() => navigationService);
         }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
@@ -153,7 +148,7 @@ namespace ITCompCatalogue.ViewModel
         }
         private static INavigationService CreateNavigationService()
         {
-            var navigationService = new NavigationService();
+            var navigationService = new GalaSoft.MvvmLight.Views.NavigationService();
             navigationService.Configure("Courses", typeof(CoursesCategoiesListView));   
             navigationService.Configure("CourDetails",typeof(CourseDetailsView));
             navigationService.Configure("SearchView",typeof(SearchView));
@@ -165,6 +160,7 @@ namespace ITCompCatalogue.ViewModel
             navigationService.Configure("ScheduleView", typeof(ScheduleView));
             navigationService.Configure("ScheduleViewWithFilter", typeof(ScheduleViewWithFilter));
             navigationService.Configure("MainPage", typeof(MainPage));
+            navigationService.Configure("ListTechnologiesView", typeof(ListTechnologiesView));  
             
             return navigationService;
         }

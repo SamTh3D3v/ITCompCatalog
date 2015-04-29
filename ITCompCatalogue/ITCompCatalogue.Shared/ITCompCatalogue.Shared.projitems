@@ -15,7 +15,16 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\CellModelToEventConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\CellModelToListEventConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FilterCheckedConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\FromBoolToVisibilityConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\IdToColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewItemClickedConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewTechClickedConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\TechIdToImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\BindablePage.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\CustomStyleSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\INavigable.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CatalogueService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Category.cs" />
@@ -90,5 +99,17 @@
     <Content Include="$(MSBuildThisFileDirectory)ITCompTrainingDB.db">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="$(MSBuildThisFileDirectory)Resource\ResourceDict.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="$(MSBuildThisFileDirectory)Resource\TelerikDarkStyleResources.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
 </Project>

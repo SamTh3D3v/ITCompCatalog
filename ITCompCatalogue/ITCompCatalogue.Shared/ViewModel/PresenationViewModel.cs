@@ -13,9 +13,7 @@ namespace ITCompCatalogue.ViewModel
 
         private INavigationService _navigationService;
         #endregion
-        #region Properties
-     
-
+        #region Properties     
         private String  _presentationText ;
 
   
