@@ -12,9 +12,6 @@ namespace ITCompCatalogue.Helper
     {
         public BindablePage():base()
         {
-#if WINDOWS_PHONE_APP
-            HardwareButtons.BackPressed += HardwareButtons_BackPressed;
-#endif
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -32,21 +29,6 @@ namespace ITCompCatalogue.Helper
             var navigableViewModel = this.DataContext as INavigable;
             if (navigableViewModel != null)
                 navigableViewModel.Deactivate(e.Parameter);
-        }
-
-#if WINDOWS_PHONE_APP
-        protected void HardwareButtons_BackPressed(object sender, BackPressedEventArgs e)
-        {
-            var rootFrame = Window.Current.Content as Frame;
-            if (rootFrame != null && rootFrame.CanGoBack && e.Handled==false)
-            {
-                rootFrame.GoBack();
-                e.Handled = true;
-            }
-
-        }
-#endif
-        
-
+        }       
     }
 }

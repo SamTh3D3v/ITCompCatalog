@@ -12,6 +12,14 @@
     <helper:BindablePage.DataContext>
         <Binding Path="ClientReferenceViewModel" Source="{StaticResource Locator}"></Binding>
     </helper:BindablePage.DataContext>
+    <helper:BindablePage.TopAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Presentation" Command="{Binding PresenationCommand}"/>
+               
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </helper:BindablePage.TopAppBar>
 
     <Grid Background="White">
         <Grid.RowDefinitions>

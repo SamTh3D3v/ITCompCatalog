@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ITCompCatalogue", "ITCompCatalogue", "{3C907FFC-CC0D-43C5-9742-61BE2513E36E}"
 EndProject
@@ -9,11 +9,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ITCompCatalogue.Shared", "I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITCompCatalogue.Windows", "ITCompCatalogue\ITCompCatalogue.Windows\ITCompCatalogue.Windows.csproj", "{859FFC24-F367-4082-9940-5DAB48D1E5FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITCompCatalogue.WindowsPhone", "ITCompCatalogue\ITCompCatalogue.WindowsPhone\ITCompCatalogue.WindowsPhone.csproj", "{4A3F75BC-B528-4FDB-A602-206E0583D645}"
-EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		ITCompCatalogue\ITCompCatalogue.Shared\ITCompCatalogue.Shared.projitems*{4a3f75bc-b528-4fdb-a602-206e0583d645}*SharedItemsImports = 4
 		ITCompCatalogue\ITCompCatalogue.Shared\ITCompCatalogue.Shared.projitems*{3dd90ffa-6b92-4140-8bdd-779a8dccf7ad}*SharedItemsImports = 13
 		ITCompCatalogue\ITCompCatalogue.Shared\ITCompCatalogue.Shared.projitems*{859ffc24-f367-4082-9940-5dab48d1e5ff}*SharedItemsImports = 4
 	EndGlobalSection
@@ -60,32 +57,6 @@ Global
 		{859FFC24-F367-4082-9940-5DAB48D1E5FF}.Release|x86.ActiveCfg = Release|x86
 		{859FFC24-F367-4082-9940-5DAB48D1E5FF}.Release|x86.Build.0 = Release|x86
 		{859FFC24-F367-4082-9940-5DAB48D1E5FF}.Release|x86.Deploy.0 = Release|x86
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|ARM.ActiveCfg = Debug|ARM
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|ARM.Build.0 = Debug|ARM
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|ARM.Deploy.0 = Debug|ARM
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|x86.ActiveCfg = Debug|x86
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|x86.Build.0 = Debug|x86
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Debug|x86.Deploy.0 = Debug|x86
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|ARM.ActiveCfg = Release|ARM
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|ARM.Build.0 = Release|ARM
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|ARM.Deploy.0 = Release|ARM
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|Mixed Platforms.Build.0 = Release|x86
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|Mixed Platforms.Deploy.0 = Release|x86
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|x64.ActiveCfg = Release|Any CPU
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|x86.ActiveCfg = Release|x86
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|x86.Build.0 = Release|x86
-		{4A3F75BC-B528-4FDB-A602-206E0583D645}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +64,5 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3DD90FFA-6B92-4140-8BDD-779A8DCCF7AD} = {3C907FFC-CC0D-43C5-9742-61BE2513E36E}
 		{859FFC24-F367-4082-9940-5DAB48D1E5FF} = {3C907FFC-CC0D-43C5-9742-61BE2513E36E}
-		{4A3F75BC-B528-4FDB-A602-206E0583D645} = {3C907FFC-CC0D-43C5-9742-61BE2513E36E}
 	EndGlobalSection
 EndGlobal

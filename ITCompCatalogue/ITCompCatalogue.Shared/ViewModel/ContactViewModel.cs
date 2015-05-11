@@ -182,9 +182,18 @@ namespace ITCompCatalogue.ViewModel
                     }));
             }
         }
+        private RelayCommand _goBackCommand;
+        public RelayCommand GoBackCommand
+        {
+            get
+            {
+                return _goBackCommand
+                    ?? (_goBackCommand = new RelayCommand(
+                    () => _navigationService.GoBack()));
+            }
+        }
         #endregion 
         #region Ctors and Methods
-
         public ContactViewModel(INavigationService navigationService)
         {
             _navigationService = navigationService;
