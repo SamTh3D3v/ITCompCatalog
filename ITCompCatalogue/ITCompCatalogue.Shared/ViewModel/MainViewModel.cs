@@ -15,17 +15,11 @@ using INavigationService = GalaSoft.MvvmLight.Views.INavigationService;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class MainViewModel : ViewModelBase,INavigable
-    {
-        #region Cons
-        #endregion
-        #region Fields
-
-        private readonly ICatalogueService _catalogueService;
-        private readonly INavigationService _navigationService;
+    class MainViewModel : NavigableViewModelBase
+    {      
+        #region Fields     
         private Technology _selectedTechnology;
-        private ObservableCollection<Technology> _listTechnologies  ;
-        
+        private ObservableCollection<Technology> _listTechnologies  ;        
         #endregion
         #region Properties
         public Technology SelectedTechnology
@@ -72,7 +66,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _searchCommand
                     ?? (_searchCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("SearchView")));
+                    () => NavigationService.NavigateTo("SearchView")));
             }
         }
         private RelayCommand _presentationCommand;   
@@ -84,7 +78,7 @@ namespace ITCompCatalogue.ViewModel
                     ?? ( _presentationCommand = new RelayCommand(
                     () =>
                     {
-                        _navigationService.NavigateTo("PresentationView");
+                        NavigationService.NavigateTo("PresentationView");
                     }));
             }
         }
@@ -98,7 +92,7 @@ namespace ITCompCatalogue.ViewModel
                     () =>
                     {
                        
-                            _navigationService.NavigateTo("ListTechnologiesView");
+                            NavigationService.NavigateTo("ListTechnologiesView");
                       
                         
                     }));
@@ -111,7 +105,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _refClientCommand
                     ?? (_refClientCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("RefClient")));
+                    () => NavigationService.NavigateTo("RefClient")));
             }
         }
         private RelayCommand _partnerCommand;  
@@ -121,7 +115,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _partnerCommand
                     ?? (_partnerCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("PartnerView")));
+                    () => NavigationService.NavigateTo("PartnerView")));
             }
         }
         private RelayCommand _contactCommand;
@@ -131,7 +125,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _contactCommand
                     ?? (_contactCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("ContactView")));
+                    () => NavigationService.NavigateTo("ContactView")));
             }
         }
         private RelayCommand _favorieCommand;
@@ -141,7 +135,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _favorieCommand
                     ?? (_favorieCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("FavoriteCoursesView")));
+                    () => NavigationService.NavigateTo("FavoriteCoursesView")));
             }
         }
 
@@ -155,25 +149,23 @@ namespace ITCompCatalogue.ViewModel
                     ?? (_selectTechnologyCommand = new RelayCommand<Technology>(
                         (tech) =>
                         {
-                            _navigationService.NavigateTo("Courses", tech.C_id);
+                            NavigationService.NavigateTo("Courses", tech.C_id);
                             
                         }));
             }
         }
         #endregion
         public MainViewModel(ICatalogueService catalogueService,INavigationService navigationService)
-        {
-            _catalogueService = catalogueService;
-            _navigationService = navigationService;
+            :base(catalogueService,navigationService)
+        {            
             Initialisation();
-
         }
 
         private async void Initialisation()
         {
             try
             {
-                ListTechnologies = new ObservableCollection<Technology>(await _catalogueService.GetAllTechnologies());               
+                ListTechnologies = new ObservableCollection<Technology>(await CatalogueService.GetAllTechnologies());               
             }
             catch (Exception)
             {
@@ -194,7 +186,7 @@ namespace ITCompCatalogue.ViewModel
         }
         public void GoBack()
         {
-            _navigationService.GoBack();
+            NavigationService.GoBack();
         }
     }
 }
