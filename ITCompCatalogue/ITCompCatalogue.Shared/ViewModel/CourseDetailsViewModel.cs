@@ -9,12 +9,9 @@ using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class CourseDetailsViewModel:ViewModelBase,INavigable
+    class CourseDetailsViewModel:NavigableViewModelBase
     {
-        #region Fields
-
-        private readonly INavigationService _navigationService;
-        private readonly ICatalogueService _catalogueService;
+        #region Fields 
         private Cour _courseDetails;
         private bool _isCourseFavorite;
         #endregion
@@ -86,7 +83,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _navigateToIndexCommand
                     ?? (_navigateToIndexCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("MainPage")));
+                    () => NavigationService.NavigateTo("MainPage")));
             }
         }
         private RelayCommand<Cour> _goToScheduleCommand;  
@@ -96,37 +93,39 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _goToScheduleCommand
                     ?? (_goToScheduleCommand = new RelayCommand<Cour>(
-                    (cour) => _navigationService.NavigateTo("ScheduleView",cour)));
+                    (cour) => NavigationService.NavigateTo("ScheduleView",cour)));
+            }
+        }
+        private RelayCommand _goBackCommand;
+        public RelayCommand GoBackCommand
+        {
+            get
+            {
+                return  _goBackCommand
+                    ?? ( _goBackCommand = new RelayCommand(
+                    () => NavigationService.GoBack()));
             }
         }
         #endregion
         #region Ctors and methods
 
         public CourseDetailsViewModel(INavigationService navigationService, ICatalogueService catalogueService)
-        {
-            _navigationService = navigationService;
-            _catalogueService = catalogueService;
-            
-
+            :base(catalogueService,navigationService)
+        {          
         }
         #endregion
 
-        public void Activate(object parameter)
+        public override void Activate(object parameter)
         {
             CourseDetails = (parameter as Cour);
             var cour = parameter as Cour;
             if (cour != null)
-                IsCourseFavorite = _catalogueService.IsCourseFavorite(cour.C_id);
+                IsCourseFavorite = CatalogueService.IsCourseFavorite(cour.C_id);
         }
 
-        public void Deactivate(object parameter)
+        public override void Deactivate(object parameter)
         {
             
-        }
-
-        public void GoBack()
-        {
-            _navigationService.GoBack();
-        }
+        }      
     }
 }

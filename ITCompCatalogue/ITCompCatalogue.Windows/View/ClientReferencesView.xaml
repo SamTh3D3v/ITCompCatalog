@@ -16,7 +16,11 @@
         <CommandBar>
             <CommandBar.SecondaryCommands>
                 <AppBarButton Label="Presentation" Command="{Binding PresenationCommand}"/>
-               
+                <AppBarButton Label="Goback" Command="{Binding GoBackCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>               
             </CommandBar.SecondaryCommands>
         </CommandBar>
     </helper:BindablePage.TopAppBar>

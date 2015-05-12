@@ -10,11 +10,9 @@ using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class CoursesCategoriesListViewModel:ViewModelBase,INavigable
+    class CoursesCategoriesListViewModel:NavigableViewModelBase
     {
-        #region Fields
-        private readonly ICatalogueService _catalogueService;
-        private readonly INavigationService _navigationService;
+        #region Fields                
         #endregion
         #region Properties  
         private ObservableCollection<Category> _listCategories; 
@@ -47,7 +45,7 @@ namespace ITCompCatalogue.ViewModel
                     ?? (_courseSelectedCommand = new RelayCommand<Cour>(
                         (cour) =>
                         {
-                            _navigationService.NavigateTo("CourDetails", cour);
+                            NavigationService.NavigateTo("CourDetails", cour);
                         }));
             }
         }
@@ -60,7 +58,7 @@ namespace ITCompCatalogue.ViewModel
                     ?? (_searchCommand = new RelayCommand(
                         () =>
                         {
-                            _navigationService.NavigateTo("SearchView");
+                            NavigationService.NavigateTo("SearchView");
                         }));
             }
         }
@@ -71,33 +69,39 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _goToScheduleCommand
                     ?? (_goToScheduleCommand = new RelayCommand<Cursu>(
-                    (cursus) => _navigationService.NavigateTo("ScheduleViewWithFilter", cursus)));
+                    (cursus) => base.NavigationService.NavigateTo("ScheduleViewWithFilter", cursus)));
+            }
+        }
+        private RelayCommand _goBackCommand;
+        public RelayCommand GoBackCommand
+        {
+            get
+            {
+                return _goBackCommand
+                    ?? (_goBackCommand = new RelayCommand(
+                    () => base.NavigationService.GoBack()));
             }
         }
         #endregion
         #region Ctors and Methods
 
         public CoursesCategoriesListViewModel(ICatalogueService catalogueService, INavigationService navigationService)
+            :base(catalogueService,navigationService)
         {
-            _catalogueService = catalogueService;
-            _navigationService = navigationService;
+           
         }
 
         #endregion
 
-        public async void Activate(object parameter)
+        public override async void Activate(object parameter)
         {
-           ListCategories=new ObservableCollection<Category>(await _catalogueService.GetCategoriesByTechnology((long)parameter));
+           ListCategories=new ObservableCollection<Category>(await CatalogueService.GetCategoriesByTechnology((long)parameter));
         }
 
-        public void Deactivate(object parameter)
+        public override void Deactivate(object parameter)
         {
             
         }
-
-        public void GoBack()
-        {
-            throw new NotImplementedException();
-        }
+      
     }
 }

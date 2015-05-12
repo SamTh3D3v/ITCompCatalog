@@ -5,15 +5,15 @@ using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class PartenaireViewModel : ViewModelBase
+    public class PartenaireViewModel : NavigableViewModelBase
     {
         #region Fields
-        private ObservableCollection<Partenaire> _listPartenaires;
-        private INavigationService _navigationService;
+        private ObservableCollection<Partenaire> _listPartenaires;        
         #endregion
         #region Properties
         public ObservableCollection<Partenaire> ListPartenaires
@@ -43,15 +43,25 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _navigateToIndexCommand
                     ?? (_navigateToIndexCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("MainPage")));
+                    () => NavigationService.NavigateTo("MainPage")));
+            }
+        }
+        private RelayCommand _gobackCommand;
+        public RelayCommand GoBackCommand
+        {
+            get
+            {
+                return _gobackCommand
+                    ?? (_gobackCommand = new RelayCommand(
+                    () => NavigationService.GoBack()));
             }
         }
         #endregion
         #region Ctors and Methods
 
-        public PartenaireViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
+        public PartenaireViewModel(INavigationService navigationService,ICatalogueService catalogueService)
+            :base(catalogueService,navigationService)
+        {            
             ListPartenaires = new ObservableCollection<Partenaire>()
             {  
                 new Partenaire()

@@ -10,12 +10,10 @@ using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class FavoriteCoursesViewModel : ViewModelBase, INavigable
+   public class FavoriteCoursesViewModel : NavigableViewModelBase
     {
         #region Fields
         private ObservableCollection<Cour> _listFavoriteCourses;
-        private INavigationService _navigationService;
-        private ICatalogueService _catalogueService;
         #endregion
         #region Properties
         public ObservableCollection<Cour> ListFavoriteCourses
@@ -48,7 +46,7 @@ namespace ITCompCatalogue.ViewModel
                     () =>
                     {
                         ListFavoriteCourses.Clear();
-                        _catalogueService.UnfavoriteAllCourses();
+                        CatalogueService.UnfavoriteAllCourses();
                     }));
             }
         }
@@ -59,7 +57,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _navigateToCourseCommand
                     ?? (_navigateToCourseCommand = new RelayCommand<Cour>(
-                    (cour) => _navigationService.NavigateTo("CourDetails", cour)));
+                    (cour) => NavigationService.NavigateTo("CourDetails", cour)));
             }
         }
         private RelayCommand<long> _unfavCourseCommand;
@@ -70,8 +68,8 @@ namespace ITCompCatalogue.ViewModel
                 return _unfavCourseCommand
                     ?? (_unfavCourseCommand = new RelayCommand<long>(async (idCourse) =>
                         {
-                            _catalogueService.UnFavoriteCourse(idCourse);
-                            ListFavoriteCourses = new ObservableCollection<Cour>(await _catalogueService.GetFavoriteCourses());
+                            CatalogueService.UnFavoriteCourse(idCourse);
+                            ListFavoriteCourses = new ObservableCollection<Cour>(await CatalogueService.GetFavoriteCourses());
                         }));
             }
         }
@@ -82,32 +80,35 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _navigateToIndexCommand
                     ?? (_navigateToIndexCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("MainPage")));
+                    () => NavigationService.NavigateTo("MainPage")));
+            }
+        }
+        private RelayCommand _goBackCommand;
+        public RelayCommand GoBackCommand
+        {
+            get
+            {
+                return _goBackCommand
+                    ?? (_goBackCommand = new RelayCommand(
+                    () => NavigationService.GoBack()));
             }
         }
         #endregion
         #region Ctors and Methods
 
         public FavoriteCoursesViewModel(INavigationService navigationService, ICatalogueService catalogueService)
-        {
-            _navigationService = navigationService;
-            _catalogueService = catalogueService;
+            :base(catalogueService,navigationService)
+        {            
         }
-        public async void Activate(object parameter)
+        public override async void Activate(object parameter)
         {
-            ListFavoriteCourses = new ObservableCollection<Cour>(await _catalogueService.GetFavoriteCourses());
-        }
-
-        public void Deactivate(object parameter)
-        {
-
+            ListFavoriteCourses = new ObservableCollection<Cour>(await CatalogueService.GetFavoriteCourses());
         }
 
-        public void GoBack()
+        public override void Deactivate(object parameter)
         {
-            throw new NotImplementedException();
-        }
 
+        }     
         #endregion
 
        

@@ -15,6 +15,17 @@
     <helper:BindablePage.Resources>
         <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
     </helper:BindablePage.Resources>
+    <helper:BindablePage.TopAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>                
+                <AppBarButton Label="Goback" Command="{Binding GoBackCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </helper:BindablePage.TopAppBar>
     <Page.BottomAppBar>
         <CommandBar Background="DeepSkyBlue">
             <CommandBar.PrimaryCommands>

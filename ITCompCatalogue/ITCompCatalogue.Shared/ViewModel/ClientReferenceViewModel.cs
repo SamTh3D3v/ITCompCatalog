@@ -5,15 +5,15 @@ using System.Text;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class ClientReferenceViewModel:ViewModelBase
+    public class ClientReferenceViewModel:NavigableViewModelBase
     {
         #region Fields
-        private ObservableCollection<CategoryClient> _listCategoryClient;
-        private INavigationService _navigationService;
+        private ObservableCollection<CategoryClient> _listCategoryClient;        
         #endregion
         #region Properties
         public ObservableCollection<CategoryClient> ListCategoryClient
@@ -43,16 +43,25 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _navigateToIndexCommand
                     ?? (_navigateToIndexCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("MainPage")));
+                    () => NavigationService.NavigateTo("MainPage")));
+            }
+        }
+        private RelayCommand _goBackCommand;     
+        public RelayCommand GoBackCommand
+        {
+            get
+            {
+                return _goBackCommand
+                    ?? (_goBackCommand = new RelayCommand(
+                    () => NavigationService.GoBack()));
             }
         }
         #endregion
         #region Ctors and Methods
 
-        public ClientReferenceViewModel(INavigationService navigationService)
-        {
-                //this load must be done async from a local storage xml file
-            _navigationService = navigationService;
+        public ClientReferenceViewModel(ICatalogueService catalogueService, INavigationService navigationService)
+            :base(catalogueService,navigationService)
+        {                            
             LoadListCategoryClient();
         }
 

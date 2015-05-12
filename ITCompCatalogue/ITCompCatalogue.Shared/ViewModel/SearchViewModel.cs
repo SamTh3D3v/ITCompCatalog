@@ -7,18 +7,17 @@ using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class SearchViewModel : ViewModelBase
+    public class SearchViewModel : NavigableViewModelBase
     {
         #region Fields
         private ObservableCollection<Cour> _serachResult;
-        private String _searchText = String.Empty;
-        private readonly ICatalogueService _catalogueService;
-        private String _searchBySelectedItem;
-        private INavigationService _navigationService;
+        private String _searchText = String.Empty;        
+        private String _searchBySelectedItem;        
         private bool _searchIntituleIsEnabled = true;
         private bool _searchCodeIsSelected = false;
 
@@ -157,7 +156,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _selectCourseCommand
                     ?? (_selectCourseCommand = new RelayCommand<Cour>(
-                        (cour) => _navigationService.NavigateTo("CourDetails", cour)));
+                        (cour) => NavigationService.NavigateTo("CourDetails", cour)));
             }
         }
         private RelayCommand _navigateToIndexCommand;
@@ -167,20 +166,29 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _navigateToIndexCommand
                     ?? (_navigateToIndexCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("MainPage")));
+                    () => base.NavigationService.NavigateTo("MainPage")));
+            }
+        }
+        private RelayCommand _goBackCommand;
+        public RelayCommand GoBackCommand
+        {
+            get
+            {
+                return _goBackCommand
+                    ?? (_goBackCommand = new RelayCommand(
+                    () => NavigationService.GoBack()));
             }
         }
         #endregion
         #region Ctor and Methods
         private async void SearchCourses()
         {
-            SearchResult = new ObservableCollection<Cour>(await _catalogueService.SearchCourses(SearchText, SearchBySelectedItem));
+            SearchResult = new ObservableCollection<Cour>(await CatalogueService.SearchCourses(SearchText, SearchBySelectedItem));
         }
 
         public SearchViewModel(ICatalogueService catalogueService,INavigationService navigationService)
-        {
-            _catalogueService = catalogueService;
-            _navigationService = navigationService;
+            :base(catalogueService,navigationService)
+        {           
             SearchBySelectedItem = SearchByItems.First();
         }
         #endregion

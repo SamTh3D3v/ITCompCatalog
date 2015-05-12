@@ -12,6 +12,17 @@
     <helper:BindablePage.DataContext>
         <Binding Path="PresenationViewModel" Source="{StaticResource Locator}"></Binding>
     </helper:BindablePage.DataContext>
+    <helper:BindablePage.TopAppBar>
+        <CommandBar>
+            <CommandBar.SecondaryCommands>
+                <AppBarButton Label="Goback" Command="{Binding GoBackCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.SecondaryCommands>
+        </CommandBar>
+    </helper:BindablePage.TopAppBar>
 
     <Grid Background="White">
         <Grid.RowDefinitions>

@@ -154,6 +154,16 @@ namespace ITCompCatalogue.ViewModel
                         }));
             }
         }
+        private RelayCommand _goBackCommand;
+        public RelayCommand GoBackCommand
+        {
+            get
+            {
+                return _goBackCommand
+                    ?? (_goBackCommand = new RelayCommand(
+                    () => NavigationService.GoBack()));
+            }
+        }
         #endregion
         public MainViewModel(ICatalogueService catalogueService,INavigationService navigationService)
             :base(catalogueService,navigationService)
@@ -174,17 +184,17 @@ namespace ITCompCatalogue.ViewModel
             }
         }
 
-        public void Activate(Object parameter)
+        public override void  Activate(Object parameter)
         {
             //throw new NotImplementedException();
            
         }
 
-        public void Deactivate(object parameter)
+        public override void Deactivate(object parameter)
         {
             //throw new NotImplementedException();
         }
-        public void GoBack()
+        public override void GoBack()
         {
             NavigationService.GoBack();
         }
