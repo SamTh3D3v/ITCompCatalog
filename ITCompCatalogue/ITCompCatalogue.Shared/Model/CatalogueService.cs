@@ -352,5 +352,7 @@ namespace ITCompCatalogue.Model
                 new CoursSchedule(5, new DateTime(2012,10,6),new DateTime(2012,11,10),this),
             };
         }
+
+        
     }
 }

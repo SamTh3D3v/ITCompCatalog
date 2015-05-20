@@ -23,7 +23,19 @@ namespace ITCompCatalogue
     {
         public MainPage()
         {                       
-            this.InitializeComponent();            
-        }              
+            this.InitializeComponent();
+            SizeChanged += MainPage_SizeChanged;
+        }
+
+        private void MainPage_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, GetState(e.NewSize.Width), true);            
+        }
+        private string GetState(double width)
+        {
+            if (width <= 755)
+                return "Snapped";           
+            return "Default";
+        }
     }
 }

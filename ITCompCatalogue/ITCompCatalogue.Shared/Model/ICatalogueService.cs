@@ -19,7 +19,7 @@ namespace ITCompCatalogue.Model
         void UnfavoriteAllCourses();
         Task<List<Cour>> GetFavoriteCourses();
         Task<List<CoursSchedule>> GetCoursScheduleByCursusId(long cursusId);
-        Task<List<CoursSchedule>> GetCoursScheduleByCoursId(long coursId);
+        Task<List<CoursSchedule>> GetCoursScheduleByCoursId(long coursId);        
     }
     public class CoursSchedule
     {

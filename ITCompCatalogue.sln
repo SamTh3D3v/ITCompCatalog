@@ -9,6 +9,8 @@ Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "ITCompCatalogue.Shared", "I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ITCompCatalogue.Windows", "ITCompCatalogue\ITCompCatalogue.Windows\ITCompCatalogue.Windows.csproj", "{859FFC24-F367-4082-9940-5DAB48D1E5FF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AnimatedTile", "AnimatedTile\AnimatedTile.csproj", "{23329342-9B68-4EDC-AE54-802F9EDBD3AE}"
+EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		ITCompCatalogue\ITCompCatalogue.Shared\ITCompCatalogue.Shared.projitems*{3dd90ffa-6b92-4140-8bdd-779a8dccf7ad}*SharedItemsImports = 13
@@ -57,6 +59,26 @@ Global
 		{859FFC24-F367-4082-9940-5DAB48D1E5FF}.Release|x86.ActiveCfg = Release|x86
 		{859FFC24-F367-4082-9940-5DAB48D1E5FF}.Release|x86.Build.0 = Release|x86
 		{859FFC24-F367-4082-9940-5DAB48D1E5FF}.Release|x86.Deploy.0 = Release|x86
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Debug|ARM.ActiveCfg = Debug|ARM
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Debug|ARM.Build.0 = Debug|ARM
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Debug|x64.ActiveCfg = Debug|x64
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Debug|x64.Build.0 = Debug|x64
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Debug|x86.ActiveCfg = Debug|x86
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Debug|x86.Build.0 = Debug|x86
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Release|ARM.ActiveCfg = Release|ARM
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Release|ARM.Build.0 = Release|ARM
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Release|Mixed Platforms.Build.0 = Release|x86
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Release|x64.ActiveCfg = Release|x64
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Release|x64.Build.0 = Release|x64
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Release|x86.ActiveCfg = Release|x86
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,5 +86,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{3DD90FFA-6B92-4140-8BDD-779A8DCCF7AD} = {3C907FFC-CC0D-43C5-9742-61BE2513E36E}
 		{859FFC24-F367-4082-9940-5DAB48D1E5FF} = {3C907FFC-CC0D-43C5-9742-61BE2513E36E}
+		{23329342-9B68-4EDC-AE54-802F9EDBD3AE} = {3C907FFC-CC0D-43C5-9742-61BE2513E36E}
 	EndGlobalSection
 EndGlobal

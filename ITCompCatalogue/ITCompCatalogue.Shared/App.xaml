@@ -14,7 +14,7 @@
         <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="DeepSkyBlue" />
         <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush" Color="DarkGray" />
         <x:Double x:Key="PivotHeaderItemFontSize">25</x:Double>
-        <controls:UserThemeResources x:Key="TelerikResources" DarkResourcesPath="ms-appx:///Resource/TelerikDarkStyleResources.xaml"/>
+        <controls:UserThemeResources x:Key="TelerikResources" DarkResourcesPath="ms-appx:///Resource/TelerikDarkStyleResources.xaml"/>        
     </Application.Resources>
 
 </Application>

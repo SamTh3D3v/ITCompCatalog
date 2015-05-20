@@ -19,7 +19,7 @@ namespace ITCompCatalogue.ViewModel
     {      
         #region Fields     
         private Technology _selectedTechnology;
-        private ObservableCollection<Technology> _listTechnologies  ;        
+        private ObservableCollection<Technology> _listTechnologies ;        
         #endregion
         #region Properties
         public Technology SelectedTechnology
@@ -57,6 +57,7 @@ namespace ITCompCatalogue.ViewModel
                 RaisePropertyChanged();
             }
         }
+       
         #endregion
         #region Commands
         private RelayCommand _searchCommand;

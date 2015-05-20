@@ -31,6 +31,7 @@ namespace ITCompCatalogue
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
 #endif
+        public static bool IsListViewSelected { get; set; }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code

@@ -52,11 +52,11 @@ namespace ITCompCatalogue.ViewModel
                 RaisePropertyChanged();
                 if (!_isCourseFavorite)
                 {
-                    _catalogueService.UnFavoriteCourse(CourseDetails.C_id);
+                    CatalogueService.UnFavoriteCourse(CourseDetails.C_id);
                 }
                 else
                 {
-                    _catalogueService.FavoriteCourse(_courseDetails.C_id);
+                    CatalogueService.FavoriteCourse(_courseDetails.C_id);
                 }
             }
         }

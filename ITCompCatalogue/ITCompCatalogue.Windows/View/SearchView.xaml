@@ -39,7 +39,7 @@
             <Border HorizontalAlignment="Stretch" Background="DeepSkyBlue" Height="80" >
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
             </Border>
-            <TextBlock Margin="4" Text="Rechercher" Foreground="Black" Style="{ThemeResource ControlHeaderTextBlockStyle}"/>
+            <TextBlock Margin="4" Text="Rechercher" Foreground="Black" />
         </StackPanel>
         <Grid Grid.Row="1" HorizontalAlignment="Stretch" Background="White">
             <Grid.RowDefinitions>
@@ -51,7 +51,7 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <TextBox Grid.Row="0" Grid.Column="0" BorderBrush="DeepSkyBlue" Background="White" Foreground="Black" Grid.ColumnSpan="2" Margin="5" Text="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" VerticalAlignment="Center" Foreground="Black" HorizontalAlignment="Left" Text="Par" Style="{ThemeResource ControlHeaderTextBlockStyle}" TextWrapping="Wrap"></TextBlock>
+            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" VerticalAlignment="Center" Foreground="Black" HorizontalAlignment="Left" Text="Par" TextWrapping="Wrap"></TextBlock>
             <!--<AppBarToggleButton IsChecked="{Binding ParCodeIsChecked,Mode=TwoWay}"  Grid.Row="1" Grid.Column="1" Label="Code"/>
             <AppBarToggleButton  IsChecked="{Binding ParIntituleIsChecked,Mode=TwoWay}" Grid.Row="1" Grid.Column="2" Label="Intitulé"/>
             <AppBarToggleButton  IsChecked="{Binding ParDescIsChecked,Mode=TwoWay}" Grid.Row="1" Grid.Column="3" Label="Desc"/>-->
@@ -77,8 +77,8 @@
                            <ColumnDefinition Width="Auto"/>
                        </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="{Binding Code}" Foreground="DeepSkyBlue"  Style="{ThemeResource ListViewItemContentTextBlockStyle}" FontSize="20" TextWrapping="Wrap" Grid.Column="0" />
-                        <TextBlock Text="{Binding Intitule}" Foreground="Black" Style="{ThemeResource ControlHeaderTextBlockStyle}" FontSize="15" TextWrapping="WrapWholeWords" Grid.Column="1" />
+                        <TextBlock Text="{Binding Code}" Foreground="DeepSkyBlue"   FontSize="20" TextWrapping="Wrap" Grid.Column="0" />
+                        <TextBlock Text="{Binding Intitule}" Foreground="Black"  FontSize="15" TextWrapping="WrapWholeWords" Grid.Column="1" />
                         <!--<TextBlock Text="{Binding Category.Intitule}" Foreground="Black" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Grid.Column="2" />-->
                    </Grid>
                 </DataTemplate>
