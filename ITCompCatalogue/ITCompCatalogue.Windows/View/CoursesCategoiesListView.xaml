@@ -62,8 +62,19 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <StackPanel HorizontalAlignment="Stretch">
-                                    <Border  HorizontalAlignment="Stretch" Margin="0" Height="50" >
-                                        <TextBlock VerticalAlignment="Center" Margin="2,0,0,0" Text="{Binding Intitule}" Foreground="Black" FontWeight="Bold"   FontSize="20"/>
+                                    <Border BorderBrush="Black" BorderThickness="0,2,0,2"  HorizontalAlignment="Stretch" Margin="0"  >
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock TextWrapping="Wrap" Grid.Column="0" VerticalAlignment="Center" Margin="2,0,0,0" Text="{Binding Intitule}" Foreground="Black" FontWeight="Bold"  FontSize="20"/>
+                                            <AppBarButton VerticalAlignment="Center" Grid.Column="1" Label="Date" Command="{Binding DataContext.GoToScheduleCommand,ElementName=RootPivot}" CommandParameter="{Binding DataContext,ElementName=CursusCourListView}">
+                                                <AppBarButton.Icon>
+                                                    <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE163;" />
+                                                </AppBarButton.Icon>
+                                            </AppBarButton>
+                                        </Grid>
                                     </Border>
                                     <ListView Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
                                         <interactivity:Interaction.Behaviors>

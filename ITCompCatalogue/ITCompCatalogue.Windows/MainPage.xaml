@@ -205,8 +205,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-            <ListView x:Name="listView1"  Grid.Row="1" HorizontalAlignment="Stretch" IsItemClickEnabled="True"  ItemsSource="{Binding ListTechnologies}" >
+            <ListView x:Name="listView1"  Grid.Row="1" HorizontalAlignment="Stretch" IsItemClickEnabled="True"   ItemsSource="{Binding ListTechnologies}" >
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="ItemClick">
                         <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}"  InputConverter="{StaticResource TechClickedConverter}"/>
@@ -229,15 +228,12 @@
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>                                
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>                                                               
                             </Grid.ColumnDefinitions>
-                            <StackPanel  Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal">
+                            <StackPanel  Grid.Row="0" Grid.Column="0"  Orientation="Horizontal">
                                 <TextBlock VerticalAlignment="Center" Text="{Binding Intitule}" Margin="5,5,10,5" />
                                 <AppBarButton Margin="5">
                                     <AppBarButton.Icon>
@@ -245,7 +241,7 @@
                                     </AppBarButton.Icon>
                                 </AppBarButton>
                             </StackPanel>
-                            <animatedTile:Tile Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2"  IsAnimationEnabled="True" Background="{StaticResource ThemeBrush}"
+                            <animatedTile:Tile Grid.Column="0"  Grid.Row="1"  IsAnimationEnabled="True" Background="{StaticResource ThemeBrush}"
                          Margin="5" Width="300" Height="300"                           
                          hubPicker:TiltEffect.IsTiltEnabled="True" >
                                 <animatedTile:Tile.TileAnimation>
@@ -277,166 +273,44 @@
                                     </Grid>
                                 </animatedTile:Tile.BackContent>
                             </animatedTile:Tile>
-                            <animatedTile:Tile Grid.Column="2" Grid.Row="1"  IsAnimationEnabled="True" Background="{StaticResource ThemeBrush}"
-                         Margin="5" Width="145" Height="145"                           
-                         hubPicker:TiltEffect.IsTiltEnabled="True" >
-                                <animatedTile:Tile.TileAnimation>
-                                    <animations:RightToLeftTileAnimation />
-                                </animatedTile:Tile.TileAnimation>
-                                <animatedTile:Tile.OverlayContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                        <TextBlock Text="{Binding Intitule}" Foreground="White" HorizontalAlignment="Left" 
-                           VerticalAlignment="Bottom" Margin="10" ></TextBlock>
-                                    </Grid>
-                                </animatedTile:Tile.OverlayContent>
-                                <animatedTile:Tile.FrontContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource ThemeBrush}" >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="80"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="{Binding C_id,Converter={StaticResource TechIdToImageConverter}}" Width="40" ></Image>
-                                        <TextBlock Grid.Column="1" TextWrapping="Wrap"
-                               VerticalAlignment="Center" Margin="0" Text="{Binding Intitule}"/>
+                            <ListView Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch" IsItemClickEnabled="True"  ItemsSource="{Binding Categories}" >
+                                <interactivity:Interaction.Behaviors>
+                                    <core:EventTriggerBehavior EventName="ItemClick">
+                                        <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}"  InputConverter="{StaticResource TechClickedConverter}"/>
+                                        <!--CommandParameter="{Binding ElementName=Sl_VolumeSilder, Path=Value}"-->
+                                    </core:EventTriggerBehavior>
+                                </interactivity:Interaction.Behaviors>
+                                <ListView.ItemContainerStyle>
+                                    <Style TargetType="ListViewItem">
+                                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                                    </Style>
+                                </ListView.ItemContainerStyle>
+                                <ListView.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <StackPanel Orientation="Vertical"/>
+                                    </ItemsPanelTemplate>
+                                </ListView.ItemsPanel>
+                                <ListView.ItemTemplate>
+                                    <DataTemplate >
+                                        <Border BorderThickness="0"   HorizontalAlignment="Stretch">
+                                            <Grid Background="WhiteSmoke">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                    <ColumnDefinition Width="*"/>                                                    
+                                                </Grid.ColumnDefinitions>
 
-                                    </Grid>
-                                </animatedTile:Tile.FrontContent>
-                                <animatedTile:Tile.BackContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                                        <Grid.Background>
-                                            <ImageBrush ImageSource="{Binding C_id,Converter={StaticResource TechIdToImageTileConverter}}" Stretch="Uniform" />
-                                        </Grid.Background>
-                                    </Grid>
-                                </animatedTile:Tile.BackContent>
-                            </animatedTile:Tile>
-                            <animatedTile:Tile Grid.Column="2" Grid.Row="2"  IsAnimationEnabled="True" Background="{StaticResource ThemeBrush}"
-                         Margin="5" Width="145" Height="145"                           
-                         hubPicker:TiltEffect.IsTiltEnabled="True" >
-                                <animatedTile:Tile.TileAnimation>
-                                    <animations:RightToLeftTileAnimation />
-                                </animatedTile:Tile.TileAnimation>
-                                <animatedTile:Tile.OverlayContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                        <TextBlock Text="{Binding Intitule}" Foreground="White" HorizontalAlignment="Left" 
-                           VerticalAlignment="Bottom" Margin="10" ></TextBlock>
-                                    </Grid>
-                                </animatedTile:Tile.OverlayContent>
-                                <animatedTile:Tile.FrontContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource ThemeBrush}" >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="80"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="{Binding C_id,Converter={StaticResource TechIdToImageConverter}}" Width="40" ></Image>
-                                        <TextBlock Grid.Column="1" TextWrapping="Wrap"
-                               VerticalAlignment="Center" Margin="0" Text="{Binding Intitule}"/>
-
-                                    </Grid>
-                                </animatedTile:Tile.FrontContent>
-                                <animatedTile:Tile.BackContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                                        <Grid.Background>
-                                            <ImageBrush ImageSource="{Binding C_id,Converter={StaticResource TechIdToImageTileConverter}}" Stretch="Uniform" />
-                                        </Grid.Background>
-                                    </Grid>
-                                </animatedTile:Tile.BackContent>
-                            </animatedTile:Tile>
-                            <animatedTile:Tile Grid.Column="0" Grid.Row="3"  IsAnimationEnabled="True" Background="{StaticResource ThemeBrush}"
-                         Margin="5" Width="145" Height="145"                           
-                         hubPicker:TiltEffect.IsTiltEnabled="True" >
-                                <animatedTile:Tile.TileAnimation>
-                                    <animations:RightToLeftTileAnimation />
-                                </animatedTile:Tile.TileAnimation>
-                                <animatedTile:Tile.OverlayContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                        <TextBlock Text="{Binding Intitule}" Foreground="White" HorizontalAlignment="Left" 
-                           VerticalAlignment="Bottom" Margin="10" ></TextBlock>
-                                    </Grid>
-                                </animatedTile:Tile.OverlayContent>
-                                <animatedTile:Tile.FrontContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource ThemeBrush}" >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="80"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="{Binding C_id,Converter={StaticResource TechIdToImageConverter}}" Width="40" ></Image>
-                                        <TextBlock Grid.Column="1" TextWrapping="Wrap"
-                               VerticalAlignment="Center" Margin="0" Text="{Binding Intitule}"/>
-
-                                    </Grid>
-                                </animatedTile:Tile.FrontContent>
-                                <animatedTile:Tile.BackContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                                        <Grid.Background>
-                                            <ImageBrush ImageSource="{Binding C_id,Converter={StaticResource TechIdToImageTileConverter}}" Stretch="Uniform" />
-                                        </Grid.Background>
-                                    </Grid>
-                                </animatedTile:Tile.BackContent>
-                            </animatedTile:Tile>
-                            <animatedTile:Tile Grid.Column="1" Grid.Row="3"  IsAnimationEnabled="True" Background="{StaticResource ThemeBrush}"
-                         Margin="5" Width="145" Height="145"                           
-                         hubPicker:TiltEffect.IsTiltEnabled="True" >
-                                <animatedTile:Tile.TileAnimation>
-                                    <animations:RightToLeftTileAnimation />
-                                </animatedTile:Tile.TileAnimation>
-                                <animatedTile:Tile.OverlayContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                        <TextBlock Text="{Binding Intitule}" Foreground="White" HorizontalAlignment="Left" 
-                           VerticalAlignment="Bottom" Margin="10" ></TextBlock>
-                                    </Grid>
-                                </animatedTile:Tile.OverlayContent>
-                                <animatedTile:Tile.FrontContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource ThemeBrush}" >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="80"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="{Binding C_id,Converter={StaticResource TechIdToImageConverter}}" Width="40" ></Image>
-                                        <TextBlock Grid.Column="1" TextWrapping="Wrap"
-                               VerticalAlignment="Center" Margin="0" Text="{Binding Intitule}"/>
-
-                                    </Grid>
-                                </animatedTile:Tile.FrontContent>
-                                <animatedTile:Tile.BackContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                                        <Grid.Background>
-                                            <ImageBrush ImageSource="{Binding C_id,Converter={StaticResource TechIdToImageTileConverter}}" Stretch="Uniform" />
-                                        </Grid.Background>
-                                    </Grid>
-                                </animatedTile:Tile.BackContent>
-                            </animatedTile:Tile>
-                            <animatedTile:Tile Grid.Column="3" Grid.Row="3"  IsAnimationEnabled="True" Background="{StaticResource ThemeBrush}"
-                         Margin="5" Width="145" Height="145"                           
-                         hubPicker:TiltEffect.IsTiltEnabled="True" >
-                                <animatedTile:Tile.TileAnimation>
-                                    <animations:RightToLeftTileAnimation />
-                                </animatedTile:Tile.TileAnimation>
-                                <animatedTile:Tile.OverlayContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-                                        <TextBlock Text="{Binding Intitule}" Foreground="White" HorizontalAlignment="Left" 
-                           VerticalAlignment="Bottom" Margin="10" ></TextBlock>
-                                    </Grid>
-                                </animatedTile:Tile.OverlayContent>
-                                <animatedTile:Tile.FrontContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="{StaticResource ThemeBrush}" >
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="80"></ColumnDefinition>
-                                            <ColumnDefinition Width="*"></ColumnDefinition>
-                                        </Grid.ColumnDefinitions>
-                                        <Image Source="{Binding C_id,Converter={StaticResource TechIdToImageConverter}}" Width="40" ></Image>
-                                        <TextBlock Grid.Column="1" TextWrapping="Wrap"
-                               VerticalAlignment="Center" Margin="0" Text="{Binding Intitule}"/>
-
-                                    </Grid>
-                                </animatedTile:Tile.FrontContent>
-                                <animatedTile:Tile.BackContent>
-                                    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" >
-                                        <Grid.Background>
-                                            <ImageBrush ImageSource="{Binding C_id,Converter={StaticResource TechIdToImageTileConverter}}" Stretch="Uniform" />
-                                        </Grid.Background>
-                                    </Grid>
-                                </animatedTile:Tile.BackContent>
-                            </animatedTile:Tile>
+                                                <Border Margin="2" Width="30" Height="30">
+                                                    <Image VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding TechnologieID,Converter={StaticResource TechIdToImageConverter}}" Stretch="UniformToFill"/>
+                                                </Border>
+                                                <StackPanel Grid.Column="1"  VerticalAlignment="Center" Margin="14.5,2,0,0">
+                                                    <TextBlock Text="{Binding Intitule}"  Foreground="Black"/>
+                                                    <TextBlock Text="{Binding Code }" Foreground="DarkGray"/>
+                                                </StackPanel>                                               
+                                            </Grid>
+                                        </Border>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
                         </Grid>
                     </DataTemplate>
                 </ListView.ItemTemplate>

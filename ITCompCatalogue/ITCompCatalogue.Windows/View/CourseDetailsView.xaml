@@ -34,6 +34,11 @@
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE113;" />
                     </AppBarToggleButton.Icon>
                 </AppBarToggleButton>
+                <AppBarButton Label="Date" Command="{Binding GoToScheduleCommand}" CommandParameter="{Binding CourseDetails}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE163;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>

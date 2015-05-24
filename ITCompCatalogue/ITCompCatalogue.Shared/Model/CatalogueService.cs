@@ -23,7 +23,9 @@ namespace ITCompCatalogue.Model
                         C_id = (long)statement[0],
                         Code = (string)statement[1],
                         Intitule = (string)statement[2],
-                        CourseCount = GetCoursesCount((long)statement[0])
+                        CourseCount = GetCoursesCount((long)statement[0]),
+                        Categories = await GetCategoriesByTechnology((long)statement[0])
+                        
                     });
                 }
             }
@@ -60,6 +62,7 @@ namespace ITCompCatalogue.Model
                         C_id = (long)statement[0],
                         Code = (string)statement[1],
                         Intitule = (string)statement[2],
+                        TechnologieID = (long)statement[3],
                         //Technology = GetTechnology(technologyId) 
                         //Cours = new ObservableCollection<Cour>(await GetCoursesByCategoryId((long)statement[0])),
                         Cursus = new ObservableCollection<Cursu>(await GetCursusByCategoryId((long)statement[0]))
