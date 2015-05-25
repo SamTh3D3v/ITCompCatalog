@@ -5,14 +5,14 @@ using Windows.System;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using ITCompCatalogue.Helper;
+using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
 {
-    public class ContactViewModel:ViewModelBase
+    public class ContactViewModel:NavigableViewModelBase
     {
-        #region Fields
-
-        private readonly INavigationService _navigationService;
+        #region Fields        
         private String _phoneNumber = "+213 (0) 21 56 32 33";
             private String _faxNumber = "+213 (0) 21 56 18 26";
                 private String _email = "Lazhar.Guendouz@ITComp-dz.com";
@@ -132,14 +132,58 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands
-        private RelayCommand _navigateToIndexCommand;
-        public RelayCommand NavigateToIndexCommand
+
+        private RelayCommand _refClientCommand;
+        public RelayCommand RefClientsCommand
         {
             get
             {
-                return _navigateToIndexCommand
-                    ?? (_navigateToIndexCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("MainPage")));
+                return _refClientCommand
+                    ?? (_refClientCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("RefClient")));
+            }
+        }
+        private RelayCommand _partnerCommand;
+        public RelayCommand PartnerCommand
+        {
+            get
+            {
+                return _partnerCommand
+                    ?? (_partnerCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("PartnerView")));
+            }
+        }        
+        private RelayCommand _favorieCommand;
+        public RelayCommand FavorieCommand
+        {
+            get
+            {
+                return _favorieCommand
+                    ?? (_favorieCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("FavoriteCoursesView")));
+            }
+        }
+        private RelayCommand _homeCommand;      
+        public RelayCommand HomeCommand
+        {
+            get
+            {
+                return _homeCommand
+                    ?? (_homeCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("MainPage")));
+            }
+        }
+        private RelayCommand _presentationCommand;
+        public RelayCommand PresenationCommand
+        {
+            get
+            {
+                return _presentationCommand
+                    ?? (_presentationCommand = new RelayCommand(
+                    () =>
+                    {
+                        NavigationService.NavigateTo("PresentationView");
+                    }));
             }
         }
         private RelayCommand<String> _callCommand;
@@ -189,14 +233,13 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _goBackCommand
                     ?? (_goBackCommand = new RelayCommand(
-                    () => _navigationService.GoBack()));
+                    () => NavigationService.GoBack()));
             }
         }
         #endregion 
         #region Ctors and Methods
-        public ContactViewModel(INavigationService navigationService)
-        {
-            _navigationService = navigationService;
+        public ContactViewModel(INavigationService navigationService,ICatalogueService catalogueService):base(catalogueService,navigationService)
+        {            
             
         }
         #endregion

@@ -20,8 +20,23 @@
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
-                <ToggleButton Grid.Column="0" Content="Présentation" Command="{Binding PresenationCommand}">
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="0" Content="Index" Command="{Binding HomeCommand}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE166;"></FontIcon>
+                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+                <ToggleButton Grid.Column="5" HorizontalAlignment="Stretch" Content="Présentation" Command="{Binding PresenationCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>

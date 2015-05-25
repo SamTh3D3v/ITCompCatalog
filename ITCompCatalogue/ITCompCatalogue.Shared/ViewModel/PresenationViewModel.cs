@@ -36,14 +36,54 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands
-        private RelayCommand _navigateToIndexCommand;
-        public RelayCommand NavigateToIndexCommand
+        private RelayCommand _refClientCommand;
+        public RelayCommand RefClientsCommand
         {
             get
             {
-                return _navigateToIndexCommand
-                    ?? (_navigateToIndexCommand = new RelayCommand(
+                return _refClientCommand
+                    ?? (_refClientCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("RefClient")));
+            }
+        }
+        private RelayCommand _partnerCommand;
+        public RelayCommand PartnerCommand
+        {
+            get
+            {
+                return _partnerCommand
+                    ?? (_partnerCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("PartnerView")));
+            }
+        }
+        private RelayCommand _homeCommand;
+        public RelayCommand HomeCommand
+        {
+            get
+            {
+                return _homeCommand
+                    ?? (_homeCommand = new RelayCommand(
                     () => NavigationService.NavigateTo("MainPage")));
+            }
+        }
+        private RelayCommand _contactCommand;
+        public RelayCommand ContactCommand
+        {
+            get
+            {
+                return _contactCommand
+                    ?? (_contactCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("ContactView")));
+            }
+        }
+        private RelayCommand _favorieCommand;
+        public RelayCommand FavorieCommand
+        {
+            get
+            {
+                return _favorieCommand
+                    ?? (_favorieCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("FavoriteCoursesView")));
             }
         }
         private RelayCommand _goBackCommand;
