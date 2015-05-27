@@ -350,9 +350,9 @@ namespace ITCompCatalogue.Model
         {
             return new List<CoursSchedule>()
             {
-                 new CoursSchedule(3, new DateTime(2015,01,5),new DateTime(2015,01,12),this),
-                new CoursSchedule(4, new DateTime(2015,01,15),new DateTime(2015,01,23),this),
-                new CoursSchedule(5, new DateTime(2012,10,6),new DateTime(2012,11,10),this),
+                 new CoursSchedule(3, new DateTime(2015,05,15),new DateTime(2015,05,20),this),
+                new CoursSchedule(4, new DateTime(2015,05,25),new DateTime(2015,05,31),this),
+                new CoursSchedule(5, new DateTime(2012,06,6),new DateTime(2012,06,12),this),
             };
         }
 

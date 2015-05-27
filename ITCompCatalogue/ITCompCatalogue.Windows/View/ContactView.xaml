@@ -133,7 +133,9 @@
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="100"/>
                     <RowDefinition Height="120"/>
+                    <RowDefinition Height="120"/>
                 </Grid.RowDefinitions>
+                
                 <Grid Grid.Row="0" Margin="10,10,10,0"  Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".25*"/>
@@ -170,12 +172,16 @@
                     <Image Grid.RowSpan="2" Grid.Column="0" Source="../Images/mail.png"/>
                     <HyperlinkButton Grid.Row="0" Content="{Binding Email}" FontSize="15" Grid.Column="1" Foreground="DeepSkyBlue" VerticalAlignment="Center" HorizontalAlignment="Left" ></HyperlinkButton>
                     <HyperlinkButton Grid.Row="1" Content="{Binding AltEmail}" FontSize="15" Grid.Column="1" Foreground="DeepSkyBlue" VerticalAlignment="Center" HorizontalAlignment="Left" ></HyperlinkButton>
-                </Grid>
+                </Grid>                
                 <Grid Grid.Row="4" Margin="10,10,10,0"  Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".25*"/>
                         <ColumnDefinition Width=".75*"/>
                     </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="../Images/adress.png"/>
+                    <TextBlock TextWrapping="Wrap" Text="{Binding Adress}"  FontSize="20" Grid.Column="1" Foreground="DeepSkyBlue" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
+                </Grid>
+                <Grid Grid.Row="5" Margin="10,10,10,0"  Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">                    
                     <Image Grid.Column="0" Source="../Images/adress.png"/>
                     <TextBlock TextWrapping="Wrap" Text="{Binding Adress}"  FontSize="20" Grid.Column="1" Foreground="DeepSkyBlue" VerticalAlignment="Center" HorizontalAlignment="Left" ></TextBlock>
                 </Grid>

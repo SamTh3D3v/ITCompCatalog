@@ -17,12 +17,10 @@ using Telerik.UI.Xaml.Controls.Input;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class ScheduleViewModel : ViewModelBase, INavigable
+    public class ScheduleViewModel : NavigableViewModelBase
     {
         #region Fields
-
-        private ICatalogueService _catalogueService;
-        private readonly INavigationService _navigationService;
+                
         private ObservableCollection<CoursSchedule> _coursesScheduleList;
         private CalendarDisplayMode _displayMode;
         private ObservableCollection<CoursSchedule> _listCoursesInDate;
@@ -105,14 +103,67 @@ namespace ITCompCatalogue.ViewModel
 
         #endregion
         #region Commands
-        private RelayCommand _navigateToIndexCommand;
-        public RelayCommand NavigateToIndexCommand
+        private RelayCommand _partnerCommand;
+        public RelayCommand PartnerCommand
         {
             get
             {
-                return _navigateToIndexCommand
-                    ?? (_navigateToIndexCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("MainPage")));
+                return _partnerCommand
+                    ?? (_partnerCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("PartnerView")));
+            }
+        }
+        private RelayCommand _contactCommand;
+        public RelayCommand ContactCommand
+        {
+            get
+            {
+                return _contactCommand
+                    ?? (_contactCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("ContactView")));
+            }
+        }
+        private RelayCommand _homeCommand;
+        public RelayCommand HomeCommand
+        {
+            get
+            {
+                return _homeCommand
+                    ?? (_homeCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("MainPage")));
+            }
+        }
+        private RelayCommand _refClientCommand;
+        public RelayCommand RefClientsCommand
+        {
+            get
+            {
+                return _refClientCommand
+                    ?? (_refClientCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("RefClient")));
+            }
+        }
+        private RelayCommand _presentationCommand;
+        public RelayCommand PresenationCommand
+        {
+            get
+            {
+                return _presentationCommand
+                    ?? (_presentationCommand = new RelayCommand(
+                    () =>
+                    {
+                        NavigationService.NavigateTo("PresentationView");
+                    }));
+            }
+        }
+        private RelayCommand _goBackCommand;
+        public RelayCommand GoBackCommand
+        {
+            get
+            {
+                return _goBackCommand
+                    ?? (_goBackCommand = new RelayCommand(
+                    () => NavigationService.GoBack()));
             }
         }
         private RelayCommand _searchCommand;
@@ -122,7 +173,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return _searchCommand
                     ?? (_searchCommand = new RelayCommand(
-                    () => _navigationService.NavigateTo("SearchView")));
+                    () => NavigationService.NavigateTo("SearchView")));
             }
         }
         private RelayCommand<DateTime> _cellTappedCommand;
@@ -149,8 +200,8 @@ namespace ITCompCatalogue.ViewModel
                     ?? (_navigateToCourseCommand = new RelayCommand<CoursSchedule>(
                     (courSce) =>
                     {
-                        var cour = _catalogueService.GetCourseByCourseId(courSce.CoursId);
-                        _navigationService.NavigateTo("CourDetails", cour);
+                        var cour = CatalogueService.GetCourseByCourseId(courSce.CoursId);
+                        NavigationService.NavigateTo("CourDetails", cour);
                     }));
             }
         }
@@ -193,26 +244,25 @@ namespace ITCompCatalogue.ViewModel
 
         #endregion
         #region Ctor & Mothods
-        public ScheduleViewModel(ICatalogueService catalogueService, INavigationService navigationService)
+        public ScheduleViewModel(ICatalogueService catalogueService, INavigationService navigationService):base(catalogueService,navigationService)
         {
-            _catalogueService = catalogueService;
-            _navigationService = navigationService;
+          
         }
-        public async void Activate(object parameter)
+        public async override void Activate(object parameter)
         {
             var course = parameter as Cour;
             if (course != null)
             {
-                CoursesScheduleList = new ObservableCollection<CoursSchedule>(await _catalogueService.GetCoursScheduleByCoursId(course.C_id));
+                CoursesScheduleList = new ObservableCollection<CoursSchedule>(await CatalogueService.GetCoursScheduleByCoursId(course.C_id));
             }
             else
             {
                 var cursus = parameter as Cursu;
                 if (cursus != null)
                 {
-                    _globaleCoursesScheduleList = await _catalogueService.GetCoursScheduleByCursusId(cursus.C_id);
+                    _globaleCoursesScheduleList = await CatalogueService.GetCoursScheduleByCursusId(cursus.C_id);
                     CoursesScheduleList = new ObservableCollection<CoursSchedule>(_globaleCoursesScheduleList);
-                    var courInCursus = await _catalogueService.GetCoursesByCursusId(cursus.C_id);
+                    var courInCursus = await CatalogueService.GetCoursesByCursusId(cursus.C_id);
                     ListCoursesInCursus = new ObservableCollection<CourVisible>(courInCursus.Select(x => new CourVisible()
                     {
                         C_id = x.C_id,
@@ -223,11 +273,11 @@ namespace ITCompCatalogue.ViewModel
                 }
             }
         }
-        public void Deactivate(object parameter)
+        public override void  Deactivate(object parameter)
         {
 
         }
-        public void GoBack()
+        public override void GoBack()
         {
 
         }

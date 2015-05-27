@@ -22,7 +22,105 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </helper:BindablePage.Resources>
-    <Page.BottomAppBar>
+    <helper:BindablePage.TopAppBar>
+        <AppBar>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
+                </Grid.ColumnDefinitions>
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="0" Content="Index" Command="{Binding HomeCommand}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE166;"></FontIcon>
+                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+                <ToggleButton Grid.Column="5" Content="Présentation" Command="{Binding PresenationCommand}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE128;"></FontIcon>
+                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="1" Content="Partenaires" Command="{Binding PartnerCommand}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE125;"></FontIcon>
+                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+                <ToggleButton HorizontalAlignment="Stretch"  Grid.Column="2" Content="Clients" Command="{Binding RefClientsCommand}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE118;"></FontIcon>
+                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="Contact" Command="{Binding ContactCommand}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE13A;"></FontIcon>
+                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="4" Content="Favoris" Command="{Binding FavorieCommand}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE113;"></FontIcon>
+                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
+            </Grid>
+        </AppBar>
+    </helper:BindablePage.TopAppBar>
+    <helper:BindablePage.BottomAppBar>
         <CommandBar Background="{StaticResource ThemeBrush}">
             <CommandBar.PrimaryCommands>
                 <AppBarButton Label="Rechercher"   Command="{Binding SearchCommand}">
@@ -32,33 +130,30 @@
                 </AppBarButton>
             </CommandBar.PrimaryCommands>
         </CommandBar>
-    </Page.BottomAppBar>
+    </helper:BindablePage.BottomAppBar>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0" >
-            <Border HorizontalAlignment="Stretch" Background="{StaticResource ThemeBrush}" Height="80">
-                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" >
-                    <interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="Tapped">
-                            <core:InvokeCommandAction Command="{Binding NavigateToIndexCommand}"/>
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>
-                </Image>
-            </Border>
-            <TextBlock Margin="4" Foreground="Black" Text="Schedules" />
-        </StackPanel>
+        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="DeepSkyBlue" >
+            <StackPanel Orientation="Horizontal">
+                <AppBarButton Command="{Binding GoBackCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+            </StackPanel>
+        </Border>
         <Grid Grid.Row="1">
             <Grid.Resources>
                 <converters:CellModelToEventConverter x:Key="CourseSecConverter" />
-
                 <DataTemplate x:Key="SelectorTemplate">
-                    <Grid>
-                        <!--<TextBlock Text="⏰" Foreground="#FF3399FF" FontSize="15" HorizontalAlignment="Right" FontFamily="Segoe UI Symbol" Margin="0,1,2,0" />-->
-                        <Rectangle Fill="{StaticResource ThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
-                        <TextBlock Text="{Binding Converter={StaticResource CourseSecConverter}}" Foreground="White" FontSize="13.333" VerticalAlignment="Bottom" Margin="6,0,0,4" />
+                    <Grid>                        
+                        <Rectangle Fill="{StaticResource ThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,20"/>
+                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE193;" Foreground="Black" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"></FontIcon>                       
+                        <TextBlock Text="{Binding Converter={StaticResource CourseSecConverter}}" Foreground="Black" FontSize="13.333" VerticalAlignment="Bottom" Margin="6,0,0,4" />
                     </Grid>
                 </DataTemplate>
                 <helper:CustomStyleSelector x:Key="Selector"  EventTemplate="{StaticResource SelectorTemplate}" />
