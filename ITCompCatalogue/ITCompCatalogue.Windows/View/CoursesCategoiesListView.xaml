@@ -126,86 +126,108 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </helper:BindablePage.BottomAppBar>
-
-    <FlipView Background="White"  ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
-        <!--<FlipView.HeaderTemplate >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="DeepSkyBlue" >
+            <StackPanel Orientation="Horizontal">
+                <AppBarButton Command="{Binding GoBackCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+            </StackPanel>
+        </Border>
+        <FlipView Grid.Row="1" Background="White"  ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
+            <!--<FlipView.HeaderTemplate >
             <DataTemplate>               
                 <TextBlock Text="{Binding Intitule}" />
             </DataTemplate>
         </FlipView.HeaderTemplate>-->
-        <FlipView.ItemTemplate>
-            <DataTemplate>
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">     
-                        <ListView.ItemContainerStyle>
-                            <Style TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                            </Style>
-                        </ListView.ItemContainerStyle>
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <StackPanel HorizontalAlignment="Stretch">
-                                    <Border BorderBrush="Black" BorderThickness="0,2,0,2"  HorizontalAlignment="Stretch" Margin="0"  >
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="Auto"/>
-                                            </Grid.ColumnDefinitions>
-                                            <TextBlock TextWrapping="Wrap" Grid.Column="0" VerticalAlignment="Center" Margin="2,0,0,0" Text="{Binding Intitule}" Foreground="Black" FontWeight="Bold"  FontSize="20"/>
-                                            <AppBarButton VerticalAlignment="Center" Grid.Column="1" Label="Date" Command="{Binding DataContext.GoToScheduleCommand,ElementName=RootPivot}" CommandParameter="{Binding DataContext,ElementName=CursusCourListView}">
-                                                <AppBarButton.Icon>
-                                                    <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE163;" />
-                                                </AppBarButton.Icon>
-                                            </AppBarButton>
-                                        </Grid>
-                                    </Border>
-                                    <ListView Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
-                                        <interactivity:Interaction.Behaviors>
-                                            <core:EventTriggerBehavior EventName="ItemClick">
-                                                <core:InvokeCommandAction Command="{Binding DataContext.CourseSelectedCommand, ElementName=RootPivot}"
+            <FlipView.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="LightGray" >
+                            <StackPanel Orientation="Horizontal">                                   
+                                <Image HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Source="../Images/Category.png" />
+                                <TextBlock VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="22" Text="{Binding Intitule}" Foreground="White"/>
+                            </StackPanel>
+                        </Border>
+                        <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel HorizontalAlignment="Stretch">
+                                        <Border BorderBrush="Black" BorderThickness="0,2,0,2"  HorizontalAlignment="Stretch" Margin="0"  >
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock TextWrapping="Wrap" Grid.Column="0" VerticalAlignment="Center" Margin="2,0,0,0" Text="{Binding Intitule}" Foreground="Black" FontWeight="Bold"  FontSize="20"/>
+                                                <AppBarButton VerticalAlignment="Center" Grid.Column="1" Label="Date" Command="{Binding DataContext.GoToScheduleCommand,ElementName=RootPivot}" CommandParameter="{Binding DataContext,ElementName=CursusCourListView}">
+                                                    <AppBarButton.Icon>
+                                                        <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE163;" />
+                                                    </AppBarButton.Icon>
+                                                </AppBarButton>
+                                            </Grid>
+                                        </Border>
+                                        <ListView Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
+                                            <interactivity:Interaction.Behaviors>
+                                                <core:EventTriggerBehavior EventName="ItemClick">
+                                                    <core:InvokeCommandAction Command="{Binding DataContext.CourseSelectedCommand, ElementName=RootPivot}"
                                                           InputConverter="{StaticResource ItemClickedConverter}"/>
-                                            </core:EventTriggerBehavior>
-                                        </interactivity:Interaction.Behaviors>
-                                        <ListView.ItemContainerStyle>
-                                            <Style TargetType="ListViewItem">
-                                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                            </Style>
-                                        </ListView.ItemContainerStyle>
-                                        <ListView.ItemTemplate>
-                                            <DataTemplate>
-                                                <Border BorderThickness="2" Background="WhiteSmoke"  >
-                                                    
-                                                    <Grid>
-                                                        <Grid.ColumnDefinitions>
-                                                            <ColumnDefinition Width="100"/>
-                                                            <ColumnDefinition Width="*"/>
-                                                        </Grid.ColumnDefinitions> 
-                                                        <Grid.RowDefinitions>
-                                                            <RowDefinition Height="25"/>
-                                                            <RowDefinition Height="75"/>
-                                                            
-                                                        </Grid.RowDefinitions>
-                                                        <Border Background="DeepSkyBlue" Grid.Row="0" Margin="0"  VerticalAlignment="Center" Grid.Column="0">
-                                                            <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding Cour.Code}" TextWrapping="Wrap"  FontSize="16" />
-                                                        </Border>
-                                                        <TextBlock Margin="5,0,0,0" Grid.Row="1"  Grid.Column="0"  Foreground="Black" Text="Naissa" TextWrapping="Wrap"  FontSize="16" />
-                                                        <TextBlock Margin="5,0,0,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"  Foreground="Black" Text="{Binding Cour.Intitule}" TextWrapping="Wrap"  FontSize="16" />
-                                                       
-                                                    </Grid>
-                                                </Border>
-                                            </DataTemplate>
-                                        </ListView.ItemTemplate>
-                                    </ListView>
-                                </StackPanel>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
-                </Grid>
-            </DataTemplate>
-        </FlipView.ItemTemplate>
-    </FlipView>
+                                                </core:EventTriggerBehavior>
+                                            </interactivity:Interaction.Behaviors>
+                                            <ListView.ItemContainerStyle>
+                                                <Style TargetType="ListViewItem">
+                                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                                </Style>
+                                            </ListView.ItemContainerStyle>
+                                            <ListView.ItemTemplate>
+                                                <DataTemplate>
+                                                    <Border BorderThickness="2" Background="WhiteSmoke"  >
+
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="100"/>
+                                                                <ColumnDefinition Width="*"/>
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="25"/>
+                                                                <RowDefinition Height="75"/>
+
+                                                            </Grid.RowDefinitions>
+                                                            <Border Background="DeepSkyBlue" Grid.Row="0" Margin="0"  VerticalAlignment="Center" Grid.Column="0">
+                                                                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Foreground="White" Text="{Binding Cour.Code}" TextWrapping="Wrap"  FontSize="16" />
+                                                            </Border>
+                                                            <TextBlock Margin="5,0,0,0" Grid.Row="1"  Grid.Column="0"  Foreground="Black" Text="Naissa" TextWrapping="Wrap"  FontSize="16" />
+                                                            <TextBlock Margin="5,0,0,0" Grid.Row="0" Grid.RowSpan="2" Grid.Column="1"  Foreground="Black" Text="{Binding Cour.Intitule}" TextWrapping="Wrap"  FontSize="16" />
+
+                                                        </Grid>
+                                                    </Border>
+                                                </DataTemplate>
+                                            </ListView.ItemTemplate>
+                                        </ListView>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </DataTemplate>
+            </FlipView.ItemTemplate>
+        </FlipView>
+    </Grid>
+
 </helper:BindablePage>

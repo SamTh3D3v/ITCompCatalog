@@ -28,86 +28,88 @@
         </ResourceDictionary>
     </helper:BindablePage.Resources>
     <helper:BindablePage.TopAppBar>
-        <AppBar>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
-                </Grid.ColumnDefinitions>
-                <ToggleButton Grid.Column="0" Content="Présentation" Command="{Binding PresenationCommand}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE128;"></FontIcon>
-                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="1" Content="Partenaires" Command="{Binding PartnerCommand}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE125;"></FontIcon>
-                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch"  Grid.Column="2" Content="Clients" Command="{Binding RefClientsCommand}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE118;"></FontIcon>
-                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="Contact" Command="{Binding ContactCommand}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE13A;"></FontIcon>
-                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="4" Content="Favoris" Command="{Binding FavorieCommand}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE113;"></FontIcon>
-                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>
-            </Grid>
+        <AppBar Background="DeepSkyBlue">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
+                <Grid Background="DeepSkyBlue">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <ToggleButton Background="White" Foreground="Black" Grid.Column="0"  Content="Presentation" Command="{Binding PresenationCommand}">
+                        <ToggleButton.ContentTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE128;"></FontIcon>
+                                    <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ToggleButton.ContentTemplate>
+                    </ToggleButton>
+                    <ToggleButton  Background="White" Foreground="Black" HorizontalAlignment="Stretch" Grid.Column="1" Content="Partners" Command="{Binding PartnerCommand}">
+                        <ToggleButton.ContentTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <FontIcon Foreground="Black"  FontFamily="Segoe UI Symbol" Glyph="&#xE125;"></FontIcon>
+                                    <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ToggleButton.ContentTemplate>
+                    </ToggleButton>
+                    <ToggleButton Background="White" Foreground="Black" HorizontalAlignment="Stretch"  Grid.Column="2" Content="Clients" Command="{Binding RefClientsCommand}">
+                        <ToggleButton.ContentTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE118;"></FontIcon>
+                                    <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ToggleButton.ContentTemplate>
+                    </ToggleButton>
+                    <ToggleButton Background="White" Foreground="Black" HorizontalAlignment="Stretch" Grid.Column="3" Content="Contacts" Command="{Binding ContactCommand}">
+                        <ToggleButton.ContentTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE13A;"></FontIcon>
+                                    <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ToggleButton.ContentTemplate>
+                    </ToggleButton>
+                    <ToggleButton Background="White" Foreground="Black" HorizontalAlignment="Stretch" Grid.Column="4" Content="Favourites" Command="{Binding FavorieCommand}">
+                        <ToggleButton.ContentTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <FontIcon Foreground="Black" FontFamily="Segoe UI Symbol" Glyph="&#xE113;"></FontIcon>
+                                    <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ToggleButton.ContentTemplate>
+                    </ToggleButton>
+                </Grid>
+            </ScrollViewer>            
         </AppBar>
     </helper:BindablePage.TopAppBar>
     <helper:BindablePage.BottomAppBar>
@@ -202,7 +204,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView  x:Name="listView1"  Grid.Row="1" HorizontalAlignment="Stretch" IsItemClickEnabled="True"   ItemsSource="{Binding ListTechnologies}" >
+            <ListView  ScrollViewer.VerticalScrollBarVisibility="Disabled"  x:Name="listView1"  Grid.Row="1" HorizontalAlignment="Stretch" IsItemClickEnabled="True"   ItemsSource="{Binding ListTechnologies}" >
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="ItemClick">
                         <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}"  InputConverter="{StaticResource TechClickedConverter}"/>
@@ -215,8 +217,8 @@
                     </Style>
                 </ListView.ItemContainerStyle>
                 <ListView.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <controls:WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible"></controls:WrapPanel>
+                    <ItemsPanelTemplate>                       
+                            <controls:WrapPanel ScrollViewer.VerticalScrollBarVisibility="Visible"/>                                                                                                                                             
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>

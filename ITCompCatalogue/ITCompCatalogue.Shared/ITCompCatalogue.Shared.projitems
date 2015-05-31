@@ -54,6 +54,7 @@
   <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Images\adress.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\calendar.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Category.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\ecoles.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\energy.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\etranger.png" />
