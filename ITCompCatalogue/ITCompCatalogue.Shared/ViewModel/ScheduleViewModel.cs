@@ -6,12 +6,15 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml.Linq;
+using Windows.UI.Popups;
+using Windows.UI.Xaml;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using ITCompCatalogue.Annotations;
 using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
+using Microsoft.WindowsAzure.MobileServices;
 using Telerik.UI.Xaml.Controls.Input;
 
 
@@ -20,15 +23,16 @@ namespace ITCompCatalogue.ViewModel
     public class ScheduleViewModel : NavigableViewModelBase
     {
         #region Fields
-                
-        private ObservableCollection<CoursSchedule> _coursesScheduleList;
+
+        private ObservableCollection<CourDate> _coursesScheduleList;
         private CalendarDisplayMode _displayMode;
-        private ObservableCollection<CoursSchedule> _listCoursesInDate;
+        private ObservableCollection<CourDate> _listCoursesInDate;
         private ObservableCollection<CourVisible> _listCoursesInCursus;
-        private List<CoursSchedule> _globaleCoursesScheduleList;
+        private List<CourDate> _globaleCoursesScheduleList;
+        private bool _isLoadingProgressRing = false;
         #endregion
         #region Properties
-        public ObservableCollection<CoursSchedule> CoursesScheduleList
+        public ObservableCollection<CourDate> CoursesScheduleList
         {
             get
             {
@@ -64,7 +68,7 @@ namespace ITCompCatalogue.ViewModel
                 RaisePropertyChanged();
             }
         }
-        public ObservableCollection<CoursSchedule> ListCoursesInDate
+        public ObservableCollection<CourDate> ListCoursesInDate
         {
             get
             {
@@ -100,7 +104,24 @@ namespace ITCompCatalogue.ViewModel
                 RaisePropertyChanged();
             }
         }
+        public bool IsLoadingProgressRing
+        {
+            get
+            {
+                return _isLoadingProgressRing;
+            }
 
+            set
+            {
+                if (_isLoadingProgressRing == value)
+                {
+                    return;
+                }
+
+                _isLoadingProgressRing = value;
+                RaisePropertyChanged();
+            }
+        }
         #endregion
         #region Commands
         private RelayCommand _partnerCommand;
@@ -185,19 +206,19 @@ namespace ITCompCatalogue.ViewModel
                     ?? (_cellTappedCommand = new RelayCommand<DateTime>(
                     (date) =>
                     {
-                        ListCoursesInDate = new ObservableCollection<CoursSchedule>(CoursesScheduleList.Where(c => c.DateDebut <= date && c.DateFin >= date).GroupBy(x => x.CoursId).Select(y => y.FirstOrDefault()));
+                        ListCoursesInDate = new ObservableCollection<CourDate>(CoursesScheduleList.Where(c => c.DateDebut <= date && c.DateFin >= date).GroupBy(x => x.CoursId).Select(y => y.FirstOrDefault()));
                     }));
             }
         }
 
-        private RelayCommand<CoursSchedule> _navigateToCourseCommand;
+        private RelayCommand<CourDate> _navigateToCourseCommand;
 
-        public RelayCommand<CoursSchedule> NavigateToCourseCommand
+        public RelayCommand<CourDate> NavigateToCourseCommand
         {
             get
             {
                 return _navigateToCourseCommand
-                    ?? (_navigateToCourseCommand = new RelayCommand<CoursSchedule>(
+                    ?? (_navigateToCourseCommand = new RelayCommand<CourDate>(
                     (courSce) =>
                     {
                         var cour = CatalogueService.GetCourseByCourseId(courSce.CoursId);
@@ -218,7 +239,7 @@ namespace ITCompCatalogue.ViewModel
                         {
                             var courSec = _globaleCoursesScheduleList.FirstOrDefault(x => x.CoursId == cour.C_id);
                             if (courSec != null)
-                                CoursesScheduleList.Add(courSec); 
+                                CoursesScheduleList.Add(courSec);
                         }
                     }));
             }
@@ -244,16 +265,34 @@ namespace ITCompCatalogue.ViewModel
 
         #endregion
         #region Ctor & Mothods
-        public ScheduleViewModel(ICatalogueService catalogueService, INavigationService navigationService):base(catalogueService,navigationService)
+        public ScheduleViewModel(ICatalogueService catalogueService, INavigationService navigationService)
+            : base(catalogueService, navigationService)
         {
-          
+            CoursesScheduleList=new ObservableCollection<CourDate>();
+
         }
         public async override void Activate(object parameter)
         {
             var course = parameter as Cour;
             if (course != null)
             {
-                CoursesScheduleList = new ObservableCollection<CoursSchedule>(await CatalogueService.GetCoursScheduleByCoursId(course.C_id));
+                try
+                {
+                    IsLoadingProgressRing = true;
+                    CoursesScheduleList = new ObservableCollection<CourDate>(await CatalogueService.GetCoursScheduleByCoursId(course.C_id));                    
+                    IsLoadingProgressRing = false;
+                    if (CoursesScheduleList.Count ==0)
+                    {
+                        var dialog = new MessageDialog("No dates");
+                        dialog.ShowAsync();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    var dialog=new MessageDialog("SomeThing went wrong");
+                    dialog.ShowAsync();
+
+                }
             }
             else
             {
@@ -261,7 +300,7 @@ namespace ITCompCatalogue.ViewModel
                 if (cursus != null)
                 {
                     _globaleCoursesScheduleList = await CatalogueService.GetCoursScheduleByCursusId(cursus.C_id);
-                    CoursesScheduleList = new ObservableCollection<CoursSchedule>(_globaleCoursesScheduleList);
+                    CoursesScheduleList = new ObservableCollection<CourDate>(_globaleCoursesScheduleList);
                     var courInCursus = await CatalogueService.GetCoursesByCursusId(cursus.C_id);
                     ListCoursesInCursus = new ObservableCollection<CourVisible>(courInCursus.Select(x => new CourVisible()
                     {
@@ -273,7 +312,7 @@ namespace ITCompCatalogue.ViewModel
                 }
             }
         }
-        public override void  Deactivate(object parameter)
+        public override void Deactivate(object parameter)
         {
 
         }
@@ -285,6 +324,7 @@ namespace ITCompCatalogue.ViewModel
         #endregion
 
     }
+    
 
     public class CourVisible : Cour, INotifyPropertyChanged
     {

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
+using Microsoft.WindowsAzure.MobileServices;
 using SQLitePCL;
 
 namespace ITCompCatalogue.Model
@@ -25,7 +26,7 @@ namespace ITCompCatalogue.Model
                         Intitule = (string)statement[2],
                         CourseCount = GetCoursesCount((long)statement[0]),
                         Categories = await GetCategoriesByTechnology((long)statement[0])
-                        
+
                     });
                 }
             }
@@ -138,16 +139,16 @@ namespace ITCompCatalogue.Model
             using (var statement = _connection.Prepare("SELECT * FROM CursusCours inner join Cours on Cours._id=CursusCours.CourID WHERE CursusID= ?"))
             {
                 statement.Bind(1, cursusId);
-                while (statement.Step()==SQLiteResult.ROW)
+                while (statement.Step() == SQLiteResult.ROW)
                 {
                     courses.Add(new Cour()
                     {
                         C_id = (long)statement[2],
-                        Intitule = (string)statement[7],                       
+                        Intitule = (string)statement[7],
                         CategorieID = (long)statement[12],
-                        Category = GetCategoryByCategoryId((long)statement[12])                   
+                        Category = GetCategoryByCategoryId((long)statement[12])
                     });
-                }                
+                }
             }
             return courses;
         }
@@ -295,23 +296,23 @@ namespace ITCompCatalogue.Model
                 statement.Bind(1, courseId);
                 statement.Step();
             }
-           
+
         }
         public bool IsCourseFavorite(long courseId)
         {
             using (var statement = _connection.Prepare("SELECT * from Favorite Where _id = ?"))
             {
-                statement.Bind(1,courseId);   
-                if (statement.Step()==SQLiteResult.ROW)
+                statement.Bind(1, courseId);
+                if (statement.Step() == SQLiteResult.ROW)
                 {
                     return true;
-                }             
+                }
             }
             return false;
         }
         public void UnfavoriteAllCourses()
         {
-            using (var statement =_connection.Prepare("Delete From Favorite"))
+            using (var statement = _connection.Prepare("Delete From Favorite"))
             {
                 statement.Step();
             }
@@ -322,40 +323,40 @@ namespace ITCompCatalogue.Model
             using (var statement = _connection.Prepare("SELECT * FROM Favorite"))
             {
                 while (statement.Step() == SQLiteResult.ROW)
-                {                                       
+                {
                     courses.Add(GetCourseByCourseId((long)statement[0]));
                 }
             }
             return courses;
         }
-        public async Task<List<CoursSchedule>> GetCoursScheduleByCursusId(long cursusId)
+        public async Task<List<CourDate>> GetCoursScheduleByCursusId(long cursusId)
         {
-            return new List<CoursSchedule>()
+
+            return new List<CourDate>()
             {
-                 new CoursSchedule(3, new DateTime(2015,01,5),new DateTime(2015,01,12),this),
-                 new CoursSchedule(7, new DateTime(2015,01,6),new DateTime(2015,01,18),this),
-                 new CoursSchedule(12, new DateTime(2015,01,6),new DateTime(2015,01,18),this),
-                 new CoursSchedule(3, new DateTime(2015,01,5),new DateTime(2015,01,12),this),
-                 new CoursSchedule(72, new DateTime(2015,01,6),new DateTime(2015,01,18),this),
-                 new CoursSchedule(32, new DateTime(2015,01,6),new DateTime(2015,01,18),this), 
-                 new CoursSchedule(33, new DateTime(2015,01,5),new DateTime(2015,01,12),this),
-                 new CoursSchedule(71, new DateTime(2015,01,6),new DateTime(2015,01,18),this),
-                 new CoursSchedule(12, new DateTime(2015,01,6),new DateTime(2015,01,18),this),
-                new CoursSchedule(41, new DateTime(2015,01,15),new DateTime(2015,01,23),this),
-                new CoursSchedule(5, new DateTime(2012,10,6),new DateTime(2012,11,10),this),
+                // new CourDate(3, new DateTime(2015,01,5),new DateTime(2015,01,12),this),
+                // new CourDate(7, new DateTime(2015,01,6),new DateTime(2015,01,18),this),
+                // new CourDate(12, new DateTime(2015,01,6),new DateTime(2015,01,18),this),
+                // new CourDate(3, new DateTime(2015,01,5),new DateTime(2015,01,12),this),
+                // new CourDate(72, new DateTime(2015,01,6),new DateTime(2015,01,18),this),
+                // new CourDate(32, new DateTime(2015,01,6),new DateTime(2015,01,18),this), 
+                // new CourDate(33, new DateTime(2015,01,5),new DateTime(2015,01,12),this),
+                // new CourDate(71, new DateTime(2015,01,6),new DateTime(2015,01,18),this),
+                // new CourDate(12, new DateTime(2015,01,6),new DateTime(2015,01,18),this),
+                //new CourDate(41, new DateTime(2015,01,15),new DateTime(2015,01,23),this),
+                //new CourDate(5, new DateTime(2012,10,6),new DateTime(2012,11,10),this),
             };
         }
 
-        public async Task<List<CoursSchedule>> GetCoursScheduleByCoursId(long coursId)
+        public async Task<List<CourDate>> GetCoursScheduleByCoursId(long coursId)
         {
-            return new List<CoursSchedule>()
-            {
-                 new CoursSchedule(3, new DateTime(2015,05,15),new DateTime(2015,05,20),this),
-                new CoursSchedule(4, new DateTime(2015,05,25),new DateTime(2015,05,31),this),
-                new CoursSchedule(5, new DateTime(2012,06,6),new DateTime(2012,06,12),this),
-            };
+            var client = new MobileServiceClient("https://itcomp.azure-mobile.net/",
+                    "vVZNhWrKDpNtpAGxlZuFttVMOFAsFD34");
+                     
+            var listDates = await client.GetTable<CourDate>().Where(x => x.CoursId == coursId).ToListAsync();
+            return listDates;
         }
 
-        
+
     }
 }

@@ -131,7 +131,10 @@
             <!--<AppBarToggleButton IsChecked="{Binding ParCodeIsChecked,Mode=TwoWay}"  Grid.Row="1" Grid.Column="1" Label="Code"/>
             <AppBarToggleButton  IsChecked="{Binding ParIntituleIsChecked,Mode=TwoWay}" Grid.Row="1" Grid.Column="2" Label="Intitulé"/>
             <AppBarToggleButton  IsChecked="{Binding ParDescIsChecked,Mode=TwoWay}" Grid.Row="1" Grid.Column="3" Label="Desc"/>-->
-            <ComboBox Grid.Row="1" Margin="0,0,5,0" BorderBrush="DeepSkyBlue" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedItem="{Binding SearchBySelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchByItems}"/>
+            <!--<ComboBox Grid.Row="1" Margin="0,0,5,0" BorderBrush="DeepSkyBlue" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedItem="{Binding SearchBySelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchByItems}"/>-->
+            <RadioButton GroupName="searchGp"  VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Margin="2" HorizontalAlignment="Right" IsChecked="{Binding SearchCodeIsSelected,Mode=TwoWay}"  Foreground="Black"  Content="Code"/>
+            <RadioButton GroupName="searchGp" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Margin="2" HorizontalAlignment="Left" IsChecked="{Binding SearchIntituleIsEnabled,Mode=TwoWay}"  Foreground="Black"  Content="Intitulé"/>
+
         </Grid>
         <ListView IsItemClickEnabled="True" Margin="3,10,3,3" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
             <interactivity:Interaction.Behaviors>

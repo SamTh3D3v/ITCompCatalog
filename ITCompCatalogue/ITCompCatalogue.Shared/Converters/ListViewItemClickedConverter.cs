@@ -23,7 +23,7 @@ namespace ITCompCatalogue.Converters
                     if (cour != null)
                         return cour;
                     else
-                        return args.ClickedItem as CoursSchedule;
+                        return args.ClickedItem as CourDate;
                 }
                     
             }

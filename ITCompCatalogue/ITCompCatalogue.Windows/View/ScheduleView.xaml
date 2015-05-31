@@ -137,14 +137,17 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="DeepSkyBlue" >
-            <StackPanel Orientation="Horizontal">
-                <AppBarButton Command="{Binding GoBackCommand}">
-                    <AppBarButton.Icon>
-                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
-            </StackPanel>
+            <Grid>
+                <StackPanel Orientation="Horizontal">
+                    <AppBarButton Command="{Binding GoBackCommand}">
+                        <AppBarButton.Icon>
+                            <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
+                    <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+                </StackPanel>
+                <ProgressRing IsActive="{Binding IsLoadingProgressRing}" VerticalAlignment="Stretch"  HorizontalAlignment="Right" Foreground="White"></ProgressRing>
+            </Grid>           
         </Border>
         <Grid Grid.Row="1">
             <Grid.Resources>

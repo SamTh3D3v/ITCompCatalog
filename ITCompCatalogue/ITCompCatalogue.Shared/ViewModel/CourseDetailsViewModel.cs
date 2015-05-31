@@ -88,8 +88,17 @@ namespace ITCompCatalogue.ViewModel
                         NavigationService.NavigateTo("PresentationView");
                     }));
             }
-        }        
-       
+        }
+        private RelayCommand _homeCommand;
+        public RelayCommand HomeCommand
+        {
+            get
+            {
+                return _homeCommand
+                    ?? (_homeCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("MainPage")));
+            }
+        }
         private RelayCommand _refClientCommand;
         public RelayCommand RefClientsCommand
         {

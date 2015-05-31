@@ -18,22 +18,22 @@ namespace ITCompCatalogue.Model
         bool IsCourseFavorite(long courseId);
         void UnfavoriteAllCourses();
         Task<List<Cour>> GetFavoriteCourses();
-        Task<List<CoursSchedule>> GetCoursScheduleByCursusId(long cursusId);
-        Task<List<CoursSchedule>> GetCoursScheduleByCoursId(long coursId);        
+        Task<List<CourDate>> GetCoursScheduleByCursusId(long cursusId);
+        Task<List<CourDate>> GetCoursScheduleByCoursId(long coursId);        
     }
-    public class CoursSchedule
-    {
-        public long CoursId { get; set; }
+    public class CourDate
+    {        
+        public string Id { get; set; }
+        public int CoursId { get; set; }
         public DateTime DateDebut { get; set; }
-        public DateTime DateFin { get; set; }
-        public Cour Cour { get; set; }
+        public DateTime DateFin { get; set; }        
 
-        public CoursSchedule(long coursId, DateTime dateDebut, DateTime dateFin,CatalogueService catalogueService)
+        public CourDate(int coursId, DateTime dateDebut, DateTime dateFin)
         {
             CoursId = coursId;
             DateDebut = dateDebut;
             DateFin = dateFin;
-            Cour = catalogueService.GetCourseByCourseId(coursId);
+            //Cour = catalogueService.GetCourseByCourseId(coursId);
         }
     }
 }
