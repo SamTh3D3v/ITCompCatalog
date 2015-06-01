@@ -73,8 +73,31 @@ namespace ITCompCatalogue.Model
             }
             return categories;
         }
+        public async Task<Category> GetCategoriesByCatgoryId(long categoryId)
+        {
+            var category = new Category();
+            using (var statement = _connection.Prepare("SELECT * FROM Categories WHERE _id= ?"))
+            {
+                statement.Bind(1, categoryId);
+                if (statement.Step() == SQLiteResult.ROW)
+                {
+                    category = new Category()
+                    {
+                        C_id = (long)statement[0],
+                        Code = (string)statement[1],
+                        Intitule = (string)statement[2],
+                        TechnologieID = (long)statement[3],
+                        //Technology = GetTechnology(technologyId) 
+                        //Cours = new ObservableCollection<Cour>(await GetCoursesByCategoryId((long)statement[0])),
+                        Cursus = new ObservableCollection<Cursu>(await GetCursusByCategoryId((long)statement[0]))
 
-        private async Task<List<Cursu>> GetCursusByCategoryId(long categoryId)
+                    };
+                }
+            }
+            return category;
+        }
+
+        public async Task<List<Cursu>> GetCursusByCategoryId(long categoryId)
         {
             var cursus = new List<Cursu>();
             using (var statement = _connection.Prepare("Select Distinct CursusID from Cours Inner Join CursusCours" +
@@ -352,7 +375,7 @@ namespace ITCompCatalogue.Model
         {
             var client = new MobileServiceClient("https://itcomp.azure-mobile.net/",
                     "vVZNhWrKDpNtpAGxlZuFttVMOFAsFD34");
-                     
+
             var listDates = await client.GetTable<CourDate>().Where(x => x.CoursId == coursId).ToListAsync();
             return listDates;
         }

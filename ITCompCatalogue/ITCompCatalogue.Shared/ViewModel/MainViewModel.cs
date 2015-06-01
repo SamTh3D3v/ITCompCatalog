@@ -155,6 +155,19 @@ namespace ITCompCatalogue.ViewModel
                         }));
             }
         }
+        private RelayCommand<Category> _selectCategotyCommand;
+        public RelayCommand<Category> SelectCategotyCommand
+        {
+            get
+            {
+                return _selectCategotyCommand
+                    ?? (_selectCategotyCommand = new RelayCommand<Category>(
+                    (cat) =>
+                    {
+                        NavigationService.NavigateTo("CoursesOneCategoryListView", cat);
+                    }));
+            }
+        }
         private RelayCommand _goBackCommand;
         public RelayCommand GoBackCommand
         {
@@ -165,6 +178,7 @@ namespace ITCompCatalogue.ViewModel
                     () => NavigationService.GoBack()));
             }
         }
+
         #endregion
         public MainViewModel(ICatalogueService catalogueService,INavigationService navigationService)
             :base(catalogueService,navigationService)

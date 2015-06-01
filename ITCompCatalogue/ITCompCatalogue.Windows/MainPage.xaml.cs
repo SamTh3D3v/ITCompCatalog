@@ -37,5 +37,7 @@ namespace ITCompCatalogue
                 return "Snapped";           
             return "Default";
         }
+
+        
     }
 }

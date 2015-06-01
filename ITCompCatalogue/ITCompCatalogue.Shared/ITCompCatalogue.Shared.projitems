@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\CatClickedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CellModelToEventConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CellModelToListEventConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\FilterCheckedConverter.cs" />
@@ -23,6 +24,8 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewItemClickedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewTbInvertConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ListViewTechClickedConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RecommandationToColorConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\RecommandationToGlyphConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StackPanelOrientationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TechIdToImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TechIdToImageTileConverter.cs" />
@@ -86,6 +89,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\pre4.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\techAn.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Tiles\Android.jpg" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\Tiles\General.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Tiles\Microsoft.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Tiles\Orcale.gif" />
     <Content Include="$(MSBuildThisFileDirectory)Images\web.png" />

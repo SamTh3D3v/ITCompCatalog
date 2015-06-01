@@ -10,12 +10,31 @@ using ITCompCatalogue.Model;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class CoursesCategoriesListViewModel:NavigableViewModelBase
+    class CoursesCategoriesListViewModel : NavigableViewModelBase
     {
-        #region Fields                
+        #region Fields
+        private Category _dateContextCategory;
+        private ObservableCollection<Category> _listCategories;
         #endregion
-        #region Properties  
-        private ObservableCollection<Category> _listCategories; 
+        #region Properties
+        public Category DataContextCategory
+        {
+            get
+            {
+                return _dateContextCategory;
+            }
+
+            set
+            {
+                if (_dateContextCategory == value)
+                {
+                    return;
+                }
+
+                _dateContextCategory = value;
+                RaisePropertyChanged();
+            }
+        }
         public ObservableCollection<Category> ListCategories
         {
             get
@@ -36,7 +55,7 @@ namespace ITCompCatalogue.ViewModel
 
         #endregion
         #region Commands
-        private RelayCommand<Cour> _courseSelectedCommand;    
+        private RelayCommand<Cour> _courseSelectedCommand;
         public RelayCommand<Cour> CourseSelectedCommand
         {
             get
@@ -165,22 +184,28 @@ namespace ITCompCatalogue.ViewModel
         #region Ctors and Methods
 
         public CoursesCategoriesListViewModel(ICatalogueService catalogueService, INavigationService navigationService)
-            :base(catalogueService,navigationService)
+            : base(catalogueService, navigationService)
         {
-           
+
         }
 
         #endregion
 
         public override async void Activate(object parameter)
         {
-           ListCategories=new ObservableCollection<Category>(await CatalogueService.GetCategoriesByTechnology((long)parameter));
+            var cat = parameter as Category;
+            if (cat == null)
+                ListCategories =
+                    new ObservableCollection<Category>(
+                        await CatalogueService.GetCategoriesByTechnology((long) parameter));
+            else
+                DataContextCategory = cat;
         }
 
         public override void Deactivate(object parameter)
         {
-            
+
         }
-      
+
     }
 }

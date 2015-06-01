@@ -15,7 +15,11 @@
         <Binding Path="CoursesCategoriesListViewModel" Source="{StaticResource Locator}"></Binding>
     </helper:BindablePage.DataContext>
     <helper:BindablePage.Resources>
-        <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"  />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resource/ResourceDict.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </helper:BindablePage.Resources>
     <helper:BindablePage.TopAppBar>
         <AppBar>
@@ -154,10 +158,10 @@
                             <RowDefinition Height="50"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="LightGray" >
+                        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="Black" >
                             <StackPanel Orientation="Horizontal">                                   
-                                <Image HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Source="../Images/Category.png" />
-                                <TextBlock VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="22" Text="{Binding Intitule}" Foreground="White"/>
+                                <Image HorizontalAlignment="Left" VerticalAlignment="Center" Source="../Images/Category.png" />
+                                <TextBlock VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}" Text="{Binding Intitule}" Foreground="White"/>
                             </StackPanel>
                         </Border>
                         <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">
@@ -169,13 +173,13 @@
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel HorizontalAlignment="Stretch">
-                                        <Border BorderBrush="Black" BorderThickness="0,2,0,2"  HorizontalAlignment="Stretch" Margin="0"  >
+                                        <Border BorderBrush="Black" BorderThickness="0"  HorizontalAlignment="Stretch" Margin="0"  >
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <TextBlock TextWrapping="Wrap" Grid.Column="0" VerticalAlignment="Center" Margin="2,0,0,0" Text="{Binding Intitule}" Foreground="Black" FontWeight="Bold"  FontSize="20"/>
+                                                <TextBlock TextWrapping="Wrap" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding Intitule}" Foreground="Black" Style="{StaticResource SubheaderTextBlockStyle}"/>
                                                 <AppBarButton VerticalAlignment="Center" Grid.Column="1" Label="Date" Command="{Binding DataContext.GoToScheduleCommand,ElementName=RootPivot}" CommandParameter="{Binding DataContext,ElementName=CursusCourListView}">
                                                     <AppBarButton.Icon>
                                                         <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE163;" />

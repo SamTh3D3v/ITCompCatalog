@@ -46,7 +46,7 @@
                                         <RowDefinition Height="Auto"/>
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
-                                    <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE128;"></FontIcon>
+                                    <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE128;"></FontIcon>
                                     <ContentPresenter Content="{Binding}" Grid.Row="1"/>
                                 </Grid>
                             </DataTemplate>
@@ -123,7 +123,7 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </helper:BindablePage.BottomAppBar>
-    <Grid Background="White">
+    <Grid Background="White" x:Name="RootGrid">
     	<VisualStateManager.VisualStateGroups>
     		<VisualStateGroup x:Name="VisualStateGroup">
     			<VisualState x:Name="Snapped">
@@ -269,10 +269,10 @@
                                     </Grid>
                                 </animatedTile:Tile.BackContent>
                             </animatedTile:Tile>
-                            <ListView MaxHeight="300" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" IsItemClickEnabled="True"  ItemsSource="{Binding Categories}" >
+                            <ListView MaxHeight="300" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" IsItemClickEnabled="True"  ItemsSource="{Binding Categories}" >
                                 <interactivity:Interaction.Behaviors>
                                     <core:EventTriggerBehavior EventName="ItemClick">
-                                        <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}"  InputConverter="{StaticResource TechClickedConverter}"/>
+                                        <core:InvokeCommandAction Command="{Binding DataContext.SelectCategotyCommand,ElementName=RootGrid}"  InputConverter="{StaticResource CatClickedConverter}"/>
                                         <!--CommandParameter="{Binding ElementName=Sl_VolumeSilder, Path=Value}"-->
                                     </core:EventTriggerBehavior>
                                 </interactivity:Interaction.Behaviors>

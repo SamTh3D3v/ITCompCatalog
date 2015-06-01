@@ -15,10 +15,13 @@
     <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
     <converters:TechIdToImageTileConverter x:Key="TechIdToImageTileConverter"/>
     <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
+    <converters:CatClickedConverter x:Key="CatClickedConverter" />
     <converters:IdToColorConverter x:Key="IdToColorConverter" />
     <converters:FromBoolToVisibilityConverter x:Key="FromBoolToVisibilityConverter" />
     <converters:FilterCheckedConverter x:Key="FilterCheckedConverter" />    
     <converters:ListViewTbInvertConverter x:Key="ListViewTbInvertConverter"/>
+    <converters:RecommandationToColorConverter x:Key="RecommandationToColorConverter"/>
+    <converters:RecommandationToGlyphConverter x:Key="RecommandationToGlyphConverter"/>    
     <Flyout  x:Key="CourseListFlyout" Placement="Top"  >
         <ListView  x:Name="FlayoutListView" ItemsSource="{Binding Path=ListCoursesInDate}" HorizontalAlignment="Stretch" IsItemClickEnabled="True">
             <ListView.ItemContainerStyle>
@@ -586,7 +589,36 @@
             </Setter.Value>
         </Setter>
     </Style>
-   
+   <Style TargetType="TextBlock" x:Key="HeaderStyle" BasedOn="{StaticResource HeaderTextBlockStyle}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="FontSize" Value="46"/>        
+   </Style>
+    <Style TargetType="TextBlock" x:Key="SubheaderStyle" BasedOn="{StaticResource SubheaderTextBlockStyle}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Light"/>
+        <Setter Property="FontSize" Value="34"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="TitleStyle" BasedOn="{StaticResource TitleTextBlockStyle}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Semilight"/>
+        <Setter Property="FontSize" Value="24"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="Subtitle" BasedOn="{StaticResource SubtitleTextBlockStyle}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="20"/>
+    </Style>
+    <Style TargetType="TextBlock" x:Key="BodyStyle" BasedOn="{StaticResource BodyTextBlockStyle}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="15"/>        
+   </Style>
+    <Style TargetType="TextBlock" x:Key="CaptionStyle" BasedOn="{StaticResource CaptionTextBlockStyle}">
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="FontSize" Value="12"/>        
+   </Style>
 
 
 </ResourceDictionary>
