@@ -37,6 +37,7 @@
                         <ColumnDefinition Width="120"/>
                         <ColumnDefinition Width="120"/>
                         <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <ToggleButton Background="White" Foreground="Black" Grid.Column="0"  Content="Presentation" Command="{Binding PresenationCommand}">
                         <ToggleButton.ContentTemplate>
@@ -108,21 +109,15 @@
                             </DataTemplate>
                         </ToggleButton.ContentTemplate>
                     </ToggleButton>
+                    <AppBarButton Grid.Column="5" HorizontalAlignment="Right" Label="Search"   Command="{Binding SearchCommand}">
+                        <AppBarButton.Icon>
+                            <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
+                        </AppBarButton.Icon>
+                    </AppBarButton>
                 </Grid>
             </ScrollViewer>            
         </AppBar>
-    </helper:BindablePage.TopAppBar>
-    <helper:BindablePage.BottomAppBar>
-        <CommandBar Background="{StaticResource ThemeBrush}">
-            <CommandBar.PrimaryCommands>
-                <AppBarButton Label="Rechercher"   Command="{Binding SearchCommand}">
-                    <AppBarButton.Icon>
-                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
-            </CommandBar.PrimaryCommands>
-        </CommandBar>
-    </helper:BindablePage.BottomAppBar>
+    </helper:BindablePage.TopAppBar>    
     <Grid Background="White" x:Name="RootGrid">
     	<VisualStateManager.VisualStateGroups>
     		<VisualStateGroup x:Name="VisualStateGroup">

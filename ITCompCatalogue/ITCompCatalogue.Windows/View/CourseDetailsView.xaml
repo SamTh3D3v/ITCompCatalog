@@ -29,6 +29,7 @@
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <ToggleButton HorizontalAlignment="Stretch" Background="White" Foreground="Black" Grid.Column="0" Content="Home" Command="{Binding HomeCommand}">
                     <ToggleButton.ContentTemplate>
@@ -114,18 +115,23 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
+                <AppBarButton Label="Search" Grid.Column="6" HorizontalAlignment="Right"  Command="{Binding SearchCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </Grid>
         </AppBar>
     </helper:BindablePage.TopAppBar>
     <Page.BottomAppBar>
         <CommandBar Background="{StaticResource ThemeBrush}">
             <CommandBar.PrimaryCommands>
-                <AppBarToggleButton Label="Favoriser" IsChecked="{Binding IsCourseFavorite,Mode=TwoWay}">
+                <AppBarToggleButton Label="Favorite" IsChecked="{Binding IsCourseFavorite,Mode=TwoWay}">
                     <AppBarToggleButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE113;" />
                     </AppBarToggleButton.Icon>
                 </AppBarToggleButton>
-                <AppBarButton Label="Date" Command="{Binding GoToScheduleCommand}" CommandParameter="{Binding CourseDetails}">
+                <AppBarButton Label="Dates" Command="{Binding GoToScheduleCommand}" CommandParameter="{Binding CourseDetails}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE163;" />
                     </AppBarButton.Icon>
@@ -140,11 +146,11 @@
         </Grid.RowDefinitions>
         <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="DeepSkyBlue" >
             <StackPanel Orientation="Horizontal">
-                <AppBarButton Command="{Binding GoBackCommand}">
-                    <AppBarButton.Icon>
+                <Button Command="{Binding GoBackCommand}">
+                    <Button.Content>
                         <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
+                    </Button.Content>
+                </Button>
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
             </StackPanel>
         </Border>

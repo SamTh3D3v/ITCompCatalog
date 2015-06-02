@@ -62,6 +62,19 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands  
+        private RelayCommand _searchCommand;
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                return _searchCommand
+                    ?? (_searchCommand = new RelayCommand(
+                        () =>
+                        {
+                            NavigationService.NavigateTo("SearchView");
+                        }));
+            }
+        }
         private RelayCommand _favoriteCommand;    
         public RelayCommand FavoriteCommand
         {
