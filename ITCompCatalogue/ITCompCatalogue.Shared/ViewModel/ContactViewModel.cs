@@ -186,6 +186,19 @@ namespace ITCompCatalogue.ViewModel
                     }));
             }
         }
+        private RelayCommand _searchCommand;
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                return _searchCommand
+                    ?? (_searchCommand = new RelayCommand(
+                        () =>
+                        {
+                            NavigationService.NavigateTo("SearchView");
+                        }));
+            }
+        }
         private RelayCommand<String> _callCommand;
         public RelayCommand<String> CallCommand
         {
