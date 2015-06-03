@@ -69,7 +69,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE125;"></FontIcon>
+                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE125;"/>
                                 <ContentPresenter Content="{Binding}" Grid.Row="1"/>
                             </Grid>
                         </DataTemplate>
