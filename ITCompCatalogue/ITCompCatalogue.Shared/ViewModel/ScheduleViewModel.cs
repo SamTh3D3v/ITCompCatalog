@@ -30,8 +30,27 @@ namespace ITCompCatalogue.ViewModel
         private ObservableCollection<CourVisible> _listCoursesInCursus;
         private List<CourDate> _globaleCoursesScheduleList;
         private bool _isLoadingProgressRing = false;
+        private Cour _selectedCourse=new Cour();
         #endregion
         #region Properties
+        public Cour SelectedCourse
+        {
+            get
+            {
+                return _selectedCourse;
+            }
+
+            set
+            {
+                if (_selectedCourse == value)
+                {
+                    return;
+                }
+
+                _selectedCourse = value;
+                RaisePropertyChanged();
+            }
+        }
         public ObservableCollection<CourDate> CoursesScheduleList
         {
             get
@@ -276,6 +295,7 @@ namespace ITCompCatalogue.ViewModel
             var course = parameter as Cour;
             if (course != null)
             {
+                SelectedCourse = course;
                 try
                 {
                     IsLoadingProgressRing = true;

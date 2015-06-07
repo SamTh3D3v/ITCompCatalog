@@ -159,16 +159,60 @@ namespace ITCompCatalogue.ViewModel
                         (cour) => NavigationService.NavigateTo("CourDetails", cour)));
             }
         }
-        private RelayCommand _navigateToIndexCommand;
-        public RelayCommand NavigateToIndexCommand
+        private RelayCommand _partnerCommand;
+        public RelayCommand PartnerCommand
         {
             get
             {
-                return _navigateToIndexCommand
-                    ?? (_navigateToIndexCommand = new RelayCommand(
-                    () => base.NavigationService.NavigateTo("MainPage")));
+                return _partnerCommand
+                    ?? (_partnerCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("PartnerView")));
             }
         }
+        private RelayCommand _favorieCommand;
+        public RelayCommand FavorieCommand
+        {
+            get
+            {
+                return _favorieCommand
+                    ?? (_favorieCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("FavoriteCoursesView")));
+            }
+        }
+        private RelayCommand _contactCommand;
+        public RelayCommand ContactCommand
+        {
+            get
+            {
+                return _contactCommand
+                    ?? (_contactCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("ContactView")));
+            }
+        }
+        private RelayCommand _homeCommand;
+        public RelayCommand HomeCommand
+        {
+            get
+            {
+                return _homeCommand
+                    ?? (_homeCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("MainPage")));
+            }
+        }
+        private RelayCommand _presentationCommand;
+        public RelayCommand PresenationCommand
+        {
+            get
+            {
+                return _presentationCommand
+                    ?? (_presentationCommand = new RelayCommand(
+                    () =>
+                    {
+                        NavigationService.NavigateTo("PresentationView");
+                    }));
+            }
+        }
+        
         private RelayCommand _goBackCommand;
         public RelayCommand GoBackCommand
         {
@@ -179,6 +223,17 @@ namespace ITCompCatalogue.ViewModel
                     () => NavigationService.GoBack()));
             }
         }
+        private RelayCommand _refClientCommand;
+        public RelayCommand RefClientsCommand
+        {
+            get
+            {
+                return _refClientCommand
+                    ?? (_refClientCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("RefClient")));
+            }
+        }
+        
         #endregion
         #region Ctor and Methods
         private async void SearchCourses()

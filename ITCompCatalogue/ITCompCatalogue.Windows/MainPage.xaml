@@ -39,21 +39,8 @@
                         <ColumnDefinition Width="120"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
-                    <ToggleButton Background="White" Foreground="Black" Grid.Column="0"  Content="Presentation" Command="{Binding PresenationCommand}">
-                        <ToggleButton.ContentTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE128;"></FontIcon>
-                                    <ContentPresenter Content="{Binding}" Grid.Row="1"/>
-                                </Grid>
-                            </DataTemplate>
-                        </ToggleButton.ContentTemplate>
-                    </ToggleButton>
-                    <ToggleButton  Background="White" Foreground="Black" HorizontalAlignment="Stretch" Grid.Column="1" Content="Partners" Command="{Binding PartnerCommand}">
+                   
+                    <ToggleButton  Background="White" Foreground="Black" HorizontalAlignment="Stretch" Grid.Column="0" Content="Partners" Command="{Binding PartnerCommand}">
                         <ToggleButton.ContentTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -67,7 +54,7 @@
                             </DataTemplate>
                         </ToggleButton.ContentTemplate>
                     </ToggleButton>
-                    <ToggleButton Background="White" Foreground="Black" HorizontalAlignment="Stretch"  Grid.Column="2" Content="Clients" Command="{Binding RefClientsCommand}">
+                    <ToggleButton Background="White" Foreground="Black" HorizontalAlignment="Stretch"  Grid.Column="1" Content="Clients" Command="{Binding RefClientsCommand}">
                         <ToggleButton.ContentTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -81,7 +68,7 @@
                             </DataTemplate>
                         </ToggleButton.ContentTemplate>
                     </ToggleButton>
-                    <ToggleButton Background="White" Foreground="Black" HorizontalAlignment="Stretch" Grid.Column="3" Content="Contacts" Command="{Binding ContactCommand}">
+                    <ToggleButton Background="White" Foreground="Black" HorizontalAlignment="Stretch" Grid.Column="2" Content="Contacts" Command="{Binding ContactCommand}">
                         <ToggleButton.ContentTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -95,7 +82,7 @@
                             </DataTemplate>
                         </ToggleButton.ContentTemplate>
                     </ToggleButton>
-                    <ToggleButton Background="White" Foreground="Black" HorizontalAlignment="Stretch" Grid.Column="4" Content="Favourites" Command="{Binding FavorieCommand}">
+                    <ToggleButton Background="White" Foreground="Black" HorizontalAlignment="Stretch" Grid.Column="3" Content="Favourites" Command="{Binding FavorieCommand}">
                         <ToggleButton.ContentTemplate>
                             <DataTemplate>
                                 <Grid>
@@ -104,6 +91,20 @@
                                         <RowDefinition Height="Auto"/>
                                     </Grid.RowDefinitions>
                                     <FontIcon Foreground="Black" FontFamily="Segoe UI Symbol" Glyph="&#xE113;"></FontIcon>
+                                    <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ToggleButton.ContentTemplate>
+                    </ToggleButton>
+                    <ToggleButton Background="White" Foreground="Black" Grid.Column="4"  Content="Presentation" Command="{Binding PresenationCommand}">
+                        <ToggleButton.ContentTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE128;"></FontIcon>
                                     <ContentPresenter Content="{Binding}" Grid.Row="1"/>
                                 </Grid>
                             </DataTemplate>

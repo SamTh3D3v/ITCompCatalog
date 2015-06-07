@@ -15,11 +15,14 @@
         <Binding Path="FavoriteCoursesViewModel" Source="{StaticResource Locator}"></Binding>
     </helper:BindablePage.DataContext>
     <helper:BindablePage.Resources>
-        <converters:TechIdToImageConverter x:Name="TechIdToImageConverter"/>
-        <converters:ListViewItemClickedConverter x:Name="ItemClickedConverter"/>
+       <ResourceDictionary>
+           <ResourceDictionary.MergedDictionaries>
+               <ResourceDictionary Source="../Resource/ResourceDict.xaml"></ResourceDictionary>
+           </ResourceDictionary.MergedDictionaries>
+       </ResourceDictionary>
     </helper:BindablePage.Resources>
     <helper:BindablePage.TopAppBar>
-        <AppBar>
+        <AppBar Background="{StaticResource ThemeBrush}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
@@ -27,9 +30,9 @@
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="0" Content="Index" Command="{Binding HomeCommand}">
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="0" Content="Home" Background="White" Foreground="Black" Command="{Binding HomeCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -43,21 +46,8 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton Grid.Column="5" Content="Présentation" Command="{Binding PresenationCommand}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE128;"></FontIcon>
-                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="1" Content="Partenaires" Command="{Binding PartnerCommand}">
+               
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="1" Content="Partners" Background="White" Foreground="Black" Command="{Binding PartnerCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -71,7 +61,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch"  Grid.Column="2" Content="Clients" Command="{Binding RefClientsCommand}">
+                <ToggleButton HorizontalAlignment="Stretch"  Grid.Column="2" Content="Clients" Background="White" Foreground="Black" Command="{Binding RefClientsCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -85,7 +75,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="Contact" Command="{Binding ContactCommand}">
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="Contacts" Background="White" Foreground="Black" Command="{Binding ContactCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -99,7 +89,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="4" Content="Favoris" Command="{Binding FavorieCommand}">
+                <ToggleButton Grid.Column="4" Content="Presentation" Background="White" Foreground="Black" Command="{Binding PresenationCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -107,19 +97,24 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE113;"></FontIcon>
+                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE128;"></FontIcon>
                                 <ContentPresenter Content="{Binding}" Grid.Row="1"/>
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
+                <AppBarButton Grid.Column="5" HorizontalAlignment="Right" Label="Search"  Command="{Binding SearchCommand}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </Grid>
         </AppBar>
     </helper:BindablePage.TopAppBar>
     <helper:BindablePage.BottomAppBar>
-        <CommandBar Background="DeepSkyBlue">
+        <CommandBar Background="{StaticResource ThemeBrush}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Label="Supprimer tous" Command="{Binding RemoveAllCommand}">
+                <AppBarButton Label="Remove all" Command="{Binding RemoveAllCommand}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE10A;" />
                     </AppBarButton.Icon>
@@ -131,19 +126,26 @@
     <Grid Background="White" x:Name="RooGrid">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="DeepSkyBlue" >
+        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
             <StackPanel Orientation="Horizontal">
-                <AppBarButton Command="{Binding GoBackCommand}">
-                    <AppBarButton.Icon>
+                <Button Command="{Binding GoBackCommand}">
+                    <Button.Content>
                         <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
+                    </Button.Content>
+                </Button>
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
             </StackPanel>
         </Border>
-        <ListView IsItemClickEnabled="True" x:Name="RootList" ItemsSource="{Binding ListFavoriteCourses}" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
+            <StackPanel Orientation="Horizontal">
+                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE113;" VerticalAlignment="Stretch"/>
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Favorites" Foreground="White"/>
+            </StackPanel>
+        </Border>
+        <ListView IsItemClickEnabled="True" x:Name="RootList" ItemsSource="{Binding ListFavoriteCourses}" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>                    
@@ -156,7 +158,7 @@
             </interactivity:Interaction.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Background="WhiteSmoke" Margin="5">
+                    <Grid Background="WhiteSmoke" Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>                                                                                                          
@@ -167,10 +169,10 @@
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
                         <Image Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}" Grid.Row="0" Grid.Column="0"/>
-                        <TextBlock HorizontalAlignment="Center" Text="{Binding Category.Intitule}" Margin="1"  FontSize="10" Grid.Row="1" Grid.Column="0" Foreground="Black"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Intitule}" Foreground="Black" TextWrapping="Wrap"  FontSize="18"  Grid.Row="0" Grid.Column="1"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Code}" Margin="2,0,0,0" Foreground="DeepSkyBlue"  FontSize="18" Grid.Row="1" Grid.Column="1"/>
-                        <AppBarButton  Label="Supprimer" Foreground="Black" Command="{Binding DataContext.UnfavCourseCommand,ElementName=RooGrid}"  Grid.Column="2" Grid.Row="0">
+                        <TextBlock HorizontalAlignment="Center" Text="{Binding Category.Intitule}" Margin="1" VerticalAlignment="Center"  Style="{StaticResource TitleTextBlockStyle}" Grid.Row="1" Grid.Column="0" Foreground="Black"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Intitule}" Foreground="Black" TextWrapping="Wrap"  Style="{StaticResource TitleTextBlockStyle}"  Grid.Row="0" Grid.Column="1"/>
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Code}" Margin="2,0,0,0" Foreground="DeepSkyBlue"  Style="{StaticResource TitleTextBlockStyle}" Grid.Row="1" Grid.Column="1"/>
+                        <AppBarButton  Label="Remove" Foreground="Black" Command="{Binding DataContext.UnfavCourseCommand,ElementName=RooGrid}"  Grid.Column="2" Grid.Row="0">
                             <AppBarButton.Icon>
                                 <FontIcon FontFamily="Segoe UI Symbol"   Glyph="&#xE10A;"  />
                             </AppBarButton.Icon>                               

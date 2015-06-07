@@ -11,7 +11,7 @@
     xmlns:animations="using:HubPicker.Animations"
     xmlns:helper="using:ITCompCatalogue.Helper">
     <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"/>
-    <SolidColorBrush x:Key="ThemeBrush" Color="DeepSkyBlue"/>
+    <SolidColorBrush x:Key="ThemeBrush" Color="DeepSkyBlue"/>        
     <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
     <converters:TechIdToImageTileConverter x:Key="TechIdToImageTileConverter"/>
     <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />

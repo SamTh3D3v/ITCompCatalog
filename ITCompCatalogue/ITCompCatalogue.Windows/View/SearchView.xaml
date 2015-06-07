@@ -15,19 +15,24 @@
         <Binding Path="SearchViewModel" Source="{StaticResource Locator}"/>
     </helper:BindablePage.DataContext>
     <helper:BindablePage.Resources>
-        <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"  />
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resource/ResourceDict.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </helper:BindablePage.Resources>
     <helper:BindablePage.TopAppBar>
-        <AppBar>
-            <Grid>
+        <AppBar Background="{StaticResource ThemeBrush}">
+            <Grid Height="90">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
-                <ToggleButton Grid.Column="0" Content="Présentation" Command="{Binding PresenationCommand}">
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="0" Background="White" Foreground="Black" Content="Home" Command="{Binding HomeCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -35,13 +40,13 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
-                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE128;"></FontIcon>
+                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE166;"></FontIcon>
                                 <ContentPresenter Content="{Binding}" Grid.Row="1"/>
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="1" Content="Partenaires" Command="{Binding PartnerCommand}">
+                </ToggleButton>               
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="1" Content="Partners" Background="White" Foreground="Black" Command="{Binding PartnerCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -55,7 +60,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch"  Grid.Column="2" Content="Clients" Command="{Binding RefClientsCommand}">
+                <ToggleButton HorizontalAlignment="Stretch"  Grid.Column="2" Content="Clients" Background="White" Foreground="Black" Command="{Binding RefClientsCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -69,7 +74,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="Contact" Command="{Binding ContactCommand}">
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="Contacts" Background="White" Foreground="Black" Command="{Binding ContactCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -83,7 +88,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="4" Content="Favoris" Command="{Binding FavorieCommand}">
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="4" Content="Favorites" Background="White" Foreground="Black" Command="{Binding FavorieCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -97,6 +102,20 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
+                <ToggleButton Grid.Column="5" Content="Presentation" Background="White" Foreground="Black" Command="{Binding PresenationCommand}">
+                    <ToggleButton.ContentTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE128;"></FontIcon>
+                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ToggleButton.ContentTemplate>
+                </ToggleButton>
             </Grid>
         </AppBar>
     </helper:BindablePage.TopAppBar>
@@ -104,39 +123,44 @@
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="DeepSkyBlue" >
+        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
             <StackPanel Orientation="Horizontal">
-                <AppBarButton Command="{Binding GoBackCommand}">
-                    <AppBarButton.Icon>
+                <Button Command="{Binding GoBackCommand}">
+                    <Button.Content>
                         <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
-                    </AppBarButton.Icon>
-                </AppBarButton>
+                    </Button.Content>
+                </Button>
                 <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
             </StackPanel>
         </Border>
-        <Grid Grid.Row="1" HorizontalAlignment="Stretch" Background="White">
+        <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
+            <StackPanel Orientation="Horizontal">
+                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE11A;" VerticalAlignment="Stretch"/>
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Search Courses" Foreground="White"/>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Row="2" HorizontalAlignment="Stretch" Background="White">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Row="0" Grid.Column="0" BorderBrush="DeepSkyBlue" Background="White" Foreground="Black" Grid.ColumnSpan="2" Margin="5" Text="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch"/>
-            <TextBlock Grid.Row="1" Grid.Column="0" Margin="3" VerticalAlignment="Center" Foreground="Black" HorizontalAlignment="Left" Text="Par" TextWrapping="Wrap"></TextBlock>
+            <TextBox Grid.Row="0" Grid.Column="0" BorderBrush="DeepSkyBlue" Background="White" Foreground="Black" Grid.ColumnSpan="2" Margin="5" Text="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Stretch"/>           
             <!--<AppBarToggleButton IsChecked="{Binding ParCodeIsChecked,Mode=TwoWay}"  Grid.Row="1" Grid.Column="1" Label="Code"/>
             <AppBarToggleButton  IsChecked="{Binding ParIntituleIsChecked,Mode=TwoWay}" Grid.Row="1" Grid.Column="2" Label="Intitulé"/>
             <AppBarToggleButton  IsChecked="{Binding ParDescIsChecked,Mode=TwoWay}" Grid.Row="1" Grid.Column="3" Label="Desc"/>-->
             <!--<ComboBox Grid.Row="1" Margin="0,0,5,0" BorderBrush="DeepSkyBlue" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedItem="{Binding SearchBySelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchByItems}"/>-->
-            <RadioButton GroupName="searchGp"  VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Margin="2" HorizontalAlignment="Right" IsChecked="{Binding SearchCodeIsSelected,Mode=TwoWay}"  Foreground="Black"  Content="Code"/>
-            <RadioButton GroupName="searchGp" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Margin="2" HorizontalAlignment="Left" IsChecked="{Binding SearchIntituleIsEnabled,Mode=TwoWay}"  Foreground="Black"  Content="Intitulé"/>
-
+            <RadioButton  GroupName="searchGp"  VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="0" Margin="2" HorizontalAlignment="Right" IsChecked="{Binding SearchCodeIsSelected,Mode=TwoWay}"  Foreground="{StaticResource ThemeBrush}"  Content="Code"/>
+            <RadioButton  GroupName="searchGp" VerticalAlignment="Stretch" Grid.Row="1" Grid.Column="1" Margin="2" HorizontalAlignment="Left" IsChecked="{Binding SearchIntituleIsEnabled,Mode=TwoWay}"  Foreground="{StaticResource ThemeBrush}"  Content="Name"/>
         </Grid>
-        <ListView IsItemClickEnabled="True" Margin="3,10,3,3" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
+        <ListView IsItemClickEnabled="True" Margin="3,10,3,3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="ItemClick">
                     <core:InvokeCommandAction Command="{Binding SelectCourseCommand}" InputConverter="{StaticResource ItemClickedConverter}"/>
@@ -149,15 +173,15 @@
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                   <Grid  Background="WhiteSmoke" Margin="1">
+                   <Grid  Background="WhiteSmoke" MinHeight="50" Margin="1">
                        <Grid.ColumnDefinitions>
                            <ColumnDefinition Width="*"/>
                            <ColumnDefinition Width="2*"/>
                            <ColumnDefinition Width="Auto"/>
                        </Grid.ColumnDefinitions>
 
-                        <TextBlock Text="{Binding Code}" Foreground="DeepSkyBlue"   FontSize="20" TextWrapping="Wrap" Grid.Column="0" />
-                        <TextBlock Text="{Binding Intitule}" Foreground="Black"  FontSize="15" TextWrapping="WrapWholeWords" Grid.Column="1" />
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Code}" Foreground="{StaticResource ThemeBrush}"    Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap" Grid.Column="0" />
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Intitule}" Foreground="Black" Style="{StaticResource TitleTextBlockStyle}"   TextWrapping="WrapWholeWords" Grid.Column="1" />
                         <!--<TextBlock Text="{Binding Category.Intitule}" Foreground="Black" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Grid.Column="2" />-->
                    </Grid>
                 </DataTemplate>

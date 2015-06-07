@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using System.Text;
+using Windows.ApplicationModel.DataTransfer;
+using Windows.Foundation;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
@@ -14,6 +17,8 @@ namespace ITCompCatalogue.ViewModel
         #region Fields 
         private Cour _courseDetails;
         private bool _isCourseFavorite;
+        private TypedEventHandler<DataTransferManager, DataRequestedEventArgs> _shareHandler;
+        private DataTransferManager _dataTransferManager;
         #endregion
         #region Properties
         public Cour CourseDetails
@@ -162,6 +167,16 @@ namespace ITCompCatalogue.ViewModel
                     (cour) => NavigationService.NavigateTo("ScheduleView",cour)));
             }
         }
+        private RelayCommand _shareCommand;
+        public RelayCommand ShareCommand
+        {
+            get
+            {
+                return _shareCommand
+                    ?? (_shareCommand = new RelayCommand(
+                    DataTransferManager.ShowShareUI));
+            }
+        }
         private RelayCommand _goBackCommand;
         public RelayCommand GoBackCommand
         {
@@ -186,12 +201,31 @@ namespace ITCompCatalogue.ViewModel
             CourseDetails = (parameter as Cour);
             var cour = parameter as Cour;
             if (cour != null)
+            {
                 IsCourseFavorite = CatalogueService.IsCourseFavorite(cour.C_id);
+                RegisterForShare();
+            }
+                
         }
 
         public override void Deactivate(object parameter)
         {
-            
-        }      
+            _dataTransferManager.DataRequested -= _shareHandler;
+        }
+        private void RegisterForShare()
+        {
+             _dataTransferManager = DataTransferManager.GetForCurrentView();            
+            _shareHandler = new TypedEventHandler<DataTransferManager, DataRequestedEventArgs>(this.ShareTextHandler);
+            _dataTransferManager.DataRequested += _shareHandler;
+        }
+
+        private void ShareTextHandler(DataTransferManager sender, DataRequestedEventArgs e)
+        {
+            DataRequest request = e.Request;
+            // The Title is mandatory
+            request.Data.Properties.Title = CourseDetails.Code+": "+CourseDetails.Intitule;
+            request.Data.Properties.Description = "";
+            request.Data.SetText(CourseDetails.Description+"\n\n Category: "+CourseDetails.Category.Intitule);
+        }
     }
 }

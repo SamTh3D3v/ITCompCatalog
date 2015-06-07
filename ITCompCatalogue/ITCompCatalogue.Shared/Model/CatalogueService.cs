@@ -376,7 +376,7 @@ namespace ITCompCatalogue.Model
             var client = new MobileServiceClient("https://itcomp.azure-mobile.net/",
                     "vVZNhWrKDpNtpAGxlZuFttVMOFAsFD34");
 
-            var listDates = await client.GetTable<CourDate>().Where(x => x.CoursId == coursId).ToListAsync();
+            var listDates = await client.GetTable<CourDate>().Where(x => x.CoursId == coursId).ToListAsync();            
             return listDates;
         }
 

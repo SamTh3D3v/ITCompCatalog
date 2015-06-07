@@ -96,6 +96,19 @@ namespace ITCompCatalogue.ViewModel
                     () => NavigationService.GoBack()));
             }
         }
+        private RelayCommand _searchCommand;
+        public RelayCommand SearchCommand
+        {
+            get
+            {
+                return _searchCommand
+                    ?? (_searchCommand = new RelayCommand(
+                        () =>
+                        {
+                            NavigationService.NavigateTo("SearchView");
+                        }));
+            }
+        }
         #endregion
         #region Ctors and Methods
         public PresenationViewModel(INavigationService navigationService,ICatalogueService catalogueService)

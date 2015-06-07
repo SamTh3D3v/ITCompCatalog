@@ -136,6 +136,11 @@
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE163;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
+                <AppBarButton Label="Share" Command="{Binding ShareCommand}" CommandParameter="{Binding CourseDetails}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE148;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
@@ -144,7 +149,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="DeepSkyBlue" >
+        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
             <StackPanel Orientation="Horizontal">
                 <Button Command="{Binding GoBackCommand}">
                     <Button.Content>
