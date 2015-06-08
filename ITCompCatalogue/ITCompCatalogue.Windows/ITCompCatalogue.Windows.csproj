@@ -315,11 +315,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-    <Folder Include="Resources\" />
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\..\AnimatedTile\AnimatedTile.csproj">
       <Project>{23329342-9b68-4edc-ae54-802f9edbd3ae}</Project>
