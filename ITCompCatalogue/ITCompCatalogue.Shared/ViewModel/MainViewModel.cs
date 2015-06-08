@@ -201,16 +201,13 @@ namespace ITCompCatalogue.ViewModel
 
         public override void  Activate(Object parameter)
         {
-            //throw new NotImplementedException();
-            int v = 0;
-            v = ++v + v--;
-            
+           
 
         }
 
         public override void Deactivate(object parameter)
         {
-            //throw new NotImplementedException();
+            
         }
         public override void GoBack()
         {
