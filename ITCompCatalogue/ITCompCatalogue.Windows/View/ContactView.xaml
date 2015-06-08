@@ -167,7 +167,7 @@
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="../Images/web.png"/>
                     <TextBlock VerticalAlignment="Center" Text="Site " Style="{StaticResource TitleTextBlockStyle}" Grid.Column="1" Foreground="Black"/>
-                    <HyperlinkButton Content="{Binding SiteWeb}" FontSize="20" Grid.Column="2" Foreground="{StaticResource ThemeBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" ></HyperlinkButton>
+                    <HyperlinkButton Content="{Binding SiteWeb}" Command="{Binding NavigateToWebSiteCommand}" CommandParameter="{Binding SiteWeb}" FontSize="20" Grid.Column="2" Foreground="{StaticResource ThemeBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" ></HyperlinkButton>
                 </Grid>
                 <Grid Grid.Row="3" Margin="10,10,10,0" Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid.RowDefinitions>
@@ -182,8 +182,8 @@
                     <Image Grid.RowSpan="2" Grid.Column="0" Source="../Images/mail.png"/>
                     <TextBlock VerticalAlignment="Center" Text="E-mail 1 " Grid.Row="0" Style="{StaticResource TitleTextBlockStyle}" Grid.Column="1" Foreground="Black"/>
                     <TextBlock VerticalAlignment="Center" Text="E-mail 2 " Grid.Row="1" Style="{StaticResource TitleTextBlockStyle}" Grid.Column="1" Foreground="Black"/>
-                    <HyperlinkButton Grid.Row="0" Content="{Binding Email}" FontSize="20" Grid.Column="2" Foreground="{StaticResource ThemeBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" ></HyperlinkButton>
-                    <HyperlinkButton Grid.Row="1" Content="{Binding AltEmail}" FontSize="20" Grid.Column="2" Foreground="{StaticResource ThemeBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" ></HyperlinkButton>
+                    <HyperlinkButton Grid.Row="0" Content="{Binding Email}" Command="{Binding SendEmailCommand}" CommandParameter="{Binding Email}" FontSize="15" Grid.Column="2" Foreground="{StaticResource ThemeBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" ></HyperlinkButton>
+                    <HyperlinkButton Grid.Row="1" Content="{Binding AltEmail}" Command="{Binding SendEmailCommand}" CommandParameter="{Binding AltEmail}" FontSize="15" Grid.Column="2" Foreground="{StaticResource ThemeBrush}" VerticalAlignment="Center" HorizontalAlignment="Left" ></HyperlinkButton>
                 </Grid>                
                 <Grid Grid.Row="4" Margin="10,10,10,0"  Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>

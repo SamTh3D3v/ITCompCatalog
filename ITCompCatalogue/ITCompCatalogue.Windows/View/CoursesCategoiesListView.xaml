@@ -175,11 +175,11 @@
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
                                                 <TextBlock TextWrapping="Wrap" Grid.Column="0" VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding Intitule}" Foreground="Black" Style="{StaticResource SubheaderTextBlockStyle}"/>
-                                                <AppBarButton VerticalAlignment="Center" Grid.Column="1" Label="Date" Command="{Binding DataContext.GoToScheduleCommand,ElementName=RootPivot}" CommandParameter="{Binding DataContext,ElementName=CursusCourListView}">
+                                                <!--<AppBarButton VerticalAlignment="Center" Grid.Column="1" Label="Date" Command="{Binding DataContext.GoToScheduleCommand,ElementName=RootPivot}" CommandParameter="{Binding DataContext,ElementName=CursusCourListView}">
                                                     <AppBarButton.Icon>
                                                         <FontIcon FontFamily="Segoe UI Symbol" Foreground="Black" Glyph="&#xE163;" />
                                                     </AppBarButton.Icon>
-                                                </AppBarButton>
+                                                </AppBarButton>-->
                                             </Grid>
                                         </Border>
                                         <ListView Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
@@ -197,12 +197,11 @@
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
                                                     <Border BorderThickness="2" Background="WhiteSmoke"  >
-
                                                         <Grid>
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="100"/>
                                                                 <ColumnDefinition Width="*"/>
-                                                                <ColumnDefinition Width="50"/>
+                                                                <ColumnDefinition Width="Auto"/>
                                                             </Grid.ColumnDefinitions>
                                                             <Grid.RowDefinitions>
                                                                 <RowDefinition Height="50"/>
@@ -214,7 +213,28 @@
                                                             <TextBlock  Margin="5,0,0,0" Grid.Row="0"  Grid.Column="1"  Foreground="Black" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Cour.Intitule}" TextWrapping="Wrap"  VerticalAlignment="Center" />
                                                             <!--<TextBlock Margin="5,0,0,0" Grid.Row="1"  Grid.Column="0"  Foreground="Black" Style="{StaticResource SubtitleTextBlockStyle}" Text="{Binding Recommandation}" TextWrapping="NoWrap"  />-->
                                                             <Border  Background="{Binding Recommandation,Converter={StaticResource RecommandationToColorConverter}}" Grid.Row="0"   VerticalAlignment="Stretch" Grid.Column="2" >
-                                                                <FontIcon  HorizontalAlignment="Center"   VerticalAlignment="Center" Glyph="&#xE1E3;"  />
+                                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                                                                    <TextBlock x:Name="RecoTextBlock" Visibility="Collapsed"  Style="{StaticResource TitleTextBlockStyle}" Foreground="White" Width="100" Text="{Binding Recommandation}" Margin="3,0,3,0" VerticalAlignment="Center"></TextBlock>
+                                                                    <FontIcon Width="50"  HorizontalAlignment="Center"   VerticalAlignment="Center" Glyph="&#xE1E3;"  />
+                                                                    <VisualStateManager.VisualStateGroups>
+                                                                        <VisualStateGroup x:Name="CommonStates">
+                                                                            <VisualState x:Name="Normal">
+                                                                                <Storyboard>
+                                                                                    <ColorAnimation Storyboard.TargetName="RecoTextBlock" To="1"  Storyboard.TargetProperty="Opacity"/>
+                                                                                </Storyboard>
+                                                                            </VisualState>
+                                                                            <VisualState x:Name="MouseOver">
+                                                                                <Storyboard>
+                                                                                    <ColorAnimation Storyboard.TargetName="RecoTextBlock" To="0"  Storyboard.TargetProperty="Opacity"/>
+                                                                                </Storyboard>
+                                                                            </VisualState>
+                                                                            <VisualStateGroup.Transitions>
+                                                                                <VisualTransition To="Normal" GeneratedDuration="00:00:01"/>
+                                                                                <VisualTransition To="MouseOver" GeneratedDuration="00:00:01"/>
+                                                                            </VisualStateGroup.Transitions>
+                                                                        </VisualStateGroup>
+                                                                    </VisualStateManager.VisualStateGroups>
+                                                                </StackPanel>                                                                
                                                             </Border>
                                                         </Grid>
                                                     </Border>

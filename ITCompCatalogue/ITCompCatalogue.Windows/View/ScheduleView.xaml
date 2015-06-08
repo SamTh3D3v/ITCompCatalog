@@ -142,7 +142,7 @@
                     </Button>
                     <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
                 </StackPanel>
-                <ProgressRing IsActive="{Binding IsLoadingProgressRing}" VerticalAlignment="Stretch"  HorizontalAlignment="Right" Foreground="White"></ProgressRing>
+                <ProgressRing IsActive="{Binding IsLoadingProgressRing}" VerticalAlignment="Stretch" Width="100"  HorizontalAlignment="Right" Foreground="White"></ProgressRing>
             </Grid>           
         </Border>
         <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
@@ -163,13 +163,14 @@
                 </DataTemplate>
                 <helper:CustomStyleSelector x:Key="Selector"  EventTemplate="{StaticResource SelectorTemplate}" />
             </Grid.Resources>
-            <input:RadCalendar  DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Dark" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
+            <input:RadCalendar  DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Light" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
                      GridLinesBrush="{StaticResource ThemeBrush}"
                      GridLinesThickness="2"                       
                      Foreground="Black"
                      BorderBrush="{StaticResource ThemeBrush}"  
                                Background="WhiteSmoke"
-                     BorderThickness="2" >
+                     BorderThickness="2" >                
+
             </input:RadCalendar>
         </Grid>
     </Grid>

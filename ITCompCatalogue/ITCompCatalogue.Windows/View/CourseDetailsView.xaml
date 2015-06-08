@@ -123,8 +123,8 @@
             </Grid>
         </AppBar>
     </helper:BindablePage.TopAppBar>
-    <Page.BottomAppBar>
-        <CommandBar Background="{StaticResource ThemeBrush}">
+    <Page.BottomAppBar >
+        <CommandBar Background="{StaticResource ThemeBrush}" ><!--IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}"-->
             <CommandBar.PrimaryCommands>
                 <AppBarToggleButton Label="Favorite" IsChecked="{Binding IsCourseFavorite,Mode=TwoWay}">
                     <AppBarToggleButton.Icon>
@@ -139,6 +139,16 @@
                 <AppBarButton Label="Share" Command="{Binding ShareCommand}" CommandParameter="{Binding CourseDetails}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE148;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Label="Pin" Command="{Binding PinCommand}" CommandParameter="{Binding CourseDetails}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE242;" />
+                    </AppBarButton.Icon>
+                </AppBarButton> 
+                <AppBarButton Label="Unpin" Command="{Binding UnpinCommand}" CommandParameter="{Binding CourseDetails}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE241;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
             </CommandBar.PrimaryCommands>

@@ -24,7 +24,21 @@ namespace ITCompCatalogue.View
             this.InitializeComponent();
         }
 
-        
-        
+
+        private void UIElement_OnPointerEntered(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "MouseOver", true);
+        }
+
+        private void UIElement_OnTapped(object sender, TappedRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "MouseOver", true);
+            
+        }
+
+        private void UIElement_OnPointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            VisualStateManager.GoToState(this, "Normal", true);
+        }
     }
 }

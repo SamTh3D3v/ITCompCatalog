@@ -131,22 +131,22 @@
                 <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Presentation" Foreground="White"/>
             </StackPanel>
         </Border>
-        <Canvas Grid.Row="2" HorizontalAlignment="Stretch" Height="300">
-            <Image Source="../Images/Presentation/pre1.jpg" HorizontalAlignment="Stretch"/>
-            <controls:AnimatingContainer Margin="10" RadiusX="5" RadiusY="5" Duration="0:0:010">
-                <controls:UniformGrid  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="10" >
+        <Grid Grid.Row="2" HorizontalAlignment="Stretch">            
+            <Image Source="../Images/Presentation/pre1.jpg" HorizontalAlignment="Stretch" />
+            <controls:AnimatingContainer HorizontalAlignment="Stretch" Margin="10" RadiusX="5" RadiusY="5" Duration="0:0:010">
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" VerticalAlignment="Center"  Margin="10" >
                     <Image Opacity=".5" Margin="20" Height="70" Width="70" Source="../Images/Presentation/androidAn.png"/>
                     <Image Opacity=".5" Margin="20" Height="70" Width="70"  Source="../Images/Presentation/networkAn.png"/>
                     <Image Opacity=".5" Margin="20" Height="70" Width="70"  Source="../Images/Presentation/databaseAn.png"/>
-                    <Image Margin="20" Height="70" Width="70" Source="../Images/Presentation/techAn.png"/>
+                    <Image Opacity=".5" Margin="20" Height="70" Width="70" Source="../Images/Presentation/techAn.png"/>
                     <Image Opacity=".5" Margin="20" Height="70" Width="70"  Source="../Images/Presentation/meetingAn.png"/>
                     <Image Opacity=".5" Margin="20" Height="70" Width="70"  Source="../Images/Presentation/certAn.png"/>
-                </controls:UniformGrid>
+                </StackPanel>
             </controls:AnimatingContainer>
-            <Border Height="40" HorizontalAlignment="Stretch" Canvas.Left="0" Background="Black" Opacity=".5" Canvas.Top="{Binding Height,ElementName=uniformGrid}">
+            <!--<Border Height="40" HorizontalAlignment="Stretch" Canvas.Left="0" Background="Black" Opacity=".5" Canvas.Top="{Binding Height,ElementName=uniformGrid}">
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="20" Text="Formation"/>
-            </Border>
-        </Canvas>
+            </Border>-->
+        </Grid>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Background="White" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <Border Background="WhiteSmoke" Margin="10">
                 <TextBlock Margin="5" Text="{Binding PresentationText}" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" Foreground="Black"/>

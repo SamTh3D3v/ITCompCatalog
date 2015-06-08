@@ -20,8 +20,9 @@
     <NuGetPackageImportStamp>f5819fc7</NuGetPackageImportStamp>
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxBundle>Always</AppxBundle>
-    <AppxBundlePlatforms>arm</AppxBundlePlatforms>
+    <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <PackageCertificateThumbprint>92F8BB665216D358D07B786677E5C26F59EA872A</PackageCertificateThumbprint>
+    <AppxPackageDir>D:\app</AppxPackageDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -169,6 +170,7 @@
     <Content Include="Assets\Logo126X126.scale-140.png" />
     <Content Include="Assets\Logo126X126.scale-180.png" />
     <Content Include="Assets\Logo126X126.scale-80.png" />
+    <Content Include="Assets\Logo150X150.png" />
     <Content Include="Assets\Logo248X120.png" />
     <Content Include="Assets\Logo248X248.png" />
     <Content Include="Assets\Logo270X270.scale-100.png" />

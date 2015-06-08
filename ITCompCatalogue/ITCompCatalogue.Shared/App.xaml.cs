@@ -19,6 +19,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
+using ITCompCatalogue.View;
 using SQLitePCL;
 
 namespace ITCompCatalogue
@@ -82,25 +83,22 @@ namespace ITCompCatalogue
 
             if (rootFrame.Content == null)
             {
-#if WINDOWS_PHONE_APP
-                // Removes the turnstile navigation for startup.
-                if (rootFrame.ContentTransitions != null)
-                {
-                    this.transitions = new TransitionCollection();
-                    foreach (var c in rootFrame.ContentTransitions)
-                    {
-                        this.transitions.Add(c);
-                    }
-                }
 
-                rootFrame.ContentTransitions = null;
-                rootFrame.Navigated += this.RootFrame_FirstNavigated;
-#endif
+                var tileId = e.TileId;
+                var tileArgs = e.Arguments;
+                if (tileArgs == "CourDetails")
+                {
+                    if (!rootFrame.Navigate(typeof(CourseDetailsView), tileId))
+                    {
+                        throw new Exception("Failed to CourseDetails page");
+                    }
+                    
+                }
 
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
+                else if (!rootFrame.Navigate(typeof(MainPage), e.Arguments))
                 {
                     throw new Exception("Failed to create initial page");
                 }

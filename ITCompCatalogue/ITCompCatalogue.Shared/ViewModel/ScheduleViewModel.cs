@@ -25,7 +25,7 @@ namespace ITCompCatalogue.ViewModel
         #region Fields
 
         private ObservableCollection<CourDate> _coursesScheduleList;
-        private CalendarDisplayMode _displayMode;
+        private CalendarDisplayMode _displayMode=CalendarDisplayMode.YearView;
         private ObservableCollection<CourDate> _listCoursesInDate;
         private ObservableCollection<CourVisible> _listCoursesInCursus;
         private List<CourDate> _globaleCoursesScheduleList;
