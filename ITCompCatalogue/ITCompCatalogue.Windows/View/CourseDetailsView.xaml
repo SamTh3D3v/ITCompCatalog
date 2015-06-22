@@ -131,7 +131,7 @@
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE113;" />
                     </AppBarToggleButton.Icon>
                 </AppBarToggleButton>
-                <AppBarButton Label="Dates" Command="{Binding GoToScheduleCommand}" CommandParameter="{Binding CourseDetails}">
+                <AppBarButton Label="Dates" x:Name="DatesAppBar" Command="{Binding GoToScheduleCommand}" CommandParameter="{Binding CourseDetails}" Visibility="{Binding IsDatesVisible,Mode=TwoWay}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE163;" />
                     </AppBarButton.Icon>

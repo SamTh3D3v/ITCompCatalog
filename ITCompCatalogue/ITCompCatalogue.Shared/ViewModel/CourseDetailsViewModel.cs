@@ -6,6 +6,7 @@ using System.Text;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation;
+using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
@@ -26,8 +27,27 @@ namespace ITCompCatalogue.ViewModel
         private TypedEventHandler<DataTransferManager, DataRequestedEventArgs> _shareHandler;
         private DataTransferManager _dataTransferManager;
         private bool _bottomAppBarIsOpen;
+        private Visibility _isDatesVisible;
         #endregion
         #region Properties
+        public Visibility IsDatesVisible
+        {
+            get
+            {
+                return _isDatesVisible;
+            }
+
+            set
+            {
+                if (_isDatesVisible == value)
+                {
+                    return;
+                }
+
+                _isDatesVisible = value;
+                RaisePropertyChanged();
+            }
+        }
         public bool BottomAppBarIsOpen
         {
             get
@@ -238,6 +258,7 @@ namespace ITCompCatalogue.ViewModel
         public CourseDetailsViewModel(INavigationService navigationService, ICatalogueService catalogueService)
             : base(catalogueService, navigationService)
         {
+            IsDatesVisible = App.IsConnectedToInternet() ? Visibility.Visible : Visibility.Collapsed;
         }
         #endregion
 
@@ -253,11 +274,13 @@ namespace ITCompCatalogue.ViewModel
             {
                 CourseDetails = CatalogueService.GetCourseByCourseId(long.Parse(parameter.ToString()));
                 IsCourseFavorite = CatalogueService.IsCourseFavorite(CourseDetails.C_id);
-            }
-
+            }            
             RegisterForShare();
             SendLiveTileUpdate();
-
+            Network.InternetConnectionChanged += async (s, e) => Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
+            {
+                IsDatesVisible = (e.IsConnected ? Visibility.Visible : Visibility.Collapsed);
+            });
         }
 
         public override void Deactivate(object parameter)
@@ -347,7 +370,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 var tile = new SecondaryTile(CourseDetails.C_id.ToString());
                 tile.RequestDeleteAsync();
-            }            
+            }
             BottomAppBarIsOpen = false;
         }
 

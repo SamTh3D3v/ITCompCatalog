@@ -30,7 +30,7 @@ namespace ITCompCatalogue.ViewModel
         private ObservableCollection<CourVisible> _listCoursesInCursus;
         private List<CourDate> _globaleCoursesScheduleList;
         private bool _isLoadingProgressRing = false;
-        private Cour _selectedCourse=new Cour();
+        private Cour _selectedCourse=new Cour();          
         #endregion
         #region Properties
         public Cour SelectedCourse
@@ -140,7 +140,7 @@ namespace ITCompCatalogue.ViewModel
                 _isLoadingProgressRing = value;
                 RaisePropertyChanged();
             }
-        }
+        }      
         #endregion
         #region Commands
         private RelayCommand _partnerCommand;
@@ -287,8 +287,7 @@ namespace ITCompCatalogue.ViewModel
         public ScheduleViewModel(ICatalogueService catalogueService, INavigationService navigationService)
             : base(catalogueService, navigationService)
         {
-            CoursesScheduleList=new ObservableCollection<CourDate>();
-
+            CoursesScheduleList=new ObservableCollection<CourDate>();            
         }
         public async override void Activate(object parameter)
         {
@@ -330,7 +329,7 @@ namespace ITCompCatalogue.ViewModel
                         Visible = true
                     }));
                 }
-            }
+            }            
         }
         public override void Deactivate(object parameter)
         {
