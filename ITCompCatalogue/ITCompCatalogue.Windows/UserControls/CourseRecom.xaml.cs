@@ -12,23 +12,27 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using ITCompCatalogue.Helper;
 
+// The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace ITCompCatalogue.View
+namespace ITCompCatalogue.UserControls
 {
- 
-    public sealed partial class ClientReferencesView : BindablePage
+    public sealed partial class CourseRecom : UserControl
     {
-        public ClientReferencesView()
+        public CourseRecom()
         {
             this.InitializeComponent();
         }
 
-
-        private void UIElement_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
+        private void CBorder_OnPointerEntered(object sender, PointerRoutedEventArgs e)
         {
-            e.Handled = true;
+            RecomAnimStart.Begin();
+            
+        }
+
+        private void CBorder_OnPointerExited(object sender, PointerRoutedEventArgs e)
+        {
+            RecomAnimEnd.Begin();
         }
     }
 }

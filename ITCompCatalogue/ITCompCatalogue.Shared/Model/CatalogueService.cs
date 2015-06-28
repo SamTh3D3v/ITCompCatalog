@@ -275,10 +275,12 @@ namespace ITCompCatalogue.Model
             return cours;
 
         }
-        public async Task<List<Cour>> SearchCourses(string searchText, String searchBy)
+        public async Task<List<Cour>> SearchCourses(string searchText, String searchBy=null)
         {
             var courses = new List<Cour>();
-            var query = "SELECT * from Cours WHERE (lower(" + searchBy + ") LIKE '%" + searchText + "%')";
+            var query =(searchBy!=null)?"SELECT * from Cours WHERE (lower(" + searchBy + ") LIKE '%" + searchText + "%')":
+                "SELECT * from Cours WHERE (code LIKE '%" + searchText + "%') or (intitule LIKE '%" + searchText + "%')";
+             
             using (var statement = _connection.Prepare(query))
             {
                 //            statement.Bind(1, searchText);

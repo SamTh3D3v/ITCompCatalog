@@ -41,6 +41,15 @@ namespace ITCompCatalogue
             return "Default";
         }
 
-        
+
+        private void UIElement_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        //private void SearchBox_OnResultSuggestionChosen(SearchBox sender, SearchBoxResultSuggestionChosenEventArgs args)
+        //{
+        //    var res = args.Tag;
+        //}
     }
 }

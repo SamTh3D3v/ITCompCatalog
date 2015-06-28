@@ -20,6 +20,7 @@ namespace ITCompCatalogue.ViewModel
         private String _searchBySelectedItem;        
         private bool _searchIntituleIsEnabled = true;
         private bool _searchCodeIsSelected = false;
+        private bool _searchIsEnabled;
 
         private ObservableCollection<String> _searchByItems = new ObservableCollection<string>()
         {
@@ -27,7 +28,25 @@ namespace ITCompCatalogue.ViewModel
             "Intitule"
         };    
         #endregion
-        #region Properties
+        #region Properties                      
+        public bool SearchIsEnabled
+        {
+            get
+            {
+                return _searchIsEnabled;
+            }
+
+            set
+            {
+                if (_searchIsEnabled == value)
+                {
+                    return;
+                }
+
+                _searchIsEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
         public ObservableCollection<Cour> SearchResult
         {
             get
@@ -233,12 +252,26 @@ namespace ITCompCatalogue.ViewModel
                     () => NavigationService.NavigateTo("RefClient")));
             }
         }
+        private RelayCommand _pageLoadedCommand;
+        public RelayCommand PageLoadedCommand
+        {
+            get
+            {
+                return _pageLoadedCommand
+                    ?? (_pageLoadedCommand = new RelayCommand(
+                    () =>
+                    {
+                        SearchIsEnabled = true;
+                    }));
+            }
+        }
+
         
         #endregion
         #region Ctor and Methods
         private async void SearchCourses()
         {
-            SearchResult = new ObservableCollection<Cour>(await CatalogueService.SearchCourses(SearchText, SearchBySelectedItem));
+            SearchResult = new ObservableCollection<Cour>(await CatalogueService.SearchCourses(SearchText));
         }
 
         public SearchViewModel(ICatalogueService catalogueService,INavigationService navigationService)
@@ -246,6 +279,17 @@ namespace ITCompCatalogue.ViewModel
         {           
             SearchBySelectedItem = SearchByItems.First();
         }
+
+        public override void Activate(object parameter)
+        {
+            SearchText = (parameter as String);
+        }
+
+        public override void Deactivate(object parameter)
+        {
+            SearchIsEnabled = false;
+        }
+
         #endregion
     }
 }

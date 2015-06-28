@@ -40,5 +40,10 @@ namespace ITCompCatalogue.View
         {
             VisualStateManager.GoToState(this, "Normal", true);
         }
+
+        private void UIElement_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }

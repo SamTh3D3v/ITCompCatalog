@@ -157,7 +157,7 @@
             </interactivity:Interaction.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Background="WhiteSmoke" Margin="10">
+                    <Grid Background="WhiteSmoke" Margin="10" RightTapped="UIElement_OnRightTapped">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>                                                                                                          

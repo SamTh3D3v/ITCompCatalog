@@ -9,6 +9,7 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:helper="using:ITCompCatalogue.Helper"
+    xmlns:userControls="using:ITCompCatalogue.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <helper:BindablePage.DataContext>
@@ -167,7 +168,7 @@
                             </ListView.ItemContainerStyle>
                             <ListView.ItemTemplate>
                                 <DataTemplate>
-                                    <StackPanel HorizontalAlignment="Stretch">
+                                    <StackPanel HorizontalAlignment="Stretch" RightTapped="UIElement_OnRightTapped">
                                         <Border BorderBrush="Black" BorderThickness="0"  HorizontalAlignment="Stretch" Margin="0"  >
                                             <Grid>
                                                 <Grid.ColumnDefinitions>
@@ -196,7 +197,7 @@
                                             </ListView.ItemContainerStyle>
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <Border BorderThickness="2" Background="WhiteSmoke"  >
+                                                    <Border BorderThickness="2" Background="WhiteSmoke"  RightTapped="UIElement_OnRightTapped">
                                                         <Grid>
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="100"/>
@@ -212,32 +213,9 @@
                                                             </Border>
                                                             <TextBlock  Margin="5,0,0,0" Grid.Row="0"  Grid.Column="1"  Foreground="Black" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Cour.Intitule}" TextWrapping="Wrap"  VerticalAlignment="Center" />
                                                             <!--<TextBlock Margin="5,0,0,0" Grid.Row="1"  Grid.Column="0"  Foreground="Black" Style="{StaticResource SubtitleTextBlockStyle}" Text="{Binding Recommandation}" TextWrapping="NoWrap"  />-->
-                                                            <Border  Background="{Binding Recommandation,Converter={StaticResource RecommandationToColorConverter}}" Grid.Row="0"   VerticalAlignment="Stretch" Grid.Column="2" >
-                                                                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-                                                                    <TextBlock x:Name="RecoTextBlock" Visibility="Collapsed"  Style="{StaticResource TitleTextBlockStyle}" Foreground="White" Width="100" Text="{Binding Recommandation}" Margin="3,0,3,0" VerticalAlignment="Center"></TextBlock>
-                                                                    <FontIcon Width="50"  HorizontalAlignment="Center"   VerticalAlignment="Center" Glyph="&#xE1E3;"  />
-                                                                    <VisualStateManager.VisualStateGroups>
-                                                                        <VisualStateGroup x:Name="CommonStates">
-                                                                            <VisualState x:Name="Normal">
-                                                                                <Storyboard>
-                                                                                    <ColorAnimation Storyboard.TargetName="RecoTextBlock" To="1"  Storyboard.TargetProperty="Opacity"/>
-                                                                                </Storyboard>
-                                                                            </VisualState>
-                                                                            <VisualState x:Name="MouseOver">
-                                                                                <Storyboard>
-                                                                                    <ColorAnimation Storyboard.TargetName="RecoTextBlock" To="0"  Storyboard.TargetProperty="Opacity"/>
-                                                                                </Storyboard>
-                                                                            </VisualState>
-                                                                            <VisualStateGroup.Transitions>
-                                                                                <VisualTransition To="Normal" GeneratedDuration="00:00:01"/>
-                                                                                <VisualTransition To="MouseOver" GeneratedDuration="00:00:01"/>
-                                                                            </VisualStateGroup.Transitions>
-                                                                        </VisualStateGroup>
-                                                                    </VisualStateManager.VisualStateGroups>
-                                                                </StackPanel>                                                                
-                                                            </Border>
+                                                            <userControls:CourseRecom Grid.Row="0" Grid.Column="2"></userControls:CourseRecom>
                                                         </Grid>
-                                                    </Border>
+                                                    </Border>                                                    
                                                 </DataTemplate>
                                             </ListView.ItemTemplate>
                                         </ListView>

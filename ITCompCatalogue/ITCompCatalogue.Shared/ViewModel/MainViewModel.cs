@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Windows.Storage.Streams;
+using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using ITCompCatalogue.Converters;
 using ITCompCatalogue.Model;
 
 using ITCompCatalogue.Helper;
@@ -15,11 +19,12 @@ using INavigationService = GalaSoft.MvvmLight.Views.INavigationService;
 
 namespace ITCompCatalogue.ViewModel
 {
-    class MainViewModel : NavigableViewModelBase
+    public class MainViewModel : NavigableViewModelBase
     {      
         #region Fields     
         private Technology _selectedTechnology;
-        private ObservableCollection<Technology> _listTechnologies ;        
+        private ObservableCollection<Technology> _listTechnologies ;
+        private bool _searchIsEnabled = false;
         #endregion
         #region Properties
         public Technology SelectedTechnology
@@ -57,17 +62,34 @@ namespace ITCompCatalogue.ViewModel
                 RaisePropertyChanged();
             }
         }
-       
+        public bool SearchIsEnabled
+        {
+            get
+            {
+                return _searchIsEnabled;
+            }
+
+            set
+            {
+                if (_searchIsEnabled == value)
+                {
+                    return;
+                }
+
+                _searchIsEnabled = value;
+                RaisePropertyChanged();
+            }
+        }       
         #endregion
         #region Commands
-        private RelayCommand _searchCommand;
-        public RelayCommand SearchCommand
+        private RelayCommand<String> _searchCommand;
+        public RelayCommand<String> SearchCommand
         {
             get
             {
                 return _searchCommand
-                    ?? (_searchCommand = new RelayCommand(
-                    () => NavigationService.NavigateTo("SearchView")));
+                    ?? (_searchCommand = new RelayCommand<String>(
+                    (queryText) => NavigationService.NavigateTo("SearchView", queryText)));
             }
         }
         private RelayCommand _presentationCommand;   
@@ -178,6 +200,61 @@ namespace ITCompCatalogue.ViewModel
                     () => NavigationService.GoBack()));
             }
         }
+        private RelayCommand<ISuggestionQuery> _suggestionRequestCommand;
+        public RelayCommand<ISuggestionQuery> SuggestionRequest
+        {
+            get
+            {
+                return _suggestionRequestCommand
+                    ?? (_suggestionRequestCommand = new RelayCommand<ISuggestionQuery>(async (query) =>
+                    {
+                        IEnumerable<Cour> filteredQuery =await CatalogueService.SearchCourses(query.QueryText,null);
+                        foreach (var cour in filteredQuery)
+                        {
+                            RandomAccessStreamReference stream;
+                            switch (cour.Category.TechnologieID)
+                            {
+                                case 1:
+                                     stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Android.png"));
+                                    break;
+                                case 2:
+                                     stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Microsoft.png"));
+                                    break;
+                                case 7:
+                                     stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Oracle.png"));
+                                    break;
+                                default:
+                                     stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/General.png"));
+                                    break;
+                            }
+                            query.Request.SearchSuggestionCollection.AppendResultSuggestion(cour.Code, cour.Intitule, cour.Category.TechnologieID.ToString(), stream, "Result"); 
+                        }                    
+                    }));
+            }
+        }
+        private RelayCommand<SearchBoxResultSuggestionChosenEventArgs> _suggestionSelectedCommand;
+        public RelayCommand<SearchBoxResultSuggestionChosenEventArgs> SuggestionSelectedCommand
+        {
+            get
+            {
+                return _suggestionSelectedCommand
+                    ?? (_suggestionSelectedCommand = new RelayCommand<SearchBoxResultSuggestionChosenEventArgs>(
+                    (args) => NavigationService.NavigateTo("CourDetails", CatalogueService.GetCourseByCourseId(long.Parse(args.Tag)))));
+            }
+        }
+        private RelayCommand _pageLoadedCommand;
+        public RelayCommand PageLoadedCommand
+        {
+            get
+            {
+                return _pageLoadedCommand
+                    ?? (_pageLoadedCommand = new RelayCommand(
+                    () =>
+                    {
+                        SearchIsEnabled = true;
+                    }));
+            }
+        }
 
         #endregion
         public MainViewModel(ICatalogueService catalogueService,INavigationService navigationService)
@@ -201,13 +278,14 @@ namespace ITCompCatalogue.ViewModel
 
         public override void  Activate(Object parameter)
         {
-           
+            
 
         }
 
         public override void Deactivate(object parameter)
         {
-            
+            SearchIsEnabled = false;
+
         }
         public override void GoBack()
         {

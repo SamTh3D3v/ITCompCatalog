@@ -15,7 +15,7 @@
     xmlns:hubPicker="using:HubPicker"
     xmlns:animations="using:HubPicker.Animations"
     xmlns:controls="using:WinRTXamlToolkit.Controls"
-    mc:Ignorable="d"
+    mc:Ignorable="d" 
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" >
     <helper:BindablePage.DataContext>
         <Binding Path="Main" Source="{StaticResource Locator}"></Binding>
@@ -24,9 +24,9 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resource/ResourceDict.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
+            </ResourceDictionary.MergedDictionaries>            
         </ResourceDictionary>
-    </helper:BindablePage.Resources>
+    </helper:BindablePage.Resources>    
     <helper:BindablePage.TopAppBar>
         <AppBar Background="{StaticResource ThemeBrush}">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Hidden">
@@ -119,6 +119,11 @@
             </ScrollViewer>
         </AppBar>
     </helper:BindablePage.TopAppBar>
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding PageLoadedCommand}"  />            
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
     <Grid Background="White" x:Name="RootGrid">
         <VisualStateManager.VisualStateGroups>
             <VisualStateGroup x:Name="VisualStateGroup">
@@ -148,15 +153,51 @@
         </VisualStateManager.VisualStateGroups>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border Grid.Row="0" HorizontalAlignment="Stretch" Background="{StaticResource ThemeBrush}" Height="80">
-            <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>                    
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image HorizontalAlignment="Left"  Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+                <SearchBox Grid.Column="1"   IsEnabled="{Binding SearchIsEnabled}"  VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" SearchHistoryEnabled="True" x:Name="SearchBox" Width="200" Height="35">
+                    <SearchBox.Resources>
+                        <converters:SearchArgsConverter x:Name="ArgsConverter"/>
+                    </SearchBox.Resources>
+                    <SearchBox.Style>
+                        <StaticResource ResourceKey="MainSearchBoxStyle"/>
+                    </SearchBox.Style>
+                    <interactivity:Interaction.Behaviors>
+                        <core:EventTriggerBehavior EventName="SuggestionsRequested">
+                            <core:InvokeCommandAction
+                    Command="{Binding SuggestionRequest}"
+                    InputConverter="{StaticResource ArgsConverter}"
+                    InputConverterLanguage="en-US"
+                    InputConverterParameter="{Binding ElementName=SearchBox, Path=SearchHistoryEnabled}"/>
+                        </core:EventTriggerBehavior>
+                        <core:EventTriggerBehavior EventName="QuerySubmitted">
+                            <core:InvokeCommandAction Command="{Binding SearchCommand}" CommandParameter="{Binding ElementName=SearchBox, Path=QueryText}" />
+                        </core:EventTriggerBehavior>
+                        <core:EventTriggerBehavior EventName="ResultSuggestionChosen">
+                            <core:InvokeCommandAction Command="{Binding SuggestionSelectedCommand}" />
+                        </core:EventTriggerBehavior>
+                    </interactivity:Interaction.Behaviors>                                                                
+                </SearchBox>                
+            </Grid>
         </Border>
-        <Grid Grid.Row="1">
+        <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
+            <StackPanel Orientation="Horizontal">
+                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE125;" VerticalAlignment="Stretch"/>
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Technologies" Foreground="White"/>
+            </StackPanel>
+        </Border>
+        <Grid Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <ListView x:Name="listView"  Grid.Row="0" HorizontalAlignment="Stretch" IsItemClickEnabled="True"  ItemsSource="{Binding ListTechnologies}" >
                 <interactivity:Interaction.Behaviors>
@@ -177,7 +218,7 @@
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
                     <DataTemplate >
-                        <Border BorderThickness="0"  Margin="3" HorizontalAlignment="Stretch">
+                        <Border BorderThickness="0"  Margin="3" HorizontalAlignment="Stretch" RightTapped="UIElement_OnRightTapped">
                             <Grid Background="WhiteSmoke">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -200,7 +241,12 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView  x:Name="listView1"  Grid.Row="1" HorizontalAlignment="Stretch" IsItemClickEnabled="True"   ItemsSource="{Binding ListTechnologies}" >
+            <ListView  x:Name="listView1"  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+    ScrollViewer.VerticalScrollBarVisibility="Disabled"
+    ScrollViewer.HorizontalScrollMode="Enabled"
+    ScrollViewer.VerticalScrollMode="Disabled"
+    ScrollViewer.ZoomMode="Disabled"
+    SelectionMode="None" Grid.Row="1" HorizontalAlignment="Stretch" IsItemClickEnabled="True"   ItemsSource="{Binding ListTechnologies}" >
                 <interactivity:Interaction.Behaviors>
                     <core:EventTriggerBehavior EventName="ItemClick">
                         <core:InvokeCommandAction Command="{Binding SelectTechnologyCommand}"  InputConverter="{StaticResource TechClickedConverter}"/>
@@ -214,20 +260,20 @@
                 </ListView.ItemContainerStyle>-->
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <controls:WrapPanel />
+                        <StackPanel Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ListView.ItemsPanel>
                 <ListView.ItemTemplate>
-                    <DataTemplate x:Name="TileViewTemplate">
-                        <Grid Margin="10" Background="WhiteSmoke">
+                    <DataTemplate x:Name="TileViewTemplate" >
+                        <Grid Margin="10" Background="WhiteSmoke" RightTapped="UIElement_OnRightTapped">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
-
+                                <RowDefinition Height="*"/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
-                                <ColumnDefinition Width="300"/>
+                                <!--<ColumnDefinition Width="300"/>-->
                             </Grid.ColumnDefinitions>
                             <StackPanel  Grid.Row="0" Grid.Column="0"  Orientation="Horizontal">
                                 <TextBlock VerticalAlignment="Center" FontFamily="Segoe UI" FontSize="25" Foreground="Gray" Text="{Binding Intitule}" Margin="5,5,10,5" />
@@ -266,7 +312,7 @@
                                     </Grid>
                                 </animatedTile:Tile.BackContent>
                             </animatedTile:Tile>
-                            <ListView MaxHeight="300" Grid.Row="1" Grid.Column="1"  HorizontalAlignment="Stretch" IsItemClickEnabled="True"  ItemsSource="{Binding Categories}" >
+                            <ListView MaxHeight="300" Grid.Row="2" Grid.Column="0"  HorizontalAlignment="Stretch" IsItemClickEnabled="True"  ItemsSource="{Binding Categories}" >
                                 <interactivity:Interaction.Behaviors>
                                     <core:EventTriggerBehavior EventName="ItemClick">
                                         <core:InvokeCommandAction Command="{Binding DataContext.SelectCategotyCommand,ElementName=RootGrid}"  InputConverter="{StaticResource CatClickedConverter}"/>
@@ -285,7 +331,7 @@
                                 </ListView.ItemsPanel>
                                 <ListView.ItemTemplate>
                                     <DataTemplate >
-                                        <Border BorderThickness="0"   HorizontalAlignment="Stretch">
+                                        <Border BorderThickness="0"   HorizontalAlignment="Stretch" RightTapped="UIElement_OnRightTapped">
                                             <Grid Background="WhiteSmoke">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto"/>
@@ -309,6 +355,5 @@
                 </ListView.ItemTemplate>
             </ListView>
         </Grid>
-
     </Grid>
 </helper:BindablePage>

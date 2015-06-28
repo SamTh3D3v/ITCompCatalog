@@ -109,14 +109,13 @@
             </Grid>
         </AppBar>
     </helper:BindablePage.TopAppBar>
-
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" HorizontalAlignment="Stretch" Background="DeepSkyBlue" >
+        <Border Grid.Row="0" HorizontalAlignment="Stretch" Background="{StaticResource ThemeBrush}" >
             <StackPanel Orientation="Horizontal">
                 <Button Command="{Binding GoBackCommand}">
                     <Button.Content>
@@ -141,7 +140,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="10,10,10,0"  Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Grid Margin="10,10,10,0" RightTapped="UIElement_OnRightTapped" Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="5"/>
@@ -161,7 +160,7 @@
                                     </ListView.ItemContainerStyle>
                                     <ListView.ItemTemplate>
                                         <DataTemplate>
-                                            <Border Background="LightGray" Height="50" BorderThickness="0">
+                                            <Border Background="LightGray" Height="50" BorderThickness="0" RightTapped="UIElement_OnRightTapped">
                                                 <TextBlock  Text="{Binding}" VerticalAlignment="Center" Margin="20,0,0,0" Style="{StaticResource TitleTextBlockStyle}" Foreground="Black" HorizontalAlignment="Left"/>
                                             </Border>                                            
                                         </DataTemplate>

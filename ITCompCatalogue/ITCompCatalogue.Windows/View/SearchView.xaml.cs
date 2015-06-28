@@ -24,6 +24,10 @@ namespace ITCompCatalogue.View
             this.InitializeComponent();
         }
 
-       
+
+        private void UIElement_OnRightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            e.Handled = true;
+        }
     }
 }
