@@ -10,6 +10,7 @@ using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Networking.Connectivity;
 using Windows.Storage;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -43,6 +44,28 @@ namespace ITCompCatalogue
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+        }
+        protected override void OnWindowCreated(WindowCreatedEventArgs args)
+        {
+            SettingsPane.GetForCurrentView().CommandsRequested += OnCommandRequested;
+        }
+
+        private void OnCommandRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
+        {
+            var presSettings = new SettingsCommand("ItCompPresentation", "ITComp Presentation", handler =>
+            {
+                (Window.Current.Content as Frame).Navigate(typeof(PresentationView));                
+            });
+            var contactsSettings = new SettingsCommand("contactsSettings", "Contacts", handler =>
+            {
+                (Window.Current.Content as Frame).Navigate(typeof(ContactView));
+            });
+            var aboutSettings = new SettingsCommand("about ", "About ", handler => new AboutSettingsFlyout().Show());
+            var privacySettings = new SettingsCommand("PrivacyPolicy ", "Privacy Policy ", handler => new PrivacyPolicySettingsFlyout().Show());
+            args.Request.ApplicationCommands.Add(presSettings);
+            args.Request.ApplicationCommands.Add(contactsSettings);
+            args.Request.ApplicationCommands.Add(privacySettings);
+            args.Request.ApplicationCommands.Add(aboutSettings);
         }
 
         /// <summary>

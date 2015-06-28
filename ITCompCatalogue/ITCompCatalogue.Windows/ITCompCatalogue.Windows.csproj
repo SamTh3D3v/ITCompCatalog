@@ -119,6 +119,9 @@
     <Compile Include="UserControls\CourseRecom.xaml.cs">
       <DependentUpon>CourseRecom.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\AboutSettingsFlyout.xaml.cs">
+      <DependentUpon>AboutSettingsFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ClientReferencesView.xaml.cs">
       <DependentUpon>ClientReferencesView.xaml</DependentUpon>
     </Compile>
@@ -136,6 +139,9 @@
     </Compile>
     <Compile Include="View\FavoriteCoursesView.xaml.cs">
       <DependentUpon>FavoriteCoursesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PrivacyPolicySettingsFlyout.xaml.cs">
+      <DependentUpon>PrivacyPolicySettingsFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ListTechnologiesView.xaml.cs">
       <DependentUpon>ListTechnologiesView.xaml</DependentUpon>
@@ -273,6 +279,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\AboutSettingsFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ClientReferencesView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -296,6 +306,10 @@
     <Page Include="View\FavoriteCoursesView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PrivacyPolicySettingsFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ListTechnologiesView.xaml">
       <SubType>Designer</SubType>
