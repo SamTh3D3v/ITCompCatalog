@@ -285,7 +285,6 @@ namespace ITCompCatalogue.ViewModel
         public override void Deactivate(object parameter)
         {
             SearchIsEnabled = false;
-
         }
         public override void GoBack()
         {

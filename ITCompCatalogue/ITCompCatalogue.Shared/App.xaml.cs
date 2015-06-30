@@ -54,7 +54,7 @@ namespace ITCompCatalogue
         {
             var presSettings = new SettingsCommand("ItCompPresentation", "ITComp Presentation", handler =>
             {
-                (Window.Current.Content as Frame).Navigate(typeof(PresentationView));                
+                (Window.Current.Content as Frame).Navigate(typeof(PresentationView));                  
             });
             var contactsSettings = new SettingsCommand("contactsSettings", "Contacts", handler =>
             {

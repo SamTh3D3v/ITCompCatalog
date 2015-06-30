@@ -6,12 +6,15 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Xml.Linq;
+using Windows.Storage.Streams;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
 using ITCompCatalogue.Annotations;
+using ITCompCatalogue.Converters;
 using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
 using Microsoft.WindowsAzure.MobileServices;
@@ -30,9 +33,28 @@ namespace ITCompCatalogue.ViewModel
         private ObservableCollection<CourVisible> _listCoursesInCursus;
         private List<CourDate> _globaleCoursesScheduleList;
         private bool _isLoadingProgressRing = false;
-        private Cour _selectedCourse=new Cour();          
+        private Cour _selectedCourse=new Cour();
+        private bool _searchIsEnabled = false;
         #endregion
         #region Properties
+        public bool SearchIsEnabled
+        {
+            get
+            {
+                return _searchIsEnabled;
+            }
+
+            set
+            {
+                if (_searchIsEnabled == value)
+                {
+                    return;
+                }
+
+                _searchIsEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
         public Cour SelectedCourse
         {
             get
@@ -143,6 +165,16 @@ namespace ITCompCatalogue.ViewModel
         }      
         #endregion
         #region Commands
+        private RelayCommand _favorieCommand;
+        public RelayCommand FavorieCommand
+        {
+            get
+            {
+                return _favorieCommand
+                    ?? (_favorieCommand = new RelayCommand(
+                    () => NavigationService.NavigateTo("FavoriteCoursesView")));
+            }
+        }
         private RelayCommand _partnerCommand;
         public RelayCommand PartnerCommand
         {
@@ -206,14 +238,14 @@ namespace ITCompCatalogue.ViewModel
                     () => NavigationService.GoBack()));
             }
         }
-        private RelayCommand _searchCommand;
-        public RelayCommand SearchCommand
+        private RelayCommand<String> _searchCommand;
+        public RelayCommand<String> SearchCommand
         {
             get
             {
                 return _searchCommand
-                    ?? (_searchCommand = new RelayCommand(
-                    () => NavigationService.NavigateTo("SearchView")));
+                    ?? (_searchCommand = new RelayCommand<String>(
+                    (queryText) => NavigationService.NavigateTo("SearchView", queryText)));
             }
         }
         private RelayCommand<DateTime> _cellTappedCommand;
@@ -281,7 +313,61 @@ namespace ITCompCatalogue.ViewModel
                     }));
             }
         }
-
+        private RelayCommand<ISuggestionQuery> _suggestionRequestCommand;
+        public RelayCommand<ISuggestionQuery> SuggestionRequest
+        {
+            get
+            {
+                return _suggestionRequestCommand
+                    ?? (_suggestionRequestCommand = new RelayCommand<ISuggestionQuery>(async (query) =>
+                    {
+                        IEnumerable<Cour> filteredQuery = await CatalogueService.SearchCourses(query.QueryText, null);
+                        foreach (var cour in filteredQuery)
+                        {
+                            RandomAccessStreamReference stream;
+                            switch (cour.Category.TechnologieID)
+                            {
+                                case 1:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Android.png"));
+                                    break;
+                                case 2:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Microsoft.png"));
+                                    break;
+                                case 7:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Oracle.png"));
+                                    break;
+                                default:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/General.png"));
+                                    break;
+                            }
+                            query.Request.SearchSuggestionCollection.AppendResultSuggestion(cour.Code, cour.Intitule, cour.Category.TechnologieID.ToString(), stream, "Result");
+                        }
+                    }));
+            }
+        }
+        private RelayCommand<SearchBoxResultSuggestionChosenEventArgs> _suggestionSelectedCommand;
+        public RelayCommand<SearchBoxResultSuggestionChosenEventArgs> SuggestionSelectedCommand
+        {
+            get
+            {
+                return _suggestionSelectedCommand
+                    ?? (_suggestionSelectedCommand = new RelayCommand<SearchBoxResultSuggestionChosenEventArgs>(
+                    (args) => NavigationService.NavigateTo("CourDetails", CatalogueService.GetCourseByCourseId(long.Parse(args.Tag)))));
+            }
+        }
+        private RelayCommand _pageLoadedCommand;
+        public RelayCommand PageLoadedCommand
+        {
+            get
+            {
+                return _pageLoadedCommand
+                    ?? (_pageLoadedCommand = new RelayCommand(
+                    () =>
+                    {
+                        SearchIsEnabled = true;
+                    }));
+            }
+        }
         #endregion
         #region Ctor & Mothods
         public ScheduleViewModel(ICatalogueService catalogueService, INavigationService navigationService)
@@ -333,12 +419,9 @@ namespace ITCompCatalogue.ViewModel
         }
         public override void Deactivate(object parameter)
         {
-
+            SearchIsEnabled = false;
         }
-        public override void GoBack()
-        {
-
-        }
+       
 
         #endregion
 

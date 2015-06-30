@@ -27,9 +27,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>                    
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
@@ -48,7 +46,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton Grid.Column="5" Background="White" Foreground="Black" Content="Presentation" Command="{Binding PresenationCommand}">
+                <!--<ToggleButton Grid.Column="5" Background="White" Foreground="Black" Content="Presentation" Command="{Binding PresenationCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -61,7 +59,7 @@
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
-                </ToggleButton>
+                </ToggleButton>-->
                 <ToggleButton HorizontalAlignment="Stretch" Background="White" Foreground="Black" Grid.Column="1" Content="Partners" Command="{Binding PartnerCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
@@ -90,7 +88,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Background="White" Foreground="Black" Grid.Column="3" Content="Contacts" Command="{Binding ContactCommand}">
+                <!--<ToggleButton HorizontalAlignment="Stretch" Background="White" Foreground="Black" Grid.Column="3" Content="Contacts" Command="{Binding ContactCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -103,8 +101,8 @@
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="4" Content="Favorites" Background="White" Foreground="Black" Command="{Binding FavorieCommand}">
+                </ToggleButton>-->
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="Favorites" Background="White" Foreground="Black" Command="{Binding FavorieCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -118,28 +116,39 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <AppBarButton Grid.Column="6" Label="Search"  HorizontalAlignment="Right" Command="{Binding SearchCommand}">
+                <!--<AppBarButton Grid.Column="6" Label="Search"  HorizontalAlignment="Right" Command="{Binding SearchCommand}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
                     </AppBarButton.Icon>
-                </AppBarButton>
+                </AppBarButton>-->
             </Grid>
         </AppBar>
-    </helper:BindablePage.TopAppBar>   
+    </helper:BindablePage.TopAppBar>
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding PageLoadedCommand}"  />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="DeepSkyBlue" >
-            <StackPanel Orientation="Horizontal">
-                <Button Command="{Binding GoBackCommand}" VerticalAlignment="Center" >
+        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Command="{Binding GoBackCommand}">
                     <Button.Content>
                         <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
                     </Button.Content>
                 </Button>
-                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
-            </StackPanel>
+                <Image HorizontalAlignment="Left" Grid.Column="1"  Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+                <userControls:CustomSearchBox Grid.Column="2"/>
+            </Grid>
         </Border>
         <FlipView Grid.Row="1" Background="White"  ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
             <!--<FlipView.HeaderTemplate >

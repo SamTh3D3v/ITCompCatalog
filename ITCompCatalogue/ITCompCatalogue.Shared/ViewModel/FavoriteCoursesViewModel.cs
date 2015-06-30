@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Windows.Storage.Streams;
+using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using ITCompCatalogue.Converters;
 using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
 
@@ -14,8 +17,27 @@ namespace ITCompCatalogue.ViewModel
     {
         #region Fields
         private ObservableCollection<Cour> _listFavoriteCourses;
+        private bool _searchIsEnabled = false;
         #endregion
         #region Properties
+        public bool SearchIsEnabled
+        {
+            get
+            {
+                return _searchIsEnabled;
+            }
+
+            set
+            {
+                if (_searchIsEnabled == value)
+                {
+                    return;
+                }
+
+                _searchIsEnabled = value;
+                RaisePropertyChanged();
+            }
+        }   
         public ObservableCollection<Cour> ListFavoriteCourses
         {
             get
@@ -126,17 +148,14 @@ namespace ITCompCatalogue.ViewModel
                     }));
             }
         }
-        private RelayCommand _searchCommand;
-        public RelayCommand SearchCommand
+        private RelayCommand<String> _searchCommand;
+        public RelayCommand<String> SearchCommand
         {
             get
             {
                 return _searchCommand
-                    ?? (_searchCommand = new RelayCommand(
-                        () =>
-                        {
-                            NavigationService.NavigateTo("SearchView");
-                        }));
+                    ?? (_searchCommand = new RelayCommand<String>(
+                    (queryText) => NavigationService.NavigateTo("SearchView", queryText)));
             }
         }
         private RelayCommand _goBackCommand;
@@ -147,6 +166,61 @@ namespace ITCompCatalogue.ViewModel
                 return _goBackCommand
                     ?? (_goBackCommand = new RelayCommand(
                     () => NavigationService.GoBack()));
+            }
+        }
+        private RelayCommand<ISuggestionQuery> _suggestionRequestCommand;
+        public RelayCommand<ISuggestionQuery> SuggestionRequest
+        {
+            get
+            {
+                return _suggestionRequestCommand
+                    ?? (_suggestionRequestCommand = new RelayCommand<ISuggestionQuery>(async (query) =>
+                    {
+                        IEnumerable<Cour> filteredQuery = await CatalogueService.SearchCourses(query.QueryText, null);
+                        foreach (var cour in filteredQuery)
+                        {
+                            RandomAccessStreamReference stream;
+                            switch (cour.Category.TechnologieID)
+                            {
+                                case 1:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Android.png"));
+                                    break;
+                                case 2:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Microsoft.png"));
+                                    break;
+                                case 7:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Oracle.png"));
+                                    break;
+                                default:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/General.png"));
+                                    break;
+                            }
+                            query.Request.SearchSuggestionCollection.AppendResultSuggestion(cour.Code, cour.Intitule, cour.Category.TechnologieID.ToString(), stream, "Result");
+                        }
+                    }));
+            }
+        }
+        private RelayCommand<SearchBoxResultSuggestionChosenEventArgs> _suggestionSelectedCommand;
+        public RelayCommand<SearchBoxResultSuggestionChosenEventArgs> SuggestionSelectedCommand
+        {
+            get
+            {
+                return _suggestionSelectedCommand
+                    ?? (_suggestionSelectedCommand = new RelayCommand<SearchBoxResultSuggestionChosenEventArgs>(
+                    (args) => NavigationService.NavigateTo("CourDetails", CatalogueService.GetCourseByCourseId(long.Parse(args.Tag)))));
+            }
+        }
+        private RelayCommand _pageLoadedCommand;
+        public RelayCommand PageLoadedCommand
+        {
+            get
+            {
+                return _pageLoadedCommand
+                    ?? (_pageLoadedCommand = new RelayCommand(
+                    () =>
+                    {
+                        SearchIsEnabled = true;
+                    }));
             }
         }
         #endregion
@@ -163,8 +237,8 @@ namespace ITCompCatalogue.ViewModel
 
         public override void Deactivate(object parameter)
         {
-
-        }     
+            SearchIsEnabled = false;
+        }    
         #endregion
 
        

@@ -136,17 +136,17 @@
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE163;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-                <AppBarButton Label="Share" Command="{Binding ShareCommand}" CommandParameter="{Binding CourseDetails}">
+                <!--<AppBarButton Label="Share" Command="{Binding ShareCommand}" CommandParameter="{Binding CourseDetails}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE148;" />
                     </AppBarButton.Icon>
-                </AppBarButton>
-                <AppBarButton Label="Pin" Command="{Binding PinCommand}" CommandParameter="{Binding CourseDetails}">
+                </AppBarButton>-->
+                <AppBarButton Label="Pin" Visibility="{Binding PinSecTileVisibility}" Command="{Binding PinCommand}" CommandParameter="{Binding CourseDetails}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE242;" />
                     </AppBarButton.Icon>
                 </AppBarButton> 
-                <AppBarButton Label="Unpin" Command="{Binding UnpinCommand}" CommandParameter="{Binding CourseDetails}">
+                <AppBarButton Label="Unpin" Visibility="{Binding UnpinSecTileVisibility}" Command="{Binding UnpinCommand}" CommandParameter="{Binding CourseDetails}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE241;" />
                     </AppBarButton.Icon>

@@ -28,8 +28,46 @@ namespace ITCompCatalogue.ViewModel
         private DataTransferManager _dataTransferManager;
         private bool _bottomAppBarIsOpen;
         private Visibility _isDatesVisible;
+        private Visibility _pinSecTileVisibility;
+        private Visibility _unpinSecTileVisibility;
         #endregion
         #region Properties
+        public Visibility PinSecTileVisibility
+        {
+            get
+            {
+                return _pinSecTileVisibility;
+            }
+
+            set
+            {
+                if (_pinSecTileVisibility == value)
+                {
+                    return;
+                }
+
+                _pinSecTileVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
+        public Visibility UnpinSecTileVisibility
+        {
+            get
+            {
+                return _unpinSecTileVisibility;
+            }
+
+            set
+            {
+                if (_unpinSecTileVisibility == value)
+                {
+                    return;
+                }
+
+                _unpinSecTileVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
         public Visibility IsDatesVisible
         {
             get
@@ -280,7 +318,10 @@ namespace ITCompCatalogue.ViewModel
             Network.InternetConnectionChanged += async (s, e) => Windows.ApplicationModel.Core.CoreApplication.MainView.CoreWindow.Dispatcher.RunAsync(CoreDispatcherPriority.Normal, () =>
             {
                 IsDatesVisible = (e.IsConnected ? Visibility.Visible : Visibility.Collapsed);
-            });
+            });            
+            PinSecTileVisibility = SecondaryTile.Exists(CourseDetails.C_id.ToString()) ? Visibility.Collapsed : Visibility.Visible;
+            UnpinSecTileVisibility = SecondaryTile.Exists(CourseDetails.C_id.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+
         }
 
         public override void Deactivate(object parameter)
@@ -361,6 +402,8 @@ namespace ITCompCatalogue.ViewModel
             };
             tile.RequestCreateAsync();
             BottomAppBarIsOpen = false;
+            UnpinSecTileVisibility = Visibility.Visible;
+            PinSecTileVisibility = Visibility.Collapsed;
         }
         private async void UnpinSecondaryTile()
         {
@@ -372,6 +415,8 @@ namespace ITCompCatalogue.ViewModel
                 tile.RequestDeleteAsync();
             }
             BottomAppBarIsOpen = false;
+               UnpinSecTileVisibility = Visibility.Collapsed;
+            PinSecTileVisibility = Visibility.Visible;
         }
 
     }

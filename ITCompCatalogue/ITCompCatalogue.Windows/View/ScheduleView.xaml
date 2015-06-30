@@ -28,9 +28,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>                    
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -48,7 +46,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton Grid.Column="5" Content="Presentation" Background="White" Foreground="Black" Command="{Binding PresenationCommand}">
+                <!--<ToggleButton Grid.Column="5" Content="Presentation" Background="White" Foreground="Black" Command="{Binding PresenationCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -61,7 +59,7 @@
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
-                </ToggleButton>
+                </ToggleButton>-->
                 <ToggleButton HorizontalAlignment="Stretch" Grid.Column="1" Content="Partners" Background="White" Foreground="Black" Command="{Binding PartnerCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
@@ -90,7 +88,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="Contacts" Background="White" Foreground="Black" Command="{Binding ContactCommand}">
+                <!--<ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="Contacts" Background="White" Foreground="Black" Command="{Binding ContactCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -103,8 +101,8 @@
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="4" Content="Favorites" Background="White" Foreground="Black" Command="{Binding FavorieCommand}">
+                </ToggleButton>-->
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="Favorites" Background="White" Foreground="Black" Command="{Binding FavorieCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -118,14 +116,19 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <AppBarButton Grid.Column="6" HorizontalAlignment="Right" Label="Search"  Command="{Binding SearchCommand}">
+                <!--<AppBarButton Grid.Column="6" HorizontalAlignment="Right" Label="Search"  Command="{Binding SearchCommand}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
                     </AppBarButton.Icon>
-                </AppBarButton>
+                </AppBarButton>-->
             </Grid>
         </AppBar>
     </helper:BindablePage.TopAppBar>
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding PageLoadedCommand}"  />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

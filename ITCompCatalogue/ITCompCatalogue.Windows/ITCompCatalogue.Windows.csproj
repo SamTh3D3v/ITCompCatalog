@@ -119,6 +119,9 @@
     <Compile Include="UserControls\CourseRecom.xaml.cs">
       <DependentUpon>CourseRecom.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\CustomSearchBox.xaml.cs">
+      <DependentUpon>CustomSearchBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\AboutSettingsFlyout.xaml.cs">
       <DependentUpon>AboutSettingsFlyout.xaml</DependentUpon>
     </Compile>
@@ -276,6 +279,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="UserControls\CourseRecom.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\CustomSearchBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
