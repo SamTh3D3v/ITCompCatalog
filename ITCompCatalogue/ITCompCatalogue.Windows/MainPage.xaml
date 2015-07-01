@@ -154,14 +154,16 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" HorizontalAlignment="Stretch" Background="{StaticResource ThemeBrush}" Height="80">
+        <Border Grid.Row="0" HorizontalAlignment="Stretch" Background="{StaticResource ThemeBrush}" >
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>                    
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Image HorizontalAlignment="Left"  Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
-                <userControls:CustomSearchBox Grid.Column="1"/>
+                
+                <Image HorizontalAlignment="Left" Grid.Column="1"  Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+                <userControls:CustomSearchBox Grid.Column="2"/>
             </Grid>
         </Border>
         <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >

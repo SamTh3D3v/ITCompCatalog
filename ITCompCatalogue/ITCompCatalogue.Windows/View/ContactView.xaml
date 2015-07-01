@@ -121,20 +121,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Button Command="{Binding GoBackCommand}">
-                    <Button.Content>
-                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
-                    </Button.Content>
-                </Button>
-                <Image HorizontalAlignment="Left" Grid.Column="1"  Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
-                <userControls:CustomSearchBox Grid.Column="2"/>
-            </Grid>
+            <userControls:HeaderControl/>
         </Border>
         <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
             <StackPanel Orientation="Horizontal">

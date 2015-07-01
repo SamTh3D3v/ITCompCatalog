@@ -6,6 +6,7 @@ using System.Text;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation;
+using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.UI.StartScreen;
@@ -14,6 +15,7 @@ using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using ITCompCatalogue.Converters;
 using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
 
@@ -30,8 +32,46 @@ namespace ITCompCatalogue.ViewModel
         private Visibility _isDatesVisible;
         private Visibility _pinSecTileVisibility;
         private Visibility _unpinSecTileVisibility;
+        private bool _searchIsEnabled = false;
+        private Visibility _backButtonVisibility = Visibility.Visible;
         #endregion
-        #region Properties
+        #region Properties                
+        public Visibility BackButtonVisibility
+        {
+            get
+            {
+                return _backButtonVisibility;
+            }
+
+            set
+            {
+                if (_backButtonVisibility == value)
+                {
+                    return;
+                }
+
+                _backButtonVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
+        public bool SearchIsEnabled
+        {
+            get
+            {
+                return _searchIsEnabled;
+            }
+
+            set
+            {
+                if (_searchIsEnabled == value)
+                {
+                    return;
+                }
+
+                _searchIsEnabled = value;
+                RaisePropertyChanged();
+            }
+        }
         public Visibility PinSecTileVisibility
         {
             get
@@ -150,17 +190,14 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands
-        private RelayCommand _searchCommand;
-        public RelayCommand SearchCommand
+        private RelayCommand<String> _searchCommand;
+        public RelayCommand<String> SearchCommand
         {
             get
             {
                 return _searchCommand
-                    ?? (_searchCommand = new RelayCommand(
-                        () =>
-                        {
-                            NavigationService.NavigateTo("SearchView");
-                        }));
+                    ?? (_searchCommand = new RelayCommand<String>(
+                    (queryText) => NavigationService.NavigateTo("SearchView", queryText)));
             }
         }
         private RelayCommand _favoriteCommand;
@@ -290,6 +327,61 @@ namespace ITCompCatalogue.ViewModel
                     UnpinSecondaryTile));
             }
         }
+        private RelayCommand<ISuggestionQuery> _suggestionRequestCommand;
+        public RelayCommand<ISuggestionQuery> SuggestionRequest
+        {
+            get
+            {
+                return _suggestionRequestCommand
+                    ?? (_suggestionRequestCommand = new RelayCommand<ISuggestionQuery>(async (query) =>
+                    {
+                        IEnumerable<Cour> filteredQuery = await CatalogueService.SearchCourses(query.QueryText, null);
+                        foreach (var cour in filteredQuery)
+                        {
+                            RandomAccessStreamReference stream;
+                            switch (cour.Category.TechnologieID)
+                            {
+                                case 1:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Android.png"));
+                                    break;
+                                case 2:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Microsoft.png"));
+                                    break;
+                                case 7:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Oracle.png"));
+                                    break;
+                                default:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/General.png"));
+                                    break;
+                            }
+                            query.Request.SearchSuggestionCollection.AppendResultSuggestion(cour.Code, cour.Intitule, cour.Category.TechnologieID.ToString(), stream, "Result");
+                        }
+                    }));
+            }
+        }
+        private RelayCommand<SearchBoxResultSuggestionChosenEventArgs> _suggestionSelectedCommand;
+        public RelayCommand<SearchBoxResultSuggestionChosenEventArgs> SuggestionSelectedCommand
+        {
+            get
+            {
+                return _suggestionSelectedCommand
+                    ?? (_suggestionSelectedCommand = new RelayCommand<SearchBoxResultSuggestionChosenEventArgs>(
+                    (args) => NavigationService.NavigateTo("CourDetails", CatalogueService.GetCourseByCourseId(long.Parse(args.Tag)))));
+            }
+        }
+        private RelayCommand _pageLoadedCommand;
+        public RelayCommand PageLoadedCommand
+        {
+            get
+            {
+                return _pageLoadedCommand
+                    ?? (_pageLoadedCommand = new RelayCommand(
+                    () =>
+                    {
+                        SearchIsEnabled = true;
+                    }));
+            }
+        }
         #endregion
         #region Ctors and methods
 
@@ -312,6 +404,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 CourseDetails = CatalogueService.GetCourseByCourseId(long.Parse(parameter.ToString()));
                 IsCourseFavorite = CatalogueService.IsCourseFavorite(CourseDetails.C_id);
+                BackButtonVisibility = Visibility.Collapsed;
             }            
             RegisterForShare();
             SendLiveTileUpdate();
@@ -326,6 +419,7 @@ namespace ITCompCatalogue.ViewModel
 
         public override void Deactivate(object parameter)
         {
+            SearchIsEnabled = false;
             _dataTransferManager.DataRequested -= _shareHandler;
         }
         private void RegisterForShare()

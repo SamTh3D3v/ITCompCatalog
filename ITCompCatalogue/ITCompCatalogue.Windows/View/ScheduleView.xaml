@@ -10,6 +10,7 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converters="using:ITCompCatalogue.Converters"
+    xmlns:userControls="using:ITCompCatalogue.UserControls"
     mc:Ignorable="d">
 
     <helper:BindablePage.DataContext>
@@ -136,17 +137,8 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
-            <Grid>
-                <StackPanel Orientation="Horizontal">
-                    <Button Command="{Binding GoBackCommand}">
-                        <Button.Content>
-                            <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
-                        </Button.Content>
-                    </Button>
-                    <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
-                </StackPanel>
-                <ProgressRing IsActive="{Binding IsLoadingProgressRing}" VerticalAlignment="Stretch" Width="100"  HorizontalAlignment="Right" Foreground="White"></ProgressRing>
-            </Grid>           
+            <userControls:HeaderControl/>
+                <!--<ProgressRing IsActive="{Binding IsLoadingProgressRing}" VerticalAlignment="Stretch" Width="100"  HorizontalAlignment="Right" Foreground="White"></ProgressRing>-->                       
         </Border>
         <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
             <StackPanel Orientation="Horizontal">

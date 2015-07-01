@@ -7,6 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:converters="using:ITCompCatalogue.Converters"
     xmlns:helper="using:ITCompCatalogue.Helper"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:userControls="using:ITCompCatalogue.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <helper:BindablePage.DataContext>
@@ -24,9 +27,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="120"/>                    
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
@@ -45,7 +46,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton Grid.Column="5" Content="Presentation" Background="White" Foreground="Black" Command="{Binding PresenationCommand}">
+                <!--<ToggleButton Grid.Column="5" Content="Presentation" Background="White" Foreground="Black" Command="{Binding PresenationCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -58,7 +59,7 @@
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
-                </ToggleButton>
+                </ToggleButton>-->
                 <ToggleButton HorizontalAlignment="Stretch" Background="White" Foreground="Black" Grid.Column="1" Content="Partners" Command="{Binding PartnerCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
@@ -87,7 +88,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Background="White" Foreground="Black" Grid.Column="3" Content="Contacts" Command="{Binding ContactCommand}">
+                <!--<ToggleButton HorizontalAlignment="Stretch" Background="White" Foreground="Black" Grid.Column="3" Content="Contacts" Command="{Binding ContactCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -100,8 +101,8 @@
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Background="White" Foreground="Black" Grid.Column="4" Content="Favorites" Command="{Binding FavorieCommand}">
+                </ToggleButton>-->
+                <ToggleButton HorizontalAlignment="Stretch" Background="White" Foreground="Black" Grid.Column="3" Content="Favorites" Command="{Binding FavorieCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -115,11 +116,11 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <AppBarButton Label="Search" Grid.Column="6" HorizontalAlignment="Right"  Command="{Binding SearchCommand}">
+                <!--<AppBarButton Label="Search" Grid.Column="6" HorizontalAlignment="Right"  Command="{Binding SearchCommand}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE11A;" />
                     </AppBarButton.Icon>
-                </AppBarButton>
+                </AppBarButton>-->
             </Grid>
         </AppBar>
     </helper:BindablePage.TopAppBar>
@@ -154,20 +155,18 @@
             </CommandBar.PrimaryCommands>
         </CommandBar>
     </Page.BottomAppBar>
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding PageLoadedCommand}"  />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
     <Grid Background="White">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
-            <StackPanel Orientation="Horizontal">
-                <Button Command="{Binding GoBackCommand}">
-                    <Button.Content>
-                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
-                    </Button.Content>
-                </Button>
-                <Image HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
-            </StackPanel>
+            <userControls:HeaderControl/>
         </Border>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>

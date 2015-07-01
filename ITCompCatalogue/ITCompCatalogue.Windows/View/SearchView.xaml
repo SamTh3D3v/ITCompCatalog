@@ -8,7 +8,8 @@
     xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:converters="using:ITCompCatalogue.Converters"
-    xmlns:helper="using:ITCompCatalogue.Helper" 
+    xmlns:helper="using:ITCompCatalogue.Helper"
+    xmlns:userControls="using:ITCompCatalogue.UserControls"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <helper:BindablePage.DataContext>
@@ -132,37 +133,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Command="{Binding GoBackCommand}">
-                    <Button.Content>
-                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#x2A1E;" />
-                    </Button.Content>
-                </Button>
-                <Image Grid.Column="1" HorizontalAlignment="Left" Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
-                <SearchBox Grid.Column="2" IsEnabled="{Binding SearchIsEnabled,Mode=TwoWay}" QueryText="{Binding SearchText,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"  VerticalContentAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" SearchHistoryEnabled="True" x:Name="SearchBox" Width="200" Height="35">
-                    <SearchBox.Resources>
-                        <converters:SearchArgsConverter x:Name="ArgsConverter"/>
-                    </SearchBox.Resources>
-                    <SearchBox.Style>
-                        <StaticResource ResourceKey="MainSearchBoxStyle"/>
-                    </SearchBox.Style>
-                    <!--<interactivity:Interaction.Behaviors>
-                        <core:EventTriggerBehavior EventName="SuggestionsRequested">
-                            <core:InvokeCommandAction
-                    Command="{Binding SuggestionRequest}"
-                    InputConverter="{StaticResource ArgsConverter}"
-                    InputConverterLanguage="en-US"
-                    InputConverterParameter="{Binding ElementName=SearchBox, Path=SearchHistoryEnabled}"/>
-                        </core:EventTriggerBehavior>
-                    </interactivity:Interaction.Behaviors>-->
-                </SearchBox>
-            </Grid>
-
+            <userControls:HeaderControl/>
         </Border>
         <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
             <StackPanel Orientation="Horizontal">
