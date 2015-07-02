@@ -137,8 +137,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
-            <userControls:HeaderControl/>
-                <!--<ProgressRing IsActive="{Binding IsLoadingProgressRing}" VerticalAlignment="Stretch" Width="100"  HorizontalAlignment="Right" Foreground="White"></ProgressRing>-->                       
+            <userControls:HeaderControl/>               
         </Border>
         <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
             <StackPanel Orientation="Horizontal">
@@ -158,6 +157,7 @@
                 </DataTemplate>
                 <helper:CustomStyleSelector x:Key="Selector"  EventTemplate="{StaticResource SelectorTemplate}" />
             </Grid.Resources>
+            
             <input:RadCalendar  DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Light" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
                      GridLinesBrush="{StaticResource ThemeBrush}"
                      GridLinesThickness="2"                       
@@ -167,6 +167,7 @@
                      BorderThickness="2" >                
 
             </input:RadCalendar>
+            <ProgressRing IsActive="{Binding IsLoadingProgressRing}" VerticalAlignment="Center"  Width="300" Height="300" HorizontalAlignment="Center" Foreground="{StaticResource ThemeBrush}"></ProgressRing>
         </Grid>
     </Grid>
 </helper:BindablePage>

@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Foundation.Metadata;
+using Windows.Storage;
 using Microsoft.WindowsAzure.MobileServices;
 using SQLitePCL;
 
@@ -11,7 +13,14 @@ namespace ITCompCatalogue.Model
 {
     public class CatalogueService : ICatalogueService
     {
-        private readonly SQLiteConnection _connection = new SQLiteConnection("ITCompTrainingDB.db");
+        private readonly SQLiteConnection _connection;
+        private readonly SQLiteConnection _roamingConnection;
+        public CatalogueService()
+        {
+            _connection = new SQLiteConnection("ITCompTrainingDB.db");
+            var favDbFilename = Path.Combine(ApplicationData.Current.RoamingFolder.Path, "ITCompFavoritesDB.db");
+            _roamingConnection = new SQLiteConnection(favDbFilename);
+        }
         public async Task<List<Technology>> GetAllTechnologies()
         {
             var technologies = new List<Technology>();
@@ -275,12 +284,12 @@ namespace ITCompCatalogue.Model
             return cours;
 
         }
-        public async Task<List<Cour>> SearchCourses(string searchText, String searchBy=null)
+        public async Task<List<Cour>> SearchCourses(string searchText, String searchBy = null)
         {
             var courses = new List<Cour>();
-            var query =(searchBy!=null)?"SELECT * from Cours WHERE (lower(" + searchBy + ") LIKE '%" + searchText + "%')":
+            var query = (searchBy != null) ? "SELECT * from Cours WHERE (lower(" + searchBy + ") LIKE '%" + searchText + "%')" :
                 "SELECT * from Cours WHERE (code LIKE '%" + searchText + "%') or (intitule LIKE '%" + searchText + "%')";
-             
+
             using (var statement = _connection.Prepare(query))
             {
                 //            statement.Bind(1, searchText);
@@ -306,7 +315,7 @@ namespace ITCompCatalogue.Model
         {
             if (!IsCourseFavorite(courseId))
             {
-                using (var statement = _connection.Prepare("INSERT INTO Favorite (_id) VALUES (@IdCourse);"))
+                using (var statement = _roamingConnection.Prepare("INSERT INTO Favorite (_id) VALUES (@IdCourse);"))
                 {
                     statement.Bind("@IdCourse", courseId);
                     statement.Step();
@@ -316,7 +325,7 @@ namespace ITCompCatalogue.Model
         }
         public void UnFavoriteCourse(long courseId)
         {
-            using (var statement = _connection.Prepare("Delete from Favorite Where _id = ?"))
+            using (var statement = _roamingConnection.Prepare("Delete from Favorite Where _id = ?"))
             {
                 statement.Bind(1, courseId);
                 statement.Step();
@@ -325,7 +334,7 @@ namespace ITCompCatalogue.Model
         }
         public bool IsCourseFavorite(long courseId)
         {
-            using (var statement = _connection.Prepare("SELECT * from Favorite Where _id = ?"))
+            using (var statement = _roamingConnection.Prepare("SELECT * from Favorite Where _id = ?"))
             {
                 statement.Bind(1, courseId);
                 if (statement.Step() == SQLiteResult.ROW)
@@ -337,7 +346,7 @@ namespace ITCompCatalogue.Model
         }
         public void UnfavoriteAllCourses()
         {
-            using (var statement = _connection.Prepare("Delete From Favorite"))
+            using (var statement = _roamingConnection.Prepare("Delete From Favorite"))
             {
                 statement.Step();
             }
@@ -345,7 +354,7 @@ namespace ITCompCatalogue.Model
         public async Task<List<Cour>> GetFavoriteCourses()
         {
             var courses = new List<Cour>();
-            using (var statement = _connection.Prepare("SELECT * FROM Favorite"))
+            using (var statement = _roamingConnection.Prepare("SELECT * FROM Favorite"))
             {
                 while (statement.Step() == SQLiteResult.ROW)
                 {
@@ -378,7 +387,7 @@ namespace ITCompCatalogue.Model
             var client = new MobileServiceClient("https://itcomp.azure-mobile.net/",
                     "vVZNhWrKDpNtpAGxlZuFttVMOFAsFD34");
 
-            var listDates = await client.GetTable<CourDate>().Where(x => x.CoursId == coursId).ToListAsync();            
+            var listDates = await client.GetTable<CourDate>().Where(x => x.CoursId == coursId).ToListAsync();
             return listDates;
         }
 

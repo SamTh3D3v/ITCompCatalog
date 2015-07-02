@@ -156,7 +156,7 @@
                                 <TextBlock VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}" Text="{Binding Intitule}" Foreground="White"/>
                             </StackPanel>
                         </Border>
-                        <ListView  Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">
+                        <ListView SelectionMode="None" Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -179,7 +179,7 @@
                                                 </AppBarButton>-->
                                             </Grid>
                                         </Border>
-                                        <ListView Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
+                                        <ListView SelectionMode="None" Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
                                             <interactivity:Interaction.Behaviors>
                                                 <core:EventTriggerBehavior EventName="ItemClick">
                                                     <core:InvokeCommandAction Command="{Binding DataContext.CourseSelectedCommand, ElementName=RootPivot}"
@@ -193,7 +193,7 @@
                                             </ListView.ItemContainerStyle>
                                             <ListView.ItemTemplate>
                                                 <DataTemplate>
-                                                    <Border BorderThickness="2" Background="WhiteSmoke"  RightTapped="UIElement_OnRightTapped">
+                                                    <Border BorderThickness="2" Background="WhiteSmoke"  RightTapped="UIElement_OnRightTapped" >
                                                         <Grid>
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="100"/>

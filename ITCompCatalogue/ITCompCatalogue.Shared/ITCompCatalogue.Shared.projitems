@@ -71,6 +71,7 @@
     <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\telecommunication.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\CategoryRefClients\transport.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\fax.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\filter.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\General.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\IT.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\mail.png" />
@@ -115,6 +116,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <None Include="$(MSBuildThisFileDirectory)ITCompTrainingDB.db" />
+    <Content Include="$(MSBuildThisFileDirectory)Data\ITCompFavoritesDB.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="$(MSBuildThisFileDirectory)Data\ITCompTrainingDB.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 </Project>

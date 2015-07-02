@@ -82,14 +82,17 @@ namespace ITCompCatalogue.ViewModel
         }       
         #endregion
         #region Commands
-        private RelayCommand<String> _searchCommand;
-        public RelayCommand<String> SearchCommand
+        private RelayCommand<Object> _searchCommand;
+        public RelayCommand<Object> SearchCommand
         {
             get
             {
                 return _searchCommand
-                    ?? (_searchCommand = new RelayCommand<String>(
-                    (queryText) => NavigationService.NavigateTo("SearchView", queryText)));
+                    ?? (_searchCommand = new RelayCommand<Object>(
+                        (queryText) =>
+                        {
+                            NavigationService.NavigateTo("SearchView",queryText );
+                        }));
             }
         }
         private RelayCommand _presentationCommand;   
@@ -99,10 +102,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 return  _presentationCommand
                     ?? ( _presentationCommand = new RelayCommand(
-                    () =>
-                    {
-                        NavigationService.NavigateTo("PresentationView");
-                    }));
+                    () => NavigationService.NavigateTo("PresentationView")));
             }
         }
         private RelayCommand _listTechnologiesCommand;

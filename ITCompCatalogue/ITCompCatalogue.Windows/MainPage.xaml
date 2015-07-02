@@ -231,11 +231,11 @@
                         <!--CommandParameter="{Binding ElementName=Sl_VolumeSilder, Path=Value}"-->
                     </core:EventTriggerBehavior>
                 </interactivity:Interaction.Behaviors>
-                <!--<ListView.ItemContainerStyle>
+                <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"></Setter>
+                        <Setter Property="VerticalContentAlignment" Value="Stretch"></Setter>
                     </Style>
-                </ListView.ItemContainerStyle>-->
+                </ListView.ItemContainerStyle>
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal" />
@@ -290,7 +290,7 @@
                                     </Grid>
                                 </animatedTile:Tile.BackContent>
                             </animatedTile:Tile>
-                            <ListView MaxHeight="300" Grid.Row="2" Grid.Column="0"  HorizontalAlignment="Stretch" IsItemClickEnabled="True"  ItemsSource="{Binding Categories}" >
+                            <ListView  Grid.Row="2" Grid.Column="0"  HorizontalAlignment="Stretch" IsItemClickEnabled="True"  ItemsSource="{Binding Categories}" >
                                 <interactivity:Interaction.Behaviors>
                                     <core:EventTriggerBehavior EventName="ItemClick">
                                         <core:InvokeCommandAction Command="{Binding DataContext.SelectCategotyCommand,ElementName=RootGrid}"  InputConverter="{StaticResource CatClickedConverter}"/>

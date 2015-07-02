@@ -29,9 +29,11 @@ namespace ITCompCatalogue.UserControls
             ExpandAnimation.Begin();
         }
 
-        private void SearchBox_OnPointerExited(object sender, PointerRoutedEventArgs e)
+        private void SearchBox_OnPointerExited(object sender, RoutedEventArgs routedEventArgs)
         {
             ShrinkAnimation.Begin();            
         }
+
+        
     }
 }

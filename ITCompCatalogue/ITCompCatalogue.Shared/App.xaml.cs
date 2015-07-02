@@ -44,6 +44,7 @@ namespace ITCompCatalogue
         {
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
+           UnhandledException += (sender, e) => e.Handled = true;
         }
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
@@ -54,7 +55,7 @@ namespace ITCompCatalogue
         {
             var presSettings = new SettingsCommand("ItCompPresentation", "ITComp Presentation", handler =>
             {
-                (Window.Current.Content as Frame).Navigate(typeof(PresentationView));                  
+                (Window.Current.Content as Frame).Navigate(typeof(PresentationView));
             });
             var contactsSettings = new SettingsCommand("contactsSettings", "Contacts", handler =>
             {
@@ -85,6 +86,7 @@ namespace ITCompCatalogue
 
             Frame rootFrame = Window.Current.Content as Frame;
             await CopyDatabase();
+            await CopyFavorateDatabase();
 
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
@@ -116,7 +118,7 @@ namespace ITCompCatalogue
                     {
                         throw new Exception("Failed to CourseDetails page");
                     }
-                    
+
                 }
 
                 // When the navigation stack isn't restored navigate to the first page,
@@ -167,7 +169,7 @@ namespace ITCompCatalogue
             {
                 StorageFile storageFile = await ApplicationData.Current.LocalFolder.GetFileAsync("ITCompTrainingDB.db");
                 isDatabaseExisting = true;
-               // CreateFavoriteTable();
+                // CreateFavoriteTable();
             }
             catch
             {
@@ -176,12 +178,39 @@ namespace ITCompCatalogue
 
             if (!isDatabaseExisting)
             {
-                StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync("ITCompTrainingDB.db");
+                StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync(@"Data\ITCompTrainingDB.db");
                 await databaseFile.CopyAsync(ApplicationData.Current.LocalFolder);
-                CreateFavoriteTable();
+                //CreateFavoriteTable();
             }
 
         }
+
+        private async Task CopyFavorateDatabase()
+        {
+            bool isDatabaseExisting = false;
+            try
+            {
+                Windows.Storage.StorageFolder roamingFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
+
+                StorageFile storageFile = await roamingFolder.GetFileAsync("ITCompFavoritesDB.db");
+                isDatabaseExisting = true;
+                // CreateFavoriteTable();
+            }
+            catch
+            {
+                isDatabaseExisting = false;
+            }
+
+            if (!isDatabaseExisting)
+            {
+                StorageFile databaseFile = await Package.Current.InstalledLocation.GetFileAsync(@"Data\ITCompFavoritesDB.db");
+                await databaseFile.CopyAsync(ApplicationData.Current.RoamingFolder);
+                //CreateFavoriteTable();
+            }
+
+        }
+
+
         private void CreateFavoriteTable()
         {
             var connection = new SQLiteConnection("ITCompTrainingDB.db");
@@ -191,6 +220,16 @@ namespace ITCompCatalogue
                 statement.Step();
             }
         }
+
+        //private async void CreateRoamedDataBase()
+        //{
+        //    Windows.Storage.StorageFolder roamingFolder = Windows.Storage.ApplicationData.Current.RoamingFolder;
+        //    StorageFile dbFile = await roamingFolder.CreateFileAsync("FavoritesDB.db",CreationCollisionOption.ReplaceExisting);
+        //    await FileIO.WriteTextAsync(sampleFile, formatter.Format(DateTime.Now));
+
+
+
+        //}
         public static bool IsConnectedToInternet()
         {
             ConnectionProfile connectionProfile = NetworkInformation.GetInternetConnectionProfile();

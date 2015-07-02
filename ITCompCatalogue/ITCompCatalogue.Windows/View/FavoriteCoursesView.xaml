@@ -141,7 +141,7 @@
                 <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Favorites" Foreground="White"/>
             </StackPanel>
         </Border>
-        <ListView IsItemClickEnabled="True" x:Name="RootList" ItemsSource="{Binding ListFavoriteCourses}" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <ListView SelectionMode="None" IsItemClickEnabled="True" x:Name="RootList" ItemsSource="{Binding ListFavoriteCourses}" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>                    
@@ -154,7 +154,7 @@
             </interactivity:Interaction.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Background="WhiteSmoke" Margin="10" RightTapped="UIElement_OnRightTapped">
+                    <Grid Background="WhiteSmoke" Margin="5,5,5,0" RightTapped="UIElement_OnRightTapped">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>                                                                                                          
@@ -162,7 +162,8 @@
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>                            
+                            <RowDefinition Height="5"/>                            
                         </Grid.RowDefinitions>
                         <Image Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}" Grid.Row="0" Grid.Column="0"/>
                         <TextBlock HorizontalAlignment="Center" Text="{Binding Category.Intitule}" Margin="1" VerticalAlignment="Center"  Style="{StaticResource TitleTextBlockStyle}" Grid.Row="1" Grid.Column="0" Foreground="Black"/>

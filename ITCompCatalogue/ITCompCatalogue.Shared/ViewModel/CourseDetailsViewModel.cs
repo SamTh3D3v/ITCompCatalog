@@ -190,13 +190,13 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands
-        private RelayCommand<String> _searchCommand;
-        public RelayCommand<String> SearchCommand
+        private RelayCommand<Object> _searchCommand;
+        public RelayCommand<Object> SearchCommand
         {
             get
             {
                 return _searchCommand
-                    ?? (_searchCommand = new RelayCommand<String>(
+                    ?? (_searchCommand = new RelayCommand<Object>(
                     (queryText) => NavigationService.NavigateTo("SearchView", queryText)));
             }
         }
@@ -429,13 +429,16 @@ namespace ITCompCatalogue.ViewModel
             _dataTransferManager.DataRequested += _shareHandler;
         }
 
-        private void ShareTextHandler(DataTransferManager sender, DataRequestedEventArgs e)
+        private async void ShareTextHandler(DataTransferManager sender, DataRequestedEventArgs e)
         {
             DataRequest request = e.Request;
             // The Title is mandatory
             request.Data.Properties.Title = CourseDetails.Code + ": " + CourseDetails.Intitule;
             request.Data.Properties.Description = "";
-            request.Data.SetText(CourseDetails.Description + "\n\n Category: " + CourseDetails.Category.Intitule);
+            request.Data.SetText(CourseDetails.Description + " Category: " + CourseDetails.Category.Intitule);
+            var storeURI = new Uri("ms-windows-store:PDP?PFN=ITComp.Itcompcatalogue_td1e7mxqwnshw");
+            //await Windows.System.Launcher.LaunchUriAsync(storeURI);            
+            request.Data.SetUri(storeURI);            
         }
         private void SendLiveTileUpdate()
         {

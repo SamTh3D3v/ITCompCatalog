@@ -1,12 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
+using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Views;
+using ITCompCatalogue.Annotations;
+using ITCompCatalogue.Converters;
 using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
 
@@ -21,14 +26,32 @@ namespace ITCompCatalogue.ViewModel
         private bool _searchIntituleIsEnabled = true;
         private bool _searchCodeIsSelected = false;
         private bool _searchIsEnabled;
-
+        private ObservableCollection<SelectedTechnology> _listTechnologies;
         private ObservableCollection<String> _searchByItems = new ObservableCollection<string>()
         {
             "Code",
             "Intitule"
-        };    
+        };
         #endregion
-        #region Properties                      
+        #region Properties    
+        public ObservableCollection<SelectedTechnology> ListTechnologies
+        {
+            get
+            {
+                return _listTechnologies;
+            }
+
+            set
+            {
+                if (_listTechnologies == value)
+                {
+                    return;
+                }
+
+                _listTechnologies = value;
+                RaisePropertyChanged();
+            }
+        }          
         public bool SearchIsEnabled
         {
             get
@@ -258,13 +281,64 @@ namespace ITCompCatalogue.ViewModel
             get
             {
                 return _pageLoadedCommand
-                    ?? (_pageLoadedCommand = new RelayCommand(
-                    () =>
+                    ?? (_pageLoadedCommand = new RelayCommand(async () =>
                     {
                         SearchIsEnabled = true;
+                        ListTechnologies = new ObservableCollection<SelectedTechnology>((await CatalogueService.GetAllTechnologies()).Select<Technology,SelectedTechnology>(
+                            x => new SelectedTechnology()
+                            {
+                                C_id = x.C_id,
+                                Categories = x.Categories,
+                                Code = x.Code,
+                                CourseCount = x.CourseCount,
+                                Intitule = x.Intitule,
+                                IsTechSelected = true
+                            }));
                     }));
             }
         }
+        private RelayCommand<ISuggestionQuery> _suggestionRequestCommand;
+        public RelayCommand<ISuggestionQuery> SuggestionRequest
+        {
+            get
+            {
+                return _suggestionRequestCommand
+                    ?? (_suggestionRequestCommand = new RelayCommand<ISuggestionQuery>(async (query) =>
+                    {
+                        IEnumerable<Cour> filteredQuery = await CatalogueService.SearchCourses(query.QueryText, null);
+                        foreach (var cour in filteredQuery)
+                        {
+                            RandomAccessStreamReference stream;
+                            switch (cour.Category.TechnologieID)
+                            {
+                                case 1:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Android.png"));
+                                    break;
+                                case 2:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Microsoft.png"));
+                                    break;
+                                case 7:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/Oracle.png"));
+                                    break;
+                                default:
+                                    stream = RandomAccessStreamReference.CreateFromUri(new Uri("ms-appx:///Images/General.png"));
+                                    break;
+                            }
+                            query.Request.SearchSuggestionCollection.AppendResultSuggestion(cour.Code, cour.Intitule, cour.Category.TechnologieID.ToString(), stream, "Result");
+                        }
+                    }));
+            }
+        }
+        private RelayCommand<SearchBoxResultSuggestionChosenEventArgs> _suggestionSelectedCommand;
+        public RelayCommand<SearchBoxResultSuggestionChosenEventArgs> SuggestionSelectedCommand
+        {
+            get
+            {
+                return _suggestionSelectedCommand
+                    ?? (_suggestionSelectedCommand = new RelayCommand<SearchBoxResultSuggestionChosenEventArgs>(
+                    (args) => NavigationService.NavigateTo("CourDetails", CatalogueService.GetCourseByCourseId(long.Parse(args.Tag)))));
+            }
+        }       
 
         
         #endregion
@@ -291,5 +365,36 @@ namespace ITCompCatalogue.ViewModel
         }
 
         #endregion
+    }
+
+    public class SelectedTechnology :Technology,INotifyPropertyChanged
+    {        
+        private bool _isTechSelected;
+        public bool IsTechSelected
+        {
+            get
+            {
+                return _isTechSelected;
+            }
+
+            set
+            {
+                if (_isTechSelected == value)
+                {
+                    return;
+                }
+
+                _isTechSelected = value;
+                OnPropertyChanged();
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
     }
 }

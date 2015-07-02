@@ -42,7 +42,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <SearchBox PointerEntered="SearchBox_OnPointerEntered" PointerExited="SearchBox_OnPointerExited" IsEnabled="{Binding SearchIsEnabled}"  VerticalContentAlignment="Center"  HorizontalAlignment="Right" Margin="0,0,20,0" SearchHistoryEnabled="True" x:Name="SearchBox" Width="35" Height="35">
+    <SearchBox PointerEntered="SearchBox_OnPointerEntered" QueryText="{Binding SearchText,UpdateSourceTrigger=Default,Mode=TwoWay}" IsEnabled="{Binding SearchIsEnabled}"  VerticalContentAlignment="Center"  HorizontalAlignment="Right" Margin="0,0,20,0" SearchHistoryEnabled="True" x:Name="SearchBox" Width="35" Height="35" LostFocus="SearchBox_OnPointerExited">
         <SearchBox.Resources>
             <converters:SearchArgsConverter x:Name="ArgsConverter"/>
         </SearchBox.Resources>
