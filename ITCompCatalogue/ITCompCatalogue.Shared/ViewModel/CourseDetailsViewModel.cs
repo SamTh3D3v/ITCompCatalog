@@ -435,10 +435,18 @@ namespace ITCompCatalogue.ViewModel
             // The Title is mandatory
             request.Data.Properties.Title = CourseDetails.Code + ": " + CourseDetails.Intitule;
             request.Data.Properties.Description = "";
-            request.Data.SetText(CourseDetails.Description + " Category: " + CourseDetails.Category.Intitule);
             var storeURI = new Uri("ms-windows-store:PDP?PFN=ITComp.Itcompcatalogue_td1e7mxqwnshw");
+
+
+            var htmlExample = "<h3>Course Description</h3> <p>" + CourseDetails.Description + ".</p>" + "<a href=" + storeURI + ">Link to ITComp Catalogue app in the store.</a>";
+            var htmlFormat = Windows.ApplicationModel.DataTransfer.HtmlFormatHelper.CreateHtmlFormat(htmlExample);
+            request.Data.SetHtmlFormat(htmlFormat);
+
+            //request.Data.SetText(CourseDetails.Description + " Category: " + storeURI);
+            //var storeURI = new Uri("ms-windows-store:PDP?PFN=ITComp.Itcompcatalogue_td1e7mxqwnshw");
             //await Windows.System.Launcher.LaunchUriAsync(storeURI);            
-            request.Data.SetUri(storeURI);            
+            request.Data.SetUri(storeURI);
+            request.Data.SetApplicationLink(storeURI);
         }
         private void SendLiveTileUpdate()
         {
@@ -497,7 +505,7 @@ namespace ITCompCatalogue.ViewModel
                 ForegroundText = ForegroundText.Dark,
                 SmallLogo = uriSmallLogo
             };
-            tile.RequestCreateAsync();
+            await tile.RequestCreateAsync();
             BottomAppBarIsOpen = false;
             UnpinSecTileVisibility = Visibility.Visible;
             PinSecTileVisibility = Visibility.Collapsed;
@@ -509,7 +517,7 @@ namespace ITCompCatalogue.ViewModel
             if (SecondaryTile.Exists(CourseDetails.C_id.ToString()))
             {
                 var tile = new SecondaryTile(CourseDetails.C_id.ToString());
-                tile.RequestDeleteAsync();
+                await tile.RequestDeleteAsync();
             }
             BottomAppBarIsOpen = false;
                UnpinSecTileVisibility = Visibility.Collapsed;

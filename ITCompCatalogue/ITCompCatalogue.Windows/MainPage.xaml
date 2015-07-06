@@ -161,15 +161,15 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                
+                <Button Width="0" Height="0"></Button>
                 <Image HorizontalAlignment="Left" Grid.Column="1"  Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
                 <userControls:CustomSearchBox Grid.Column="2"/>
             </Grid>
         </Border>
         <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
             <StackPanel Orientation="Horizontal">
-                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE125;" VerticalAlignment="Stretch"/>
-                <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Technologies" Foreground="White"/>
+                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE299;" VerticalAlignment="Stretch"/>
+                <TextBlock   Style="{StaticResource SubheaderTextBlockStyle}" VerticalAlignment="Center" Margin="10,0,0,0" Text="Technologies" Foreground="White"/>
             </StackPanel>
         </Border>
         <Grid Grid.Row="2">

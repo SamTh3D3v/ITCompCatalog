@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StackPanelOrientationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TechIdToImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TechIdToImageTileConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ToggleButtonChecked.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\BindablePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\CustomStyleSelector.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\INavigable.cs" />

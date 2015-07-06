@@ -29,5 +29,10 @@ namespace ITCompCatalogue.View
         {
             e.Handled = true;
         }
+
+        private void ListView_OnItemClick(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
+        {
+            var a = 3;
+        }
     }
 }

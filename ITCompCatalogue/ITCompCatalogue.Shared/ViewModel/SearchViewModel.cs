@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using Windows.Storage.Streams;
+using Windows.UI.Core.AnimationMetrics;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -21,8 +22,8 @@ namespace ITCompCatalogue.ViewModel
     {
         #region Fields
         private ObservableCollection<Cour> _serachResult;
-        private String _searchText = String.Empty;        
-        private String _searchBySelectedItem;        
+        private String _searchText = String.Empty;
+        private String _searchBySelectedItem;
         private bool _searchIntituleIsEnabled = true;
         private bool _searchCodeIsSelected = false;
         private bool _searchIsEnabled;
@@ -33,7 +34,7 @@ namespace ITCompCatalogue.ViewModel
             "Intitule"
         };
         #endregion
-        #region Properties    
+        #region Properties
         public ObservableCollection<SelectedTechnology> ListTechnologies
         {
             get
@@ -51,7 +52,7 @@ namespace ITCompCatalogue.ViewModel
                 _listTechnologies = value;
                 RaisePropertyChanged();
             }
-        }          
+        }
         public bool SearchIsEnabled
         {
             get
@@ -104,6 +105,7 @@ namespace ITCompCatalogue.ViewModel
 
                 _searchText = value;
                 RaisePropertyChanged();
+                if (ListTechnologies!=null && ListTechnologies.Count!=0)
                 SearchCourses();
             }
         }
@@ -122,6 +124,7 @@ namespace ITCompCatalogue.ViewModel
                 }
                 _searchBySelectedItem = value;
                 RaisePropertyChanged();
+                if (ListTechnologies != null && ListTechnologies.Count != 0)
                 SearchCourses();
             }
         }
@@ -159,13 +162,13 @@ namespace ITCompCatalogue.ViewModel
 
                 _searchCodeIsSelected = value;
                 if (_searchCodeIsSelected)
-                {                    
+                {
                     SearchBySelectedItem = "Code";
-                }               
+                }
                 RaisePropertyChanged();
             }
         }
-    
+
         public bool SearchIntituleIsEnabled
         {
             get
@@ -182,9 +185,9 @@ namespace ITCompCatalogue.ViewModel
 
                 _searchIntituleIsEnabled = value;
                 if (_searchIntituleIsEnabled)
-                {                    
+                {
                     SearchBySelectedItem = "Intitule";
-                }               
+                }
                 RaisePropertyChanged();
             }
         }
@@ -254,7 +257,7 @@ namespace ITCompCatalogue.ViewModel
                     }));
             }
         }
-        
+
         private RelayCommand _goBackCommand;
         public RelayCommand GoBackCommand
         {
@@ -284,7 +287,7 @@ namespace ITCompCatalogue.ViewModel
                     ?? (_pageLoadedCommand = new RelayCommand(async () =>
                     {
                         SearchIsEnabled = true;
-                        ListTechnologies = new ObservableCollection<SelectedTechnology>((await CatalogueService.GetAllTechnologies()).Select<Technology,SelectedTechnology>(
+                        ListTechnologies = new ObservableCollection<SelectedTechnology>((await CatalogueService.GetAllTechnologies()).Select<Technology, SelectedTechnology>(
                             x => new SelectedTechnology()
                             {
                                 C_id = x.C_id,
@@ -338,19 +341,41 @@ namespace ITCompCatalogue.ViewModel
                     ?? (_suggestionSelectedCommand = new RelayCommand<SearchBoxResultSuggestionChosenEventArgs>(
                     (args) => NavigationService.NavigateTo("CourDetails", CatalogueService.GetCourseByCourseId(long.Parse(args.Tag)))));
             }
-        }       
+        }
 
-        
+        private RelayCommand _listViewItemClickedCommand;
+        public RelayCommand ListViewItemClickedCommand
+        {
+            get
+            {
+                return _listViewItemClickedCommand
+                    ?? (_listViewItemClickedCommand = new RelayCommand(
+                    () =>
+                    {
+                        if (ListTechnologies != null && ListTechnologies.Count != 0)
+                        SearchCourses();
+                    }));
+            }
+        }
+
+
         #endregion
         #region Ctor and Methods
         private async void SearchCourses()
         {
-            SearchResult = new ObservableCollection<Cour>(await CatalogueService.SearchCourses(SearchText));
+            var list = await CatalogueService.SearchCourses(SearchText);
+            var resList = new List<Cour>();
+            foreach (var tech in ListTechnologies)
+            {
+                if (tech.IsTechSelected)
+                    resList.AddRange(list.Where(c => c.Category.TechnologieID == tech.C_id));
+            }
+            SearchResult = new ObservableCollection<Cour>(resList);
         }
 
-        public SearchViewModel(ICatalogueService catalogueService,INavigationService navigationService)
-            :base(catalogueService,navigationService)
-        {           
+        public SearchViewModel(ICatalogueService catalogueService, INavigationService navigationService)
+            : base(catalogueService, navigationService)
+        {
             SearchBySelectedItem = SearchByItems.First();
         }
 
@@ -367,8 +392,8 @@ namespace ITCompCatalogue.ViewModel
         #endregion
     }
 
-    public class SelectedTechnology :Technology,INotifyPropertyChanged
-    {        
+    public class SelectedTechnology : Technology, INotifyPropertyChanged
+    {
         private bool _isTechSelected;
         public bool IsTechSelected
         {

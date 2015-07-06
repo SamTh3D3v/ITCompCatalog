@@ -278,8 +278,8 @@ namespace ITCompCatalogue.ViewModel
 
         public override void  Activate(Object parameter)
         {
-            
 
+            
         }
 
         public override void Deactivate(object parameter)

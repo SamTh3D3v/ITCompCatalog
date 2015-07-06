@@ -10,6 +10,7 @@
     xmlns:converters="using:ITCompCatalogue.Converters"
     xmlns:helper="using:ITCompCatalogue.Helper"
     xmlns:userControls="using:ITCompCatalogue.UserControls"
+    xmlns:extensions="using:WinRTXamlToolkit.Controls.Extensions"
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <helper:BindablePage.DataContext>
@@ -123,7 +124,7 @@
             <core:InvokeCommandAction Command="{Binding PageLoadedCommand}"  />
         </core:EventTriggerBehavior>
     </interactivity:Interaction.Behaviors>
-    <Grid Background="White">
+    <Grid Background="White" x:Name="Root">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="50"/>
@@ -139,7 +140,7 @@
                 <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Search Courses" Foreground="White"/>
             </StackPanel>
         </Border>
-        <Grid Grid.Row="2" HorizontalAlignment="Stretch" Background="White">
+        <Grid Grid.Row="2" HorizontalAlignment="Stretch" Background="White" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>                
             </Grid.RowDefinitions>
@@ -153,22 +154,27 @@
             <AppBarToggleButton  IsChecked="{Binding ParDescIsChecked,Mode=TwoWay}" Grid.Row="1" Grid.Column="3" Label="Desc"/>-->
             <!--<ComboBox Grid.Row="1" Margin="0,0,5,0" BorderBrush="DeepSkyBlue" Foreground="Black" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" SelectedItem="{Binding SearchBySelectedItem,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" ItemsSource="{Binding SearchByItems}"/>-->            
             <Image Source="../Images/filter.png" Grid.Row="0" Grid.Column="0" Width="35" Height="35"/>
-            <ListView SelectionMode="None" HorizontalAlignment="Center" ItemsSource="{Binding ListTechnologies}" Grid.Column="1" Margin="2,2,0,2" Background="WhiteSmoke">
-                <ListView.ItemsPanel>
+            <helper:ListViewEx  x:Name="ListView" IsItemClickEnabled="True"  SelectionMode="Multiple" HorizontalAlignment="Center" ItemsSource="{Binding ListTechnologies}" Grid.Column="1" Margin="2,2,0,2" Background="WhiteSmoke">
+                <interactivity:Interaction.Behaviors>
+                    <core:EventTriggerBehavior EventName="SelectionChanged">
+                        <core:InvokeCommandAction Command="{Binding ListViewItemClickedCommand}"  />
+                    </core:EventTriggerBehavior>
+                </interactivity:Interaction.Behaviors>
+                <helper:ListViewEx.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
-                </ListView.ItemsPanel>
-               <ListView.ItemTemplate>
+                </helper:ListViewEx.ItemsPanel>
+                <helper:ListViewEx.ItemTemplate>
                    <DataTemplate>
-                        <ToggleButton  Width="75" Height="75" Margin="2,2,0,2" IsChecked="{Binding IsTechSelected,Mode=TwoWay}" Background="{StaticResource ThemeBrush}">
+                        <ToggleButton   x:Name="Tb"  Width="75" Height="75" Margin="2,2,0,2" IsChecked="{Binding IsTechSelected,Mode=TwoWay,Converter={StaticResource ToggleButtonChecked}}" Background="{StaticResource ThemeBrush}">
                            <ToggleButton.Content>
                                 <Image Source="{Binding C_id,Converter={StaticResource TechIdToImageConverter}}"></Image>
                            </ToggleButton.Content>
                        </ToggleButton>
                    </DataTemplate>
-               </ListView.ItemTemplate>
-            </ListView>
+               </helper:ListViewEx.ItemTemplate>
+            </helper:ListViewEx>
         </Grid>
         <ListView IsItemClickEnabled="True" Margin="3,10,3,3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
             <interactivity:Interaction.Behaviors>
@@ -192,6 +198,7 @@
                         <TextBlock VerticalAlignment="Center" Text="{Binding Code}" Foreground="{StaticResource ThemeBrush}"    Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap" Grid.Column="0" />
                         <TextBlock VerticalAlignment="Center" Text="{Binding Intitule}" Foreground="Black" Style="{StaticResource TitleTextBlockStyle}"   TextWrapping="WrapWholeWords" Grid.Column="1" />
                         <!--<TextBlock Text="{Binding Category.Intitule}" Foreground="Black" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Grid.Column="2" />-->
+                        <Image Grid.Column="2" Width="35" Height="35" Source="{Binding Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}"></Image>
                     </Grid>
                 </DataTemplate>
             </ListView.ItemTemplate>

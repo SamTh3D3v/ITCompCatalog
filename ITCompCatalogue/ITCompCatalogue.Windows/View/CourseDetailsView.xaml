@@ -125,7 +125,7 @@
         </AppBar>
     </helper:BindablePage.TopAppBar>
     <Page.BottomAppBar >
-        <CommandBar Background="{StaticResource ThemeBrush}" ><!--IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}"-->
+        <CommandBar Background="{StaticResource ThemeBrush}" IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}"><!--IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}"-->
             <CommandBar.PrimaryCommands>
                 <AppBarToggleButton Label="Favorite" IsChecked="{Binding IsCourseFavorite,Mode=TwoWay}">
                     <AppBarToggleButton.Icon>
@@ -166,7 +166,21 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
-            <userControls:HeaderControl/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Width="0" Height="0" Grid.Column="0"></Button>
+                <AppBarButton Visibility="{Binding BackButtonVisibility}" Grid.Column="0" Command="{Binding GoBackCommand}" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="0">
+                    <AppBarButton.Content>
+                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE112;" />
+                    </AppBarButton.Content>
+                </AppBarButton>
+                <Image HorizontalAlignment="Left" Grid.Column="1"  Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+                <userControls:CustomSearchBox Grid.Column="2"/>
+            </Grid>
         </Border>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -177,7 +191,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="80"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>

@@ -5,9 +5,11 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using System.Xml.Linq;
 using Windows.Storage.Streams;
 using Windows.UI.Popups;
+using Windows.UI.StartScreen;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
@@ -28,15 +30,91 @@ namespace ITCompCatalogue.ViewModel
         #region Fields
 
         private ObservableCollection<CourDate> _coursesScheduleList;
-        private CalendarDisplayMode _displayMode=CalendarDisplayMode.YearView;
+        private CalendarDisplayMode _displayMode = CalendarDisplayMode.YearView;
         private ObservableCollection<CourDate> _listCoursesInDate;
         private ObservableCollection<CourVisible> _listCoursesInCursus;
         private List<CourDate> _globaleCoursesScheduleList;
         private bool _isLoadingProgressRing = false;
-        private Cour _selectedCourse=new Cour();
+        private Cour _selectedCourse = new Cour();
         private bool _searchIsEnabled = false;
+        private bool _bottomAppBarIsOpen;
+        private Visibility _pinSecTileVisibility;
+        private Visibility _unpinSecTileVisibility;
+        private Visibility _backButtonVisibility = Visibility.Visible;
         #endregion
         #region Properties
+        public Visibility BackButtonVisibility
+        {
+            get
+            {
+                return _backButtonVisibility;
+            }
+
+            set
+            {
+                if (_backButtonVisibility == value)
+                {
+                    return;
+                }
+
+                _backButtonVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
+        public bool BottomAppBarIsOpen
+        {
+            get
+            {
+                return _bottomAppBarIsOpen;
+            }
+
+            set
+            {
+                if (_bottomAppBarIsOpen == value)
+                {
+                    return;
+                }
+
+                _bottomAppBarIsOpen = value;
+                RaisePropertyChanged();
+            }
+        }
+        public Visibility PinSecTileVisibility
+        {
+            get
+            {
+                return _pinSecTileVisibility;
+            }
+
+            set
+            {
+                if (_pinSecTileVisibility == value)
+                {
+                    return;
+                }
+
+                _pinSecTileVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
+        public Visibility UnpinSecTileVisibility
+        {
+            get
+            {
+                return _unpinSecTileVisibility;
+            }
+
+            set
+            {
+                if (_unpinSecTileVisibility == value)
+                {
+                    return;
+                }
+
+                _unpinSecTileVisibility = value;
+                RaisePropertyChanged();
+            }
+        }
         public bool SearchIsEnabled
         {
             get
@@ -162,7 +240,7 @@ namespace ITCompCatalogue.ViewModel
                 _isLoadingProgressRing = value;
                 RaisePropertyChanged();
             }
-        }      
+        }
         #endregion
         #region Commands
         private RelayCommand _favorieCommand;
@@ -368,65 +446,137 @@ namespace ITCompCatalogue.ViewModel
                     }));
             }
         }
+        private RelayCommand _pinCommand;
+        public RelayCommand PinCommand
+        {
+            get
+            {
+                return _pinCommand
+                    ?? (_pinCommand = new RelayCommand(async () =>
+                        {
+                             await PinSecondaryTile();
+                        }
+                     ));
+            }
+        }
+        private RelayCommand _unpinCommand;
+        public RelayCommand UnpinCommand
+        {
+            get
+            {
+                return _unpinCommand
+                    ?? (_unpinCommand = new RelayCommand(async () =>
+                        {
+                            await UnpinSecondaryTile();
+                        }));
+            }
+        }
         #endregion
         #region Ctor & Mothods
         public ScheduleViewModel(ICatalogueService catalogueService, INavigationService navigationService)
             : base(catalogueService, navigationService)
         {
-            CoursesScheduleList=new ObservableCollection<CourDate>();            
+            CoursesScheduleList = new ObservableCollection<CourDate>();
         }
         public async override void Activate(object parameter)
         {
+            PinSecTileVisibility = Visibility.Collapsed ;
+            UnpinSecTileVisibility = Visibility.Collapsed;
             var course = parameter as Cour;
             if (course != null)
             {
                 SelectedCourse = course;
-                try
-                {
-                    IsLoadingProgressRing = true;
-                    CoursesScheduleList = new ObservableCollection<CourDate>(await CatalogueService.GetCoursScheduleByCoursId(course.C_id));                    
-                    IsLoadingProgressRing = false;
-                    if (CoursesScheduleList.Count ==0)
-                    {
-                        var dialog = new MessageDialog("No dates");
-                        dialog.ShowAsync();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    var dialog=new MessageDialog("SomeThing went wrong");
-                    dialog.ShowAsync();
-
-                }
             }
             else
             {
-                var cursus = parameter as Cursu;
-                if (cursus != null)
+                SelectedCourse = CatalogueService.GetCourseByCourseId(long.Parse((parameter.ToString()).Substring(1)));
+                BackButtonVisibility = Visibility.Collapsed;
+            }
+
+            try
+            {
+                IsLoadingProgressRing = true;
+                CoursesScheduleList = new ObservableCollection<CourDate>(await CatalogueService.GetCoursScheduleByCoursId(SelectedCourse.C_id));
+                IsLoadingProgressRing = false;
+                if (CoursesScheduleList.Count == 0)
                 {
-                    _globaleCoursesScheduleList = await CatalogueService.GetCoursScheduleByCursusId(cursus.C_id);
-                    CoursesScheduleList = new ObservableCollection<CourDate>(_globaleCoursesScheduleList);
-                    var courInCursus = await CatalogueService.GetCoursesByCursusId(cursus.C_id);
-                    ListCoursesInCursus = new ObservableCollection<CourVisible>(courInCursus.Select(x => new CourVisible()
-                    {
-                        C_id = x.C_id,
-                        Intitule = x.Intitule,
-                        Category = x.Category,
-                        Visible = true
-                    }));
+                    var dialog = new MessageDialog("This course has no available dates.");
+                    dialog.ShowAsync();
                 }
-            }            
+            }
+            catch (Exception ex)
+            {
+                var dialog = new MessageDialog("The app can't retrieve  the dates, please check your internet connection.");
+                dialog.ShowAsync();
+
+            }
+            PinSecTileVisibility = SecondaryTile.Exists("S" + SelectedCourse.C_id.ToString()) ? Visibility.Collapsed : Visibility.Visible;
+            UnpinSecTileVisibility = SecondaryTile.Exists("S" + SelectedCourse.C_id.ToString()) ? Visibility.Visible : Visibility.Collapsed;
+
+            //else
+            //{
+
+            //    //var cursus = parameter as Cursu;
+            //    //if (cursus != null)
+            //    //{
+            //    //    _globaleCoursesScheduleList = await CatalogueService.GetCoursScheduleByCursusId(cursus.C_id);
+            //    //    CoursesScheduleList = new ObservableCollection<CourDate>(_globaleCoursesScheduleList);
+            //    //    var courInCursus = await CatalogueService.GetCoursesByCursusId(cursus.C_id);
+            //    //    ListCoursesInCursus = new ObservableCollection<CourVisible>(courInCursus.Select(x => new CourVisible()
+            //    //    {
+            //    //        C_id = x.C_id,
+            //    //        Intitule = x.Intitule,
+            //    //        Category = x.Category,
+            //    //        Visible = true
+            //    //    }));
+            //    //}
+
+            //}            
         }
         public override void Deactivate(object parameter)
         {
             SearchIsEnabled = false;
         }
-       
+        private async Task PinSecondaryTile()
+        {
+            BottomAppBarIsOpen = true;
+
+            var uriLogo = new Uri("ms-appx:///Assets/dates.png");
+            var uriSmallLogo = new Uri("ms-appx:///Assets/Logo56X56.png");
+            const string tileActivationArguments = "ScheduleCour";
+            var tile = new SecondaryTile("S"+SelectedCourse.C_id.ToString(),
+                                                               SelectedCourse.Code,
+                                                                SelectedCourse.Intitule+" Dates",
+                                                                tileActivationArguments,
+                                                                TileOptions.ShowNameOnLogo,
+                                                                uriLogo)
+            {
+                ForegroundText = ForegroundText.Dark,
+                SmallLogo = uriSmallLogo
+            };
+            await tile.RequestCreateAsync();
+            BottomAppBarIsOpen = false;
+            UnpinSecTileVisibility = Visibility.Visible;
+            PinSecTileVisibility = Visibility.Collapsed;
+        }
+        private async Task UnpinSecondaryTile()
+        {
+            BottomAppBarIsOpen = true;
+
+            if (SecondaryTile.Exists("S" + SelectedCourse.C_id.ToString()))
+            {
+                var tile = new SecondaryTile("S" + SelectedCourse.C_id.ToString());
+                await tile.RequestDeleteAsync();
+            }
+            BottomAppBarIsOpen = false;
+            UnpinSecTileVisibility = Visibility.Collapsed;
+            PinSecTileVisibility = Visibility.Visible;
+        }
 
         #endregion
 
     }
-    
+
 
     public class CourVisible : Cour, INotifyPropertyChanged
     {

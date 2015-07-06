@@ -18,9 +18,9 @@
             </ResourceDictionary.MergedDictionaries>
         	<Storyboard x:Name="ExpandAnimation">
         		<DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="SearchBox">
-        			<EasingDoubleKeyFrame KeyTime="0:0:1" Value="200">
+        			<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200">
         				<EasingDoubleKeyFrame.EasingFunction>
-        					<BackEase EasingMode="EaseInOut"/>
+        					<SineEase EasingMode="EaseInOut"/>
         				</EasingDoubleKeyFrame.EasingFunction>
         			</EasingDoubleKeyFrame>
         		</DoubleAnimationUsingKeyFrames>
@@ -29,12 +29,12 @@
         		<DoubleAnimationUsingKeyFrames EnableDependentAnimation="True" Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="SearchBox">
         			<EasingDoubleKeyFrame KeyTime="0" Value="200">
         				<EasingDoubleKeyFrame.EasingFunction>
-        					<BackEase EasingMode="EaseInOut"/>
+        					<SineEase EasingMode="EaseIn"/>
         				</EasingDoubleKeyFrame.EasingFunction>
         			</EasingDoubleKeyFrame>
-        			<EasingDoubleKeyFrame KeyTime="0:0:1" Value="35">
+        			<EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="35">
         				<EasingDoubleKeyFrame.EasingFunction>
-        					<BackEase EasingMode="EaseInOut"/>
+        					<SineEase EasingMode="EaseIn"/>
         				</EasingDoubleKeyFrame.EasingFunction>
         			</EasingDoubleKeyFrame>
         		</DoubleAnimationUsingKeyFrames>

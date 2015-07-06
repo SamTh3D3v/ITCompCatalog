@@ -13,6 +13,7 @@
     <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"/>
     <SolidColorBrush x:Key="ThemeBrush" Color="DeepSkyBlue"/>        
     <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
+    <converters:ToggleButtonChecked x:Key="ToggleButtonChecked"/>
     <converters:TechIdToImageTileConverter x:Key="TechIdToImageTileConverter"/>
     <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
     <converters:CatClickedConverter x:Key="CatClickedConverter" />

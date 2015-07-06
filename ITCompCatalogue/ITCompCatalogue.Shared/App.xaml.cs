@@ -116,10 +116,19 @@ namespace ITCompCatalogue
                 {
                     if (!rootFrame.Navigate(typeof(CourseDetailsView), tileId))
                     {
-                        throw new Exception("Failed to CourseDetails page");
+                        throw new Exception("Failed to load Course details");
                     }
 
                 }
+                else if (tileArgs == "ScheduleCour")
+                {
+                    if (!rootFrame.Navigate(typeof(ScheduleView), tileId))
+                    {
+                        throw new Exception("Failed to load Course Schedule");
+                    }
+                    
+                }
+                
 
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation

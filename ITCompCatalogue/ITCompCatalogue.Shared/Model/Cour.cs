@@ -20,7 +20,7 @@ namespace ITCompCatalogue.Model
         public string Description { get; set; }
         public long CategorieID { get; set; }
 
-        public  Category Category { get; set; }
+        public  Category Category { get; set; }   
         public  List<CursusCour> CursusCours { get; set; }
     }
 }

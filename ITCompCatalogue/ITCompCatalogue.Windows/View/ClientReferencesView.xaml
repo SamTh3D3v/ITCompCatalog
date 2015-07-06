@@ -131,7 +131,7 @@
             </StackPanel>
         </Border>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <ListView ItemsSource="{Binding ListCategoryClient}">
+            <ListView SelectionMode="None" ItemsSource="{Binding ListCategoryClient}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -151,7 +151,7 @@
                             </StackPanel>
                             <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0" Height="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,2,5,2"/>
                             <ScrollViewer Margin="3" MaxHeight="250" Grid.Row="2" VerticalScrollBarVisibility="Visible" >
-                                <ListView Margin="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ListClien}">
+                                <ListView Margin="3" SelectionMode="None" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ListClien}">
                                     <ListView.ItemContainerStyle>
                                         <Style TargetType="ListViewItem">
                                             <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

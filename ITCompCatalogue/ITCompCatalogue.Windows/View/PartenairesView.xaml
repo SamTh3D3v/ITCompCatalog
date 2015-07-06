@@ -129,7 +129,7 @@
             </StackPanel>
         </Border>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <ListView ItemsSource="{Binding ListPartenaires}">
+            <ListView SelectionMode="None" ItemsSource="{Binding ListPartenaires}">
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>

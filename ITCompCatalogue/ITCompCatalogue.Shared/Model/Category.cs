@@ -15,7 +15,7 @@ namespace ITCompCatalogue.Model
         public long C_id { get; set; }
         public string Code { get; set; }
         public string Intitule { get; set; }
-        public long TechnologieID { get; set; }
+        public long TechnologieID { get; set; }    
 
         public  Technology Technology { get; set; }
         public  ObservableCollection<Cour> Cours { get; set; }

@@ -29,7 +29,7 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>                    
+                    <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
@@ -125,6 +125,23 @@
             </Grid>
         </AppBar>
     </helper:BindablePage.TopAppBar>
+    <helper:BindablePage.BottomAppBar >
+        <CommandBar Background="{StaticResource ThemeBrush}" IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}">
+            <!--IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}"-->
+            <CommandBar.PrimaryCommands>
+                <AppBarButton Label="Pin" Visibility="{Binding PinSecTileVisibility}" Command="{Binding PinCommand}" CommandParameter="{Binding CourseDetails}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE242;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+                <AppBarButton Label="Unpin" Visibility="{Binding UnpinSecTileVisibility}" Command="{Binding UnpinCommand}" CommandParameter="{Binding CourseDetails}">
+                    <AppBarButton.Icon>
+                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE241;" />
+                    </AppBarButton.Icon>
+                </AppBarButton>
+            </CommandBar.PrimaryCommands>
+        </CommandBar>
+    </helper:BindablePage.BottomAppBar>
     <interactivity:Interaction.Behaviors>
         <core:EventTriggerBehavior EventName="Loaded">
             <core:InvokeCommandAction Command="{Binding PageLoadedCommand}"  />
@@ -137,11 +154,24 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
-            <userControls:HeaderControl/>               
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <AppBarButton Visibility="{Binding BackButtonVisibility}" Command="{Binding GoBackCommand}" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="0">
+                    <AppBarButton.Content>
+                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE112;" />
+                    </AppBarButton.Content>
+                </AppBarButton>
+                <Image HorizontalAlignment="Left" Grid.Column="1"  Margin="15" VerticalAlignment="Center" Source="../Images/IT.png" />
+                <userControls:CustomSearchBox Grid.Column="2"/>
+            </Grid>
         </Border>
         <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
             <StackPanel Orientation="Horizontal">
-                <Image Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding SelectedCourse.Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}"/>
+                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE163;" VerticalAlignment="Stretch"/>
                 <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="{Binding SelectedCourse.Intitule}" Foreground="White"/>
             </StackPanel>
         </Border>
@@ -149,22 +179,22 @@
             <Grid.Resources>
                 <converters:CellModelToEventConverter x:Key="CourseSecConverter" />
                 <DataTemplate x:Key="SelectorTemplate">
-                    <Grid>                        
+                    <Grid>
                         <Rectangle Fill="{StaticResource ThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,20"/>
-                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE193;" Foreground="Black" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"></FontIcon>                       
+                        <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE193;" Foreground="Black" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"></FontIcon>
                         <TextBlock Text="{Binding Converter={StaticResource CourseSecConverter}}" Foreground="Black" FontSize="13.333" VerticalAlignment="Bottom" Margin="6,0,0,4" />
                     </Grid>
                 </DataTemplate>
                 <helper:CustomStyleSelector x:Key="Selector"  EventTemplate="{StaticResource SelectorTemplate}" />
             </Grid.Resources>
-            
-            <input:RadCalendar  DisplayMode="{Binding DisplayMode,Mode=TwoWay}"  RequestedTheme="Light" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
+
+            <input:RadCalendar  DisplayMode="{Binding DisplayMode,Mode=TwoWay}" IsTodayHighlighted="True"  RequestedTheme="Light" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
                      GridLinesBrush="{StaticResource ThemeBrush}"
                      GridLinesThickness="2"                       
                      Foreground="Black"
                      BorderBrush="{StaticResource ThemeBrush}"  
                                Background="WhiteSmoke"
-                     BorderThickness="2" >                
+                     BorderThickness="2" >
 
             </input:RadCalendar>
             <ProgressRing IsActive="{Binding IsLoadingProgressRing}" VerticalAlignment="Center"  Width="300" Height="300" HorizontalAlignment="Center" Foreground="{StaticResource ThemeBrush}"></ProgressRing>
