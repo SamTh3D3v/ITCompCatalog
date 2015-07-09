@@ -1,0 +1,66 @@
+﻿<SettingsFlyout
+    x:Class="ITCompCatalogue.View.PresentationSettingsFlyout"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ITCompCatalogue.View"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:userControls="using:ITCompCatalogue.UserControls"
+    xmlns:controls="using:WinRTXamlToolkit.Controls"
+    mc:Ignorable="d"
+    IconSource="Assets/SmallLogo.png"
+    Title="Presentation"
+    d:DesignWidth="345" Padding="0">
+    <SettingsFlyout.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../Resource/ResourceDict.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </SettingsFlyout.Resources>
+    <SettingsFlyout.DataContext>
+        <Binding Path="PresenationViewModel" Source="{StaticResource Locator}"></Binding>
+    </SettingsFlyout.DataContext>
+
+    <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
+    <Grid Background="White" HorizontalAlignment="Stretch" >
+        <Grid.RowDefinitions>
+            <!--<RowDefinition Height="Auto"/>
+            <RowDefinition Height="50"/>-->
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <!--<Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
+            <userControls:HeaderControl/>
+        </Border>
+        <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
+            <StackPanel Orientation="Horizontal">
+                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE128;" VerticalAlignment="Stretch"/>
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Presentation" Foreground="White"/>
+            </StackPanel>
+        </Border>-->
+        <Grid Grid.Row="0" HorizontalAlignment="Stretch">
+            <Image Source="../Images/Presentation/pre2.jpg" HorizontalAlignment="Stretch" />
+            <controls:AnimatingContainer HorizontalAlignment="Stretch" Margin="10" RadiusX="5" RadiusY="5" Duration="0:0:010">
+                <StackPanel Orientation="Horizontal"  HorizontalAlignment="Stretch" VerticalAlignment="Center"   >
+                    <Image Opacity=".7" Margin="10" Height="35" Width="35" Source="../Images/Presentation/androidAn.png"/>
+                    <Image Opacity=".7" Margin="10" Height="35" Width="35"  Source="../Images/Presentation/networkAn.png"/>
+                    <Image Opacity=".7" Margin="10" Height="35" Width="35"  Source="../Images/Presentation/databaseAn.png"/>
+                    <Image Opacity=".7" Margin="10" Height="35" Width="35" Source="../Images/Presentation/techAn.png"/>
+                    <Image Opacity=".7" Margin="10" Height="35" Width="35"  Source="../Images/Presentation/meetingAn.png"/>
+                    <Image Opacity=".7" Margin="10" Height="35" Width="35"  Source="../Images/Presentation/certAn.png"/>
+                </StackPanel>
+            </controls:AnimatingContainer>
+            <!--<Border Height="40" HorizontalAlignment="Stretch" Canvas.Left="0" Background="Black" Opacity=".5" Canvas.Top="{Binding Height,ElementName=uniformGrid}">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="20" Text="Formation"/>
+            </Border>-->
+        </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="Visible" Background="White" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+            <ContentPresenter VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Border Background="WhiteSmoke" Margin="10">
+                    <TextBlock Margin="3" Text="{Binding PresentationText}" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" Foreground="Black"/>
+                </Border>
+            </ContentPresenter>
+        </ScrollViewer>
+    </Grid>
+</SettingsFlyout>

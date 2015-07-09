@@ -55,11 +55,13 @@ namespace ITCompCatalogue
         {
             var presSettings = new SettingsCommand("ItCompPresentation", "ITComp Presentation", handler =>
             {
-                (Window.Current.Content as Frame).Navigate(typeof(PresentationView));
+                //(Window.Current.Content as Frame).Navigate(typeof(PresentationView));
+                new PresentationSettingsFlyout().Show();
             });
             var contactsSettings = new SettingsCommand("contactsSettings", "Contacts", handler =>
             {
-                (Window.Current.Content as Frame).Navigate(typeof(ContactView));
+                //(Window.Current.Content as Frame).Navigate(typeof(ContactView));
+                new ContactSettingsFlyout().Show();
             });
             var aboutSettings = new SettingsCommand("about ", "About ", handler => new AboutSettingsFlyout().Show());
             var privacySettings = new SettingsCommand("PrivacyPolicy ", "Privacy Policy ", handler => new PrivacyPolicySettingsFlyout().Show());

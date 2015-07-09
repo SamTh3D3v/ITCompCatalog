@@ -22,7 +22,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <PackageCertificateThumbprint>92F8BB665216D358D07B786677E5C26F59EA872A</PackageCertificateThumbprint>
-    <AppxPackageDir>D:\app</AppxPackageDir>
+    <AppxPackageDir>D:\app\Newer version\</AppxPackageDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -132,6 +132,9 @@
     <Compile Include="View\ClientReferencesView.xaml.cs">
       <DependentUpon>ClientReferencesView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\ContactSettingsFlyout.xaml.cs">
+      <DependentUpon>ContactSettingsFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\ContactView.xaml.cs">
       <DependentUpon>ContactView.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,9 @@
     </Compile>
     <Compile Include="View\FavoriteCoursesView.xaml.cs">
       <DependentUpon>FavoriteCoursesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\PresentationSettingsFlyout.xaml.cs">
+      <DependentUpon>PresentationSettingsFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\PrivacyPolicySettingsFlyout.xaml.cs">
       <DependentUpon>PrivacyPolicySettingsFlyout.xaml</DependentUpon>
@@ -303,6 +309,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="View\ContactSettingsFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ContactView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -322,6 +332,10 @@
     <Page Include="View\FavoriteCoursesView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\PresentationSettingsFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\PrivacyPolicySettingsFlyout.xaml">
       <SubType>Designer</SubType>
