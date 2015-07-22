@@ -491,6 +491,7 @@ namespace ITCompCatalogue.ViewModel
             {
                 SelectedCourse = CatalogueService.GetCourseByCourseId(long.Parse((parameter.ToString()).Substring(1)));
                 BackButtonVisibility = Visibility.Collapsed;
+                
             }
 
             try
@@ -501,13 +502,14 @@ namespace ITCompCatalogue.ViewModel
                 if (CoursesScheduleList.Count == 0)
                 {
                     var dialog = new MessageDialog("This course has no available dates.");
-                    dialog.ShowAsync();
+                    dialog.ShowAsync();                    
                 }
             }
             catch (Exception ex)
             {
                 var dialog = new MessageDialog("The app can't retrieve  the dates, please check your internet connection.");
                 dialog.ShowAsync();
+                IsLoadingProgressRing = false;
 
             }
             PinSecTileVisibility = SecondaryTile.Exists("S" + SelectedCourse.C_id.ToString()) ? Visibility.Collapsed : Visibility.Visible;

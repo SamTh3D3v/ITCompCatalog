@@ -130,46 +130,58 @@
                 <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Clients" Foreground="White"/>
             </StackPanel>
         </Border>
-        <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <ListView SelectionMode="None" ItemsSource="{Binding ListCategoryClient}">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid Margin="10,10,10,0" RightTapped="UIElement_OnRightTapped" Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="5"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-                            <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Top">
-                                <Image  Margin="2" Source="{Binding LogoCategoryImage}" />
-                                <TextBlock Margin="2"  Text="{Binding NomCategory}" VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Foreground="Black" />
-                            </StackPanel>
-                            <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0" Height="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,2,5,2"/>
-                            <ScrollViewer Margin="3" MaxHeight="250" Grid.Row="2" VerticalScrollBarVisibility="Visible" >
-                                <ListView Margin="3" SelectionMode="None" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ListClien}">
-                                    <ListView.ItemContainerStyle>
-                                        <Style TargetType="ListViewItem">
-                                            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                                        </Style>
-                                    </ListView.ItemContainerStyle>
-                                    <ListView.ItemTemplate>
-                                        <DataTemplate>
-                                            <Border Background="LightGray" Height="50" BorderThickness="0" RightTapped="UIElement_OnRightTapped">
-                                                <TextBlock  Text="{Binding}" VerticalAlignment="Center" Margin="20,0,0,0" Style="{StaticResource TitleTextBlockStyle}" Foreground="Black" HorizontalAlignment="Left"/>
-                                            </Border>                                            
-                                        </DataTemplate>
-                                    </ListView.ItemTemplate>
-                                </ListView>
-                            </ScrollViewer>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </ScrollViewer>
+        <ListView ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Disabled"
+    ScrollViewer.HorizontalScrollMode="Enabled"
+    ScrollViewer.VerticalScrollMode="Disabled"
+    ScrollViewer.ZoomMode="Disabled"    
+            SelectionMode="None" ItemsSource="{Binding ListCategoryClient}" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal" />
+                </ItemsPanelTemplate>
+            </ListView.ItemsPanel>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Margin="10,10,10,0" Width="500" RightTapped="UIElement_OnRightTapped" Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="5"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <StackPanel Orientation="Horizontal" Grid.Column="0" VerticalAlignment="Top">
+                            <Image  Margin="2" Source="{Binding LogoCategoryImage}" />
+                            <TextBlock Margin="2"  Text="{Binding NomCategory}" VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Foreground="Black" />
+                        </StackPanel>
+                        <Border Grid.Row="1" BorderBrush="Black" BorderThickness="0" Height="4" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="5,2,5,2"/>
+
+                        <ListView Margin="3" ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  ScrollViewer.VerticalScrollBarVisibility="Visible"
+    ScrollViewer.HorizontalScrollMode="Disabled"
+    ScrollViewer.VerticalScrollMode="Enabled"
+    ScrollViewer.ZoomMode="Disabled"    
+            SelectionMode="None" Grid.Row="2"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding ListClien}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <Border Background="LightGray" Height="50" BorderThickness="0" RightTapped="UIElement_OnRightTapped">
+                                        <TextBlock TextWrapping="Wrap"  Text="{Binding}" VerticalAlignment="Center" Margin="20,0,10,0" Style="{StaticResource TitleTextBlockStyle}" Foreground="Black" HorizontalAlignment="Left"/>
+                                    </Border>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </Grid>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </helper:BindablePage>

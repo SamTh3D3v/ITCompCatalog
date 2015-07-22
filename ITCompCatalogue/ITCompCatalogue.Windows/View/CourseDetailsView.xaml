@@ -215,8 +215,8 @@
                 <TextBlock Grid.Column="2" Margin="10,0,0,0" Foreground="{StaticResource ThemeBrush}" Grid.Row="2" Text="{Binding CourseDetails.Duree}" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Days" Foreground="DarkGray" Grid.Row="2" Grid.Column="3"    VerticalAlignment="Center" HorizontalAlignment="Left"/>
             </Grid>
-            <ScrollViewer  Margin="2" VerticalScrollBarVisibility="Auto" Background="WhiteSmoke" Grid.Row="1">
-                <TextBlock Margin="5" Foreground="Black" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" Text="{Binding CourseDetails.Description}"></TextBlock>
+            <ScrollViewer ZoomMode="Disabled"  Margin="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="WhiteSmoke" Grid.Row="1">
+                <TextBlock   Margin="5" Foreground="Black" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" Text="{Binding CourseDetails.Description}"></TextBlock>
             </ScrollViewer>
         </Grid>
     </Grid>
