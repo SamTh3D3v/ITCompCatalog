@@ -5,10 +5,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using Windows.Storage;
 using Windows.Storage.Streams;
+using Windows.UI;
 using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Media;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using ITCompCatalogue.Converters;
 using ITCompCatalogue.Model;
@@ -261,6 +265,7 @@ namespace ITCompCatalogue.ViewModel
             :base(catalogueService,navigationService)
         {            
             Initialisation();
+           
         }
 
         private async void Initialisation()
@@ -276,11 +281,7 @@ namespace ITCompCatalogue.ViewModel
             }
         }
 
-        public override void  Activate(Object parameter)
-        {
-
-            
-        }
+        
 
         public override void Deactivate(object parameter)
         {

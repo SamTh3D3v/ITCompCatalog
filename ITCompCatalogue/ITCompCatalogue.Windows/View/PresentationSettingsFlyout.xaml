@@ -55,7 +55,7 @@
                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Style="{ThemeResource HeaderTextBlockStyle}" FontSize="20" Text="Formation"/>
             </Border>-->
         </Grid>
-        <ScrollViewer VerticalScrollBarVisibility="Visible" Background="White" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
+        <ScrollViewer ZoomMode="Disabled" VerticalScrollBarVisibility="Visible" Background="White" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Margin="0">
             <ContentPresenter VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <Border Background="WhiteSmoke" Margin="10">
                     <TextBlock Margin="3" Text="{Binding PresentationText}" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" Foreground="Black"/>

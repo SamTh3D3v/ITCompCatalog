@@ -274,6 +274,8 @@ namespace ITCompCatalogue.ViewModel
                         await CatalogueService.GetCategoriesByTechnology((long) parameter));
             else
                 DataContextCategory = cat;
+
+            base.Activate(parameter);
         }
 
         public override void Deactivate(object parameter)

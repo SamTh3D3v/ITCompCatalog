@@ -38,7 +38,8 @@ namespace ITCompCatalogue.ViewModel
             SimpleIoc.Default.Register<PresenationViewModel>();
             SimpleIoc.Default.Register<FavoriteCoursesViewModel>();
             SimpleIoc.Default.Register<ScheduleViewModel>();
-            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);                       
+            SimpleIoc.Default.Register<MainSeetingsViewModel>();
+            ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);                      
             SimpleIoc.Default.Register<MainViewModel>();
             var navigationService = CreateNavigationService();
             if (!ViewModelBase.IsInDesignModeStatic)
@@ -144,6 +145,17 @@ namespace ITCompCatalogue.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<ScheduleViewModel>();
+            }
+        }
+        
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance",
+            "CA1822:MarkMembersAsStatic",
+            Justification = "This non-static member is needed for data binding purposes.")]
+        public MainSeetingsViewModel MainSeetingsViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<MainSeetingsViewModel>();
             }
         }
         private static INavigationService CreateNavigationService()

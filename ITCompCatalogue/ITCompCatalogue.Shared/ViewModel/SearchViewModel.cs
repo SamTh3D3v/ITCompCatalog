@@ -382,6 +382,7 @@ namespace ITCompCatalogue.ViewModel
         public override void Activate(object parameter)
         {
             SearchText = (parameter as String);
+            base.Activate(parameter);
         }
 
         public override void Deactivate(object parameter)

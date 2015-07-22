@@ -414,7 +414,7 @@ namespace ITCompCatalogue.ViewModel
             });            
             PinSecTileVisibility = SecondaryTile.Exists(CourseDetails.C_id.ToString()) ? Visibility.Collapsed : Visibility.Visible;
             UnpinSecTileVisibility = SecondaryTile.Exists(CourseDetails.C_id.ToString()) ? Visibility.Visible : Visibility.Collapsed;
-
+            base.Activate(parameter);
         }
 
         public override void Deactivate(object parameter)

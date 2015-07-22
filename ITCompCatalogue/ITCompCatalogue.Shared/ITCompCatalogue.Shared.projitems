@@ -30,6 +30,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Converters\StackPanelOrientationConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TechIdToImageConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\TechIdToImageTileConverter.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\ThemeColorToRedRadioButtonConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\ToggleButtonChecked.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\BindablePage.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\CustomStyleSelector.cs" />
@@ -51,6 +52,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CourseDetailsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\CoursesCategoriesListViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\FavoriteCoursesViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainSeetingsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PartenaireViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PresenationViewModel.cs" />

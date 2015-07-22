@@ -233,6 +233,7 @@ namespace ITCompCatalogue.ViewModel
         public override async void Activate(object parameter)
         {
             ListFavoriteCourses = new ObservableCollection<Cour>(await CatalogueService.GetFavoriteCourses());
+            base.Activate(parameter);
         }
 
         public override void Deactivate(object parameter)

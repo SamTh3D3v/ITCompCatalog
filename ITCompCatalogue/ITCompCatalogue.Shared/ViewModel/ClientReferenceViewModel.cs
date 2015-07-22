@@ -383,6 +383,8 @@ namespace ITCompCatalogue.ViewModel
             SearchIsEnabled = false;
         }
 
+        
+
         #endregion
     }
 }

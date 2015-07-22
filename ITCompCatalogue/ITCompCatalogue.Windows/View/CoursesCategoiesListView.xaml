@@ -204,7 +204,7 @@
                                                                 <RowDefinition Height="50"/>
                                                                 <!--<RowDefinition Height="60"/>-->
                                                             </Grid.RowDefinitions>
-                                                            <Border Background="DeepSkyBlue" Grid.Row="0"   VerticalAlignment="Stretch" Grid.Column="0" >
+                                                            <Border Background="{StaticResource ThemeBrush}" Grid.Row="0"   VerticalAlignment="Stretch" Grid.Column="0" >
                                                                 <TextBlock HorizontalAlignment="Center"  Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" Foreground="White" Text="{Binding Cour.Code}"  />
                                                             </Border>
                                                             <TextBlock  Margin="5,0,0,0" Grid.Row="0"  Grid.Column="1"  Foreground="Black" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Cour.Intitule}" TextWrapping="Wrap"  VerticalAlignment="Center" />

@@ -35,6 +35,7 @@ namespace ITCompCatalogue
         private TransitionCollection transitions;
 #endif
         public static bool IsListViewSelected { get; set; }
+        public static bool RoamingFavorite { get; set; }
 
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
@@ -45,6 +46,7 @@ namespace ITCompCatalogue
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
            UnhandledException += (sender, e) => e.Handled = true;
+            RoamingFavorite = true;
         }
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
@@ -63,10 +65,17 @@ namespace ITCompCatalogue
                 //(Window.Current.Content as Frame).Navigate(typeof(ContactView));
                 new ContactSettingsFlyout().Show();
             });
+
+            var globalSettings = new SettingsCommand("globalSettings", "Global Settings", handler =>
+            {
+                //(Window.Current.Content as Frame).Navigate(typeof(ContactView));
+                new MainSettingsFlyout().Show();
+            });
             var aboutSettings = new SettingsCommand("about ", "About ", handler => new AboutSettingsFlyout().Show());
             var privacySettings = new SettingsCommand("PrivacyPolicy ", "Privacy Policy ", handler => new PrivacyPolicySettingsFlyout().Show());
             args.Request.ApplicationCommands.Add(presSettings);
             args.Request.ApplicationCommands.Add(contactsSettings);
+            args.Request.ApplicationCommands.Add(globalSettings);
             args.Request.ApplicationCommands.Add(privacySettings);
             args.Request.ApplicationCommands.Add(aboutSettings);
         }
@@ -79,6 +88,7 @@ namespace ITCompCatalogue
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
+            Application.Current.Resources["ThemeBrush"] = ApplicationData.Current.LocalSettings.Values["ThemeBrush"];            
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -142,7 +152,7 @@ namespace ITCompCatalogue
             }
 
             // Ensure the current window is active
-            Window.Current.Activate();
+            Window.Current.Activate();            
         }
 
 #if WINDOWS_PHONE_APP

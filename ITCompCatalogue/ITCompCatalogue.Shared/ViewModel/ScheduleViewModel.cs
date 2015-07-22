@@ -533,7 +533,8 @@ namespace ITCompCatalogue.ViewModel
             //    //    }));
             //    //}
 
-            //}            
+            //}  
+            base.Activate(parameter);
         }
         public override void Deactivate(object parameter)
         {

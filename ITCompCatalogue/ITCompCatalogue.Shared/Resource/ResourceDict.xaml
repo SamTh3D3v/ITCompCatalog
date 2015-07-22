@@ -11,8 +11,9 @@
     xmlns:animations="using:HubPicker.Animations"
     xmlns:helper="using:ITCompCatalogue.Helper">
     <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"/>
-    <SolidColorBrush x:Key="ThemeBrush" Color="DeepSkyBlue"/>        
+    <SolidColorBrush x:Key="ThemeBrush" Color="Red"/>        
     <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
+    <converters:ThemeColorToRedRadioButtonConverter x:Key="ThemeColorToRedRadioButtonConverter"/>
     <converters:ToggleButtonChecked x:Key="ToggleButtonChecked"/>
     <converters:TechIdToImageTileConverter x:Key="TechIdToImageTileConverter"/>
     <converters:ListViewTechClickedConverter x:Key="TechClickedConverter" />
