@@ -88,7 +88,7 @@ namespace ITCompCatalogue
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
         {
-            Application.Current.Resources["ThemeBrush"] = ApplicationData.Current.LocalSettings.Values["ThemeBrush"];            
+            
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
             {
@@ -152,7 +152,8 @@ namespace ITCompCatalogue
             }
 
             // Ensure the current window is active
-            Window.Current.Activate();            
+            Window.Current.Activate();
+            Application.Current.Resources["ThemeBrush"] = ApplicationData.Current.LocalSettings.Values["ThemeBrush"];
         }
 
 #if WINDOWS_PHONE_APP

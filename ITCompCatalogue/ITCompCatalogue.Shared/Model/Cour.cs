@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace ITCompCatalogue.Model
 {
     public partial class Cour
@@ -9,8 +10,7 @@ namespace ITCompCatalogue.Model
         public Cour()
         {
             this.CursusCours = new List<CursusCour>();
-        }
-
+        }        
         public long C_id { get; set; }
         public string Code { get; set; }
         public string Intitule { get; set; }

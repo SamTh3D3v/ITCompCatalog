@@ -74,7 +74,7 @@ namespace ITCompCatalogue.ViewModel
 
             if (ApplicationData.Current.LocalSettings.Values.ContainsKey("ThemeBrush"))
             {
-                RedThemeBrushIsSelected = (bool)(ApplicationData.Current.LocalSettings.Values["ThemeBrush"]);
+                RedThemeBrushIsSelected = (bool) (ApplicationData.Current.LocalSettings.Values["ThemeBrush"]);
             }
             else
             {
