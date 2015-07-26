@@ -47,6 +47,16 @@ namespace ITCompCatalogue
             this.Suspending += this.OnSuspending;
            UnhandledException += (sender, e) => e.Handled = true;
             RoamingFavorite = true;
+            if (ApplicationData.Current.RoamingSettings.Values.ContainsKey("ThemeBrush"))
+            {
+                var a = (ApplicationData.Current.RoamingSettings.Values["ThemeBrush"]);
+                RequestedTheme = (bool)(ApplicationData.Current.RoamingSettings.Values["ThemeBrush"]) ? ApplicationTheme.Light : ApplicationTheme.Dark;                
+            }
+            else
+            {
+                RequestedTheme = ApplicationTheme.Light;
+                ApplicationData.Current.RoamingSettings.Values["ThemeBrush"] = true;
+            }
         }
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
@@ -130,7 +140,6 @@ namespace ITCompCatalogue
                     {
                         throw new Exception("Failed to load Course details");
                     }
-
                 }
                 else if (tileArgs == "ScheduleCour")
                 {
@@ -139,9 +148,7 @@ namespace ITCompCatalogue
                         throw new Exception("Failed to load Course Schedule");
                     }
                     
-                }
-                
-
+                }               
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
@@ -149,11 +156,10 @@ namespace ITCompCatalogue
                 {
                     throw new Exception("Failed to create initial page");
                 }
-            }
-
-            // Ensure the current window is active
+            }            
             Window.Current.Activate();
-            Application.Current.Resources["ThemeBrush"] = ApplicationData.Current.LocalSettings.Values["ThemeBrush"];
+            
+
         }
 
 #if WINDOWS_PHONE_APP

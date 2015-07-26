@@ -11,7 +11,7 @@
     xmlns:animations="using:HubPicker.Animations"
     xmlns:helper="using:ITCompCatalogue.Helper">
     <converters:ListViewItemClickedConverter x:Key="ItemClickedConverter"/>
-    <SolidColorBrush x:Key="ThemeBrush" Color="Red"/>        
+    <!--<SolidColorBrush x:Key="ThemeBrush" Color="Red"/>-->    
     <converters:TechIdToImageConverter x:Key="TechIdToImageConverter"/>
     <converters:ThemeColorToRedRadioButtonConverter x:Key="ThemeColorToRedRadioButtonConverter"/>
     <converters:ToggleButtonChecked x:Key="ToggleButtonChecked"/>
@@ -23,6 +23,7 @@
     <converters:FilterCheckedConverter x:Key="FilterCheckedConverter" />    
     <converters:ListViewTbInvertConverter x:Key="ListViewTbInvertConverter"/>
     <converters:RecommandationToColorConverter x:Key="RecommandationToColorConverter"/>
+    
     <converters:RecommandationToGlyphConverter x:Key="RecommandationToGlyphConverter"/>    
     <Flyout  x:Key="CourseListFlyout" Placement="Top"  >
         <ListView  x:Name="FlayoutListView" ItemsSource="{Binding Path=ListCoursesInDate}" HorizontalAlignment="Stretch" IsItemClickEnabled="True">

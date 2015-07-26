@@ -5,20 +5,29 @@
     xmlns:local="using:ITCompCatalogue.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:interactivity="using:Microsoft.Xaml.Interactivity"
+    xmlns:core="using:Microsoft.Xaml.Interactions.Core"
+    xmlns:converters="using:ITCompCatalogue.Converters"
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
     Title="Global Settings"
-    d:DesignWidth="346">
+    d:DesignWidth="346" >
     <SettingsFlyout.DataContext>
         <Binding Path="MainSeetingsViewModel" Source="{StaticResource Locator}"/>
     </SettingsFlyout.DataContext>
     <SettingsFlyout.Resources>
         <ResourceDictionary>
+            <converters:BoolReverseConverter x:Key="BoolReverseConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../Resource/ResourceDict.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </SettingsFlyout.Resources>
+    <interactivity:Interaction.Behaviors>
+        <core:EventTriggerBehavior EventName="Loaded">
+            <core:InvokeCommandAction Command="{Binding FalyoutoadedCommand}"  />
+        </core:EventTriggerBehavior>
+    </interactivity:Interaction.Behaviors>
 
     <!-- This StackPanel acts as a root panel for vertical layout of the content sections -->
     <StackPanel VerticalAlignment="Stretch" HorizontalAlignment="Stretch" >
@@ -29,8 +38,8 @@
             
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Theme" />
             <RadioButton GroupName="ThemeSettings" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay}"  Foreground="Red" Content="Red"/>
-            <RadioButton GroupName="ThemeSettings" Foreground="DeepSkyBlue" Content="Blue"/>
-            <TextBlock Text="Changes will takes effect in the next launch"></TextBlock>
+            <RadioButton GroupName="ThemeSettings" Foreground="DeepSkyBlue" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay,Converter={StaticResource BoolReverseConverter}}" Content="Blue"/>
+            <TextBlock Text="Changes will take effect in the next launch"></TextBlock>
         </StackPanel>  
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" HorizontalAlignment="Stretch">
             <!--Sync Favorite accross devices-->

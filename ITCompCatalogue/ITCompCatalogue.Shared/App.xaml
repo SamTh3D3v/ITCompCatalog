@@ -7,15 +7,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:viewModel="using:ITCompCatalogue.ViewModel"
     xmlns:controls="using:Telerik.UI.Xaml.Controls"
-    mc:Ignorable="d">
+    mc:Ignorable="d" >
     <Application.Resources>
-        <viewModel:ViewModelLocator x:Key="Locator"
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Dark">
+                    <SolidColorBrush x:Key="ThemeBrush">Red</SolidColorBrush>
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Light">
+                    <SolidColorBrush x:Key="ThemeBrush">DeepSkyBlue</SolidColorBrush>
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+            <viewModel:ViewModelLocator x:Key="Locator"
                              d:IsDataSource="True" />
-        <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="DeepSkyBlue" />
-        <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush" Color="DarkGray" />
-        <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="DeepSkyBlue" />
-        <x:Double x:Key="PivotHeaderItemFontSize">25</x:Double>
-        <controls:UserThemeResources x:Key="TelerikResources" DarkResourcesPath="ms-appx:///Resource/TelerikDarkStyleResources.xaml"/>        
+            <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="DeepSkyBlue" />
+            <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush" Color="DarkGray" />
+            <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="DeepSkyBlue" />
+            <x:Double x:Key="PivotHeaderItemFontSize">25</x:Double>
+            <controls:UserThemeResources x:Key="TelerikResources" DarkResourcesPath="ms-appx:///Resource/TelerikDarkStyleResources.xaml"/>
+        </ResourceDictionary>
     </Application.Resources>
 
 </Application>

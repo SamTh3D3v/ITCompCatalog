@@ -15,6 +15,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="$(MSBuildThisFileDirectory)Converters\BoolReverseConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CatClickedConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CellModelToEventConverter.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Converters\CellModelToListEventConverter.cs" />

@@ -11,7 +11,7 @@
                         mc:Ignorable="d ignore"
                         d:DesignHeight="768"
                         d:DesignWidth="1366">
-   <helper:BindablePage.DataContext>
+    <helper:BindablePage.DataContext>
         <Binding Path="Main" Source="{StaticResource Locator}"></Binding>
     </helper:BindablePage.DataContext>
     <helper:BindablePage.Resources>

@@ -137,7 +137,7 @@
                 </ListView.ItemContainerStyle>
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <Grid Margin="10,10,10,0"  Background="WhiteSmoke" RightTapped="UIElement_OnRightTapped"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                        <Grid Margin="5"  Background="WhiteSmoke" RightTapped="UIElement_OnRightTapped"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>                                
