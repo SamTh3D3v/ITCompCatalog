@@ -130,7 +130,7 @@
                 <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Clients" Foreground="White"/>
             </StackPanel>
         </Border>
-        <ListView ScrollViewer.HorizontalScrollBarVisibility="Auto"
+        <ListView  RequestedTheme="Light" ScrollViewer.HorizontalScrollBarVisibility="Auto"
                   ScrollViewer.VerticalScrollBarVisibility="Disabled"
     ScrollViewer.HorizontalScrollMode="Enabled"
     ScrollViewer.VerticalScrollMode="Disabled"
@@ -148,7 +148,7 @@
             </ListView.ItemsPanel>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Margin="10,10,10,0" Width="500" RightTapped="UIElement_OnRightTapped" Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                    <Grid Margin="10" Width="500" RightTapped="UIElement_OnRightTapped" Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="5"/>

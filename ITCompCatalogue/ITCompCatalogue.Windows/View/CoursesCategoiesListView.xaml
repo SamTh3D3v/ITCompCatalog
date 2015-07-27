@@ -156,7 +156,7 @@
                                 <TextBlock VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}" Text="{Binding Intitule}" Foreground="White"/>
                             </StackPanel>
                         </Border>
-                        <ListView SelectionMode="None" Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">
+                        <ListView RequestedTheme="Dark" SelectionMode="None" Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -179,7 +179,7 @@
                                                 </AppBarButton>-->
                                             </Grid>
                                         </Border>
-                                        <ListView SelectionMode="None" Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
+                                        <ListView RequestedTheme="Dark" SelectionMode="None" Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
                                             <interactivity:Interaction.Behaviors>
                                                 <core:EventTriggerBehavior EventName="ItemClick">
                                                     <core:InvokeCommandAction Command="{Binding DataContext.CourseSelectedCommand, ElementName=RootPivot}"

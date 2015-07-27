@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
@@ -20,6 +21,7 @@ namespace ITCompCatalogue.ViewModel
         private bool _searchIsEnabled = false;
         #endregion
         #region Properties
+        public bool RoamingFavorite { get; set; }
         public bool SearchIsEnabled
         {
             get
@@ -68,7 +70,7 @@ namespace ITCompCatalogue.ViewModel
                     () =>
                     {
                         ListFavoriteCourses.Clear();
-                        CatalogueService.UnfavoriteAllCourses();
+                        CatalogueService.UnfavoriteAllCourses(RoamingFavorite);
                     }));
             }
         }
@@ -90,8 +92,8 @@ namespace ITCompCatalogue.ViewModel
                 return _unfavCourseCommand
                     ?? (_unfavCourseCommand = new RelayCommand<long>(async (idCourse) =>
                         {
-                            CatalogueService.UnFavoriteCourse(idCourse);
-                            ListFavoriteCourses = new ObservableCollection<Cour>(await CatalogueService.GetFavoriteCourses());
+                            CatalogueService.UnFavoriteCourse(idCourse, RoamingFavorite);
+                            ListFavoriteCourses = new ObservableCollection<Cour>(await CatalogueService.GetFavoriteCourses(RoamingFavorite));
                         }));
             }
         }
@@ -219,7 +221,7 @@ namespace ITCompCatalogue.ViewModel
                     ?? (_pageLoadedCommand = new RelayCommand(
                     () =>
                     {
-                        SearchIsEnabled = true;
+                        SearchIsEnabled = true;                        
                     }));
             }
         }
@@ -232,7 +234,8 @@ namespace ITCompCatalogue.ViewModel
         }
         public override async void Activate(object parameter)
         {
-            ListFavoriteCourses = new ObservableCollection<Cour>(await CatalogueService.GetFavoriteCourses());
+            RoamingFavorite = (bool)(ApplicationData.Current.RoamingSettings.Values["RoamingFavorite"]);
+            ListFavoriteCourses = new ObservableCollection<Cour>(await CatalogueService.GetFavoriteCourses(RoamingFavorite));
             base.Activate(parameter);
         }
 

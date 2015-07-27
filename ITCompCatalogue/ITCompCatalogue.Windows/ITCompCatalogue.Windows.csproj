@@ -22,7 +22,7 @@
     <AppxBundle>Always</AppxBundle>
     <AppxBundlePlatforms>x86</AppxBundlePlatforms>
     <PackageCertificateThumbprint>92F8BB665216D358D07B786677E5C26F59EA872A</PackageCertificateThumbprint>
-    <AppxPackageDir>D:\app\Newer version\</AppxPackageDir>
+    <AppxPackageDir>G:\ITComp Projects\FinalITComp Store App</AppxPackageDir>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>

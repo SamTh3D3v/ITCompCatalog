@@ -14,12 +14,12 @@ namespace ITCompCatalogue.ViewModel
 {
     public class MainSeetingsViewModel : NavigableViewModelBase
     {
-        #region Fields   
-        private bool _romingFavorire  ;
-        private bool _redTheameBrushIsSelected; 
+        #region Fields
+        private bool _romingFavorire;
+        private bool _redTheameBrushIsSelected;
         #endregion
         #region Properties
-       
+
         public bool RedThemeBrushIsSelected
         {
             get
@@ -32,8 +32,8 @@ namespace ITCompCatalogue.ViewModel
                 {
                     return;
                 }
-                _redTheameBrushIsSelected = value;                
-                ApplicationData.Current.RoamingSettings.Values["ThemeBrush"] = _redTheameBrushIsSelected;               
+                _redTheameBrushIsSelected = value;
+                ApplicationData.Current.RoamingSettings.Values["ThemeBrush"] = _redTheameBrushIsSelected;
                 RaisePropertyChanged();
             }
         }
@@ -52,6 +52,7 @@ namespace ITCompCatalogue.ViewModel
                 }
                 _romingFavorire = value;
                 ApplicationData.Current.RoamingSettings.Values["RoamingFavorite"] = _romingFavorire;
+                NavigationService.NavigateTo("MainPage");
                 RaisePropertyChanged();
             }
         }
@@ -66,28 +67,9 @@ namespace ITCompCatalogue.ViewModel
                     ?? (_falyoutoadedCommand = new RelayCommand(
                     () =>
                     {
-                        //Get the Data From The Roaming Folder
-                        
-                        if (ApplicationData.Current.RoamingSettings.Values.ContainsKey("RoamingFavorite"))
-                        {
-                            RoamingFavorite = (bool)(ApplicationData.Current.RoamingSettings.Values["RoamingFavorite"]);
-                        }
-                        else
-                        {
-                            RoamingFavorite = true;
 
-                        }
-                        //Application.Current.RequestedTheme = _redTheameBrushIsSelected ? ApplicationTheme.Light : ApplicationTheme.Dark;
-
-                        //if (ApplicationData.Current.RoamingSettings.Values.ContainsKey("TheeBrush"))
-                        //{
-                        //    RedThemeBrushIsSelected = (bool)(ApplicationData.Current.RoamingSettings.Values["TheeBrush"]);
-                        //}
-                        //else
-                        //{
-                        //    RedThemeBrushIsSelected = true;
-                        //}
-                        
+                        //RoamingFavorite = (bool)(ApplicationData.Current.RoamingSettings.Values["RoamingFavorite"]);
+                        RedThemeBrushIsSelected = (bool)(ApplicationData.Current.RoamingSettings.Values["ThemeBrush"]);
                     }));
             }
         }
@@ -97,7 +79,7 @@ namespace ITCompCatalogue.ViewModel
         public MainSeetingsViewModel(ICatalogueService catalogueService, INavigationService navigationService)
             : base(catalogueService, navigationService)
         {
-           
+            _romingFavorire = (bool)(ApplicationData.Current.RoamingSettings.Values["RoamingFavorite"]);
         }
         #endregion
     }

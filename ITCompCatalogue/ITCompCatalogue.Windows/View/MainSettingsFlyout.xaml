@@ -37,8 +37,8 @@
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" HorizontalAlignment="Stretch">
             
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Theme" />
-            <RadioButton GroupName="ThemeSettings" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay}"  Foreground="Red" Content="Red"/>
-            <RadioButton GroupName="ThemeSettings" Foreground="DeepSkyBlue" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay,Converter={StaticResource BoolReverseConverter}}" Content="Blue"/>
+            <RadioButton GroupName="ThemeSettings" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay}"  Foreground="DeepSkyBlue" Content="Blue"/>
+            <RadioButton GroupName="ThemeSettings" Foreground="Red" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay,Converter={StaticResource BoolReverseConverter}}" Content="Red"/>
             <TextBlock Text="Changes will take effect in the next launch"></TextBlock>
         </StackPanel>  
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" HorizontalAlignment="Stretch">

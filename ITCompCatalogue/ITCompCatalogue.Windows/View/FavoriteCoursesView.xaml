@@ -141,7 +141,7 @@
                 <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Favorites" Foreground="White"/>
             </StackPanel>
         </Border>
-        <ListView SelectionMode="None" IsItemClickEnabled="True" x:Name="RootList" ItemsSource="{Binding ListFavoriteCourses}" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        <ListView RequestedTheme="Light" SelectionMode="None" IsItemClickEnabled="True" x:Name="RootList" ItemsSource="{Binding ListFavoriteCourses}" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>                    
@@ -154,7 +154,7 @@
             </interactivity:Interaction.Behaviors>
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Background="WhiteSmoke" Margin="5,5,5,0" RightTapped="UIElement_OnRightTapped">
+                    <Grid Background="WhiteSmoke" Margin="5" RightTapped="UIElement_OnRightTapped">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>                                                                                                          

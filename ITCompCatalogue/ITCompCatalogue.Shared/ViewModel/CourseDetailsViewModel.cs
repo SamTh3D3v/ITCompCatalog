@@ -6,6 +6,7 @@ using System.Text;
 using Windows.ApplicationModel.DataTransfer;
 using Windows.Data.Xml.Dom;
 using Windows.Foundation;
+using Windows.Storage;
 using Windows.Storage.Streams;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
@@ -35,7 +36,9 @@ namespace ITCompCatalogue.ViewModel
         private bool _searchIsEnabled = false;
         private Visibility _backButtonVisibility = Visibility.Visible;
         #endregion
-        #region Properties                
+        #region Properties   
+
+        public bool RoamingFavorite { get; set; }     
         public Visibility BackButtonVisibility
         {
             get
@@ -180,11 +183,11 @@ namespace ITCompCatalogue.ViewModel
                 RaisePropertyChanged();
                 if (!_isCourseFavorite)
                 {
-                    CatalogueService.UnFavoriteCourse(CourseDetails.C_id);
+                    CatalogueService.UnFavoriteCourse(CourseDetails.C_id, RoamingFavorite);
                 }
                 else
                 {
-                    CatalogueService.FavoriteCourse(_courseDetails.C_id);
+                    CatalogueService.FavoriteCourse(_courseDetails.C_id, RoamingFavorite);
                 }
             }
         }
@@ -394,16 +397,17 @@ namespace ITCompCatalogue.ViewModel
 
         public override void Activate(object parameter)
         {
+            RoamingFavorite = (bool) (ApplicationData.Current.RoamingSettings.Values["RoamingFavorite"]);
             CourseDetails = (parameter as Cour);
             if (CourseDetails != null)
             {
-                IsCourseFavorite = CatalogueService.IsCourseFavorite(CourseDetails.C_id);
+                IsCourseFavorite = CatalogueService.IsCourseFavorite(CourseDetails.C_id,RoamingFavorite);
 
             }
             else
             {
                 CourseDetails = CatalogueService.GetCourseByCourseId(long.Parse(parameter.ToString()));
-                IsCourseFavorite = CatalogueService.IsCourseFavorite(CourseDetails.C_id);
+                IsCourseFavorite = CatalogueService.IsCourseFavorite(CourseDetails.C_id,RoamingFavorite);
                 BackButtonVisibility = Visibility.Collapsed;
             }            
             RegisterForShare();

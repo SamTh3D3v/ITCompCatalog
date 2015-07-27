@@ -219,7 +219,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-            <ListView  x:Name="listView1"  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            <ListView RequestedTheme="Light"  x:Name="listView1"  ScrollViewer.HorizontalScrollBarVisibility="Auto"
     ScrollViewer.VerticalScrollBarVisibility="Disabled"
     ScrollViewer.HorizontalScrollMode="Enabled"
     ScrollViewer.VerticalScrollMode="Disabled"

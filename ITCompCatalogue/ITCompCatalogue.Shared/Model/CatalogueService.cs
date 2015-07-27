@@ -311,11 +311,11 @@ namespace ITCompCatalogue.Model
             }
             return courses;
         }
-        public void FavoriteCourse(long courseId)
+        public void FavoriteCourse(long courseId, bool roamingFavorite)
         {
-            if (!IsCourseFavorite(courseId))
+            if (!IsCourseFavorite(courseId,roamingFavorite))
             {
-                using (var statement = _roamingConnection.Prepare("INSERT INTO Favorite (_id) VALUES (@IdCourse);"))
+                using (var statement =(roamingFavorite? _roamingConnection:_connection).Prepare("INSERT INTO Favorite (_id) VALUES (@IdCourse);"))
                 {
                     statement.Bind("@IdCourse", courseId);
                     statement.Step();
@@ -323,18 +323,18 @@ namespace ITCompCatalogue.Model
 
             }
         }
-        public void UnFavoriteCourse(long courseId)
+        public void UnFavoriteCourse(long courseId, bool roamingFavorite)
         {
-            using (var statement = _roamingConnection.Prepare("Delete from Favorite Where _id = ?"))
+            using (var statement = (roamingFavorite ? _roamingConnection : _connection).Prepare("Delete from Favorite Where _id = ?"))
             {
                 statement.Bind(1, courseId);
                 statement.Step();
             }
 
         }
-        public bool IsCourseFavorite(long courseId)
+        public bool IsCourseFavorite(long courseId, bool roamingFavorite)
         {
-            using (var statement = _roamingConnection.Prepare("SELECT * from Favorite Where _id = ?"))
+            using (var statement = (roamingFavorite ? _roamingConnection : _connection).Prepare("SELECT * from Favorite Where _id = ?"))
             {
                 statement.Bind(1, courseId);
                 if (statement.Step() == SQLiteResult.ROW)
@@ -344,17 +344,17 @@ namespace ITCompCatalogue.Model
             }
             return false;
         }
-        public void UnfavoriteAllCourses()
+        public void UnfavoriteAllCourses(bool roamingFavorite)
         {
-            using (var statement = _roamingConnection.Prepare("Delete From Favorite"))
+            using (var statement = (roamingFavorite ? _roamingConnection : _connection).Prepare("Delete From Favorite"))
             {
                 statement.Step();
             }
         }
-        public async Task<List<Cour>> GetFavoriteCourses()
+        public async Task<List<Cour>> GetFavoriteCourses(bool roamingFavorite)
         {
             var courses = new List<Cour>();
-            using (var statement = _roamingConnection.Prepare("SELECT * FROM Favorite"))
+            using (var statement = (roamingFavorite ? _roamingConnection : _connection).Prepare("SELECT * FROM Favorite"))
             {
                 while (statement.Step() == SQLiteResult.ROW)
                 {

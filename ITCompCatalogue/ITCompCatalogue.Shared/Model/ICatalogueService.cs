@@ -11,13 +11,13 @@ namespace ITCompCatalogue.Model
         Task<List<Category>> GetCategoriesByTechnology(long technologyId);
         Task<List<Cour>> GetAllCourses();
         Task<List<Cour>> SearchCourses(string searchText,String searchBy=null);
-        void FavoriteCourse(long courseId);
+        void FavoriteCourse(long courseId,bool roamingFavorite);
         Cour GetCourseByCourseId(long courseId);
         Task<List<Cour>> GetCoursesByCursusId(long cursusId);
-        void UnFavoriteCourse(long courseId);
-        bool IsCourseFavorite(long courseId);
-        void UnfavoriteAllCourses();
-        Task<List<Cour>> GetFavoriteCourses();
+        void UnFavoriteCourse(long courseId, bool roamingFavorite);
+        bool IsCourseFavorite(long courseId, bool roamingFavorite);
+        void UnfavoriteAllCourses(bool roamingFavorite);
+        Task<List<Cour>> GetFavoriteCourses(bool roamingFavorite);
         Task<List<CourDate>> GetCoursScheduleByCursusId(long cursusId);
         Task<List<CourDate>> GetCoursScheduleByCoursId(long coursId);
         Task<List<Cursu>> GetCursusByCategoryId(long categoryId);
