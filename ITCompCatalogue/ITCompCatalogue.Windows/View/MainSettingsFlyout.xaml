@@ -10,7 +10,7 @@
     xmlns:converters="using:ITCompCatalogue.Converters"
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
-    Title="Global Settings"
+    Title="{StaticResource GlobalSettings}"
     d:DesignWidth="346" >
     <SettingsFlyout.DataContext>
         <Binding Path="MainSeetingsViewModel" Source="{StaticResource Locator}"/>
@@ -36,15 +36,15 @@
         
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" HorizontalAlignment="Stretch">
             
-            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Theme" />
-            <RadioButton GroupName="ThemeSettings" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay}"  Foreground="DeepSkyBlue" Content="Blue"/>
-            <RadioButton GroupName="ThemeSettings" Foreground="Red" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay,Converter={StaticResource BoolReverseConverter}}" Content="Red"/>
-            <TextBlock Text="Changes will take effect in the next launch"></TextBlock>
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{StaticResource Theme}" />
+            <RadioButton GroupName="ThemeSettings" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay}"  Foreground="DeepSkyBlue" Content="{StaticResource Blue}"/>
+            <RadioButton GroupName="ThemeSettings" Foreground="Red" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay,Converter={StaticResource BoolReverseConverter}}" Content="{StaticResource Red}"/>
+            <TextBlock Text="{StaticResource ChangesMessage}"></TextBlock>
         </StackPanel>  
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" HorizontalAlignment="Stretch">
             <!--Sync Favorite accross devices-->
-            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Favorite" />
-            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="Across your devices" />
+            <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{StaticResource FavoriteOption}" />
+            <TextBlock Style="{StaticResource BodyTextBlockStyle}" Text="{StaticResource AcrossYourDevices}" />
             <ToggleSwitch IsOn="{Binding RoamingFavorite,Mode=TwoWay}"></ToggleSwitch>
         </StackPanel>
 

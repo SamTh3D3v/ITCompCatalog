@@ -7,5 +7,21 @@
     <x:String x:Key="Favourites">Favourites</x:String>
     <x:String x:Key="Home">Home</x:String>
     <x:String x:Key="About">About</x:String>
-    <x:String x:Key="AboutText">Created by ITComp, Version 1.0.0.0</x:String>    
+    <x:String x:Key="AboutText">Created by ITComp, Version 1.0.0.0</x:String>
+    <x:String x:Key="Contacts">Contacts</x:String>
+    <x:String x:Key="Phone">Phone</x:String>
+    <x:String x:Key="Fax">Fax</x:String>
+    <x:String x:Key="Site">Site</x:String>
+    <x:String x:Key="Email1">E-mail 1</x:String>    
+    <x:String x:Key="Email2">E-mail 2</x:String>
+    <x:String x:Key="Adress">Adress</x:String>
+    <x:String x:Key="GlobalSettings">Global Settings</x:String>
+    <x:String x:Key="Theme">Theme</x:String>    
+    <x:String x:Key="Blue">Blue</x:String>    
+    <x:String x:Key="Red">Red</x:String>
+    <x:String x:Key="Presentation">Presentation</x:String>
+    <x:String x:Key="PrivacyPolicy">Privacy Policy</x:String>
+    <x:String x:Key="AcrossYourDevices">Across your devices</x:String>
+    <x:String x:Key="FavoriteOption">Favorite option</x:String>
+    <x:String x:Key="ChangesMessage">Changes will take effect in the next launch</x:String>    
 </ResourceDictionary>

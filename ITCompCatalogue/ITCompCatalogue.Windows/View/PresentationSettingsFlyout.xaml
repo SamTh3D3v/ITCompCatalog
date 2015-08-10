@@ -9,15 +9,8 @@
     xmlns:controls="using:WinRTXamlToolkit.Controls"
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
-    Title="Presentation"
-    d:DesignWidth="345" Padding="0">
-    <SettingsFlyout.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resource/ResourceDict.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </SettingsFlyout.Resources>
+    Title="{StaticResource Presentation}"
+    d:DesignWidth="345" Padding="0">    
     <SettingsFlyout.DataContext>
         <Binding Path="PresenationViewModel" Source="{StaticResource Locator}"></Binding>
     </SettingsFlyout.DataContext>
