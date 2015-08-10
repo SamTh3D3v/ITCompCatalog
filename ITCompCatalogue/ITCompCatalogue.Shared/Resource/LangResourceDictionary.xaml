@@ -2,7 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"    
     >
-    <x:String x:Key="Partners">Partners</x:String>
+    <!--english-->
+    <!--<x:String x:Key="Partners">Partners</x:String>
     <x:String x:Key="Clients">Clients</x:String>
     <x:String x:Key="Favourites">Favourites</x:String>
     <x:String x:Key="Home">Home</x:String>
@@ -23,5 +24,29 @@
     <x:String x:Key="PrivacyPolicy">Privacy Policy</x:String>
     <x:String x:Key="AcrossYourDevices">Across your devices</x:String>
     <x:String x:Key="FavoriteOption">Favorite option</x:String>
-    <x:String x:Key="ChangesMessage">Changes will take effect in the next launch</x:String>    
+    <x:String x:Key="ChangesMessage">Changes will take effect in the next launch</x:String>-->    
+    <!--frensh-->
+    <x:String x:Key="Technologies">Technologies</x:String>
+    <x:String x:Key="Partners">Partenaires</x:String>
+    <x:String x:Key="Clients">Clients</x:String>
+    <x:String x:Key="Favourites">Favoris</x:String>
+    <x:String x:Key="Home">Accueil</x:String>
+    <x:String x:Key="About">A propos</x:String>
+    <x:String x:Key="AboutText">Créé par ITComp, Version 1.0.0.0</x:String>
+    <x:String x:Key="Contacts">Contacts</x:String>
+    <x:String x:Key="Phone">Téléphone</x:String>
+    <x:String x:Key="Fax">Fax</x:String>
+    <x:String x:Key="Site">Site</x:String>
+    <x:String x:Key="Email1">E-mail 1</x:String>
+    <x:String x:Key="Email2">E-mail 2</x:String>
+    <x:String x:Key="Adress">Adresse</x:String>
+    <x:String x:Key="GlobalSettings">Paramètres globaux</x:String>
+    <x:String x:Key="Theme">Thème</x:String>
+    <x:String x:Key="Blue">Bleu</x:String>
+    <x:String x:Key="Red">Rouge</x:String>
+    <x:String x:Key="Presentation">Présentation</x:String>
+    <x:String x:Key="PrivacyPolicy">Politique de confidentialité</x:String>
+    <x:String x:Key="AcrossYourDevices">Sur tous vos appareils</x:String>
+    <x:String x:Key="FavoriteOption">Favori</x:String>
+    <x:String x:Key="ChangesMessage">Les changements prendront effet au prochain lancement</x:String>
 </ResourceDictionary>

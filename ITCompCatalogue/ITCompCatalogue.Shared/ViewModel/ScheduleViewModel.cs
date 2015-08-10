@@ -478,8 +478,11 @@ namespace ITCompCatalogue.ViewModel
         {
             CoursesScheduleList = new ObservableCollection<CourDate>();
         }
+
+        private bool _keep=true;
         public async override void Activate(object parameter)
         {
+            _keep = true;
             PinSecTileVisibility = Visibility.Collapsed ;
             UnpinSecTileVisibility = Visibility.Collapsed;
             var course = parameter as Cour;
@@ -502,6 +505,7 @@ namespace ITCompCatalogue.ViewModel
                 if (CoursesScheduleList.Count == 0)
                 {
                     var dialog = new MessageDialog("This course has no available dates.");
+                    if (_keep)                   
                     dialog.ShowAsync();                    
                 }
             }
@@ -514,7 +518,6 @@ namespace ITCompCatalogue.ViewModel
             }
             PinSecTileVisibility = SecondaryTile.Exists("S" + SelectedCourse.C_id.ToString()) ? Visibility.Collapsed : Visibility.Visible;
             UnpinSecTileVisibility = SecondaryTile.Exists("S" + SelectedCourse.C_id.ToString()) ? Visibility.Visible : Visibility.Collapsed;
-
             //else
             //{
 
@@ -539,6 +542,7 @@ namespace ITCompCatalogue.ViewModel
         public override void Deactivate(object parameter)
         {
             SearchIsEnabled = false;
+            _keep = false;
         }
         private async Task PinSecondaryTile()
         {

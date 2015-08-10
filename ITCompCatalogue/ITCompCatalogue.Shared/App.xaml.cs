@@ -75,7 +75,7 @@ namespace ITCompCatalogue
 
         private void OnCommandRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
         {
-            var presSettings = new SettingsCommand("ItCompPresentation", "ITComp Presentation", handler =>
+            var presSettings = new SettingsCommand("ItCompPresentation", "Présentation ITComp", handler =>
             {
                 //(Window.Current.Content as Frame).Navigate(typeof(PresentationView));
                 new PresentationSettingsFlyout().Show();
@@ -86,13 +86,13 @@ namespace ITCompCatalogue
                 new ContactSettingsFlyout().Show();
             });
 
-            var globalSettings = new SettingsCommand("globalSettings", "Global Settings", handler =>
+            var globalSettings = new SettingsCommand("globalSettings", "Paramètres globaux", handler =>
             {
                 //(Window.Current.Content as Frame).Navigate(typeof(ContactView));
                 new MainSettingsFlyout().Show();
             });
-            var aboutSettings = new SettingsCommand("about ", "About ", handler => new AboutSettingsFlyout().Show());
-            var privacySettings = new SettingsCommand("PrivacyPolicy ", "Privacy Policy ", handler => new PrivacyPolicySettingsFlyout().Show());
+            var aboutSettings = new SettingsCommand("about ", "A propos ", handler => new AboutSettingsFlyout().Show());
+            var privacySettings = new SettingsCommand("PrivacyPolicy ", "Politique de confidentialité ", handler => new PrivacyPolicySettingsFlyout().Show());
             args.Request.ApplicationCommands.Add(presSettings);
             args.Request.ApplicationCommands.Add(contactsSettings);
             args.Request.ApplicationCommands.Add(globalSettings);

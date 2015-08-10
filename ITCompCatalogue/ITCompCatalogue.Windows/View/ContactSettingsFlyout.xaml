@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
     Title="{StaticResource Contacts}"
-    d:DesignWidth="346" Padding="0" Width="450">
+    d:DesignWidth="346" Padding="0" Width="470">
     <SettingsFlyout.DataContext>
         <Binding Path="ContactViewModel" Source="{StaticResource Locator}"/>
     </SettingsFlyout.DataContext>    
@@ -26,7 +26,7 @@
                 <Grid Grid.Row="0" Margin="10,10,10,0"  Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".25*"/>
-                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="70"/>
                         <ColumnDefinition Width=".75*"/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="../Images/phone.png"/>
@@ -36,7 +36,7 @@
                 <Grid Grid.Row="1" Margin="10,10,10,0"  Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".25*"/>
-                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="70"/>
                         <ColumnDefinition Width=".75*"/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="../Images/fax.png"/>
@@ -46,7 +46,7 @@
                 <Grid Grid.Row="2" Margin="10,10,10,0"  Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".25*"/>
-                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="70"/>
                         <ColumnDefinition Width=".75*"/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="../Images/web.png"/>
@@ -60,7 +60,7 @@
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".25*"/>
-                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="70"/>
                         <ColumnDefinition Width=".75*"/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.RowSpan="2" Grid.Column="0" Source="../Images/mail.png"/>
@@ -72,7 +72,7 @@
                 <Grid Grid.Row="4" Margin="10,10,10,0"  Background="WhiteSmoke"  VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width=".25*"/>
-                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="70"/>
                         <ColumnDefinition Width=".75*"/>
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="../Images/adress.png"/>
