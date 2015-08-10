@@ -504,15 +504,16 @@ namespace ITCompCatalogue.ViewModel
                 IsLoadingProgressRing = false;
                 if (CoursesScheduleList.Count == 0)
                 {
-                    var dialog = new MessageDialog("This course has no available dates.");
-                    if (_keep)                   
-                    dialog.ShowAsync();                    
+                    var dialog = new MessageDialog("Desolé, aucune date disponible pour ce cour.");    //eng: This course has no available dates.
+                    if (_keep)
+                        Window.Current.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => dialog.ShowAsync());                   
                 }
             }
             catch (Exception ex)
             {
-                var dialog = new MessageDialog("The app can't retrieve  the dates, please check your internet connection.");
-                dialog.ShowAsync();
+                var dialog = new MessageDialog("L'application  n'a pas réussi à récupérer les dates pour ce cour, vérifier votre connexion Internet s'il vous plaît.");  //eng: The app can't retrieve  the dates, please check your internet connection.
+                if (_keep)                  
+                    Window.Current.Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal, () => dialog.ShowAsync());
                 IsLoadingProgressRing = false;
 
             }
