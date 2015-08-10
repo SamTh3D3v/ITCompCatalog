@@ -10,21 +10,27 @@
     mc:Ignorable="d" >
     <Application.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.ThemeDictionaries>
-                <ResourceDictionary x:Key="Dark">
-                    <SolidColorBrush x:Key="ThemeBrush">Red</SolidColorBrush>
-                </ResourceDictionary>
-                <ResourceDictionary x:Key="Light">
-                    <SolidColorBrush x:Key="ThemeBrush">DeepSkyBlue</SolidColorBrush>
-                </ResourceDictionary>
-            </ResourceDictionary.ThemeDictionaries>
-            <viewModel:ViewModelLocator x:Key="Locator"
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <ResourceDictionary.ThemeDictionaries>
+                        <ResourceDictionary x:Key="Dark">
+                            <SolidColorBrush x:Key="ThemeBrush">Red</SolidColorBrush>
+                        </ResourceDictionary>
+                        <ResourceDictionary x:Key="Light">
+                            <SolidColorBrush x:Key="ThemeBrush">DeepSkyBlue</SolidColorBrush>
+                        </ResourceDictionary>
+                    </ResourceDictionary.ThemeDictionaries>
+                    <viewModel:ViewModelLocator x:Key="Locator"
                              d:IsDataSource="True" />
-            <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="DeepSkyBlue" />
-            <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush" Color="DarkGray" />
-            <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="DeepSkyBlue" />
-            <x:Double x:Key="PivotHeaderItemFontSize">25</x:Double>
-            <controls:UserThemeResources x:Key="TelerikResources" DarkResourcesPath="ms-appx:///Resource/TelerikDarkStyleResources.xaml"/>
+                    <SolidColorBrush x:Key="PivotHeaderForegroundSelectedBrush" Color="DeepSkyBlue" />
+                    <SolidColorBrush x:Key="PivotHeaderForegroundUnselectedBrush" Color="DarkGray" />
+                    <SolidColorBrush x:Key="ListViewItemSelectedBackgroundThemeBrush" Color="DeepSkyBlue" />
+                    <x:Double x:Key="PivotHeaderItemFontSize">25</x:Double>
+                    <controls:UserThemeResources x:Key="TelerikResources" DarkResourcesPath="ms-appx:///Resource/TelerikDarkStyleResources.xaml"/>
+                </ResourceDictionary>
+                <ResourceDictionary Source="/Resource/ResourceDict.xaml"/>
+                <ResourceDictionary Source="/Resource/LangResourceDictionary.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>
 

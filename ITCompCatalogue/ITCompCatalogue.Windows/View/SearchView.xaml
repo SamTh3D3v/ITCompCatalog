@@ -15,14 +15,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <helper:BindablePage.DataContext>
         <Binding Path="SearchViewModel" Source="{StaticResource Locator}"/>
-    </helper:BindablePage.DataContext>
-    <helper:BindablePage.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="../Resource/ResourceDict.xaml"></ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </helper:BindablePage.Resources>
+    </helper:BindablePage.DataContext>    
     <helper:BindablePage.TopAppBar>
         <AppBar Background="{StaticResource ThemeBrush}">
             <Grid Height="90">
@@ -32,7 +25,7 @@
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="0" Background="White" Foreground="Black" Content="Home" Command="{Binding HomeCommand}">
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="0" Background="White" Foreground="Black" Content="{StaticResource Home}" Command="{Binding HomeCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -46,7 +39,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="1" Content="Partners" Background="White" Foreground="Black" Command="{Binding PartnerCommand}">
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="1" Content="{StaticResource Partners}" Background="White" Foreground="Black" Command="{Binding PartnerCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -60,7 +53,7 @@
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
                 </ToggleButton>
-                <ToggleButton HorizontalAlignment="Stretch"  Grid.Column="2" Content="Clients" Background="White" Foreground="Black" Command="{Binding RefClientsCommand}">
+                <ToggleButton HorizontalAlignment="Stretch"  Grid.Column="2" Content="{StaticResource Clients}" Background="White" Foreground="Black" Command="{Binding RefClientsCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -73,22 +66,8 @@
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <!--<ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="Contacts" Background="White" Foreground="Black" Command="{Binding ContactCommand}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE13A;"></FontIcon>
-                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>-->
-                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="Favorites" Background="White" Foreground="Black" Command="{Binding FavorieCommand}">
+                </ToggleButton>               
+                <ToggleButton HorizontalAlignment="Stretch" Grid.Column="3" Content="{StaticResource Favourites}" Background="White" Foreground="Black" Command="{Binding FavorieCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
                             <Grid>
@@ -101,21 +80,7 @@
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
-                </ToggleButton>
-                <!--<ToggleButton Grid.Column="5" Content="Presentation" Background="White" Foreground="Black" Command="{Binding PresenationCommand}">
-                    <ToggleButton.ContentTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-                                <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE128;"></FontIcon>
-                                <ContentPresenter Content="{Binding}" Grid.Row="1"/>
-                            </Grid>
-                        </DataTemplate>
-                    </ToggleButton.ContentTemplate>
-                </ToggleButton>-->
+                </ToggleButton>                
             </Grid>
         </AppBar>
     </helper:BindablePage.TopAppBar>
