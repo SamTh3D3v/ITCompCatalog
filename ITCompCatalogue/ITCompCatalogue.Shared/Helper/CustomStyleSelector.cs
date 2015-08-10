@@ -13,7 +13,7 @@ namespace ITCompCatalogue.Helper
     public class CustomStyleSelector : CalendarCellStyleSelector
     {
         public DataTemplate EventTemplate { get; set; }             
-        protected override void SelectStyleCore(CalendarCellStyleContext context, Telerik.UI.Xaml.Controls.Input.RadCalendar container)
+        protected override void SelectStyleCore(CalendarCellStyleContext context, RadCalendar container)
         {
             var scheduleViewModel = container.DataContext as ScheduleViewModel;
             if (scheduleViewModel != null)
