@@ -440,7 +440,7 @@ namespace ITCompCatalogue.ViewModel
             request.Data.Properties.Title = CourseDetails.Code + ": " + CourseDetails.Intitule;
             request.Data.Properties.Description = "";
             var storeURI = new Uri("ms-windows-store:PDP?PFN=ITComp.ITComp_td1e7mxqwnshw");
-            var htmlExample = "<h3>Course Description</h3> <p>" + CourseDetails.Description + ".</p>" + "<a href=" + storeURI + ">Link to ITComp Catalogue app in the store.</a>";
+            var htmlExample = "<h3>Course Description</h3> <p>" + CourseDetails.Description + ".</p>" + "<a href=" + storeURI + ">Lien vers ITComp Catalogue application dans le store.</a>";
             var htmlFormat = Windows.ApplicationModel.DataTransfer.HtmlFormatHelper.CreateHtmlFormat(htmlExample);
             request.Data.SetHtmlFormat(htmlFormat);
 
