@@ -348,11 +348,13 @@
     <Language Code="zu-za" InMinimumRequirementSet="true" />
   </SupportedLocales>
   <ProductReservedInfo>
-    <MainPackageIdentityName>ITComp.Itcompcatalogue</MainPackageIdentityName>
+    <MainPackageIdentityName>ITComp.ITComp</MainPackageIdentityName>
     <ReservedNames>
-      <ReservedName>Itcomp catalogue</ReservedName>
+      <ReservedName>ITComp</ReservedName>
     </ReservedNames>
   </ProductReservedInfo>
-  <AccountPackageIdentityNames />
-  <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9NBLGGH3G08N" />
+  <AccountPackageIdentityNames>
+    <MainPackageIdentityName>ITComp.Itcompcatalogue</MainPackageIdentityName>
+  </AccountPackageIdentityNames>
+  <PackageInfoList LandingUrl="https://dev.windows.com/dashboard/Application?appId=9NBLGGH1Z1CL" />
 </StoreAssociation>

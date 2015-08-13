@@ -10,7 +10,7 @@
     xmlns:converters="using:ITCompCatalogue.Converters"
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
-    Title="{StaticResource GlobalSettings}"
+    Title="{StaticResource GlobalSettings}" Width="400"
     d:DesignWidth="346" >
     <SettingsFlyout.DataContext>
         <Binding Path="MainSeetingsViewModel" Source="{StaticResource Locator}"/>

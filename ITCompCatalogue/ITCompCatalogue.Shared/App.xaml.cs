@@ -65,6 +65,7 @@ namespace ITCompCatalogue
             else
             {
                 RoamingFavorite = true;
+                ApplicationData.Current.RoamingSettings.Values["RoamingFavorite"] = true;
 
             }
         }
