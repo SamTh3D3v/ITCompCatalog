@@ -85,7 +85,7 @@
         <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
             <StackPanel Orientation="Horizontal">
                 <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE125;" VerticalAlignment="Stretch"/>
-                <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Partners" Foreground="White"/>
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="{StaticResource Partners}" Foreground="White"/>
             </StackPanel>
         </Border>
         <ScrollViewer VerticalScrollBarVisibility="Visible" Grid.Row="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">

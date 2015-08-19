@@ -34,9 +34,7 @@ namespace ITCompCatalogue.ViewModel
                     return;
                 }
                 _redTheameBrushIsSelected = value;
-                ApplicationData.Current.RoamingSettings.Values["ThemeBrush"] = _redTheameBrushIsSelected;
-                Messenger.Default.Send<bool>(_redTheameBrushIsSelected, "ThemeUpdate");
-                
+                ApplicationData.Current.RoamingSettings.Values["ThemeBrush"] = _redTheameBrushIsSelected;                                
                 RaisePropertyChanged();
             }
         }
