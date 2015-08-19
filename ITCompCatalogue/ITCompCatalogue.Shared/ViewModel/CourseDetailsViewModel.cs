@@ -213,6 +213,7 @@ namespace ITCompCatalogue.ViewModel
                     () =>
                     {
                         IsCourseFavorite = true;
+                        BottomAppBarIsOpen = false;
 
                     }));
             }

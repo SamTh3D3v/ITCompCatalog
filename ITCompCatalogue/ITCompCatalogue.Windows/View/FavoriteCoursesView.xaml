@@ -72,7 +72,7 @@
     <helper:BindablePage.BottomAppBar>
         <CommandBar Background="{StaticResource ThemeBrush}">
             <CommandBar.PrimaryCommands>
-                <AppBarButton Label="Remove all" Command="{Binding RemoveAllCommand}">
+                <AppBarButton Label="{StaticResource RemoveAll}" Command="{Binding RemoveAllCommand}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE10A;" />
                     </AppBarButton.Icon>
@@ -127,8 +127,8 @@
                         <Image Width="50" Height="50" VerticalAlignment="Center" HorizontalAlignment="Center" Source="{Binding Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}" Grid.Row="0" Grid.Column="0"/>
                         <TextBlock HorizontalAlignment="Center" Text="{Binding Category.Intitule}" Margin="1" VerticalAlignment="Center"  Style="{StaticResource TitleTextBlockStyle}" Grid.Row="1" Grid.Column="0" Foreground="Black"/>
                         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Intitule}" Foreground="Black" TextWrapping="Wrap"  Style="{StaticResource TitleTextBlockStyle}"  Grid.Row="0" Grid.Column="1"/>
-                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Code}" Margin="2,0,0,0" Foreground="DeepSkyBlue"  Style="{StaticResource TitleTextBlockStyle}" Grid.Row="1" Grid.Column="1"/>
-                        <AppBarButton  Label="Remove" Foreground="Black" Command="{Binding DataContext.UnfavCourseCommand,ElementName=RooGrid}" CommandParameter="{Binding C_id}"  Grid.Column="2" Grid.Row="0">
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="{Binding Code}" Margin="2,0,0,0" Foreground="{StaticResource ThemeBrush}"  Style="{StaticResource TitleTextBlockStyle}" Grid.Row="1" Grid.Column="1"/>
+                        <AppBarButton  Label="{StaticResource Remove}" Foreground="Black" Command="{Binding DataContext.UnfavCourseCommand,ElementName=RooGrid}" CommandParameter="{Binding C_id}"  Grid.Column="2" Grid.Row="0">
                             <AppBarButton.Icon>
                                 <FontIcon FontFamily="Segoe UI Symbol"   Glyph="&#xE10A;"  />
                             </AppBarButton.Icon>                               

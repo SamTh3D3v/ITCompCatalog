@@ -11,7 +11,7 @@
     xmlns:core="using:Microsoft.Xaml.Interactions.Core"
     xmlns:userControls="using:ITCompCatalogue.UserControls"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">    
     <helper:BindablePage.DataContext>
         <Binding Path="CourseDetailsViewModel" Source="{StaticResource Locator}"></Binding>
     </helper:BindablePage.DataContext>
@@ -88,7 +88,7 @@
         <CommandBar Background="{StaticResource ThemeBrush}" IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}">
             <!--IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}"-->
             <CommandBar.PrimaryCommands>
-                <AppBarToggleButton Label="Favorite" IsChecked="{Binding IsCourseFavorite,Mode=TwoWay}">
+                <AppBarToggleButton Label="{StaticResource AddToFav}" IsChecked="{Binding IsCourseFavorite,Mode=TwoWay}">
                     <AppBarToggleButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE113;" />
                     </AppBarToggleButton.Icon>
@@ -171,7 +171,9 @@
                 <TextBlock Text="Duration " Foreground="DarkGray" Grid.Row="2" Grid.Column="1"  Margin="10,0,0,0" Style="{StaticResource TitleTextBlockStyle}"   VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Grid.Column="2" Margin="10,0,0,0" Foreground="{StaticResource ThemeBrush}" Grid.Row="2" Text="{Binding CourseDetails.Duree}" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Days" Foreground="DarkGray" Grid.Row="2" Grid.Column="3"    VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <Slider Padding="0" Grid.Row="2" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="{StaticResource ThemeBrush}" x:Name="FontSizeSlider" Width="150" Maximum="25" Minimum="15" Value="15" Background="LightGray" Height="40" Margin="0,0,10,10"/>
+                <Slider Padding="0" Grid.Row="2" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="{StaticResource ThemeBrush}" x:Name="FontSizeSlider" Width="150" Maximum="25" Minimum="15" Value="15" Background="LightGray" Height="40" Margin="0,0,10,10" Style="{StaticResource MailSliderStyle}">
+
+                </Slider>
 
             </Grid>
             <ScrollViewer x:Name="ScrollViewerDetails" ZoomMode="Enabled"   Margin="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"   Background="WhiteSmoke" Grid.Row="1">

@@ -47,6 +47,9 @@
     <x:String x:Key="Presentation">Présentation</x:String>
     <x:String x:Key="PrivacyPolicy">Politique de confidentialité</x:String>
     <x:String x:Key="AcrossYourDevices">Sur tous vos appareils</x:String>
-    <x:String x:Key="FavoriteOption">Favori</x:String>
-    <x:String x:Key="ChangesMessage">Les changements prendront effet au prochain lancement</x:String>
+    <x:String x:Key="FavoriteOption">Favoris</x:String>
+    <x:String x:Key="RemoveAll">Supprimer tous</x:String>
+    <x:String x:Key="Remove">Supprimer</x:String>
+    <x:String x:Key="AddToFav">Favoriser</x:String>
+
 </ResourceDictionary>
