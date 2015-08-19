@@ -102,7 +102,7 @@
         <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
             <StackPanel Orientation="Horizontal">
                 <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE11A;" VerticalAlignment="Stretch"/>
-                <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="Search Courses" Foreground="White"/>
+                <TextBlock VerticalAlignment="Center" Style="{StaticResource SubheaderTextBlockStyle}" Margin="10,0,0,0" Text="{StaticResource SearchCourses}" Foreground="White"/>
             </StackPanel>
         </Border>
         <Grid Grid.Row="2" HorizontalAlignment="Stretch" Background="White" >

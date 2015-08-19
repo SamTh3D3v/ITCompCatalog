@@ -240,7 +240,7 @@ namespace ITCompCatalogue.ViewModel
                 },
                  new CategoryClient()
                 {
-                    NomCategory ="Energy and mines" ,
+                    NomCategory ="Energie et mines" ,
                     LogoCategoryImage ="../Images/CategoryRefClients/energy.png" ,
                     ListClien = new ObservableCollection<string>()
                     {
@@ -264,7 +264,7 @@ namespace ITCompCatalogue.ViewModel
                 },
                  new CategoryClient()
                 {
-                    NomCategory ="Schools" ,
+                    NomCategory ="Ecoles" ,
                     LogoCategoryImage ="../Images/CategoryRefClients/ecoles.png" ,
                     ListClien = new ObservableCollection<string>()
                     {
@@ -276,7 +276,7 @@ namespace ITCompCatalogue.ViewModel
                 },
                  new CategoryClient()
                 {
-                    NomCategory ="Foreign" ,
+                    NomCategory ="Etranger" ,
                     LogoCategoryImage ="../Images/CategoryRefClients/etranger.png" ,
                     ListClien = new ObservableCollection<string>()
                     {
@@ -291,7 +291,7 @@ namespace ITCompCatalogue.ViewModel
                 },
                  new CategoryClient()
                 {
-                    NomCategory ="Government and administration" ,
+                    NomCategory ="Gouvernement et administration" ,
                     LogoCategoryImage ="../Images/CategoryRefClients/governement.png" ,
                     ListClien = new ObservableCollection<string>()
                     {
@@ -314,7 +314,7 @@ namespace ITCompCatalogue.ViewModel
                 },
                  new CategoryClient()
                 {
-                    NomCategory ="Industry" ,
+                    NomCategory ="Industrie" ,
                     LogoCategoryImage ="../Images/CategoryRefClients/industrie.png" ,
                     ListClien = new ObservableCollection<string>()
                     {
@@ -340,7 +340,7 @@ namespace ITCompCatalogue.ViewModel
                 },
                  new CategoryClient()
                 {
-                    NomCategory ="Telecommunication" ,
+                    NomCategory ="Télécommunication" ,
                     LogoCategoryImage ="../Images/CategoryRefClients/telecommunication.png" ,
                     ListClien = new ObservableCollection<string>()
                     {
