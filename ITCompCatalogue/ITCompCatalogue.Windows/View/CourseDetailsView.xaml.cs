@@ -27,6 +27,17 @@ namespace ITCompCatalogue.View
         {
             this.InitializeComponent();
             
-        }      
+        }
+
+       
+        private void ZoomOut_OnClick(object sender, RoutedEventArgs e)
+        {
+            DetailsText.FontSize--;            
+        }
+
+        private void ZoomIn_OnClick(object sender, RoutedEventArgs e)
+        {
+            DetailsText.FontSize++;            
+        }
     }
 }

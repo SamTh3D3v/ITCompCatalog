@@ -14,13 +14,13 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
     <helper:BindablePage.DataContext>
         <Binding Path="CourseDetailsViewModel" Source="{StaticResource Locator}"></Binding>
-    </helper:BindablePage.DataContext>   
+    </helper:BindablePage.DataContext>
     <helper:BindablePage.TopAppBar>
         <AppBar Background="{StaticResource ThemeBrush}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="120"/>                    
+                    <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
@@ -38,7 +38,7 @@
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
-                </ToggleButton>                
+                </ToggleButton>
                 <ToggleButton HorizontalAlignment="Stretch" Background="White" Foreground="Black" Grid.Column="1" Content="{StaticResource Partners}" Command="{Binding PartnerCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
@@ -66,7 +66,7 @@
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
-                </ToggleButton>               
+                </ToggleButton>
                 <ToggleButton HorizontalAlignment="Stretch" Background="White" Foreground="Black" Grid.Column="3" Content="{StaticResource Favourites}" Command="{Binding FavorieCommand}">
                     <ToggleButton.ContentTemplate>
                         <DataTemplate>
@@ -80,12 +80,13 @@
                             </Grid>
                         </DataTemplate>
                     </ToggleButton.ContentTemplate>
-                </ToggleButton>               
+                </ToggleButton>
             </Grid>
         </AppBar>
     </helper:BindablePage.TopAppBar>
     <Page.BottomAppBar >
-        <CommandBar Background="{StaticResource ThemeBrush}" IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}"><!--IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}"-->
+        <CommandBar Background="{StaticResource ThemeBrush}" IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}">
+            <!--IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}"-->
             <CommandBar.PrimaryCommands>
                 <AppBarToggleButton Label="Favorite" IsChecked="{Binding IsCourseFavorite,Mode=TwoWay}">
                     <AppBarToggleButton.Icon>
@@ -97,16 +98,11 @@
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE163;" />
                     </AppBarButton.Icon>
                 </AppBarButton>
-                <!--<AppBarButton Label="Share" Command="{Binding ShareCommand}" CommandParameter="{Binding CourseDetails}">
-                    <AppBarButton.Icon>
-                        <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE148;" />
-                    </AppBarButton.Icon>
-                </AppBarButton>-->
                 <AppBarButton Label="Pin" Visibility="{Binding PinSecTileVisibility}" Command="{Binding PinCommand}" CommandParameter="{Binding CourseDetails}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE242;" />
                     </AppBarButton.Icon>
-                </AppBarButton> 
+                </AppBarButton>
                 <AppBarButton Label="Unpin" Visibility="{Binding UnpinSecTileVisibility}" Command="{Binding UnpinCommand}" CommandParameter="{Binding CourseDetails}">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE241;" />
@@ -153,13 +149,14 @@
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
-                <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="Black" Grid.Column="0" Grid.ColumnSpan="4" >
+                <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="Black" Grid.Column="0" Grid.ColumnSpan="5" >
                     <StackPanel Orientation="Horizontal">
                         <Image HorizontalAlignment="Left"   VerticalAlignment="Bottom" Source="../Images/Category.png" />
                         <TextBlock  Style="{StaticResource SubheaderTextBlockStyle}" VerticalAlignment="Center" Margin="10,0,0,0" Text="{Binding CourseDetails.Intitule}" TextWrapping="Wrap" Foreground="White"/>
@@ -174,9 +171,11 @@
                 <TextBlock Text="Duration " Foreground="DarkGray" Grid.Row="2" Grid.Column="1"  Margin="10,0,0,0" Style="{StaticResource TitleTextBlockStyle}"   VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Grid.Column="2" Margin="10,0,0,0" Foreground="{StaticResource ThemeBrush}" Grid.Row="2" Text="{Binding CourseDetails.Duree}" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Days" Foreground="DarkGray" Grid.Row="2" Grid.Column="3"    VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Slider Padding="0" Grid.Row="2" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="{StaticResource ThemeBrush}" x:Name="FontSizeSlider" Width="150" Maximum="25" Minimum="15" Value="15" Background="LightGray" Height="40" Margin="0,0,10,10"/>
+
             </Grid>
-            <ScrollViewer ZoomMode="Disabled"  Margin="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"  Background="WhiteSmoke" Grid.Row="1">
-                <TextBlock   Margin="5" Foreground="Black" TextWrapping="Wrap" Style="{StaticResource BodyTextBlockStyle}" Text="{Binding CourseDetails.Description}"></TextBlock>
+            <ScrollViewer x:Name="ScrollViewerDetails" ZoomMode="Enabled"   Margin="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto"   Background="WhiteSmoke" Grid.Row="1">
+                <TextBlock x:Name="DetailsText" FontSize="{Binding ElementName=FontSizeSlider,Path=Value}" Width="{Binding ElementName=ScrollViewerDetails,Path=ViewportWidth}" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Foreground="Black" TextWrapping="Wrap"  Style="{StaticResource BodyTextBlockStyle}" Text="{Binding CourseDetails.Description}" ></TextBlock>
             </ScrollViewer>
         </Grid>
     </Grid>

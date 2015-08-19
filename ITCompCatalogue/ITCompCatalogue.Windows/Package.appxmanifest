@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Package xmlns="http://schemas.microsoft.com/appx/2010/manifest" xmlns:m2="http://schemas.microsoft.com/appx/2013/manifest">
-  <Identity Name="ITComp.ITComp" Publisher="CN=082092DE-FB76-4F8F-B725-48C97571E8DA" Version="1.1.0.2" />
+  <Identity Name="ITComp.ITComp" Publisher="CN=082092DE-FB76-4F8F-B725-48C97571E8DA" Version="1.1.0.3" />
   <Properties>
     <DisplayName>ITComp</DisplayName>
     <PublisherDisplayName>ITComp Information Technologie Company</PublisherDisplayName>

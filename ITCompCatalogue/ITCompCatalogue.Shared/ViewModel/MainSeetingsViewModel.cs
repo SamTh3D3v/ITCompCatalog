@@ -6,6 +6,7 @@ using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
@@ -34,6 +35,8 @@ namespace ITCompCatalogue.ViewModel
                 }
                 _redTheameBrushIsSelected = value;
                 ApplicationData.Current.RoamingSettings.Values["ThemeBrush"] = _redTheameBrushIsSelected;
+                Messenger.Default.Send<bool>(_redTheameBrushIsSelected, "ThemeUpdate");
+                
                 RaisePropertyChanged();
             }
         }

@@ -22,6 +22,7 @@ using Windows.UI.Xaml.Media.Animation;
 using Windows.UI.Xaml.Navigation;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
+using GalaSoft.MvvmLight.Messaging;
 using ITCompCatalogue.View;
 using SQLitePCL;
 
@@ -31,7 +32,7 @@ namespace ITCompCatalogue
     /// Provides application-specific behavior to supplement the default Application class.
     /// </summary>
     public sealed partial class App : Application
-    {
+    {        
 #if WINDOWS_PHONE_APP
         private TransitionCollection transitions;
 #endif
@@ -43,7 +44,7 @@ namespace ITCompCatalogue
         /// executed, and as such is the logical equivalent of main() or WinMain().
         /// </summary>
         public App()
-        {
+        {            
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
             UnhandledException += (sender, e) => e.Handled = true;
@@ -67,7 +68,7 @@ namespace ITCompCatalogue
                 RoamingFavorite = true;
                 ApplicationData.Current.RoamingSettings.Values["RoamingFavorite"] = true;
 
-            }
+            }           
         }
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
         {
