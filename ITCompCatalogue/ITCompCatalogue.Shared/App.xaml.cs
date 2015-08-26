@@ -23,6 +23,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Application template is documented at http://go.microsoft.com/fwlink/?LinkId=234227
 using GalaSoft.MvvmLight.Messaging;
+using ITCompCatalogue.Helper;
 using ITCompCatalogue.View;
 using SQLitePCL;
 
@@ -127,7 +128,7 @@ namespace ITCompCatalogue
             if (rootFrame == null)
             {
                 // Create a Frame to act as the navigation context and navigate to the first page
-                rootFrame = new Frame();
+                rootFrame = new ThemeAwareFrame((bool)(ApplicationData.Current.RoamingSettings.Values["ThemeBrush"]) ? ElementTheme.Light : ElementTheme.Dark);
 
                 // TODO: change this value to a cache size that is appropriate for your application
                 rootFrame.CacheSize = 1;

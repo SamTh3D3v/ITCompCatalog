@@ -15,7 +15,7 @@
         <Binding Path="PartenaireViewModel" Source="{StaticResource Locator}"></Binding>
     </helper:BindablePage.DataContext>    
     <helper:BindablePage.TopAppBar>
-        <AppBar Background="{StaticResource ThemeBrush}">
+        <AppBar Background="{ThemeResource ThemeBrush}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
@@ -79,7 +79,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
+        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{ThemeResource ThemeBrush}" >
             <userControls:HeaderControl/>
         </Border>       
         <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >

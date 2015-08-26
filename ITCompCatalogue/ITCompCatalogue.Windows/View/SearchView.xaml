@@ -17,7 +17,7 @@
         <Binding Path="SearchViewModel" Source="{StaticResource Locator}"/>
     </helper:BindablePage.DataContext>    
     <helper:BindablePage.TopAppBar>
-        <AppBar Background="{StaticResource ThemeBrush}">
+        <AppBar Background="{ThemeResource ThemeBrush}">
             <Grid Height="90">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>                    
@@ -96,7 +96,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
+        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{ThemeResource ThemeBrush}" >
             <userControls:HeaderControl />
         </Border>
         <Border HorizontalAlignment="Stretch" Grid.Row="1" Background="Black" >
@@ -132,7 +132,7 @@
                 </helper:ListViewEx.ItemsPanel>
                 <helper:ListViewEx.ItemTemplate>
                    <DataTemplate>
-                        <ToggleButton   x:Name="Tb"  Width="75" Height="75" Margin="2,2,0,2" IsChecked="{Binding IsTechSelected,Mode=TwoWay,Converter={StaticResource ToggleButtonChecked}}" Background="{StaticResource ThemeBrush}">
+                        <ToggleButton   x:Name="Tb"  Width="75" Height="75" Margin="2,2,0,2" IsChecked="{Binding IsTechSelected,Mode=TwoWay,Converter={StaticResource ToggleButtonChecked}}" Background="{ThemeResource ThemeBrush}">
                            <ToggleButton.Content>
                                 <Image Source="{Binding C_id,Converter={StaticResource TechIdToImageConverter}}"></Image>
                            </ToggleButton.Content>
@@ -141,7 +141,7 @@
                </helper:ListViewEx.ItemTemplate>
             </helper:ListViewEx>
         </Grid>
-        <ListView IsItemClickEnabled="True" Margin="3,10,3,3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
+        <ListView IsItemClickEnabled="True" SelectionMode="None" Margin="3,10,3,3" Grid.Row="3" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" ItemsSource="{Binding SearchResult}">
             <interactivity:Interaction.Behaviors>
                 <core:EventTriggerBehavior EventName="ItemClick">
                     <core:InvokeCommandAction Command="{Binding SelectCourseCommand}" InputConverter="{StaticResource ItemClickedConverter}"/>
@@ -160,7 +160,7 @@
                             <ColumnDefinition Width="2*"/>
                             <ColumnDefinition Width="Auto"/>
                         </Grid.ColumnDefinitions>
-                        <TextBlock VerticalAlignment="Center" Text="{Binding Code}" Foreground="{StaticResource ThemeBrush}"    Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap" Grid.Column="0" />
+                        <TextBlock VerticalAlignment="Center" Text="{Binding Code}" Foreground="{ThemeResource ThemeBrush}"    Style="{StaticResource TitleTextBlockStyle}" TextWrapping="Wrap" Grid.Column="0" />
                         <TextBlock VerticalAlignment="Center" Text="{Binding Intitule}" Foreground="Black" Style="{StaticResource TitleTextBlockStyle}"   TextWrapping="WrapWholeWords" Grid.Column="1" />
                         <!--<TextBlock Text="{Binding Category.Intitule}" Foreground="Black" Style="{ThemeResource ListViewItemTextBlockStyle}" FontSize="18" TextWrapping="Wrap" Grid.Column="2" />-->
                         <Image Grid.Column="2" Width="35" Height="35" Source="{Binding Category.TechnologieID,Converter={StaticResource TechIdToImageConverter}}"></Image>

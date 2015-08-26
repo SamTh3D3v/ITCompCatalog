@@ -17,7 +17,7 @@
         <Binding Path="ScheduleViewModel"  Source="{StaticResource Locator}"></Binding>
     </helper:BindablePage.DataContext>   
     <helper:BindablePage.TopAppBar>
-        <AppBar Background="{StaticResource ThemeBrush}">
+        <AppBar Background="{ThemeResource ThemeBrush}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
@@ -86,7 +86,7 @@
         </AppBar>
     </helper:BindablePage.TopAppBar>
     <helper:BindablePage.BottomAppBar >
-        <CommandBar Background="{StaticResource ThemeBrush}" IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}">
+        <CommandBar Background="{ThemeResource ThemeBrush}" IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}">
             <!--IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}"-->
             <CommandBar.PrimaryCommands>
                 <AppBarButton Label="Pin" Visibility="{Binding PinSecTileVisibility}" Command="{Binding PinCommand}" CommandParameter="{Binding CourseDetails}">
@@ -113,7 +113,7 @@
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
+        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{ThemeResource ThemeBrush}" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="75"/>
@@ -140,7 +140,7 @@
                 <converters:CellModelToEventConverter x:Key="CourseSecConverter" />
                 <DataTemplate x:Key="SelectorTemplate">
                     <Grid>
-                        <Rectangle Fill="{StaticResource ThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,20"/>
+                        <Rectangle Fill="{ThemeResource ThemeBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="0,20,0,20"/>
                         <FontIcon FontFamily="Segoe UI Symbol" Glyph="&#xE193;" Foreground="Black" FontSize="25" VerticalAlignment="Center" HorizontalAlignment="Center"></FontIcon>
                         <TextBlock Text="{Binding Converter={StaticResource CourseSecConverter}}" Foreground="Black" FontSize="13.333" VerticalAlignment="Bottom" Margin="6,0,0,4" />
                     </Grid>
@@ -149,15 +149,15 @@
             </Grid.Resources>
 
             <input:RadCalendar  DisplayMode="{Binding DisplayMode,Mode=TwoWay}" IsTodayHighlighted="True"  RequestedTheme="Light" CellStyleSelector="{StaticResource Selector}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"                      
-                     GridLinesBrush="{StaticResource ThemeBrush}"
+                     GridLinesBrush="{ThemeResource ThemeBrush}"
                      GridLinesThickness="2"                       
                      Foreground="Black"
-                     BorderBrush="{StaticResource ThemeBrush}"  
+                     BorderBrush="{ThemeResource ThemeBrush}"  
                                Background="WhiteSmoke"
                      BorderThickness="2" >
 
             </input:RadCalendar>
-            <ProgressRing IsActive="{Binding IsLoadingProgressRing}" VerticalAlignment="Center"  Width="300" Height="300" HorizontalAlignment="Center" Foreground="{StaticResource ThemeBrush}"></ProgressRing>
+            <ProgressRing IsActive="{Binding IsLoadingProgressRing}" VerticalAlignment="Center"  Width="300" Height="300" HorizontalAlignment="Center" Foreground="{ThemeResource ThemeBrush}"></ProgressRing>
         </Grid>
     </Grid>
 </helper:BindablePage>

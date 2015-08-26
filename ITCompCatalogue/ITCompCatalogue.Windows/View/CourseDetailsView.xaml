@@ -16,7 +16,7 @@
         <Binding Path="CourseDetailsViewModel" Source="{StaticResource Locator}"></Binding>
     </helper:BindablePage.DataContext>
     <helper:BindablePage.TopAppBar>
-        <AppBar Background="{StaticResource ThemeBrush}">
+        <AppBar Background="{ThemeResource ThemeBrush}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
@@ -85,7 +85,7 @@
         </AppBar>
     </helper:BindablePage.TopAppBar>
     <Page.BottomAppBar >
-        <CommandBar Background="{StaticResource ThemeBrush}" IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}">
+        <CommandBar Background="{ThemeResource ThemeBrush}" IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}">
             <!--IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}"-->
             <CommandBar.PrimaryCommands>
                 <AppBarToggleButton Label="{StaticResource AddToFav}" IsChecked="{Binding IsCourseFavorite,Mode=TwoWay}">
@@ -121,7 +121,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
+        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{ThemeResource ThemeBrush}" >
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="75"/>
@@ -167,11 +167,11 @@
                 </Border>
 
                 <TextBlock Text="Code "  Foreground="DarkGray" Grid.Row="1" Grid.Column="1"  Margin="10,0,0,0"   Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Grid.Column="2"  Grid.Row="1" Margin="10,0,0,0" Foreground="{StaticResource ThemeBrush}"  Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding CourseDetails.Code}"/>
+                <TextBlock Grid.Column="2"  Grid.Row="1" Margin="10,0,0,0" Foreground="{ThemeResource ThemeBrush}"  Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left" Text="{Binding CourseDetails.Code}"/>
                 <TextBlock Text="Duration " Foreground="DarkGray" Grid.Row="2" Grid.Column="1"  Margin="10,0,0,0" Style="{StaticResource TitleTextBlockStyle}"   VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <TextBlock Grid.Column="2" Margin="10,0,0,0" Foreground="{StaticResource ThemeBrush}" Grid.Row="2" Text="{Binding CourseDetails.Duree}" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <TextBlock Grid.Column="2" Margin="10,0,0,0" Foreground="{ThemeResource ThemeBrush}" Grid.Row="2" Text="{Binding CourseDetails.Duree}" Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                 <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="Days" Foreground="DarkGray" Grid.Row="2" Grid.Column="3"    VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <Slider Padding="0" Grid.Row="2" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="{StaticResource ThemeBrush}" x:Name="FontSizeSlider" Width="150" Maximum="25" Minimum="15" Value="15" Background="LightGray" Height="40" Margin="0,0,10,10" Style="{StaticResource MailSliderStyle}">
+                <Slider Padding="0" Grid.Row="2" Grid.Column="4" VerticalAlignment="Bottom" HorizontalAlignment="Right" Foreground="{ThemeResource ThemeBrush}" x:Name="FontSizeSlider" Width="150" Maximum="25" Minimum="15" Value="15" Background="LightGray" Height="40" Margin="0,0,10,10" Style="{StaticResource MailSliderStyle}">
 
                 </Slider>
 

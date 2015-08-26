@@ -16,7 +16,7 @@
         <Binding Path="CoursesCategoriesListViewModel" Source="{StaticResource Locator}"></Binding>
     </helper:BindablePage.DataContext>   
     <helper:BindablePage.TopAppBar>
-        <AppBar Background="{StaticResource ThemeBrush}">
+        <AppBar Background="{ThemeResource ThemeBrush}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="120"/>
@@ -94,7 +94,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{StaticResource ThemeBrush}" >
+        <Border HorizontalAlignment="Stretch" Grid.Row="0" Background="{ThemeResource ThemeBrush}" >
             <userControls:HeaderControl/>
         </Border>
         <FlipView Grid.Row="1" Background="White"  ItemsSource="{Binding ListCategories}" x:Name="RootPivot" >
@@ -116,7 +116,7 @@
                                 <TextBlock VerticalAlignment="Center" Style="{StaticResource HeaderTextBlockStyle}" Text="{Binding Intitule}" Foreground="White"/>
                             </StackPanel>
                         </Border>
-                        <ListView RequestedTheme="Dark" SelectionMode="None" Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">
+                        <ListView  SelectionMode="None" Grid.Row="1" ItemsSource="{Binding Cursus}" IsItemClickEnabled="False">
                             <ListView.ItemContainerStyle>
                                 <Style TargetType="ListViewItem">
                                     <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
@@ -139,7 +139,7 @@
                                                 </AppBarButton>-->
                                             </Grid>
                                         </Border>
-                                        <ListView RequestedTheme="Dark" SelectionMode="None" Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
+                                        <ListView SelectionMode="None" Margin="8,0,0,0" ItemsSource="{Binding CursusCours}" IsItemClickEnabled="True">
                                             <interactivity:Interaction.Behaviors>
                                                 <core:EventTriggerBehavior EventName="ItemClick">
                                                     <core:InvokeCommandAction Command="{Binding DataContext.CourseSelectedCommand, ElementName=RootPivot}"
@@ -164,7 +164,7 @@
                                                                 <RowDefinition Height="50"/>
                                                                 <!--<RowDefinition Height="60"/>-->
                                                             </Grid.RowDefinitions>
-                                                            <Border Background="{StaticResource ThemeBrush}" Grid.Row="0"   VerticalAlignment="Stretch" Grid.Column="0" >
+                                                            <Border Background="{ThemeResource ThemeBrush}" Grid.Row="0"   VerticalAlignment="Stretch" Grid.Column="0" >
                                                                 <TextBlock HorizontalAlignment="Center"  Style="{StaticResource TitleTextBlockStyle}" VerticalAlignment="Center" Foreground="White" Text="{Binding Cour.Code}"  />
                                                             </Border>
                                                             <TextBlock  Margin="5,0,0,0" Grid.Row="0"  Grid.Column="1"  Foreground="Black" Style="{StaticResource TitleTextBlockStyle}" Text="{Binding Cour.Intitule}" TextWrapping="Wrap"  VerticalAlignment="Center" />

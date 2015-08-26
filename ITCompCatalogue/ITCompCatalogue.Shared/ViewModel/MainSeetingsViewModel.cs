@@ -4,6 +4,7 @@ using System.Text;
 using Windows.Storage;
 using Windows.UI;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
@@ -34,7 +35,10 @@ namespace ITCompCatalogue.ViewModel
                     return;
                 }
                 _redTheameBrushIsSelected = value;
-                ApplicationData.Current.RoamingSettings.Values["ThemeBrush"] = _redTheameBrushIsSelected;                                
+                ApplicationData.Current.RoamingSettings.Values["ThemeBrush"] = _redTheameBrushIsSelected;
+                (Window.Current.Content as ThemeAwareFrame).AppTheme = _redTheameBrushIsSelected
+                    ? ElementTheme.Light
+                    : ElementTheme.Dark;            
                 RaisePropertyChanged();
             }
         }

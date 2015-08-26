@@ -39,6 +39,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Helper\InternetConnectionChangedEventArgs.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\NavigableViewModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Helper\Network.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Helper\ThemeAwareFrame.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CatalogueService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\Category.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Model\CategoryClient.cs" />
