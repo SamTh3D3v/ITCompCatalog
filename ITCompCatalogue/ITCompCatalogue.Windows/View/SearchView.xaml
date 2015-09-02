@@ -132,7 +132,7 @@
                 </helper:ListViewEx.ItemsPanel>
                 <helper:ListViewEx.ItemTemplate>
                    <DataTemplate>
-                        <ToggleButton   x:Name="Tb"  Width="75" Height="75" Margin="2,2,0,2" IsChecked="{Binding IsTechSelected,Mode=TwoWay,Converter={StaticResource ToggleButtonChecked}}" Background="{ThemeResource ThemeBrush}">
+                        <ToggleButton   x:Name="Tb"  Width="75" Height="75" Margin="2,2,0,2" IsChecked="{Binding IsTechSelected,Mode=TwoWay,Converter={StaticResource ToggleButtonChecked}}" Background="{ThemeResource ThemeBrush}">                            
                            <ToggleButton.Content>
                                 <Image Source="{Binding C_id,Converter={StaticResource TechIdToImageConverter}}"></Image>
                            </ToggleButton.Content>

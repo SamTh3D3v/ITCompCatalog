@@ -10,7 +10,7 @@
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
     Title="{StaticResource Presentation}"
-    d:DesignWidth="345" Padding="0">    
+    d:DesignWidth="345" Padding="0" Width="470">    
     <SettingsFlyout.DataContext>
         <Binding Path="PresenationViewModel" Source="{StaticResource Locator}"></Binding>
     </SettingsFlyout.DataContext>

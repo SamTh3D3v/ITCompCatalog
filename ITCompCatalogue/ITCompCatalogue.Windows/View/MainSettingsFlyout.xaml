@@ -10,8 +10,8 @@
     xmlns:converters="using:ITCompCatalogue.Converters"
     mc:Ignorable="d"
     IconSource="Assets/SmallLogo.png"
-    Title="{StaticResource GlobalSettings}" Width="400"
-    d:DesignWidth="346" >
+    Title="{StaticResource GlobalSettings}" 
+    d:DesignWidth="346" Width="470">
     <SettingsFlyout.DataContext>
         <Binding Path="MainSeetingsViewModel" Source="{StaticResource Locator}"/>
     </SettingsFlyout.DataContext>
@@ -38,8 +38,7 @@
             
             <TextBlock Style="{StaticResource TitleTextBlockStyle}" Text="{StaticResource Theme}" />
             <RadioButton GroupName="ThemeSettings" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay}"  Foreground="DeepSkyBlue" Content="{StaticResource Blue}"/>
-            <RadioButton GroupName="ThemeSettings" Foreground="Red" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay,Converter={StaticResource BoolReverseConverter}}" Content="{StaticResource Red}"/>
-            <TextBlock Text="{StaticResource ChangesMessage}"></TextBlock>
+            <RadioButton GroupName="ThemeSettings" Foreground="Red" IsChecked="{Binding RedThemeBrushIsSelected,Mode=TwoWay,Converter={StaticResource BoolReverseConverter}}" Content="{StaticResource Red}"/>           
         </StackPanel>  
         <StackPanel Style="{StaticResource SettingsFlyoutSectionStyle}" HorizontalAlignment="Stretch">
             <!--Sync Favorite accross devices-->

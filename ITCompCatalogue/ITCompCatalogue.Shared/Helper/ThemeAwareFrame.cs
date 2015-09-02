@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
+using Windows.UI.ApplicationSettings;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Data;
@@ -27,7 +28,7 @@ namespace ITCompCatalogue.Helper
         {
             var themeBinding = new Binding { Source = _themeProxyClass, Path = new PropertyPath("Theme"), Mode = BindingMode.OneWay };
             SetBinding(RequestedThemeProperty, themeBinding);
-            AppTheme = appTheme;
+            AppTheme = appTheme;            
 
         }
 

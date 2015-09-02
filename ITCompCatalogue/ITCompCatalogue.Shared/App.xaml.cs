@@ -49,6 +49,7 @@ namespace ITCompCatalogue
             this.InitializeComponent();
             this.Suspending += this.OnSuspending;
             UnhandledException += (sender, e) => e.Handled = true;
+            
             RoamingFavorite = true;
             if (ApplicationData.Current.RoamingSettings.Values.ContainsKey("ThemeBrush"))
             {
@@ -68,12 +69,12 @@ namespace ITCompCatalogue
             {
                 RoamingFavorite = true;
                 ApplicationData.Current.RoamingSettings.Values["RoamingFavorite"] = true;
-
-            }           
+            }
+            
         }
         protected override void OnWindowCreated(WindowCreatedEventArgs args)
-        {
-            SettingsPane.GetForCurrentView().CommandsRequested += OnCommandRequested;
+        {            
+            SettingsPane.GetForCurrentView().CommandsRequested += OnCommandRequested;                   
         }
 
         private void OnCommandRequested(SettingsPane sender, SettingsPaneCommandsRequestedEventArgs args)
@@ -82,6 +83,7 @@ namespace ITCompCatalogue
             {
                 //(Window.Current.Content as Frame).Navigate(typeof(PresentationView));
                 new PresentationSettingsFlyout().Show();
+                
             });
             var contactsSettings = new SettingsCommand("contactsSettings", "Contacts", handler =>
             {
@@ -100,7 +102,8 @@ namespace ITCompCatalogue
             args.Request.ApplicationCommands.Add(contactsSettings);
             args.Request.ApplicationCommands.Add(globalSettings);
             args.Request.ApplicationCommands.Add(privacySettings);
-            args.Request.ApplicationCommands.Add(aboutSettings);
+            args.Request.ApplicationCommands.Add(aboutSettings);              
+            
         }
 
         /// <summary>
@@ -110,7 +113,7 @@ namespace ITCompCatalogue
         /// </summary>
         /// <param name="e">Details about the launch request and process.</param>
         protected override async void OnLaunched(LaunchActivatedEventArgs e)
-        {
+        {            
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
