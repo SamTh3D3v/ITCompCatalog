@@ -153,6 +153,9 @@
     <Compile Include="View\MainSettingsFlyout.xaml.cs">
       <DependentUpon>MainSettingsFlyout.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\NewReviewFlyout.xaml.cs">
+      <DependentUpon>NewReviewFlyout.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\PresentationSettingsFlyout.xaml.cs">
       <DependentUpon>PresentationSettingsFlyout.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,9 @@
     </Compile>
     <Compile Include="View\PresentationView.xaml.cs">
       <DependentUpon>PresentationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\ReviewsListFlyout.xaml.cs">
+      <DependentUpon>ReviewsListFlyout.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\ScheduleView.xaml.cs">
       <DependentUpon>ScheduleView.xaml</DependentUpon>
@@ -342,6 +348,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="View\NewReviewFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\PresentationSettingsFlyout.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -361,6 +371,10 @@
     <Page Include="View\PresentationView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\ReviewsListFlyout.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\ScheduleView.xaml">
       <SubType>Designer</SubType>

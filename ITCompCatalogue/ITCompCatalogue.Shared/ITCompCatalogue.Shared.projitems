@@ -58,6 +58,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\MainViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PartenaireViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\PresenationViewModel.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ReviewsViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ScheduleViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\SearchViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModel\ViewModelLocator.cs" />
