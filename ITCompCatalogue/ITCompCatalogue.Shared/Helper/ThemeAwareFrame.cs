@@ -30,9 +30,7 @@ namespace ITCompCatalogue.Helper
             SetBinding(RequestedThemeProperty, themeBinding);
             AppTheme = appTheme;            
 
-        }
-
-        // Proxy class to be used as singleton
+        }        
         sealed class ThemeProxyClass : INotifyPropertyChanged
         {
             private ElementTheme _theme;

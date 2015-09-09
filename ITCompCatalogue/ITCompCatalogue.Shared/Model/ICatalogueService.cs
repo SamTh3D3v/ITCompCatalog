@@ -19,7 +19,9 @@ namespace ITCompCatalogue.Model
         void UnfavoriteAllCourses(bool roamingFavorite);
         Task<List<Cour>> GetFavoriteCourses(bool roamingFavorite);
         Task<List<CourDate>> GetCoursScheduleByCursusId(long cursusId);
-        Task<List<CourDate>> GetCoursScheduleByCoursId(long coursId);
+        Task<List<CourDate>> GetCourseScheduleByCourseId(long coursId);
+        Task<List<CourReview>> GetCourseReviewByCourseId(long courseId);
+        Task AddCourseReviewByCourseId(CourReview courseReview);
         Task<List<Cursu>> GetCursusByCategoryId(long categoryId);
         Task<Category> GetCategoriesByCatgoryId(long categoryId);        
     }
@@ -37,5 +39,17 @@ namespace ITCompCatalogue.Model
             DateFin = dateFin;
             //Cour = catalogueService.GetCourseByCourseId(coursId);
         }
+    }
+
+    public class CourReview
+    {
+        public String Id { get; set; }
+        public int CourId { get; set; }
+        public String ReviewerName { get; set; }
+        public String ReviewerEmail { get; set; }
+        public String ReviewMessage { get; set; }
+        public DateTime ReviewDate { get; set; }
+        public int CourRanking  { get; set; }
+        public String ReviewTitle  { get; set; }
     }
 }

@@ -382,7 +382,7 @@ namespace ITCompCatalogue.Model
             };
         }
 
-        public async Task<List<CourDate>> GetCoursScheduleByCoursId(long coursId)
+        public async Task<List<CourDate>> GetCourseScheduleByCourseId(long coursId)
         {
             var client = new MobileServiceClient("https://itcompdz.azure-mobile.net/",
                     "bObdidRoQhCjwMgwwfaTFOcqQLfvdL26");
@@ -390,6 +390,22 @@ namespace ITCompCatalogue.Model
             var listDates = await client.GetTable<CourDate>().Where(x => x.CoursId == coursId).ToListAsync();
             return listDates;
         }
+        public async Task<List<CourReview>> GetCourseReviewByCourseId(long courseId)
+        {
+            var client = new MobileServiceClient("https://itcompdz.azure-mobile.net/",
+                    "bObdidRoQhCjwMgwwfaTFOcqQLfvdL26");
+
+            var listReviews = await client.GetTable<CourReview>().Where(x => x.CourId == courseId).ToListAsync();
+            return listReviews;
+        } 
+        public async Task AddCourseReviewByCourseId(CourReview courseReview)
+        {
+            var client = new MobileServiceClient("https://itcompdz.azure-mobile.net/",
+                    "bObdidRoQhCjwMgwwfaTFOcqQLfvdL26");
+
+            await client.GetTable<CourReview>().InsertAsync(courseReview);            
+        }
+
 
 
     }

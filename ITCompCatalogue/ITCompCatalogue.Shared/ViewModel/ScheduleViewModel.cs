@@ -500,7 +500,7 @@ namespace ITCompCatalogue.ViewModel
             try
             {
                 IsLoadingProgressRing = true;
-                CoursesScheduleList = new ObservableCollection<CourDate>(await CatalogueService.GetCoursScheduleByCoursId(SelectedCourse.C_id));
+                CoursesScheduleList = new ObservableCollection<CourDate>(await CatalogueService.GetCourseScheduleByCourseId(SelectedCourse.C_id));
                 IsLoadingProgressRing = false;
                 if (CoursesScheduleList.Count == 0)
                 {
