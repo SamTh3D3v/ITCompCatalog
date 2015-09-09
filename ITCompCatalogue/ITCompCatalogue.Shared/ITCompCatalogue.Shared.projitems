@@ -98,6 +98,9 @@
     <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\pre3.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\pre4.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Presentation\techAn.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\ReviewIcons\date.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\ReviewIcons\email.png" />
+    <Content Include="$(MSBuildThisFileDirectory)Images\ReviewIcons\name.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Tiles\Android.jpg" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Tiles\General.png" />
     <Content Include="$(MSBuildThisFileDirectory)Images\Tiles\Microsoft.jpg" />
