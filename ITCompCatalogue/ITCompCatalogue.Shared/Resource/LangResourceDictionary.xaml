@@ -51,6 +51,8 @@
     <x:String x:Key="RemoveAll">Supprimer tous</x:String>
     <x:String x:Key="Remove">Supprimer</x:String>
     <x:String x:Key="AddToFav">Favoriser</x:String>
-    <x:String x:Key="SearchCourses">Rechercher</x:String>    
+    <x:String x:Key="SearchCourses">Rechercher</x:String>
+    <x:String x:Key="CodeReviews">Reviews</x:String>    
+    <x:String x:Key="NoReviews">No Reviews are Available for the Following Course</x:String>    
 
 </ResourceDictionary>

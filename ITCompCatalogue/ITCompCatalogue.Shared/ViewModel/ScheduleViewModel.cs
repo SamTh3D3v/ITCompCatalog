@@ -518,26 +518,7 @@ namespace ITCompCatalogue.ViewModel
 
             }
             PinSecTileVisibility = SecondaryTile.Exists("S" + SelectedCourse.C_id.ToString()) ? Visibility.Collapsed : Visibility.Visible;
-            UnpinSecTileVisibility = SecondaryTile.Exists("S" + SelectedCourse.C_id.ToString()) ? Visibility.Visible : Visibility.Collapsed;
-            //else
-            //{
-
-            //    //var cursus = parameter as Cursu;
-            //    //if (cursus != null)
-            //    //{
-            //    //    _globaleCoursesScheduleList = await CatalogueService.GetCoursScheduleByCursusId(cursus.C_id);
-            //    //    CoursesScheduleList = new ObservableCollection<CourDate>(_globaleCoursesScheduleList);
-            //    //    var courInCursus = await CatalogueService.GetCoursesByCursusId(cursus.C_id);
-            //    //    ListCoursesInCursus = new ObservableCollection<CourVisible>(courInCursus.Select(x => new CourVisible()
-            //    //    {
-            //    //        C_id = x.C_id,
-            //    //        Intitule = x.Intitule,
-            //    //        Category = x.Category,
-            //    //        Visible = true
-            //    //    }));
-            //    //}
-
-            //}  
+            UnpinSecTileVisibility = SecondaryTile.Exists("S" + SelectedCourse.C_id.ToString()) ? Visibility.Visible : Visibility.Collapsed;         
             base.Activate(parameter);
         }
         public override void Deactivate(object parameter)

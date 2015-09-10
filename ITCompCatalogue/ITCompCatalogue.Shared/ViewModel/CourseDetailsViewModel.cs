@@ -15,10 +15,12 @@ using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using GalaSoft.MvvmLight.Views;
 using ITCompCatalogue.Converters;
 using ITCompCatalogue.Helper;
 using ITCompCatalogue.Model;
+using ITCompCatalogue.View;
 
 namespace ITCompCatalogue.ViewModel
 {
@@ -386,6 +388,20 @@ namespace ITCompCatalogue.ViewModel
                     }));
             }
         }
+        private RelayCommand _showReviewsCommand;
+        public RelayCommand ShowReviewsCommand
+        {
+            get
+            {
+                return _showReviewsCommand
+                    ?? (_showReviewsCommand = new RelayCommand(
+                        () =>
+                        {
+                            (new ReviewsListFlyout()).Show();
+                            Messenger.Default.Send<long>(CourseDetails.C_id);
+                        }));
+            }
+        }
         #endregion
         #region Ctors and methods
 
@@ -436,20 +452,16 @@ namespace ITCompCatalogue.ViewModel
 
         private async void ShareTextHandler(DataTransferManager sender, DataRequestedEventArgs e)
         {
-            DataRequest request = e.Request;
-            // The Title is mandatory
+            DataRequest request = e.Request;            
             request.Data.Properties.Title = CourseDetails.Code + ": " + CourseDetails.Intitule;
             request.Data.Properties.Description = "";
-            var storeURI = new Uri("ms-windows-store:PDP?PFN=ITComp.ITComp_td1e7mxqwnshw");
-            var htmlExample = "<h3>Course Description</h3> <p>" + CourseDetails.Description + ".</p>" + "<a href=" + storeURI + ">Lien vers ITComp Catalogue application dans le store.</a>";
+            var storeUri = new Uri("ms-windows-store:PDP?PFN=ITComp.ITComp_td1e7mxqwnshw");
+            var htmlExample = "<h3>Course Description</h3> <p>" + CourseDetails.Description + ".</p>" + "<a href=" + storeUri + ">Lien vers ITComp Catalogue application dans le store.</a>";
             var htmlFormat = Windows.ApplicationModel.DataTransfer.HtmlFormatHelper.CreateHtmlFormat(htmlExample);
             request.Data.SetHtmlFormat(htmlFormat);
-
-            //request.Data.SetText(CourseDetails.Description + " Category: " + storeURI);
-            //var storeURI = new Uri("ms-windows-store:PDP?PFN=ITComp.Itcompcatalogue_td1e7mxqwnshw");
-            //await Windows.System.Launcher.LaunchUriAsync(storeURI);            
-            request.Data.SetUri(storeURI);
-            request.Data.SetApplicationLink(storeURI);
+                      
+            request.Data.SetUri(storeUri);
+            request.Data.SetApplicationLink(storeUri);
         }
         private void SendLiveTileUpdate()
         {
