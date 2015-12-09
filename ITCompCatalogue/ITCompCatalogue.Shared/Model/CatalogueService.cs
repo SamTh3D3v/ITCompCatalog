@@ -407,8 +407,8 @@ namespace ITCompCatalogue.Model
 
         public async Task<List<CourDate>> GetCourseScheduleByCourseId(long coursId)
         {
-            var client = new MobileServiceClient("https://itcompdz.azure-mobile.net/",
-                    "bObdidRoQhCjwMgwwfaTFOcqQLfvdL26");
+            var client = new MobileServiceClient("https://itcompservice.azure-mobile.net/",
+                    "FjqwZCODPMmcFXSVguVaZiWQDEafDc46");            
 
             var listDates = await client.GetTable<CourDate>().Where(x => x.CoursId == coursId).ToListAsync();
             return listDates;

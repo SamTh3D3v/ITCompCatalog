@@ -88,7 +88,7 @@
         <CommandBar Background="{ThemeResource ThemeBrush}" IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}">
             <!--IsOpen="{Binding BottomAppBarIsOpen,Mode=TwoWay}" IsSticky="{Binding BottomAppBarIsOpen,Mode=TwoWay}"-->
             <CommandBar.PrimaryCommands>
-                <AppBarButton Label="{StaticResource CodeReviews}" Command="{Binding ShowReviewsCommand}">
+                <AppBarButton Label="{StaticResource CodeReviews}" Command="{Binding ShowReviewsCommand}" IsEnabled="False">
                     <AppBarButton.Icon>
                         <FontIcon FontFamily="Segoe UI Symbol"  Glyph="&#xE2AC;" />
                     </AppBarButton.Icon>
