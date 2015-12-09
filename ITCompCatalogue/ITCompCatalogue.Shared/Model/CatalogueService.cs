@@ -204,6 +204,29 @@ namespace ITCompCatalogue.Model
             }
             return course;
         }
+
+        public Cour GetCourseByCourseCode(string coursecode)
+        {
+            var course = new Cour();
+            using (var statement = _connection.Prepare("SELECT * FROM Cours WHERE Code = ?"))
+            {
+                statement.Bind(1, coursecode);
+                if (statement.Step() == SQLiteResult.ROW)
+                {
+                    course.C_id = (long)statement[0];
+                    course.Code = (string)statement[1];
+                    course.Intitule = (string)statement[2];
+                    course.Duree = (string)statement[3];
+                    course.Niveau = (string)statement[4];
+                    course.Annee = (string)statement[5];
+                    course.Description = (string)statement[6];
+                    course.Category = GetCategoryByCategoryId((long)statement[7]);
+                }
+            }
+            return course;
+        }
+
+
         private Technology GetTechnology(long technologyId)
         {
             var technology = new Technology();

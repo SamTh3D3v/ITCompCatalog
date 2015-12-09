@@ -21,7 +21,7 @@ namespace ITCompCatalogue.UserControls
     {
         public CustomSearchBox()
         {
-            this.InitializeComponent();
+            this.InitializeComponent();            
         }
 
         private void SearchBox_OnPointerEntered(object sender, PointerRoutedEventArgs e)
@@ -34,6 +34,7 @@ namespace ITCompCatalogue.UserControls
             ShrinkAnimation.Begin();            
         }
 
-        
+
+       
     }
 }

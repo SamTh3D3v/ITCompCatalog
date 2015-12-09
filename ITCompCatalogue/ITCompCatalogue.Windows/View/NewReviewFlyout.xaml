@@ -10,7 +10,7 @@
     xmlns:input="using:Telerik.UI.Xaml.Controls.Input"
     mc:Ignorable="d"   
     Title="Add Review" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"
-    Width="470">
+    Width="470" DataContext="{Binding Source={StaticResource Locator},Path=ReviewsViewModel}">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -34,16 +34,16 @@
         <Border Grid.Column="0" Grid.Row="0" Width="50" Height="48" Margin="2" Background="DodgerBlue">
             <Image Source="../Images/ReviewIcons/name.png"/>
         </Border>
-        <TextBox Margin="2" Grid.Column="1" Grid.Row="0" Text="NAME"/>
+        <TextBox Margin="2" Grid.Column="1" Grid.Row="0" Text="{Binding NewReview.ReviewerName,Mode=TwoWay}"/>
 
         <Border Grid.Column="0" Grid.Row="1" Width="50" Height="48" Margin="2" Background="DodgerBlue">
             <Image Source="../Images/ReviewIcons/email.png"/>
         </Border>
-        <TextBox Margin="2" Grid.Column="1" Grid.Row="1" Text="EMAIL"/>
+        <TextBox Margin="2" Grid.Column="1" Grid.Row="1" Text="{Binding NewReview.ReviewerEmail,Mode=TwoWay}"/>
 
         <Rectangle Fill="DarkGray" Height="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" HorizontalAlignment="Stretch" Margin="5,10,5,10"/>
 
-        <input:RadRating Grid.Column="1" Grid.Row="3" Background="CornflowerBlue" Value="2.5"                        
+        <input:RadRating Grid.Column="1" Grid.Row="3" Foreground="{StaticResource ThemeBrush}" Value="{Binding NewReview.CourRanking,Mode=TwoWay}"                        
                          
                          
                          HorizontalAlignment="Center"
@@ -51,14 +51,14 @@
                                   />
         <Rectangle Fill="DarkGray" Height="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" HorizontalAlignment="Stretch" Margin="5,10,5,10"/>
 
-        <TextBox Grid.Column="0" Grid.ColumnSpan="2" Margin="2" Grid.Row="5" Text="TITLE"/>
-        <TextBox Grid.Column="0" Grid.ColumnSpan="2" Margin="2" Grid.Row="6" Text="MESSAGE"/>
+        <TextBox Grid.Column="0" Grid.ColumnSpan="2" Margin="2" Grid.Row="5" Text="{Binding NewReview.ReviewTitle,Mode=TwoWay}"/>
+        <TextBox Grid.Column="0" Grid.ColumnSpan="2" Margin="2" Grid.Row="6" Text="{Binding NewReview.ReviewMessage,Mode=TwoWay}"/>
 
         <Rectangle Fill="DarkGray" Height="2" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="7" HorizontalAlignment="Stretch" Margin="5,10,5,10"/>
 
-        <DatePicker Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Margin="2" ></DatePicker>
+        <DatePicker Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Margin="2" Date="{Binding NewReview.ReviewDate}"></DatePicker>
 
 
-        <Button Content="Submit" Grid.Column="0" VerticalContentAlignment="Bottom" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" Margin="2" Grid.Row="10"></Button>
+        <Button Content="Submit" Grid.Column="0" VerticalContentAlignment="Bottom" HorizontalAlignment="Stretch" Command="{Binding SubmitRelayCommand}" Grid.ColumnSpan="2" Margin="2" Grid.Row="10"/>
     </Grid>
 </SettingsFlyout>

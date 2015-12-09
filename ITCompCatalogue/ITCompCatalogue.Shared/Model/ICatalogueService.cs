@@ -13,6 +13,7 @@ namespace ITCompCatalogue.Model
         Task<List<Cour>> SearchCourses(string searchText,String searchBy=null);
         void FavoriteCourse(long courseId,bool roamingFavorite);
         Cour GetCourseByCourseId(long courseId);
+        Cour GetCourseByCourseCode(string coursecode);
         Task<List<Cour>> GetCoursesByCursusId(long cursusId);
         void UnFavoriteCourse(long courseId, bool roamingFavorite);
         bool IsCourseFavorite(long courseId, bool roamingFavorite);
@@ -44,7 +45,7 @@ namespace ITCompCatalogue.Model
     public class CourReview
     {
         public String Id { get; set; }
-        public int CourId { get; set; }
+        public long CourId { get; set; }
         public String ReviewerName { get; set; }
         public String ReviewerEmail { get; set; }
         public String ReviewMessage { get; set; }

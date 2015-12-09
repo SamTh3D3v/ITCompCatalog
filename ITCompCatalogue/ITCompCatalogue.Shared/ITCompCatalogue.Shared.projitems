@@ -132,6 +132,8 @@
     <Content Include="$(MSBuildThisFileDirectory)Data\ITCompFavoritesDB.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="$(MSBuildThisFileDirectory)Data\ITCompTrainingDB.db">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

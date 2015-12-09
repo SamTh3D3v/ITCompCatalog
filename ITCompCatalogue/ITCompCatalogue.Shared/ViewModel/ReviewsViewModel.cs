@@ -17,11 +17,29 @@ namespace ITCompCatalogue.ViewModel
         #region Fields
         private CourReview _selectedReview; 
         private ObservableCollection<CourReview> _reviewsList;     
-        private Cour _selectedCourse;
+        private long _selectedCourseId;
         private bool _isLoadingProgressRing;
-        private Visibility _isNoReviewMessageVisible=Visibility.Collapsed;        
+        private Visibility _isNoReviewMessageVisible=Visibility.Collapsed;
+        private CourReview _newReview=new CourReview();
         #endregion
-        #region Properties      
+        #region Properties        
+        public CourReview NewReview
+        {
+            get
+            {
+                return _newReview;
+            }
+            set
+            {
+                if (_newReview == value)
+                {
+                    return;
+                }
+
+                _newReview = value;
+                RaisePropertyChanged();
+            }
+        }
         public ObservableCollection<CourReview> ReviewsList
         {
             get
@@ -58,21 +76,21 @@ namespace ITCompCatalogue.ViewModel
                 RaisePropertyChanged();
             }
         }
-        public Cour SelectedCourse
+        public long SelectedCourseId
         {
             get
             {
-                return _selectedCourse;
+                return _selectedCourseId;
             }
 
             set
             {
-                if (_selectedCourse == value)
+                if (_selectedCourseId == value)
                 {
                     return;
                 }
 
-                _selectedCourse = value;
+                _selectedCourseId = value;
                 RaisePropertyChanged();
             }
         }
@@ -114,6 +132,26 @@ namespace ITCompCatalogue.ViewModel
         }
         #endregion
         #region Commands
+        private RelayCommand _submitRelayCommand;   
+        public RelayCommand SubmitRelayCommand
+        {
+            get
+            {
+                return _submitRelayCommand
+                    ?? (_submitRelayCommand = new RelayCommand(
+                    () =>
+                    {
+                        NewReview.CourId = SelectedCourseId;
+                        CatalogueService.AddCourseReviewByCourseId(NewReview);
+                        NewReview=new CourReview()
+                        {
+                            CourId = SelectedCourseId
+                        };
+                        (new ReviewsListFlyout()).Show();
+
+                    }));
+            }
+        }
         private RelayCommand _addReviewCommand;
         public RelayCommand AddReviewCommand
         {
@@ -145,6 +183,7 @@ namespace ITCompCatalogue.ViewModel
         {
             Messenger.Default.Register<long>(this, async (cId) =>
             {
+                SelectedCourseId = cId;
                 IsLoadingProgressRing = true;
                 ReviewsList = new ObservableCollection<CourReview>(await CatalogueService.GetCourseReviewByCourseId(cId));
                 IsLoadingProgressRing = false;

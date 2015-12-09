@@ -232,18 +232,25 @@ namespace ITCompCatalogue.ViewModel
                                     break;
                             }
                             query.Request.SearchSuggestionCollection.AppendResultSuggestion(cour.Code, cour.Intitule, cour.Category.TechnologieID.ToString(), stream, "Result"); 
-                        }                    
+                        }
+                        var rr = query.Request.SearchSuggestionCollection;
                     }));
             }
         }
-        private RelayCommand<SearchBoxResultSuggestionChosenEventArgs> _suggestionSelectedCommand;
-        public RelayCommand<SearchBoxResultSuggestionChosenEventArgs> SuggestionSelectedCommand
+        private RelayCommand<object> _suggestionSelectedCommand;
+        public RelayCommand<object> SuggestionSelectedCommand
         {
             get
             {
                 return _suggestionSelectedCommand
-                    ?? (_suggestionSelectedCommand = new RelayCommand<SearchBoxResultSuggestionChosenEventArgs>(
-                    (args) => NavigationService.NavigateTo("CourDetails", CatalogueService.GetCourseByCourseId(long.Parse(args.Tag)))));
+                    ?? (_suggestionSelectedCommand = new RelayCommand<object>(
+                        (args) =>
+                        {
+
+                            var course = CatalogueService.GetCourseByCourseCode(args.ToString());
+                            NavigationService.NavigateTo("CourDetails", course
+                                );
+                        }));
             }
         }
         private RelayCommand _pageLoadedCommand;
