@@ -248,8 +248,7 @@ namespace ITCompCatalogue.ViewModel
                         {
 
                             var course = CatalogueService.GetCourseByCourseCode(args.ToString());
-                            NavigationService.NavigateTo("CourDetails", course
-                                );
+                            NavigationService.NavigateTo("CourDetails", course);
                         }));
             }
         }
